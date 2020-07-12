@@ -28,5 +28,13 @@ class NasaData {
 class SpaceXData {
   static String url = 'https://api.spacexdata.com/v3/launches/upcoming';
 
-  
+  Future getSpaceXData() async {
+    http.Response response = await http.get(url);
+    var decodedData = jsonDecode(response.body);
+    var missionName = decodedData[0]['mission_name'];
+
+    print(missionName);
+
+    return missionName;
+  }
 }
