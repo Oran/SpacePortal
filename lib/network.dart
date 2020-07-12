@@ -12,9 +12,15 @@ class NetworkData {
     var decodedData = jsonDecode(response.body);
 
     var image = decodedData['url'];
+    var title = decodedData['title'];
+    var date = decodedData['date'];
+    var exp = decodedData['explanation'];
+
+    List list = [image, title, exp, date];
 
     // print(response.body);
+    //print(list[0]);
 
-    return image;
+    return list;
   }
 }
