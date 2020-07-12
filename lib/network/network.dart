@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class NetworkData {
+class NasaData {
 //"https://api.nasa.gov/planetary/apod?api_key=pc7RPSAONSoBlJTGozeFT1EcaDa0mwXoD17XsKd3"
 
   static String apiKey = 'pc7RPSAONSoBlJTGozeFT1EcaDa0mwXoD17XsKd3';
@@ -23,4 +23,10 @@ class NetworkData {
 
     return list;
   }
+}
+
+class SpaceXData {
+  static String url = 'https://api.spacexdata.com/v3/launches/upcoming';
+
+  
 }
