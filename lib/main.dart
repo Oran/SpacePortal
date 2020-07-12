@@ -49,12 +49,19 @@ class _MyAppState extends State<MyApp> {
               style: TextStyle(fontSize: 18),
             ),
             Expanded(
-              child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  list[2] == null ? 'text is null' : list[2],
-                  style: TextStyle(fontSize: 15),
-                ),
+              child: ListView(
+                physics: BouncingScrollPhysics(),
+                children: <Widget>[
+                  Container(
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        list[2] == null ? 'text is null' : list[2],
+                        style: TextStyle(fontSize: 15),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             RaisedButton(
