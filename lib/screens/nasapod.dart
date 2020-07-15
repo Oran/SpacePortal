@@ -33,15 +33,15 @@ class _NasaPodState extends State<NasaPod> {
         ),
         body: Column(
           children: <Widget>[
-            list[0] == null
+            list == null
                 ? CircularProgressIndicator()
                 : Image.network(list[0]),
             Text(
-              list[1] == null ? 'text is null' : list[1],
+              list == null ? '' : list[1],
               style: TextStyle(fontSize: 25),
             ),
             Text(
-              list[3] == null ? 'text is null' : list[3],
+              list == null ? '' : list[3],
               style: TextStyle(fontSize: 18),
             ),
             Expanded(
@@ -52,7 +52,7 @@ class _NasaPodState extends State<NasaPod> {
                     child: Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Text(
-                        list[2] == null ? 'text is null' : list[2],
+                        list == null ? '' : list[2],
                         style: TextStyle(fontSize: 15),
                       ),
                     ),

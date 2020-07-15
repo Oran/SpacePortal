@@ -15,13 +15,7 @@ class NasaData {
     var title = decodedData['title'];
     var date = decodedData['date'];
     var exp = decodedData['explanation'];
-
-    List list = [image, title, exp, date];
-
-    // print(response.body);
-    //print(list[0]);
-
-    return list;
+    return [image, title, exp, date];
   }
 }
 
@@ -32,9 +26,13 @@ class SpaceXData {
     http.Response response = await http.get(url);
     var decodedData = jsonDecode(response.body);
     var missionName = decodedData[0]['mission_name'];
+    var flightNumber = decodedData[0]['flight_number'];
+    var dateTime = decodedData[0]['launch_date_utc'];
 
-    print(missionName);
+    RegExp exp = RegExp(r"(\d\d\d\d-\d\d-\d\d)");
 
-    return missionName;
+    String date = exp.firstMatch(dateTime).group(1);
+    
+    return [missionName, flightNumber, date];
   }
 }

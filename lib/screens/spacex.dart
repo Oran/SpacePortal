@@ -8,13 +8,14 @@ class SpaceX extends StatefulWidget {
 
 class _SpaceXState extends State<SpaceX> {
   SpaceXData spaceX = SpaceXData();
-  String result;
-  String text;
+  List result;
+  List spaceXList;
 
   Future getDataSpaceX() async {
     result = await spaceX.getSpaceXData();
+
     setState(() {
-      text = result;
+      spaceXList = result;
     });
   }
 
@@ -33,7 +34,15 @@ class _SpaceXState extends State<SpaceX> {
       body: Container(
         child: Column(
           children: <Widget>[
-            Text(text == null ? 'text is null' : text),
+            spaceXList == null
+                ? Text('')
+                : Text(spaceXList[0]),
+            spaceXList == null
+                ? Text('')
+                : Text(spaceXList[1].toString()),
+            spaceXList == null
+                ? Text('')
+                : Text(spaceXList[2]),
             RaisedButton(
               onPressed: () {
                 spaceX.getSpaceXData();
