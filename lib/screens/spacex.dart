@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterPlayground/components/space_x_card.dart';
 import 'package:flutterPlayground/network/network.dart';
 
 class SpaceX extends StatefulWidget {
@@ -12,7 +13,7 @@ class _SpaceXState extends State<SpaceX> {
   List spaceXList;
 
   Future getDataSpaceX() async {
-    result = await spaceX.getSpaceXData();
+    result = await spaceX.getData();
 
     setState(() {
       spaceXList = result;
@@ -32,24 +33,7 @@ class _SpaceXState extends State<SpaceX> {
         title: Text('SpaceX'),
       ),
       body: Container(
-        child: Column(
-          children: <Widget>[
-            spaceXList == null
-                ? Text('')
-                : Text(spaceXList[0]),
-            spaceXList == null
-                ? Text('')
-                : Text(spaceXList[1].toString()),
-            spaceXList == null
-                ? Text('')
-                : Text(spaceXList[2]),
-            RaisedButton(
-              onPressed: () {
-                spaceX.getSpaceXData();
-              },
-            ),
-          ],
-        ),
+        child: SpaceXCard(spaceXList: spaceXList, spaceX: spaceX),
       ),
     );
   }

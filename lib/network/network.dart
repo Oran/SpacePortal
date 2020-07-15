@@ -22,17 +22,29 @@ class NasaData {
 class SpaceXData {
   static String url = 'https://api.spacexdata.com/v3/launches/upcoming';
 
-  Future getSpaceXData() async {
+  // Future getSpaceXData() async {
+  //   http.Response response = await http.get(url);
+  //   var decodedData = jsonDecode(response.body);
+  //   var missionName = decodedData[0]['mission_name'];
+  //   var flightNumber = decodedData[0]['flight_number'];
+  //   var dateTime = decodedData[0]['launch_date_utc'];
+
+  //   RegExp exp = RegExp(r"(\d\d\d\d-\d\d-\d\d)");
+
+  //   String date = exp.firstMatch(dateTime).group(1);
+
+  //   return [missionName, flightNumber, date];
+  // }
+
+  Future getData() async {
     http.Response response = await http.get(url);
     var decodedData = jsonDecode(response.body);
-    var missionName = decodedData[0]['mission_name'];
-    var flightNumber = decodedData[0]['flight_number'];
-    var dateTime = decodedData[0]['launch_date_utc'];
+    return decodedData;
+  }
 
+  String parseString(String dateTime) {
     RegExp exp = RegExp(r"(\d\d\d\d-\d\d-\d\d)");
-
     String date = exp.firstMatch(dateTime).group(1);
-    
-    return [missionName, flightNumber, date];
+    return date;
   }
 }
