@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterPlayground/constants.dart';
 import 'package:flutterPlayground/network/network.dart';
 
 class NasaPod extends StatefulWidget {
@@ -28,14 +29,34 @@ class _NasaPodState extends State<NasaPod> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        drawer: Drawer(
+          elevation: 20.0,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: RaisedButton(
+                  color: Colors.redAccent[100],
+                  child: Text(
+                    'SpaceX',
+                    style: TextStyle(
+                      fontSize: 20.0,
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, spaceXID);
+                  },
+                ),
+              )
+            ],
+          ),
+        ),
         appBar: AppBar(
           title: Text('Picture of the day'),
         ),
         body: Column(
           children: <Widget>[
-            list == null
-                ? CircularProgressIndicator()
-                : Image.network(list[0]),
+            list == null ? CircularProgressIndicator() : Image.network(list[0]),
             Text(
               list == null ? '' : list[1],
               style: TextStyle(fontSize: 25),
