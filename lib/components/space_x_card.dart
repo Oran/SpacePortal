@@ -18,7 +18,7 @@ class SpaceXCard extends StatelessWidget {
         return Padding(
           padding: EdgeInsets.all(10.0),
           child: Container(
-            height: 200.0,
+            height: 500.0,
             decoration: BoxDecoration(
               gradient: LinearGradient(colors: [Colors.grey[100], Colors.grey]),
               border: Border.all(width: 1),
@@ -28,15 +28,25 @@ class SpaceXCard extends StatelessWidget {
               children: <Widget>[
                 spaceXList[index] == null
                     ? Text('null')
-                    : Column(
-                        children: [
-                          Text(spaceXList[index]['mission_name']),
-                          spaceXList[index]['details'] == null
-                              ? Text('Null')
-                              : Text(spaceXList[index]['details']),
-                          Text(spaceX.parseString(
-                              spaceXList[index]['launch_date_utc'])),
-                        ],
+                    : Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: Column(
+                          children: [
+                            spaceXList[index]['links']['mission_patch'] == null
+                                ? Text('image is null')
+                                : Container(
+                                    height: 200.0,
+                                    width: 200.0,
+                                    child: Image.network(spaceXList[index]
+                                        ['links']['mission_patch'])),
+                            Text(spaceXList[index]['mission_name']),
+                            spaceXList[index]['details'] == null
+                                ? Text('Null')
+                                : Text(spaceXList[index]['details']),
+                            Text(spaceX.parseString(
+                                spaceXList[index]['launch_date_utc'])),
+                          ],
+                        ),
                       ),
                 RaisedButton(
                   onPressed: () {},
@@ -49,3 +59,5 @@ class SpaceXCard extends StatelessWidget {
     );
   }
 }
+
+//1.links.mission_patch
