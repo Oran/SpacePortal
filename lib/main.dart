@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: spaceXID,
+      initialRoute: nasapodID,
       routes: {
         nasapodID: (context) => NasaPod(),
         spaceXID: (context) => SpaceX(),

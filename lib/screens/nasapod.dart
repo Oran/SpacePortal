@@ -54,41 +54,51 @@ class _NasaPodState extends State<NasaPod> {
         appBar: AppBar(
           title: Text('Picture of the day'),
         ),
-        body: Column(
-          children: <Widget>[
-            list == null ? CircularProgressIndicator() : Image.network(list[0]),
-            Text(
-              list == null ? '' : list[1],
-              style: TextStyle(fontSize: 25),
-            ),
-            Text(
-              list == null ? '' : list[3],
-              style: TextStyle(fontSize: 18),
-            ),
-            Expanded(
-              child: ListView(
-                physics: BouncingScrollPhysics(),
+        body: list[4] == 404
+            ? Center(
+                child: Text(
+                  'Data is not provided yet, check back later \n Error Code - 404',
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              )
+            : Column(
                 children: <Widget>[
-                  Container(
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        list == null ? '' : list[2],
-                        style: TextStyle(fontSize: 15),
-                      ),
+                  Image.network(list[0]),
+                  Text(
+                    list[1],
+                    style: TextStyle(fontSize: 25),
+                  ),
+                  Text(
+                    list[3],
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  Expanded(
+                    child: ListView(
+                      physics: BouncingScrollPhysics(),
+                      children: <Widget>[
+                        Container(
+                          child: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(
+                              list == null ? '' : list[2],
+                              style: TextStyle(fontSize: 15),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
+                  ),
+                  RaisedButton(
+                    child: Text('Tap Me'),
+                    onPressed: () {
+                      networkData.getData();
+                    },
                   ),
                 ],
               ),
-            ),
-            RaisedButton(
-              child: Text('Tap Me'),
-              onPressed: () {
-                networkData.getData();
-              },
-            ),
-          ],
-        ),
       ),
     );
   }

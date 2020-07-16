@@ -15,7 +15,7 @@ class NasaData {
     var title = decodedData['title'];
     var date = decodedData['date'];
     var exp = decodedData['explanation'];
-    return [image, title, exp, date];
+    return [image, title, exp, date, response.statusCode];
   }
 }
 
