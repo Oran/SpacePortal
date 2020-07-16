@@ -34,7 +34,7 @@ class _NasaPodState extends State<NasaPod> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.all(10),
+                padding: EdgeInsets.all(10),
                 child: RaisedButton(
                   color: Colors.redAccent[100],
                   child: Text(
@@ -77,7 +77,6 @@ class _NasaPodState extends State<NasaPod> {
                   ),
                   Expanded(
                     child: ListView(
-                      physics: BouncingScrollPhysics(),
                       children: <Widget>[
                         Container(
                           child: Padding(

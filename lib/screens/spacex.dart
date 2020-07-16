@@ -29,9 +29,9 @@ class _SpaceXState extends State<SpaceX> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text('SpaceX'),
-      // ),
+      appBar: AppBar(
+        title: Text('SpaceX'),
+      ),
       body: SpaceXCard(spaceXList: spaceXList, spaceX: spaceX),
     );
   }
