@@ -66,7 +66,19 @@ class _NasaPodState extends State<NasaPod> {
               )
             : Column(
                 children: <Widget>[
-                  Image.network(list[0]),
+                  Container(
+                    height: (MediaQuery.of(context).size.height) * 0.50,
+                    width: (MediaQuery.of(context).size.width) * 0.99,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        width: 2,
+                      ),
+                    ),
+                    child: Image.network(
+                      list[0],
+                      fit: BoxFit.fill,
+                    ),
+                  ),
                   Text(
                     list[1],
                     style: TextStyle(fontSize: 25),
