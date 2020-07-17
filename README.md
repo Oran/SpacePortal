@@ -2,10 +2,11 @@
 
 ## Todo
 
-- [ ] Add Selection for the Mars Picture page
-  - [ ] Rover
-  - [ ] Camera
-  - [ ] Sol
+- [x] Add Selection for the Mars Picture page
+  - [x] Rover
+  - [x] Camera
+  - [x] Sol
+- [ ] Fix the NASA POD page bug
 
 ## Potential Features
 

@@ -19,27 +19,36 @@ class NasaPODData {
   }
 }
 
-class NasaMarsData {
-  static List cam = [
-    'fhaz',
-    'rhaz',
-    'mast',
-    'chemcam',
-    'mahil',
-    'mardi',
-    'navcam',
-    'pancam',
-    'minites'
-  ];
-  static List rover = [
-    'curiosity',
-    'opportunity',
-    'spirit',
-  ];
-  static int sol = 100;
+final List<String> cam = [
+  'fhaz',
+  'rhaz',
+  'mast',
+  'chemcam',
+  'mahil',
+  'mardi',
+  'navcam',
+  'pancam',
+  'minites',
+];
 
-  static String url =
-      'https://api.nasa.gov/mars-photos/api/v1/rovers/${rover[1]}/photos?sol=$sol&camera=${cam[7]}&api_key=$_apiKey';
+final List<String> rover = [
+  'curiosity',
+  'opportunity',
+  'spirit',
+];
+
+String url =
+    'https://api.nasa.gov/mars-photos/api/v1/rovers/${rover[1]}/photos?sol=100&camera=${cam[6]}&api_key=$_apiKey';
+
+class NasaMarsData {
+  void printURL() {
+    print(url);
+  }
+
+  void setURL(camIn, roverIn, solIn) {
+    url =
+        'https://api.nasa.gov/mars-photos/api/v1/rovers/$roverIn/photos?sol=$solIn&camera=$camIn&api_key=$_apiKey';
+  }
 
   Future getMarsData() async {
     http.Response response = await http.get(url);
