@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterPlayground/screens/mars.dart';
 import 'package:flutterPlayground/screens/nasapod.dart';
 import 'package:flutterPlayground/screens/spacex.dart';
 import 'constants.dart';
@@ -11,10 +12,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: nasapodID,
+      initialRoute: marsID,
       routes: {
         nasapodID: (context) => NasaPod(),
         spaceXID: (context) => SpaceX(),
+        marsID: (context) => Mars(),
       },
     );
   }

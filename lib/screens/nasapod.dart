@@ -31,24 +31,28 @@ class _NasaPodState extends State<NasaPod> {
       home: Scaffold(
         drawer: Drawer(
           elevation: 20.0,
-          child: Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: RaisedButton(
-                  color: Colors.redAccent[100],
-                  child: Text(
-                    'SpaceX',
-                    style: TextStyle(
-                      fontSize: 20.0,
-                    ),
-                  ),
-                  onPressed: () {
+          child: Padding(
+            padding: EdgeInsets.only(top: 40.0),
+            child: Column(
+              children: [
+                ListTile(
+                  contentPadding: EdgeInsets.symmetric(horizontal: 25.0),
+                  leading: Icon(Icons.account_balance),
+                  title: Text('SpaceX Launch Timetable'),
+                  onTap: () {
                     Navigator.pushNamed(context, spaceXID);
                   },
                 ),
-              )
-            ],
+                ListTile(
+                  contentPadding: EdgeInsets.symmetric(horizontal: 25.0),
+                  leading: Icon(Icons.account_balance),
+                  title: Text('Mars stuff'),
+                  onTap: () {
+                    Navigator.pushNamed(context, marsID);
+                  },
+                ),
+              ],
+            ),
           ),
         ),
         appBar: AppBar(
