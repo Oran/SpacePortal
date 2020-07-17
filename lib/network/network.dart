@@ -31,12 +31,20 @@ class NasaMarsData {
     'pancam',
     'minites'
   ];
+  static List rover = [
+    'curiosity',
+    'opportunity',
+    'spirit',
+  ];
+  static int sol = 100;
+
   static String url =
-      'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=${cam[1]}&api_key=$_apiKey';
+      'https://api.nasa.gov/mars-photos/api/v1/rovers/${rover[1]}/photos?sol=$sol&camera=${cam[7]}&api_key=$_apiKey';
 
   Future getMarsData() async {
     http.Response response = await http.get(url);
     var decodedData = jsonDecode(response.body);
+    print(decodedData['photos'].length);
     return decodedData;
   }
 }

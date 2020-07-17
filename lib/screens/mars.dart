@@ -9,11 +9,13 @@ class Mars extends StatefulWidget {
 class _MarsState extends State<Mars> {
   NasaMarsData marsData = NasaMarsData();
   var list;
+  int numOfPics;
 
   void getData() async {
     var data = await marsData.getMarsData();
     setState(() {
       list = data;
+      numOfPics = data['photos'].length;
     });
   }
 
@@ -27,7 +29,7 @@ class _MarsState extends State<Mars> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Mars'),
+        title: Text('Mars         Number of Pics - $numOfPics'),
       ),
       body: ListView.builder(
         itemCount: list == null
