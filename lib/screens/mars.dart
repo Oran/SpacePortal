@@ -30,7 +30,9 @@ class _MarsState extends State<Mars> {
         title: Text('Mars'),
       ),
       body: ListView.builder(
-        itemCount: list == null ? 0 : list['photos'].length,
+        itemCount: list == null
+            ? 0
+            : list['photos'].length == 856 ? 20 : list['photos'].length,
         itemBuilder: (context, index) {
           return Container(
             child: list['photos'][index]['img_src'] == null

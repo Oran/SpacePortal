@@ -8,7 +8,7 @@ class NasaPod extends StatefulWidget {
 }
 
 class _NasaPodState extends State<NasaPod> {
-  NasaData networkData = NasaData();
+  NasaPODData networkData = NasaPODData();
   List result;
   List list = [];
 
