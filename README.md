@@ -1,9 +1,14 @@
 # Space Portal
 
-
 ## Todo
-[] Make Rover and Camera selection page for Mars Pictures 
-    [] Rover
-    [] Camera
-    [] Sol
-[] Make the page good looking
+
+- [ ] Add Selection for the Mars Picture page
+  - [ ] Rover
+  - [ ] Camera
+  - [ ] Sol
+
+## Potential Features
+
+- [ ] Hubble Images
+- [ ] Information Panels
+- [ ] information about Stars and Exo planets
