@@ -44,7 +44,6 @@ class NasaMarsData {
   Future getMarsData() async {
     http.Response response = await http.get(url);
     var decodedData = jsonDecode(response.body);
-    print(decodedData['photos'].length);
     return decodedData;
   }
 }

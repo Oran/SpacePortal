@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutterPlayground/screens/mars.dart';
-import 'package:flutterPlayground/screens/nasapod.dart';
-import 'package:flutterPlayground/screens/spacex.dart';
+import 'package:SpacePortal/screens/mars.dart';
+import 'package:SpacePortal/screens/nasapod.dart';
+import 'package:SpacePortal/screens/spacex.dart';
 import 'constants.dart';
 
 void main() {

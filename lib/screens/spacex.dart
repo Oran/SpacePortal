@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutterPlayground/components/space_x_card.dart';
-import 'package:flutterPlayground/network/network.dart';
+import 'package:SpacePortal/components/space_x_card.dart';
+import 'package:SpacePortal/network/network.dart';
 
 class SpaceX extends StatefulWidget {
   @override

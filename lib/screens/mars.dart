@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterPlayground/network/network.dart';
+import 'package:SpacePortal/network/network.dart';
 
 class Mars extends StatefulWidget {
   @override

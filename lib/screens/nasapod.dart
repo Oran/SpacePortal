@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutterPlayground/constants.dart';
-import 'package:flutterPlayground/network/network.dart';
+import 'package:SpacePortal/constants.dart';
+import 'package:SpacePortal/network/network.dart';
 
 class NasaPod extends StatefulWidget {
   @override
