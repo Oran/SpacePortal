@@ -1,4 +1,5 @@
 //Routes for navigation
-const String nasapodID = 'nasapod';
-const String spaceXID = 'spacex';
-const String marsID = 'mars';
+const String nasapod_ID = 'nasapod';
+const String spaceX_ID = 'spacex';
+const String mars_ID = 'mars';
+const String test_ID = 'test';

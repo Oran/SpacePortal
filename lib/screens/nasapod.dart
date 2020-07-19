@@ -40,7 +40,7 @@ class _NasaPodState extends State<NasaPod> {
                   leading: Icon(Icons.account_balance),
                   title: Text('SpaceX Launch Timetable'),
                   onTap: () {
-                    Navigator.pushNamed(context, spaceXID);
+                    Navigator.pushNamed(context, spaceX_ID);
                   },
                 ),
                 ListTile(
@@ -48,7 +48,7 @@ class _NasaPodState extends State<NasaPod> {
                   leading: Icon(Icons.account_balance),
                   title: Text('Mars stuff'),
                   onTap: () {
-                    Navigator.pushNamed(context, marsID);
+                    Navigator.pushNamed(context, mars_ID);
                   },
                 ),
               ],

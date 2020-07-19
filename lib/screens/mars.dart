@@ -13,7 +13,7 @@ class _MarsState extends State<Mars> {
   var camIn;
   var roverIn;
   var solIn;
-  String selectedCam = 'navcam';
+  String selectedCam = 'navcam'; //Defaults
   String selectedRover = 'opportunity';
   String selectedSol = '100';
 
@@ -94,7 +94,6 @@ class _MarsState extends State<Mars> {
             child: GestureDetector(
                 child: Icon(Icons.cached),
                 onTap: () {
-                  //getData();
                   getData(selectedCam, selectedRover, selectedSol);
                 }),
           ),
@@ -108,6 +107,8 @@ class _MarsState extends State<Mars> {
               getDropdownButtonCamera(),
               getDropdownButtonRover(),
               TextField(
+                maxLength: 4,
+                textAlign: TextAlign.center,
                 onChanged: (value) {
                   print(value);
                   setState(() {
@@ -115,24 +116,41 @@ class _MarsState extends State<Mars> {
                   });
                 },
               ),
+              RaisedButton(
+                child: Icon(Icons.cached),
+                color: Colors.grey,
+                onPressed: () {
+                  getData(selectedCam, selectedRover, selectedSol);
+                  Navigator.pop(context);
+                },
+              )
             ],
           ),
         ),
       ),
-      body: ListView.builder(
-        itemCount: list == null
-            ? 0
-            : list['photos'].length == 856 ? 20 : list['photos'].length,
-        itemBuilder: (context, index) {
-          return Container(
-            child: list['photos'][index]['img_src'] == null
-                ? Text('image is null')
-                : Image.network(
-                    list['photos'][index]['img_src'],
-                  ),
-          );
-        },
-      ),
+      body: numOfPics == 0
+          ? Center(
+              child: Text(
+                'No Images Provided',
+                style: TextStyle(
+                  fontSize: 20.0,
+                ),
+              ),
+            )
+          : ListView.builder(
+              itemCount: list == null
+                  ? 0
+                  : list['photos'].length == 856 ? 20 : list['photos'].length,
+              itemBuilder: (context, index) {
+                return Container(
+                  child: list == null
+                      ? Text('image is null')
+                      : Image.network(
+                          list['photos'][index]['img_src'],
+                        ),
+                );
+              },
+            ),
     );
   }
 }

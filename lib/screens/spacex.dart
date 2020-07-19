@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:SpacePortal/components/space_x_card.dart';
+import 'package:SpacePortal/components/spaceX_card.dart';
 import 'package:SpacePortal/network/network.dart';
 
 class SpaceX extends StatefulWidget {
