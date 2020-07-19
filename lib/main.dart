@@ -13,7 +13,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      darkTheme: ThemeData.dark(), //change the app from light to dark mode
       debugShowCheckedModeBanner: false,
       initialRoute: mars_ID,
       routes: {

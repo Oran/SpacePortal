@@ -33,7 +33,7 @@ class _MarsState extends State<Mars> {
     });
   }
 
-  DropdownButton<String> getDropdownButtonCamera() {
+  DropdownButtonFormField<String> getDropdownButtonCamera() {
     List<DropdownMenuItem<String>> dropdownItems = [];
     for (String camera in cam) {
       var newItem = DropdownMenuItem(
@@ -43,7 +43,11 @@ class _MarsState extends State<Mars> {
       dropdownItems.add(newItem);
     }
 
-    return DropdownButton<String>(
+    return DropdownButtonFormField<String>(
+      dropdownColor: Colors.grey[300],
+      decoration: InputDecoration(
+        border: InputBorder.none,
+      ),
       value: selectedCam,
       items: dropdownItems,
       onChanged: (value) {
@@ -55,7 +59,7 @@ class _MarsState extends State<Mars> {
     );
   }
 
-  DropdownButton<String> getDropdownButtonRover() {
+  DropdownButtonFormField<String> getDropdownButtonRover() {
     List<DropdownMenuItem<String>> dropdownItems = [];
     for (String rovers in rover) {
       var newItem = DropdownMenuItem(
@@ -65,7 +69,11 @@ class _MarsState extends State<Mars> {
       dropdownItems.add(newItem);
     }
 
-    return DropdownButton<String>(
+    return DropdownButtonFormField<String>(
+      dropdownColor: Colors.grey[300],
+      decoration: InputDecoration(
+        border: InputBorder.none,
+      ),
       value: selectedRover,
       items: dropdownItems,
       onChanged: (value) {
@@ -104,21 +112,52 @@ class _MarsState extends State<Mars> {
           padding: EdgeInsets.only(top: 30.0),
           child: Column(
             children: [
-              getDropdownButtonCamera(),
-              getDropdownButtonRover(),
-              TextField(
-                maxLength: 4,
-                textAlign: TextAlign.center,
-                onChanged: (value) {
-                  print(value);
-                  setState(() {
-                    selectedSol = value;
-                  });
-                },
+              Container(
+                width: 150.0,
+                decoration: BoxDecoration(
+                    color: Colors.grey[300],
+                    borderRadius: BorderRadius.circular(10)),
+                child: Padding(
+                  padding: EdgeInsets.only(left: 10.0),
+                  child: Center(
+                    child: getDropdownButtonCamera(),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                width: 150.0,
+                decoration: BoxDecoration(
+                    color: Colors.grey[300],
+                    borderRadius: BorderRadius.circular(10)),
+                child: Padding(
+                  padding: EdgeInsets.only(left: 10.0),
+                  child: Center(child: getDropdownButtonRover()),
+                ),
+              ),
+              Container(
+                width: 150.0,
+                child: TextField(
+                  keyboardType: TextInputType.number,
+                  maxLength: 4,
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                    hintText: 'SOL Days',
+                    border: UnderlineInputBorder(),
+                  ),
+                  onChanged: (value) {
+                    print(value);
+                    setState(() {
+                      selectedSol = value;
+                    });
+                  },
+                ),
               ),
               RaisedButton(
                 child: Icon(Icons.cached),
-                color: Colors.grey,
+                color: Colors.grey[300],
                 onPressed: () {
                   getData(selectedCam, selectedRover, selectedSol);
                   Navigator.pop(context);
