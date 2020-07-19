@@ -23,6 +23,7 @@
 ### NADA POD Page
 
 - [ ] Fix the NASA POD page bug
+- [ ] Fix ('Could not instantiate image codec') this happens when the api sends a video link instead of image. 
 
 ## Potential Features
 
