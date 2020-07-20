@@ -19,11 +19,13 @@
   - [x] Camera
   - [x] Sol
 - [ ] Style the Image containers
+- [ ] Add Labels to every buttons and input
 
 ### NADA POD Page
 
 - [ ] Fix the NASA POD page bug
-- [ ] Fix ('Could not instantiate image codec') this happens when the api sends a video link instead of image. 
+- [x] Fix ('Could not instantiate image codec') this happens when the api sends a video link instead of image.
+  - [ ] Add A video player to page, if the api sends a youtube video.
 
 ## Potential Features
 

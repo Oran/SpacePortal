@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:SpacePortal/constants.dart';
 import 'package:SpacePortal/network/network.dart';
@@ -10,7 +12,7 @@ class NasaPod extends StatefulWidget {
 class _NasaPodState extends State<NasaPod> {
   NasaPODData networkData = NasaPODData();
   List result;
-  List list = [];
+  List list;
 
   Future getImageData() async {
     result = await networkData.getData();
@@ -21,7 +23,7 @@ class _NasaPodState extends State<NasaPod> {
 
   @override
   void initState() {
-    getImageData();
+    Timer(Duration(seconds: 5), () => getImageData());
     super.initState();
   }
 
@@ -58,7 +60,7 @@ class _NasaPodState extends State<NasaPod> {
         appBar: AppBar(
           title: Text('Picture of the day'),
         ),
-        body: list[4] == 404
+        body: list[5] == 404
             ? Center(
                 child: Text(
                   'Data is not provided yet, check back later \n Error Code - ${list[4]}',
@@ -79,18 +81,19 @@ class _NasaPodState extends State<NasaPod> {
                       ),
                     ),
                     child: list[0] == null
-                        ? CircularProgressIndicator()
-                        : Image.network(
-                            list[0],
-                            fit: BoxFit.fill,
-                          ),
+                        ? Text('Media not Provided')
+                        : list[4] == 'video'
+                            ? Text('Output is a video')
+                            : Image.network(
+                                list[0],
+                              ),
                   ),
                   Text(
                     list[1] == null ? '' : list[1],
                     style: TextStyle(fontSize: 25),
                   ),
                   Text(
-                    list[3] == null ? '' : list[3],
+                    list[2] == null ? '' : list[2],
                     style: TextStyle(fontSize: 18),
                   ),
                   Expanded(
@@ -100,7 +103,7 @@ class _NasaPodState extends State<NasaPod> {
                           child: Padding(
                             padding: EdgeInsets.all(8.0),
                             child: Text(
-                              list[2] == null ? '' : list[2],
+                              list[3] == null ? '' : list[3],
                               style: TextStyle(fontSize: 15),
                             ),
                           ),

@@ -1,6 +1,5 @@
-import 'dart:async';
-
 import 'package:http/http.dart' as http;
+import 'dart:async';
 import 'dart:convert';
 
 final String _apiKey = 'pc7RPSAONSoBlJTGozeFT1EcaDa0mwXoD17XsKd3';
@@ -15,7 +14,9 @@ class NasaPODData {
     var title = decodedData['title'];
     var date = decodedData['date'];
     var exp = decodedData['explanation'];
-    return [image, title, exp, date, response.statusCode];
+    var mediaType = decodedData['media_type'];
+    print(response.statusCode);
+    return [image, title, date, exp, mediaType, response.statusCode];
   }
 }
 
