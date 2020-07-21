@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:SpacePortal/constants.dart';
 import 'package:SpacePortal/network/network.dart';
@@ -58,6 +57,8 @@ class _NasaPodState extends State<NasaPod> {
       ),
       appBar: AppBar(
         title: Text('Picture of the day'),
+        elevation: 0,
+        backgroundColor: kAccentdarkBlue,
       ),
       body: FutureBuilder(
         future: Future.delayed(Duration(seconds: 1)),
