@@ -1,3 +1,4 @@
+import 'package:SpacePortal/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:SpacePortal/network/network.dart';
 
@@ -94,8 +95,11 @@ class _MarsState extends State<Mars> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kAccentdarkBlue,
       appBar: AppBar(
         title: Text('Mars\nNumber of Pics - $numOfPics'),
+        elevation: 0,
+        backgroundColor: kAccentdarkBlue,
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 20.0),
@@ -109,8 +113,9 @@ class _MarsState extends State<Mars> {
       ),
       drawer: Drawer(
         child: Padding(
-          padding: EdgeInsets.only(top: 30.0),
+          padding: EdgeInsets.only(top: 30.0, bottom: 30.0),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Container(
                 width: 150.0,
@@ -177,15 +182,32 @@ class _MarsState extends State<Mars> {
               ),
             )
           : ListView.builder(
+              physics: BouncingScrollPhysics(),
               itemCount: list == null
                   ? 0
                   : list['photos'].length == 856 ? 20 : list['photos'].length,
               itemBuilder: (context, index) {
                 return Container(
                   child: list == null
-                      ? Text('image is null')
-                      : Image.network(
-                          list['photos'][index]['img_src'],
+                      ? Center(
+                          child: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(
+                              'Image is null',
+                              style: kTitleDateTS.copyWith(color: Colors.black),
+                            ),
+                          ),
+                        )
+                      : Container(
+                          decoration: BoxDecoration(
+                            color: kAccentdarkBlue,
+                            border:
+                                Border.all(width: 20.0, color: kAccentdarkBlue),
+                          ),
+                          child: Image.network(
+                            list['photos'][index]['img_src'],
+                            fit: BoxFit.fill,
+                          ),
                         ),
                 );
               },
