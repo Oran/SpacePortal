@@ -10,7 +10,7 @@
 
 ### SpaceX Page
 
-- [ ] Style all the containers
+- [x] Style all the containers
 
 ### Mars Page
 
