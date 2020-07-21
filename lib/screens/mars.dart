@@ -204,9 +204,12 @@ class _MarsState extends State<Mars> {
                             border:
                                 Border.all(width: 20.0, color: kAccentdarkBlue),
                           ),
-                          child: Image.network(
-                            list['photos'][index]['img_src'],
-                            fit: BoxFit.fill,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20.0),
+                            child: Image.network(
+                              list['photos'][index]['img_src'],
+                              fit: BoxFit.fill,
+                            ),
                           ),
                         ),
                 );
