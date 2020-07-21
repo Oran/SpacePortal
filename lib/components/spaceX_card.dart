@@ -1,3 +1,4 @@
+import 'package:SpacePortal/constants.dart';
 import 'package:flutter/material.dart';
 import '../network/network.dart';
 
@@ -13,45 +14,74 @@ class SpaceXCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      physics: BouncingScrollPhysics(),
       itemCount: spaceXList == null ? 0 : spaceXList.length,
       itemBuilder: (context, index) {
         return Padding(
           padding: EdgeInsets.all(10.0),
           child: Container(
-            height: 500.0,
+            height: (MediaQuery.of(context).size.height * 0.70),
             decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [Colors.grey[100], Colors.grey]),
-              border: Border.all(width: 1),
+              color: kAccent40Blue.withOpacity(0.60),
+              borderRadius: BorderRadius.circular(30.0),
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                spaceXList[index] == null
-                    ? Text('null')
-                    : Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: Column(
-                          children: [
-                            spaceXList[index]['links']['mission_patch'] == null
-                                ? Text('image is null')
-                                : Container(
-                                    height: 200.0,
-                                    width: 200.0,
-                                    child: Image.network(spaceXList[index]
-                                        ['links']['mission_patch'])),
-                            Text(spaceXList[index]['mission_name']),
-                            spaceXList[index]['details'] == null
-                                ? Text('Null')
-                                : Text(spaceXList[index]['details']),
-                            Text(spaceX.parseString(
-                                spaceXList[index]['launch_date_utc'])),
-                          ],
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  spaceXList[index] == null
+                      ? Text(
+                          'Data not Provided',
+                          style: kTitleDateTS,
+                        )
+                      : Padding(
+                          padding: EdgeInsets.all(10.0),
+                          child: Column(
+                            children: [
+                              spaceXList[index]['links']['mission_patch'] ==
+                                      null
+                                  ? Text(
+                                      '\'Mission Patch not provided\'',
+                                      style: kTitleDateTS,
+                                    )
+                                  : Container(
+                                      height: 200.0,
+                                      width: 200.0,
+                                      child: Image.network(
+                                        spaceXList[index]['links']
+                                            ['mission_patch'],
+                                      ),
+                                    ),
+                              SizedBox(
+                                height: 15.0,
+                              ),
+                              Text(
+                                spaceXList[index]['mission_name'] == null
+                                    ? '\'Mission Name not Provided\''
+                                    : spaceXList[index]['mission_name'],
+                                textAlign: TextAlign.center,
+                                style: kTitleDateTS,
+                              ),
+                              Text(
+                                  spaceX.parseString(
+                                    spaceXList[index]['launch_date_utc'],
+                                  ),
+                                  style: kTitleDateTS),
+                              spaceXList[index]['details'] == null
+                                  ? Text(
+                                      '\nDetails not Provided yet..',
+                                      style: kTitleDateTS,
+                                    )
+                                  : Text(
+                                      spaceXList[index]['details'],
+                                      style: kDetailsTS,
+                                    ),
+                            ],
+                          ),
                         ),
-                      ),
-                RaisedButton(
-                  onPressed: () {},
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         );
