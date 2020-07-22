@@ -5,13 +5,14 @@
 ### General
 
 - [ ] Add a theme change option
-- [ ] Choose colors for the app
-- [ ] Add fonts
+- [x] Choose colors for the app
+- [x] Add fonts
 - [ ] Add Internet connection check with a message if no connection is available
 
 ### SpaceX Page
 
 - [x] Style all the containers
+- [ ] Add Drawer to spaceX page
 
 ### Mars Page
 
@@ -19,8 +20,8 @@
   - [x] Rover
   - [x] Camera
   - [x] Sol
-- [ ] Style the Image containers
-- [ ] Add Labels to every buttons and input
+- [x] Style the Image containers
+- [x] Add Labels to every buttons and input
 
 ### NADA POD Page
 

@@ -128,6 +128,20 @@ class _MarsState extends State<Mars> {
                         color: kPrimaryWhite,
                       ),
                       title: Text(
+                        'NASA Picture of the day',
+                        style: kDetailsTS,
+                      ),
+                      onTap: () {
+                        Navigator.pushNamed(context, nasapod_ID);
+                      },
+                    ),
+                    ListTile(
+                      contentPadding: EdgeInsets.symmetric(horizontal: 25.0),
+                      leading: Icon(
+                        Icons.account_balance,
+                        color: kPrimaryWhite,
+                      ),
+                      title: Text(
                         'SpaceX Launch Timetable',
                         style: kDetailsTS,
                       ),
@@ -180,7 +194,7 @@ class _MarsState extends State<Mars> {
                       ),
                     ),
                     SizedBox(height: 15.0),
-                    Text('Days on Mars', style: kDetailsTS),
+                    Text(' Solar days on Mars', style: kDetailsTS),
                     Container(
                       decoration: BoxDecoration(
                           border: Border.all(color: kAccent40Blue, width: 2.0),
