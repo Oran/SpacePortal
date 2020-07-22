@@ -129,9 +129,7 @@ class _MarsState extends State<Mars> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
+              SizedBox(height: 10),
               Container(
                 width: 150.0,
                 decoration: BoxDecoration(

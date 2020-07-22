@@ -7,6 +7,7 @@
 - [ ] Add a theme change option
 - [ ] Choose colors for the app
 - [ ] Add fonts
+- [ ] Add Internet connection check with a message if no connection is available
 
 ### SpaceX Page
 
