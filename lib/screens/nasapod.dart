@@ -59,6 +59,16 @@ class _NasaPodState extends State<NasaPod> {
         title: Text('Picture of the day'),
         elevation: 0,
         backgroundColor: kAccentdarkBlue,
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: 20.0),
+            child: GestureDetector(
+                child: Icon(Icons.cached),
+                onTap: () {
+                  getImageData();
+                }),
+          ),
+        ],
       ),
       body: FutureBuilder(
         future: Future.delayed(Duration(seconds: 2)),
@@ -93,22 +103,21 @@ class PODContents extends StatelessWidget {
               ),
             ),
           )
-        : Column(
+        : ListView(
             children: <Widget>[
               Container(
-                height: (MediaQuery.of(context).size.height) * 0.50,
-                width: (MediaQuery.of(context).size.width) * 0.99,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    width: 2,
-                  ),
-                ),
+                padding: EdgeInsets.all(5),
+                // height: (MediaQuery.of(context).size.height) * 0.50,
+                // width: (MediaQuery.of(context).size.width) * 0.99,
                 child: list[0] == null
                     ? Text('Media not Provided')
                     : list[4] == 'video'
                         ? Text('data')
-                        : Image.network(
-                            list[0],
+                        : ClipRRect(
+                            borderRadius: BorderRadius.circular(50.0),
+                            child: Image.network(
+                              list[0],
+                            ),
                           ),
               ),
               Text(
@@ -120,25 +129,15 @@ class PODContents extends StatelessWidget {
                 style: TextStyle(fontSize: 18),
               ),
               Expanded(
-                child: ListView(
-                  children: <Widget>[
-                    Container(
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          list[3] == null ? '' : list[3],
-                          style: TextStyle(fontSize: 15),
-                        ),
-                      ),
+                child: Container(
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      list[3] == null ? '' : list[3],
+                      style: TextStyle(fontSize: 15),
                     ),
-                  ],
+                  ),
                 ),
-              ),
-              RaisedButton(
-                child: Text('Tap Me'),
-                onPressed: () {
-                  networkData.getData();
-                },
               ),
             ],
           );
