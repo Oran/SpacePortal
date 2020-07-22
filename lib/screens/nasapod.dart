@@ -120,22 +120,26 @@ class PODContents extends StatelessWidget {
                             ),
                           ),
               ),
-              Text(
-                list[1] == null ? '' : list[1],
-                style: TextStyle(fontSize: 25),
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  list[1] == null ? '' : list[1],
+                  style: TextStyle(fontSize: 25),
+                ),
               ),
-              Text(
-                list[2] == null ? '' : list[2],
-                style: TextStyle(fontSize: 18),
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  list[2] == null ? '' : list[2],
+                  style: TextStyle(fontSize: 18),
+                ),
               ),
-              Expanded(
-                child: Container(
-                  child: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      list[3] == null ? '' : list[3],
-                      style: TextStyle(fontSize: 15),
-                    ),
+              Container(
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    list[3] == null ? '' : list[3],
+                    style: TextStyle(fontSize: 15),
                   ),
                 ),
               ),
