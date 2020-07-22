@@ -97,7 +97,7 @@ class _MarsState extends State<Mars> {
     return Scaffold(
       backgroundColor: kAccentdarkBlue,
       appBar: AppBar(
-        title: Text('Mars\nNumber of Pics - $numOfPics'),
+        title: Text('Mars Rover Images\nNumber of Images - $numOfPics'),
         elevation: 0,
         backgroundColor: kAccentdarkBlue,
         actions: [
@@ -154,6 +154,7 @@ class _MarsState extends State<Mars> {
                 SizedBox(height: (MediaQuery.of(context).size.height * 0.10)),
                 Column(
                   children: [
+                    Text('Camera', style: kDetailsTS),
                     Container(
                       width: 150.0,
                       decoration: BoxDecoration(
@@ -167,6 +168,7 @@ class _MarsState extends State<Mars> {
                       ),
                     ),
                     SizedBox(height: 10),
+                    Text('Rover Name', style: kDetailsTS),
                     Container(
                       width: 150.0,
                       decoration: BoxDecoration(
@@ -178,6 +180,7 @@ class _MarsState extends State<Mars> {
                       ),
                     ),
                     SizedBox(height: 15.0),
+                    Text('Days on Mars', style: kDetailsTS),
                     Container(
                       decoration: BoxDecoration(
                           border: Border.all(color: kAccent40Blue, width: 2.0),
@@ -248,12 +251,8 @@ class _MarsState extends State<Mars> {
                             ),
                           ),
                         )
-                      : Container(
-                          decoration: BoxDecoration(
-                            color: kAccentdarkBlue,
-                            border:
-                                Border.all(width: 20.0, color: kAccentdarkBlue),
-                          ),
+                      : Padding(
+                          padding: EdgeInsets.all(15.0),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(20.0),
                             child: Image.network(
