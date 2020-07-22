@@ -123,6 +123,7 @@ class PODContents extends StatelessWidget {
             axisDirection: AxisDirection.down,
             color: kAccentdarkBlue,
             child: ListView(
+              physics: BouncingScrollPhysics(),
               children: <Widget>[
                 Container(
                   padding: EdgeInsets.all(5),
