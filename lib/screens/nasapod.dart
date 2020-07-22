@@ -29,29 +29,45 @@ class _NasaPodState extends State<NasaPod> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kAccentdarkBlue,
       drawer: Drawer(
         elevation: 20.0,
-        child: Padding(
-          padding: EdgeInsets.only(top: 40.0),
-          child: Column(
-            children: [
-              ListTile(
-                contentPadding: EdgeInsets.symmetric(horizontal: 25.0),
-                leading: Icon(Icons.account_balance),
-                title: Text('SpaceX Launch Timetable'),
-                onTap: () {
-                  Navigator.pushNamed(context, spaceX_ID);
-                },
-              ),
-              ListTile(
-                contentPadding: EdgeInsets.symmetric(horizontal: 25.0),
-                leading: Icon(Icons.account_balance),
-                title: Text('Mars stuff'),
-                onTap: () {
-                  Navigator.pushNamed(context, mars_ID);
-                },
-              ),
-            ],
+        child: Container(
+          color: kAccentdarkBlue,
+          child: Padding(
+            padding: EdgeInsets.only(top: 40.0),
+            child: Column(
+              children: [
+                ListTile(
+                  contentPadding: EdgeInsets.symmetric(horizontal: 25.0),
+                  leading: Icon(
+                    Icons.account_balance,
+                    color: kPrimaryWhite,
+                  ),
+                  title: Text(
+                    'SpaceX Launch Timetable',
+                    style: kDetailsTS,
+                  ),
+                  onTap: () {
+                    Navigator.pushNamed(context, spaceX_ID);
+                  },
+                ),
+                ListTile(
+                  contentPadding: EdgeInsets.symmetric(horizontal: 25.0),
+                  leading: Icon(
+                    Icons.account_balance,
+                    color: kPrimaryWhite,
+                  ),
+                  title: Text(
+                    'Mars stuff',
+                    style: kDetailsTS,
+                  ),
+                  onTap: () {
+                    Navigator.pushNamed(context, mars_ID);
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -103,47 +119,56 @@ class PODContents extends StatelessWidget {
               ),
             ),
           )
-        : ListView(
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.all(5),
-                // height: (MediaQuery.of(context).size.height) * 0.50,
-                // width: (MediaQuery.of(context).size.width) * 0.99,
-                child: list[0] == null
-                    ? Text('Media not Provided')
-                    : list[4] == 'video'
-                        ? Text('data')
-                        : ClipRRect(
-                            borderRadius: BorderRadius.circular(50.0),
-                            child: Image.network(
-                              list[0],
-                            ),
+        : GlowingOverscrollIndicator(
+            axisDirection: AxisDirection.down,
+            color: kAccentdarkBlue,
+            child: ListView(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.all(5),
+                  // height: (MediaQuery.of(context).size.height) * 0.50,
+                  // width: (MediaQuery.of(context).size.width) * 0.99,
+                  child: list[0] == null
+                      ? Center(
+                          child: Text(
+                            'Media not Provided',
+                            style: kTitleDateTS.copyWith(color: Colors.red),
                           ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  list[1] == null ? '' : list[1],
-                  style: TextStyle(fontSize: 25),
+                        )
+                      : list[4] == 'video'
+                          ? Text('data')
+                          : ClipRRect(
+                              borderRadius: BorderRadius.circular(50.0),
+                              child: Image.network(
+                                list[0],
+                              ),
+                            ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  list[2] == null ? '' : list[2],
-                  style: TextStyle(fontSize: 18),
-                ),
-              ),
-              Container(
-                child: Padding(
+                Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text(
-                    list[3] == null ? '' : list[3],
-                    style: TextStyle(fontSize: 15),
+                    list[1] == null ? '' : list[1],
+                    style: kTitleDateTS.copyWith(fontSize: 25.0),
                   ),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    list[2] == null ? '' : list[2],
+                    style: kTitleDateTS.copyWith(fontSize: 18.0),
+                  ),
+                ),
+                Container(
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      list[3] == null ? '' : list[3],
+                      style: kDetailsTS,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           );
   }
 }

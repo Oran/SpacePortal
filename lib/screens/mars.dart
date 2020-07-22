@@ -112,61 +112,113 @@ class _MarsState extends State<Mars> {
         ],
       ),
       drawer: Drawer(
-        child: Padding(
-          padding: EdgeInsets.only(top: 30.0, bottom: 30.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(
-                width: 150.0,
-                decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(10)),
-                child: Padding(
-                  padding: EdgeInsets.only(left: 10.0),
-                  child: Center(
-                    child: getDropdownButtonCamera(),
-                  ),
+        child: Container(
+          color: kAccentdarkBlue,
+          child: Padding(
+            padding: EdgeInsets.only(top: 30.0, bottom: 30.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Column(
+                  children: [
+                    ListTile(
+                      contentPadding: EdgeInsets.symmetric(horizontal: 25.0),
+                      leading: Icon(
+                        Icons.account_balance,
+                        color: kPrimaryWhite,
+                      ),
+                      title: Text(
+                        'SpaceX Launch Timetable',
+                        style: kDetailsTS,
+                      ),
+                      onTap: () {
+                        Navigator.pushNamed(context, spaceX_ID);
+                      },
+                    ),
+                    ListTile(
+                      contentPadding: EdgeInsets.symmetric(horizontal: 25.0),
+                      leading: Icon(
+                        Icons.account_balance,
+                        color: kPrimaryWhite,
+                      ),
+                      title: Text(
+                        'Mars stuff',
+                        style: kDetailsTS,
+                      ),
+                      onTap: () {
+                        Navigator.pushNamed(context, mars_ID);
+                      },
+                    ),
+                  ],
                 ),
-              ),
-              SizedBox(height: 10),
-              Container(
-                width: 150.0,
-                decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(10)),
-                child: Padding(
-                  padding: EdgeInsets.only(left: 10.0),
-                  child: Center(child: getDropdownButtonRover()),
+                SizedBox(height: (MediaQuery.of(context).size.height * 0.10)),
+                Column(
+                  children: [
+                    Container(
+                      width: 150.0,
+                      decoration: BoxDecoration(
+                          color: Colors.grey[400],
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 10.0),
+                        child: Center(
+                          child: getDropdownButtonCamera(),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Container(
+                      width: 150.0,
+                      decoration: BoxDecoration(
+                          color: Colors.grey[400],
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 10.0),
+                        child: Center(child: getDropdownButtonRover()),
+                      ),
+                    ),
+                    SizedBox(height: 15.0),
+                    Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: kAccent40Blue, width: 2.0),
+                          borderRadius: BorderRadius.circular(10)),
+                      width: 150.0,
+                      child: Theme(
+                        data: ThemeData(
+                          primaryColor: kAccent60Blue,
+                          accentColor: kAccent60Blue,
+                        ),
+                        child: TextField(
+                          keyboardType: TextInputType.number,
+                          maxLength: 4,
+                          textAlign: TextAlign.center,
+                          decoration: InputDecoration(
+                            hintText: 'SOL Days',
+                            hintStyle: TextStyle(color: Colors.grey),
+                            border: InputBorder.none,
+                          ),
+                          onChanged: (value) {
+                            print(value);
+                            setState(() {
+                              selectedSol = value;
+                            });
+                          },
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    RaisedButton(
+                      child: Icon(Icons.cached),
+                      color: Colors.grey[400],
+                      onPressed: () {
+                        getData(selectedCam, selectedRover, selectedSol);
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ],
                 ),
-              ),
-              Container(
-                width: 150.0,
-                child: TextField(
-                  keyboardType: TextInputType.number,
-                  maxLength: 4,
-                  textAlign: TextAlign.center,
-                  decoration: InputDecoration(
-                    hintText: 'SOL Days',
-                    border: UnderlineInputBorder(),
-                  ),
-                  onChanged: (value) {
-                    print(value);
-                    setState(() {
-                      selectedSol = value;
-                    });
-                  },
-                ),
-              ),
-              RaisedButton(
-                child: Icon(Icons.cached),
-                color: Colors.grey[300],
-                onPressed: () {
-                  getData(selectedCam, selectedRover, selectedSol);
-                  Navigator.pop(context);
-                },
-              )
-            ],
+              ],
+            ),
           ),
         ),
       ),
