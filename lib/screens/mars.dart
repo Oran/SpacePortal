@@ -132,7 +132,7 @@ class _MarsState extends State<Mars> {
                         style: kDetailsTS,
                       ),
                       onTap: () {
-                        Navigator.pushNamed(context, nasapod_ID);
+                        Navigator.pushNamed(context, knasapod_ID);
                       },
                     ),
                     ListTile(
@@ -146,7 +146,7 @@ class _MarsState extends State<Mars> {
                         style: kDetailsTS,
                       ),
                       onTap: () {
-                        Navigator.pushNamed(context, spaceX_ID);
+                        Navigator.pushNamed(context, kspaceX_ID);
                       },
                     ),
                     ListTile(
@@ -160,7 +160,7 @@ class _MarsState extends State<Mars> {
                         style: kDetailsTS,
                       ),
                       onTap: () {
-                        Navigator.pushNamed(context, mars_ID);
+                        Navigator.pushNamed(context, kmars_ID);
                       },
                     ),
                   ],

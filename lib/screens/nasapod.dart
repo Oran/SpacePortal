@@ -49,7 +49,7 @@ class _NasaPodState extends State<NasaPod> {
                     style: kDetailsTS,
                   ),
                   onTap: () {
-                    Navigator.pushNamed(context, spaceX_ID);
+                    Navigator.pushNamed(context, kspaceX_ID);
                   },
                 ),
                 ListTile(
@@ -63,7 +63,7 @@ class _NasaPodState extends State<NasaPod> {
                     style: kDetailsTS,
                   ),
                   onTap: () {
-                    Navigator.pushNamed(context, mars_ID);
+                    Navigator.pushNamed(context, kmars_ID);
                   },
                 ),
               ],

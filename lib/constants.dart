@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 //Routes for navigation
-const String nasapod_ID = 'nasapod';
-const String spaceX_ID = 'spacex';
-const String mars_ID = 'mars';
-const String test_ID = 'test';
+const String knasapod_ID = 'nasapod';
+const String kspaceX_ID = 'spacex';
+const String kmars_ID = 'mars';
+const String knoConnection_ID = 'noConnectionPage';
 
 //Color palette for the app
 const Color kPrimarySkyBlue = Color(0xff026599);
