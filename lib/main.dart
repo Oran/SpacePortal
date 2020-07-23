@@ -57,23 +57,34 @@ class _MyAppState extends State<MyApp> {
       DeviceOrientation.portraitUp, // forces potrait mode for devices
       DeviceOrientation.portraitDown
     ]);
-    return FutureBuilder(
-      future: Future.delayed(Duration(seconds: 5)),
-      builder: (context, snapshot) =>
-          snapshot.connectionState == ConnectionState.done
-              ? MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  initialRoute: connectionValue == cs.done
-                      ? knasapod_ID
-                      : knoConnection_ID,
-                  routes: {
-                    knasapod_ID: (context) => NasaPod(),
-                    kspaceX_ID: (context) => SpaceX(),
-                    kmars_ID: (context) => Mars(),
-                    knoConnection_ID: (context) => NoConnectionPage(),
-                  },
-                )
-              : Center(child: CircularProgressIndicator()),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      initialRoute: kmars_ID,
+      routes: {
+        knasapod_ID: (context) => NasaPod(),
+        kspaceX_ID: (context) => SpaceX(),
+        kmars_ID: (context) => Mars(),
+        knoConnection_ID: (context) => NoConnectionPage(),
+      },
     );
   }
 }
+
+// FutureBuilder(
+//       future: Future.delayed(Duration(seconds: 5)),
+//       builder: (context, snapshot) =>
+//           snapshot.connectionState == ConnectionState.done
+//               ? MaterialApp(
+//                   debugShowCheckedModeBanner: false,
+//                   initialRoute: connectionValue == cs.done
+//                       ? knasapod_ID
+//                       : knoConnection_ID,
+//                   routes: {
+//                     knasapod_ID: (context) => NasaPod(),
+//                     kspaceX_ID: (context) => SpaceX(),
+//                     kmars_ID: (context) => Mars(),
+//                     knoConnection_ID: (context) => NoConnectionPage(),
+//                   },
+//                 )
+//               : Center(child: CircularProgressIndicator()),
+//     );
