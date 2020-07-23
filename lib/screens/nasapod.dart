@@ -108,65 +108,74 @@ class PODContents extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return list[5] == 404
+    return list == null
         ? Center(
             child: Text(
-              '${list[6]}\nCheck back later\n\nError Code - ${list[5]}',
+              // '${list[6]}\nCheck back later\n\nError Code - ${list[5]}',
+              'No internet conenction',
               textAlign: TextAlign.center,
               style: kTitleDateTS,
             ),
           )
-        : GlowingOverscrollIndicator(
-            axisDirection: AxisDirection.down,
-            color: kAccentdarkBlue,
-            child: ListView(
-              physics: BouncingScrollPhysics(),
-              children: <Widget>[
-                Container(
-                  padding: EdgeInsets.all(5),
-                  // height: (MediaQuery.of(context).size.height) * 0.50,
-                  // width: (MediaQuery.of(context).size.width) * 0.99,
-                  child: list[0] == null
-                      ? Center(
-                          child: Text(
-                            'Media not Provided',
-                            style: kTitleDateTS.copyWith(color: Colors.red),
-                          ),
-                        )
-                      : list[4] == 'video'
-                          ? Text('data')
-                          : ClipRRect(
-                              borderRadius: BorderRadius.circular(50.0),
-                              child: Image.network(
-                                list[0],
+        : list[5] == 404
+            ? Center(
+                child: Text(
+                  '${list[6]}\nCheck back later\n\nError Code - ${list[5]}',
+                  textAlign: TextAlign.center,
+                  style: kTitleDateTS,
+                ),
+              )
+            : GlowingOverscrollIndicator(
+                axisDirection: AxisDirection.down,
+                color: kAccentdarkBlue,
+                child: ListView(
+                  physics: BouncingScrollPhysics(),
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.all(5),
+                      // height: (MediaQuery.of(context).size.height) * 0.50,
+                      // width: (MediaQuery.of(context).size.width) * 0.99,
+                      child: list[0] == null
+                          ? Center(
+                              child: Text(
+                                'Media not Provided',
+                                style: kTitleDateTS.copyWith(color: Colors.red),
                               ),
-                            ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    list[1] == null ? '' : list[1],
-                    style: kTitleDateTS.copyWith(fontSize: 25.0),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    list[2] == null ? '' : list[2],
-                    style: kTitleDateTS.copyWith(fontSize: 18.0),
-                  ),
-                ),
-                Container(
-                  child: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      list[3] == null ? '' : list[3],
-                      style: kDetailsTS,
+                            )
+                          : list[4] == 'video'
+                              ? Text('data')
+                              : ClipRRect(
+                                  borderRadius: BorderRadius.circular(50.0),
+                                  child: Image.network(
+                                    list[0],
+                                  ),
+                                ),
                     ),
-                  ),
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        list[1] == null ? '' : list[1],
+                        style: kTitleDateTS.copyWith(fontSize: 25.0),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        list[2] == null ? '' : list[2],
+                        style: kTitleDateTS.copyWith(fontSize: 18.0),
+                      ),
+                    ),
+                    Container(
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          list[3] == null ? '' : list[3],
+                          style: kDetailsTS,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          );
+              );
   }
 }

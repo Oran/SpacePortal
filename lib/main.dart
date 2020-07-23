@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:SpacePortal/screens/noConnection_page.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:SpacePortal/screens/mars.dart';
 import 'package:SpacePortal/screens/nasapod.dart';
@@ -78,14 +77,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
-// MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       initialRoute: connectionValue == cs.done || connectionValue != cs.noll ? knasapod_ID : knoConnection_ID,
-//       routes: {
-//         knasapod_ID: (context) => NasaPod(),
-//         kspaceX_ID: (context) => SpaceX(),
-//         kmars_ID: (context) => Mars(),
-//         knoConnection_ID: (context) => NoConnectionPage(),
-//       },
-//     );
