@@ -9,9 +9,9 @@
   - [ ] Make a light theme for the app
 - [x] Choose colors for the app
 - [x] Add fonts
-- [ ] Add Internet connection check with a message if no connection is available
+- [x] Add Internet connection check with a message if no connection is available
   - [x] Internet Connection ckecks
-  - [ ] Internet connection bool bug
+  - [x] Internet connection bool bug
 - [ ] Setting page
 
 ### SpaceX Page
@@ -33,6 +33,7 @@
 - [x] Fix the NASA POD page bug
 - [x] Fix ('Could not instantiate image codec') this happens when the api sends a video link instead of image.
   - [ ] Add A video player to page, if the api sends a youtube video.
+- [x] Fix No interent connection bug
 
 ## Potential Features
 
