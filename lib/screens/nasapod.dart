@@ -111,12 +111,9 @@ class PODContents extends StatelessWidget {
     return list[5] == 404
         ? Center(
             child: Text(
-              'Data is not provided yet check back later\n\nError Code - ${list[5]}',
+              '${list[6]}\nCheck back later\n\nError Code - ${list[5]}',
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.w700,
-              ),
+              style: kTitleDateTS,
             ),
           )
         : GlowingOverscrollIndicator(

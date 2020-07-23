@@ -15,8 +15,10 @@ class NasaPODData {
     var date = decodedData['date'];
     var exp = decodedData['explanation'];
     var mediaType = decodedData['media_type'];
+    var statusCode = decodedData['code'];
+    var msg = decodedData['msg'];
     print(response.statusCode);
-    return [image, title, date, exp, mediaType, response.statusCode];
+    return [image, title, date, exp, mediaType, statusCode, msg];
   }
 }
 
