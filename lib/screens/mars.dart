@@ -197,7 +197,8 @@ class _MarsState extends State<Mars> {
                     Text(' Solar days on Mars', style: kDetailsTS),
                     Container(
                       decoration: BoxDecoration(
-                          border: Border.all(color: kAccent40Blue, width: 2.0),
+                          border:
+                              Border.all(color: Colors.grey[900], width: 2.0),
                           borderRadius: BorderRadius.circular(10)),
                       width: 150.0,
                       child: Theme(
@@ -214,6 +215,7 @@ class _MarsState extends State<Mars> {
                             hintStyle: TextStyle(color: Colors.grey),
                             border: InputBorder.none,
                           ),
+                          style: kDetailsTS,
                           onChanged: (value) {
                             print(value);
                             setState(() {
