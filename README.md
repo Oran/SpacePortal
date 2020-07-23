@@ -5,9 +5,14 @@
 ### General
 
 - [ ] Add a theme change option
+  - [ ] Make a dark theme for the app
+  - [ ] Make a light theme for the app
 - [x] Choose colors for the app
 - [x] Add fonts
 - [ ] Add Internet connection check with a message if no connection is available
+  - [x] Internet Connection ckecks
+  - [ ] Internet connection bool bug
+- [ ] Setting page
 
 ### SpaceX Page
 
