@@ -1,4 +1,5 @@
-import 'package:SpacePortal/test.dart';
+import 'dart:io';
+import 'package:SpacePortal/screens/noConnection_page.dart';
 import 'package:flutter/material.dart';
 import 'package:SpacePortal/screens/mars.dart';
 import 'package:SpacePortal/screens/nasapod.dart';
@@ -10,7 +11,40 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool connectionValue;
+
+  // This block of code checks if there is an active internet connection.
+  void checkConnection() async {
+    try {
+      final result = await InternetAddress.lookup('www.google.com');
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        print('connected');
+        setState(() {
+          connectionValue = true;
+        });
+        print(connectionValue);
+      }
+    } on SocketException catch (_) {
+      print('not connected');
+      setState(() {
+        connectionValue = false;
+      });
+      print(connectionValue);
+    }
+  }
+
+  @override
+  void initState() {
+    checkConnection();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -19,12 +53,12 @@ class MyApp extends StatelessWidget {
     ]);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: nasapod_ID,
+      initialRoute: connectionValue ? knasapod_ID : knoConnection_ID,
       routes: {
-        nasapod_ID: (context) => NasaPod(),
-        spaceX_ID: (context) => SpaceX(),
-        mars_ID: (context) => Mars(),
-        test_ID: (context) => Test(),
+        knasapod_ID: (context) => NasaPod(),
+        kspaceX_ID: (context) => SpaceX(),
+        kmars_ID: (context) => Mars(),
+        knoConnection_ID: (context) => NoConnectionPage(),
       },
     );
   }
