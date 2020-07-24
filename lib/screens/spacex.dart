@@ -32,19 +32,13 @@ class _SpaceXState extends State<SpaceX> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: kAccentdarkBlue,
+        backgroundColor: kPrimaryDarkPurple,
         title: Text('SpaceX'),
       ),
       body: Container(
         height: (MediaQuery.of(context).size.height),
         width: (MediaQuery.of(context).size.width),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.bottomCenter,
-            end: Alignment.topCenter,
-            colors: kGradientSpaceBlue,
-          ),
-        ),
+        color: kPrimaryDarkPurple,
         child: SpaceXCard(spaceXList: spaceXList, spaceX: spaceX),
       ),
     );

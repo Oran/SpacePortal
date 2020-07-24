@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:SpacePortal/screens/noConnection_page.dart';
+import 'package:SpacePortal/screens/noConnection.dart';
 import 'package:flutter/material.dart';
 import 'package:SpacePortal/screens/mars.dart';
 import 'package:SpacePortal/screens/nasapod.dart';
