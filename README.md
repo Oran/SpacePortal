@@ -19,7 +19,7 @@
 ### SpaceX Page
 
 - [x] Style all the containers
-- [ ] Add Drawer to spaceX page
+- [x] Add Drawer to spaceX page
 
 ### Mars Page
 
