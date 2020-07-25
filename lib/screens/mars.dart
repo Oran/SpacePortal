@@ -45,8 +45,12 @@ class _MarsState extends State<Mars> {
     }
 
     return DropdownButtonFormField<String>(
-      dropdownColor: Colors.grey[300],
+      style: kDetailsTS,
       decoration: InputDecoration(
+        labelText: 'Camera',
+        labelStyle: kDetailsTS.copyWith(
+          color: kDropDownButtonColor,
+        ),
         border: InputBorder.none,
       ),
       value: selectedCam,
@@ -71,8 +75,12 @@ class _MarsState extends State<Mars> {
     }
 
     return DropdownButtonFormField<String>(
-      dropdownColor: Colors.grey[300],
+      style: kDetailsTS,
       decoration: InputDecoration(
+        labelText: 'Rover Name',
+        labelStyle: kDetailsTS.copyWith(
+          color: kDropDownButtonColor,
+        ),
         border: InputBorder.none,
       ),
       value: selectedRover,
@@ -99,7 +107,7 @@ class _MarsState extends State<Mars> {
       appBar: AppBar(
         title: Text('Mars Rover Images\nNumber of Images - $numOfPics'),
         elevation: 0,
-        // backgroundColor: kPrimaryDarkPurple,
+        backgroundColor: kAppBarColor,
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 20.0),
@@ -113,7 +121,7 @@ class _MarsState extends State<Mars> {
       ),
       drawer: Drawer(
         child: Container(
-          // color: kPrimaryDarkPurple,
+          color: kDrawerColor,
           child: Padding(
             padding: EdgeInsets.only(top: 30.0, bottom: 30.0),
             child: Column(
@@ -125,7 +133,7 @@ class _MarsState extends State<Mars> {
                       contentPadding: EdgeInsets.symmetric(horizontal: 25.0),
                       leading: Icon(
                         Icons.account_balance,
-                        // color: kPrimaryWhite,
+                        color: kIconColor,
                       ),
                       title: Text(
                         'NASA Picture of the day',
@@ -139,7 +147,7 @@ class _MarsState extends State<Mars> {
                       contentPadding: EdgeInsets.symmetric(horizontal: 25.0),
                       leading: Icon(
                         Icons.account_balance,
-                        // color: kPrimaryWhite,
+                        color: kIconColor,
                       ),
                       title: Text(
                         'SpaceX Launch Timetable',
@@ -154,12 +162,12 @@ class _MarsState extends State<Mars> {
                 SizedBox(height: (MediaQuery.of(context).size.height * 0.10)),
                 Column(
                   children: [
-                    Text('Camera', style: kDetailsTS),
                     Container(
                       width: 150.0,
                       decoration: BoxDecoration(
-                          color: Colors.grey[400],
-                          borderRadius: BorderRadius.circular(10)),
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: kAccentAmber),
+                      ),
                       child: Padding(
                         padding: EdgeInsets.only(left: 10.0),
                         child: Center(
@@ -168,32 +176,34 @@ class _MarsState extends State<Mars> {
                       ),
                     ),
                     SizedBox(height: 10),
-                    Text('Rover Name', style: kDetailsTS),
                     Container(
                       width: 150.0,
                       decoration: BoxDecoration(
-                          color: Colors.grey[400],
-                          borderRadius: BorderRadius.circular(10)),
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: kAccentAmber),
+                      ),
                       child: Padding(
                         padding: EdgeInsets.only(left: 10.0),
                         child: Center(child: getDropdownButtonRover()),
                       ),
                     ),
                     SizedBox(height: 15.0),
-                    Text(' Solar days on Mars', style: kDetailsTS),
                     Container(
-                      decoration: BoxDecoration(
-                          border:
-                              Border.all(color: Colors.grey[900], width: 2.0),
-                          borderRadius: BorderRadius.circular(10)),
                       width: 150.0,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: kAccentAmber),
+                      ),
                       child: TextField(
+                        cursorColor: kAccentAmber,
                         keyboardType: TextInputType.number,
-                        maxLength: 4,
                         textAlign: TextAlign.center,
                         decoration: InputDecoration(
-                          hintText: 'SOL Days',
-                          hintStyle: TextStyle(color: Colors.grey),
+                          labelText: 'Days on Mars',
+                          labelStyle: kDetailsTS.copyWith(
+                            color: kAccentAmber,
+                          ),
+                          contentPadding: EdgeInsets.all(11),
                           border: InputBorder.none,
                         ),
                         style: kDetailsTS,

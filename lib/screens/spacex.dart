@@ -32,7 +32,7 @@ class _SpaceXState extends State<SpaceX> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        // backgroundColor: kPrimaryDarkPurple,
+        backgroundColor: kAppBarColor,
         title: Text('SpaceX'),
       ),
       body: Container(
@@ -44,7 +44,7 @@ class _SpaceXState extends State<SpaceX> {
       drawer: Drawer(
         elevation: 20.0,
         child: Container(
-          // color: kPrimaryDarkPurple,
+          color: kDrawerColor,
           child: Padding(
             padding: EdgeInsets.only(top: 40.0),
             child: Column(
@@ -53,7 +53,7 @@ class _SpaceXState extends State<SpaceX> {
                   contentPadding: EdgeInsets.symmetric(horizontal: 25.0),
                   leading: Icon(
                     Icons.account_balance,
-                    // color: kPrimaryWhite,
+                    color: kIconColor,
                   ),
                   title: Text(
                     'NASA Picture of the day',
@@ -67,7 +67,7 @@ class _SpaceXState extends State<SpaceX> {
                   contentPadding: EdgeInsets.symmetric(horizontal: 25.0),
                   leading: Icon(
                     Icons.account_balance,
-                    // color: kPrimaryWhite,
+                    color: kIconColor,
                   ),
                   title: Text(
                     'Mars stuff',

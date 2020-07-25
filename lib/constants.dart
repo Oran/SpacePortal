@@ -15,12 +15,21 @@ const Color kAccentDogwoodRose = Color(0xFFCC296C);
 const Color kAccentDarkCornflowerBlue = Color(0xFF25418A);
 const Color kAccentPlumWeb = Color(0xFFE19EDD);
 const Color kAccentWisteria = Color(0xFFAB95D7);
+const Color kAccentAmber = Colors.amber;
+
+// Theming for the app
+const Color kDrawerColor = kPrimaryDarkPurple;
+const Color kIconColor = Colors.amber;
+const Color kAppBarColor = kPrimaryDarkPurple;
+const Color kDropDownButtonColor = Colors.amber;
 
 //TextStyle
 TextStyle kTitleDateTS = GoogleFonts.notoSans(
   fontSize: 18.0,
+  color: kPrimaryWhite,
 );
 
 TextStyle kDetailsTS = GoogleFonts.notoSans(
   fontSize: 15.0,
+  color: kPrimaryWhite,
 );
