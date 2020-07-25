@@ -36,6 +36,7 @@
 - [x] Fix ('Could not instantiate image codec') this happens when the api sends a video link instead of image.
   - [ ] Add A video player to page, if the api sends a youtube video.
 - [x] Fix No interent connection bug
+- [ ] Cache Images and text until you get another image from nasa API.
 
 ## Potential Features
 
