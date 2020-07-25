@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:SpacePortal/screens/noConnection.dart';
+import 'package:SpacePortal/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:SpacePortal/screens/mars.dart';
 import 'package:SpacePortal/screens/nasapod.dart';
@@ -58,6 +59,7 @@ class _MyAppState extends State<MyApp> {
       DeviceOrientation.portraitDown
     ]);
     return MaterialApp(
+      theme: themeData,
       debugShowCheckedModeBanner: false,
       initialRoute: kmars_ID,
       routes: {
