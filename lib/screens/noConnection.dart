@@ -5,7 +5,7 @@ class NoConnectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kAccentdarkBlue,
+      backgroundColor: kPrimaryDarkPurple,
       body: Container(
         child: Center(
           child: Column(

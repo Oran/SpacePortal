@@ -95,11 +95,11 @@ class _MarsState extends State<Mars> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kAccentdarkBlue,
+      backgroundColor: kPrimaryDarkPurple,
       appBar: AppBar(
         title: Text('Mars Rover Images\nNumber of Images - $numOfPics'),
         elevation: 0,
-        backgroundColor: kAccentdarkBlue,
+        backgroundColor: kPrimaryDarkPurple,
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 20.0),
@@ -113,7 +113,7 @@ class _MarsState extends State<Mars> {
       ),
       drawer: Drawer(
         child: Container(
-          color: kAccentdarkBlue,
+          color: kPrimaryDarkPurple,
           child: Padding(
             padding: EdgeInsets.only(top: 30.0, bottom: 30.0),
             child: Column(
@@ -201,28 +201,22 @@ class _MarsState extends State<Mars> {
                               Border.all(color: Colors.grey[900], width: 2.0),
                           borderRadius: BorderRadius.circular(10)),
                       width: 150.0,
-                      child: Theme(
-                        data: ThemeData(
-                          primaryColor: kAccent60Blue,
-                          accentColor: kAccent60Blue,
+                      child: TextField(
+                        keyboardType: TextInputType.number,
+                        maxLength: 4,
+                        textAlign: TextAlign.center,
+                        decoration: InputDecoration(
+                          hintText: 'SOL Days',
+                          hintStyle: TextStyle(color: Colors.grey),
+                          border: InputBorder.none,
                         ),
-                        child: TextField(
-                          keyboardType: TextInputType.number,
-                          maxLength: 4,
-                          textAlign: TextAlign.center,
-                          decoration: InputDecoration(
-                            hintText: 'SOL Days',
-                            hintStyle: TextStyle(color: Colors.grey),
-                            border: InputBorder.none,
-                          ),
-                          style: kDetailsTS,
-                          onChanged: (value) {
-                            print(value);
-                            setState(() {
-                              selectedSol = value;
-                            });
-                          },
-                        ),
+                        style: kDetailsTS,
+                        onChanged: (value) {
+                          print(value);
+                          setState(() {
+                            selectedSol = value;
+                          });
+                        },
                       ),
                     ),
                     SizedBox(height: 10),

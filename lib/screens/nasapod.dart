@@ -29,11 +29,11 @@ class _NasaPodState extends State<NasaPod> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kAccentdarkBlue,
+      backgroundColor: kPrimaryDarkPurple,
       drawer: Drawer(
         elevation: 20.0,
         child: Container(
-          color: kAccentdarkBlue,
+          color: kPrimaryDarkPurple,
           child: Padding(
             padding: EdgeInsets.only(top: 40.0),
             child: Column(
@@ -74,7 +74,7 @@ class _NasaPodState extends State<NasaPod> {
       appBar: AppBar(
         title: Text('Picture of the day'),
         elevation: 0,
-        backgroundColor: kAccentdarkBlue,
+        backgroundColor: kPrimaryDarkPurple,
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 20.0),
@@ -127,7 +127,7 @@ class PODContents extends StatelessWidget {
               )
             : GlowingOverscrollIndicator(
                 axisDirection: AxisDirection.down,
-                color: kAccentdarkBlue,
+                color: kAccentWisteria,
                 child: ListView(
                   physics: BouncingScrollPhysics(),
                   children: <Widget>[
