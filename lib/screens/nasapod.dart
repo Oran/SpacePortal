@@ -29,11 +29,11 @@ class _NasaPodState extends State<NasaPod> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kPrimaryDarkPurple,
+      // backgroundColor: kPrimaryDarkPurple,
       drawer: Drawer(
         elevation: 20.0,
         child: Container(
-          color: kPrimaryDarkPurple,
+          // color: kPrimaryDarkPurple,
           child: Padding(
             padding: EdgeInsets.only(top: 40.0),
             child: Column(
@@ -42,7 +42,7 @@ class _NasaPodState extends State<NasaPod> {
                   contentPadding: EdgeInsets.symmetric(horizontal: 25.0),
                   leading: Icon(
                     Icons.account_balance,
-                    color: kPrimaryWhite,
+                    // color: kPrimaryWhite,
                   ),
                   title: Text(
                     'SpaceX Launch Timetable',
@@ -56,7 +56,7 @@ class _NasaPodState extends State<NasaPod> {
                   contentPadding: EdgeInsets.symmetric(horizontal: 25.0),
                   leading: Icon(
                     Icons.account_balance,
-                    color: kPrimaryWhite,
+                    // color: kPrimaryWhite,
                   ),
                   title: Text(
                     'Mars stuff',
@@ -74,7 +74,7 @@ class _NasaPodState extends State<NasaPod> {
       appBar: AppBar(
         title: Text('Picture of the day'),
         elevation: 0,
-        backgroundColor: kPrimaryDarkPurple,
+        // backgroundColor: kPrimaryDarkPurple,
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 20.0),
@@ -125,57 +125,53 @@ class PODContents extends StatelessWidget {
                   style: kTitleDateTS,
                 ),
               )
-            : GlowingOverscrollIndicator(
-                axisDirection: AxisDirection.down,
-                color: kAccentWisteria,
-                child: ListView(
-                  physics: BouncingScrollPhysics(),
-                  children: <Widget>[
-                    Container(
-                      padding: EdgeInsets.all(5),
-                      // height: (MediaQuery.of(context).size.height) * 0.50,
-                      // width: (MediaQuery.of(context).size.width) * 0.99,
-                      child: list[0] == null
-                          ? Center(
-                              child: Text(
-                                'Media not Provided',
-                                style: kTitleDateTS.copyWith(color: Colors.red),
+            : ListView(
+              physics: BouncingScrollPhysics(),
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.all(5),
+                  // height: (MediaQuery.of(context).size.height) * 0.50,
+                  // width: (MediaQuery.of(context).size.width) * 0.99,
+                  child: list[0] == null
+                      ? Center(
+                          child: Text(
+                            'Media not Provided',
+                            style: kTitleDateTS.copyWith(color: Colors.red),
+                          ),
+                        )
+                      : list[4] == 'video'
+                          ? Text('data')
+                          : ClipRRect(
+                              borderRadius: BorderRadius.circular(50.0),
+                              child: Image.network(
+                                list[0],
                               ),
-                            )
-                          : list[4] == 'video'
-                              ? Text('data')
-                              : ClipRRect(
-                                  borderRadius: BorderRadius.circular(50.0),
-                                  child: Image.network(
-                                    list[0],
-                                  ),
-                                ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        list[1] == null ? '' : list[1],
-                        style: kTitleDateTS.copyWith(fontSize: 25.0),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        list[2] == null ? '' : list[2],
-                        style: kTitleDateTS.copyWith(fontSize: 18.0),
-                      ),
-                    ),
-                    Container(
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          list[3] == null ? '' : list[3],
-                          style: kDetailsTS,
-                        ),
-                      ),
-                    ),
-                  ],
+                            ),
                 ),
-              );
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    list[1] == null ? '' : list[1],
+                    style: kTitleDateTS.copyWith(fontSize: 25.0),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    list[2] == null ? '' : list[2],
+                    style: kTitleDateTS.copyWith(fontSize: 18.0),
+                  ),
+                ),
+                Container(
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      list[3] == null ? '' : list[3],
+                      style: kDetailsTS,
+                    ),
+                  ),
+                ),
+              ],
+            );
   }
 }

@@ -5,7 +5,7 @@ class NoConnectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kPrimaryDarkPurple,
+      // backgroundColor: kPrimaryDarkPurple,
       body: Container(
         child: Center(
           child: Column(
@@ -14,7 +14,7 @@ class NoConnectionPage extends StatelessWidget {
               Icon(
                 Icons.cloud_off,
                 size: 50.0,
-                color: kPrimaryWhite,
+                // color: kPrimaryWhite,
               ),
               Text(
                 'No Connection',
@@ -24,7 +24,7 @@ class NoConnectionPage extends StatelessWidget {
                 ),
               ),
               Divider(
-                color: Colors.white,
+                // color: Colors.white,
                 thickness: 1.5,
                 height: 10.0,
                 endIndent: 50.0,

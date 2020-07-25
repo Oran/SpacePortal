@@ -95,11 +95,11 @@ class _MarsState extends State<Mars> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kPrimaryDarkPurple,
+      // backgroundColor: kPrimaryDarkPurple,
       appBar: AppBar(
         title: Text('Mars Rover Images\nNumber of Images - $numOfPics'),
         elevation: 0,
-        backgroundColor: kPrimaryDarkPurple,
+        // backgroundColor: kPrimaryDarkPurple,
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 20.0),
@@ -113,7 +113,7 @@ class _MarsState extends State<Mars> {
       ),
       drawer: Drawer(
         child: Container(
-          color: kPrimaryDarkPurple,
+          // color: kPrimaryDarkPurple,
           child: Padding(
             padding: EdgeInsets.only(top: 30.0, bottom: 30.0),
             child: Column(
@@ -125,7 +125,7 @@ class _MarsState extends State<Mars> {
                       contentPadding: EdgeInsets.symmetric(horizontal: 25.0),
                       leading: Icon(
                         Icons.account_balance,
-                        color: kPrimaryWhite,
+                        // color: kPrimaryWhite,
                       ),
                       title: Text(
                         'NASA Picture of the day',
@@ -139,7 +139,7 @@ class _MarsState extends State<Mars> {
                       contentPadding: EdgeInsets.symmetric(horizontal: 25.0),
                       leading: Icon(
                         Icons.account_balance,
-                        color: kPrimaryWhite,
+                        // color: kPrimaryWhite,
                       ),
                       title: Text(
                         'SpaceX Launch Timetable',
@@ -153,7 +153,7 @@ class _MarsState extends State<Mars> {
                       contentPadding: EdgeInsets.symmetric(horizontal: 25.0),
                       leading: Icon(
                         Icons.account_balance,
-                        color: kPrimaryWhite,
+                        // color: kPrimaryWhite,
                       ),
                       title: Text(
                         'Mars stuff',

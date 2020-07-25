@@ -19,10 +19,8 @@ const Color kAccentWisteria = Color(0xFFAB95D7);
 //TextStyle
 TextStyle kTitleDateTS = GoogleFonts.notoSans(
   fontSize: 18.0,
-  color: Colors.white,
 );
 
 TextStyle kDetailsTS = GoogleFonts.notoSans(
   fontSize: 15.0,
-  color: Colors.white,
 );
