@@ -149,20 +149,6 @@ class _MarsState extends State<Mars> {
                         Navigator.pushNamed(context, kspaceX_ID);
                       },
                     ),
-                    ListTile(
-                      contentPadding: EdgeInsets.symmetric(horizontal: 25.0),
-                      leading: Icon(
-                        Icons.account_balance,
-                        // color: kPrimaryWhite,
-                      ),
-                      title: Text(
-                        'Mars stuff',
-                        style: kDetailsTS,
-                      ),
-                      onTap: () {
-                        Navigator.pushNamed(context, kmars_ID);
-                      },
-                    ),
                   ],
                 ),
                 SizedBox(height: (MediaQuery.of(context).size.height * 0.10)),

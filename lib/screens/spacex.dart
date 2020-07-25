@@ -41,6 +41,47 @@ class _SpaceXState extends State<SpaceX> {
         // color: kPrimaryDarkPurple,
         child: SpaceXCard(spaceXList: spaceXList, spaceX: spaceX),
       ),
+      drawer: Drawer(
+        elevation: 20.0,
+        child: Container(
+          // color: kPrimaryDarkPurple,
+          child: Padding(
+            padding: EdgeInsets.only(top: 40.0),
+            child: Column(
+              children: [
+                ListTile(
+                  contentPadding: EdgeInsets.symmetric(horizontal: 25.0),
+                  leading: Icon(
+                    Icons.account_balance,
+                    // color: kPrimaryWhite,
+                  ),
+                  title: Text(
+                    'NASA Picture of the day',
+                    style: kDetailsTS,
+                  ),
+                  onTap: () {
+                    Navigator.pushNamed(context, knasapod_ID);
+                  },
+                ),
+                ListTile(
+                  contentPadding: EdgeInsets.symmetric(horizontal: 25.0),
+                  leading: Icon(
+                    Icons.account_balance,
+                    // color: kPrimaryWhite,
+                  ),
+                  title: Text(
+                    'Mars stuff',
+                    style: kDetailsTS,
+                  ),
+                  onTap: () {
+                    Navigator.pushNamed(context, kmars_ID);
+                  },
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
