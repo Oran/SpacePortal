@@ -20,7 +20,7 @@ const Color kAccentAmber = Colors.amber;
 // Theming for the app
 const Color kDrawerColor = kPrimaryDarkPurple;
 const Color kIconColor = Colors.amber;
-const Color kAppBarColor = kPrimaryDarkPurple;
+const Color kAppBarColor = kAccentAmber;
 const Color kDropDownButtonColor = Colors.amber;
 
 //TextStyle
