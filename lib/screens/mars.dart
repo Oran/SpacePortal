@@ -189,6 +189,7 @@ class _MarsState extends State<Mars> {
                     ),
                     SizedBox(height: 15.0),
                     Container(
+                      height: 60.0,
                       width: 150.0,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -215,14 +216,24 @@ class _MarsState extends State<Mars> {
                         },
                       ),
                     ),
-                    SizedBox(height: 10),
-                    RaisedButton(
-                      child: Icon(Icons.cached),
-                      color: Colors.grey[400],
-                      onPressed: () {
+                    SizedBox(height: 20),
+                    GestureDetector(
+                      onTap: () {
                         getData(selectedCam, selectedRover, selectedSol);
                         Navigator.pop(context);
                       },
+                      child: Container(
+                        height: 60.0,
+                        width: 60.0,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(color: kAccentAmber),
+                            color: kAccentAmber),
+                        child: Icon(
+                          Icons.cached,
+                          color: kPrimaryDarkPurple,
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -235,9 +246,7 @@ class _MarsState extends State<Mars> {
           ? Center(
               child: Text(
                 'No Images Provided',
-                style: TextStyle(
-                  fontSize: 20.0,
-                ),
+                style: kTitleDateTS,
               ),
             )
           : ListView.builder(
@@ -260,7 +269,7 @@ class _MarsState extends State<Mars> {
                       : Padding(
                           padding: EdgeInsets.all(15.0),
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20.0),
+                            borderRadius: BorderRadius.circular(30.0),
                             child: Image.network(
                               list['photos'][index]['img_src'],
                               fit: BoxFit.fill,
