@@ -61,7 +61,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       theme: themeData,
       debugShowCheckedModeBanner: false,
-      initialRoute: kmars_ID,
+      initialRoute: knasapod_ID,
       routes: {
         knasapod_ID: (context) => NasaPod(),
         kspaceX_ID: (context) => SpaceX(),
