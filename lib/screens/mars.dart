@@ -256,6 +256,16 @@ class _MarsState extends State<Mars> {
                   : list['photos'].length == 856 ? 20 : list['photos'].length,
               itemBuilder: (context, index) {
                 return Container(
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black45,
+                        spreadRadius: -10,
+                        blurRadius: 30,
+                        offset: Offset(0, 0),
+                      ),
+                    ],
+                  ),
                   child: list == null
                       ? Center(
                           child: Padding(
@@ -267,7 +277,7 @@ class _MarsState extends State<Mars> {
                           ),
                         )
                       : Padding(
-                          padding: EdgeInsets.all(15.0),
+                          padding: EdgeInsets.all(20.0),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(30.0),
                             child: Image.network(
