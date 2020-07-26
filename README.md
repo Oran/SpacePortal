@@ -10,6 +10,7 @@
   - [x] Internet Connection ckecks
   - [x] Internet connection bool bug
 - [ ] Setting page
+- [ ] Design a logo for the app
 
 ### SpaceX Page
 
@@ -44,3 +45,4 @@
 - [ ] Add a theme change option
   - [ ] Make a dark theme for the app
   - [ ] Make a light theme for the app
+- [ ] Pull Down to refresh 
