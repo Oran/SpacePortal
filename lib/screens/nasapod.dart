@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:SpacePortal/constants.dart';
 import 'package:SpacePortal/network/network.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NasaPod extends StatefulWidget {
   @override
@@ -139,7 +140,20 @@ class PODContents extends StatelessWidget {
                             ),
                           )
                         : list[4] == 'video'
-                            ? Text('data')
+                            ? Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    launch(list[0]);
+                                  },
+                                  child: Text(
+                                    '${list[0]}',
+                                    textAlign: TextAlign.center,
+                                    style:
+                                        kDetailsTS.copyWith(color: Colors.red),
+                                  ),
+                                ),
+                              )
                             : ClipRRect(
                                 borderRadius: BorderRadius.circular(50.0),
                                 child: Image.network(
