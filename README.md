@@ -31,15 +31,16 @@
 - [x] Fix the NASA POD page bug
 - [x] Fix ('Could not instantiate image codec') this happens when the api sends a video link instead of image.
   - [ ] Add A video player to page, if the api sends a youtube video.
+    - [x] URL launcher based on the video provided.
+    - [ ] Inline video player. 
 - [x] Fix No interent connection bug
-- [ ] Cache Images and text until you get another image from nasa API.
+- [ ] **Cache Images and text until you get another image from nasa API.**
 
 ## Potential Features
 
 - [ ] Hubble Images
 - [ ] Information Panels
 - [ ] information about Stars and Exo planets
-- [ ] Video support
 - [ ] Add a theme change option
   - [ ] Make a dark theme for the app
   - [ ] Make a light theme for the app
