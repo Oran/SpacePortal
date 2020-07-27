@@ -249,11 +249,16 @@ class _MarsState extends State<Mars> {
                 style: kTitleDateTS,
               ),
             )
-          : ListView.builder(
+          : GridView.builder(
               physics: BouncingScrollPhysics(),
               itemCount: list == null
                   ? 0
                   : list['photos'].length == 856 ? 20 : list['photos'].length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: (MediaQuery.of(context).orientation ==
+                          Orientation.portrait)
+                      ? 2
+                      : 5),
               itemBuilder: (context, index) {
                 return Container(
                   decoration: BoxDecoration(
@@ -277,7 +282,7 @@ class _MarsState extends State<Mars> {
                           ),
                         )
                       : Padding(
-                          padding: EdgeInsets.all(20.0),
+                          padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(30.0),
                             child: Image.network(
@@ -292,3 +297,44 @@ class _MarsState extends State<Mars> {
     );
   }
 }
+
+// ListView.builder(
+//               physics: BouncingScrollPhysics(),
+//               itemCount: list == null
+//                   ? 0
+//                   : list['photos'].length == 856 ? 20 : list['photos'].length,
+//               itemBuilder: (context, index) {
+//                 return Container(
+//                   decoration: BoxDecoration(
+//                     boxShadow: [
+//                       BoxShadow(
+//                         color: Colors.black45,
+//                         spreadRadius: -10,
+//                         blurRadius: 30,
+//                         offset: Offset(0, 0),
+//                       ),
+//                     ],
+//                   ),
+//                   child: list == null
+//                       ? Center(
+//                           child: Padding(
+//                             padding: EdgeInsets.all(8.0),
+//                             child: Text(
+//                               'Image is null',
+//                               style: kTitleDateTS.copyWith(color: Colors.black),
+//                             ),
+//                           ),
+//                         )
+//                       : Padding(
+//                           padding: EdgeInsets.all(20.0),
+//                           child: ClipRRect(
+//                             borderRadius: BorderRadius.circular(30.0),
+//                             child: Image.network(
+//                               list['photos'][index]['img_src'],
+//                               fit: BoxFit.fill,
+//                             ),
+//                           ),
+//                         ),
+//                 );
+//               },
+//             ),
