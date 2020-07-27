@@ -18,7 +18,7 @@ const Color kAccentWisteria = Color(0xFFAB95D7);
 const Color kAccentAmber = Colors.amber;
 
 // Theming for the app
-const Color kDrawerColor = kPrimaryDarkPurple;
+const Color kDrawerColor = kPrimaryBlack;
 const Color kIconColor = Colors.amber;
 const Color kAppBarColor = kAccentAmber;
 const Color kDropDownButtonColor = Colors.amber;

@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:SpacePortal/screens/noConnection.dart';
 import 'package:SpacePortal/theme/theme.dart';
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:SpacePortal/screens/mars.dart';
 import 'package:SpacePortal/screens/nasapod.dart';
@@ -77,6 +78,7 @@ class _MyAppState extends State<MyApp> {
 //       builder: (context, snapshot) =>
 //           snapshot.connectionState == ConnectionState.done
 //               ? MaterialApp(
+//                   theme: themeData,
 //                   debugShowCheckedModeBanner: false,
 //                   initialRoute: connectionValue == cs.done
 //                       ? knasapod_ID
@@ -88,5 +90,15 @@ class _MyAppState extends State<MyApp> {
 //                     knoConnection_ID: (context) => NoConnectionPage(),
 //                   },
 //                 )
-//               : Center(child: CircularProgressIndicator()),
+//               : Center(
+//                   child: Container(
+//                     height: 400.0,
+//                     width: 400.0,
+//                     child: FlareActor(
+//                       'assets/animations/space.flr',
+//                       animation: 'Untitled',
+//                       fit: BoxFit.fill,
+//                     ),
+//                   ),
+//                 ),
 //     );

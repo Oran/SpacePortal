@@ -11,6 +11,7 @@
   - [x] Internet connection bool bug
 - [ ] Setting page
 - [ ] Design a logo for the app
+- [ ] Make a License Page with all the credits
 
 ### SpaceX Page
 
@@ -33,7 +34,7 @@
 - [x] Fix ('Could not instantiate image codec') this happens when the api sends a video link instead of image.
   - [ ] Add A video player to page, if the api sends a youtube video.
     - [x] URL launcher based on the video provided.
-    - [ ] Inline video player. 
+    - [ ] Inline video player.
 - [x] Fix No interent connection bug
 - [ ] **Cache Images and text until you get another image from nasa API.**
 
@@ -45,4 +46,12 @@
 - [ ] Add a theme change option
   - [ ] Make a dark theme for the app
   - [ ] Make a light theme for the app
-- [ ] Pull Down to refresh 
+- [ ] Pull Down to refresh
+
+## Credits
+
+### Animation
+
+[cosmos, Tani Magdieva](https://rive.app/a/tanimagdieva/files/flare/cosmos/preview)
+
+### Packages

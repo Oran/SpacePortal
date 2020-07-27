@@ -1,16 +1,27 @@
 import 'package:SpacePortal/constants.dart';
+import 'package:flare_flutter/flare_actor.dart';
+import 'package:flare_flutter/flare_cache.dart';
 import 'package:flutter/material.dart';
 
 class NoConnectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: kPrimaryDarkPurple,
+      backgroundColor: kPrimaryBlack,
       body: Container(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Container(
+                height: 400.0,
+                width: 400.0,
+                child: FlareActor(
+                  'assets/animations/space.flr',
+                  animation: 'Untitled',
+                  fit: BoxFit.fill,
+                ),
+              ),
               Icon(
                 Icons.cloud_off,
                 size: 50.0,

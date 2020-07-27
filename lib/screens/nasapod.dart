@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:SpacePortal/constants.dart';
 import 'package:SpacePortal/network/network.dart';
@@ -92,7 +93,17 @@ class _NasaPodState extends State<NasaPod> {
         builder: (context, snapshot) =>
             snapshot.connectionState == ConnectionState.done
                 ? PODContents(list: list, networkData: networkData)
-                : Center(child: CircularProgressIndicator()),
+                : Center(
+                    child: Container(
+                      height: 400.0,
+                      width: 400.0,
+                      child: FlareActor(
+                        'assets/animations/space.flr',
+                        animation: 'Untitled',
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
       ),
     );
   }
