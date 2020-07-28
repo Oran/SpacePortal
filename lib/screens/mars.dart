@@ -1,6 +1,7 @@
 import 'package:SpacePortal/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:SpacePortal/network/network.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Mars extends StatefulWidget {
   @override
@@ -285,9 +286,14 @@ class _MarsState extends State<Mars> {
                           padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(30.0),
-                            child: Image.network(
-                              list['photos'][index]['img_src'],
-                              fit: BoxFit.fill,
+                            child: GestureDetector(
+                              child: Image.network(
+                                list['photos'][index]['img_src'],
+                                fit: BoxFit.fill,
+                              ),
+                              onTap: () {
+                                launch(list['photos'][index]['img_src']);
+                              },
                             ),
                           ),
                         ),
