@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:SpacePortal/constants.dart';
 import 'package:SpacePortal/network/network.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:hive/hive.dart';
 
 class NasaPod extends StatefulWidget {
   @override
@@ -83,7 +84,8 @@ class _NasaPodState extends State<NasaPod> {
             child: GestureDetector(
                 child: Icon(Icons.cached),
                 onTap: () {
-                  getImageData();
+                  //getImageData();
+                  // NasaPODData().getData();
                 }),
           ),
         ],
@@ -110,13 +112,14 @@ class _NasaPodState extends State<NasaPod> {
 }
 
 class PODContents extends StatelessWidget {
-  const PODContents({
+  PODContents({
     @required this.list,
     @required this.networkData,
   });
 
   final List list;
   final NasaPODData networkData;
+  final box = Hive.box('cache');
 
   @override
   Widget build(BuildContext context) {
@@ -158,7 +161,7 @@ class PODContents extends StatelessWidget {
                                     launch(list[0]);
                                   },
                                   child: Text(
-                                    '${list[0]}',
+                                    '${Hive.box('cache').get('image')}',
                                     textAlign: TextAlign.center,
                                     style:
                                         kDetailsTS.copyWith(color: Colors.red),
@@ -169,7 +172,7 @@ class PODContents extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(50.0),
                                 //TODO: Fix this for the web version.
                                 child: Image.network(
-                                  list[0],
+                                 box.get('image'),
                                   fit: BoxFit.fill,
                                 ),
                               ),
@@ -178,7 +181,7 @@ class PODContents extends StatelessWidget {
                     padding:
                         EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
                     child: Text(
-                      list[1] == null ? '' : list[1],
+                      box.get('title'),
                       style: kTitleDateTS.copyWith(fontSize: 25.0),
                     ),
                   ),
@@ -186,7 +189,7 @@ class PODContents extends StatelessWidget {
                     padding:
                         EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
                     child: Text(
-                      list[2] == null ? '' : list[2],
+                     box.get('date'),
                       style: kTitleDateTS.copyWith(fontSize: 18.0),
                     ),
                   ),
@@ -195,7 +198,7 @@ class PODContents extends StatelessWidget {
                       padding:
                           EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
                       child: Text(
-                        list[3] == null ? '' : list[3],
+                        box.get('exp'),
                         style: kDetailsTS.copyWith(
                           letterSpacing: 1.0,
                         ),
