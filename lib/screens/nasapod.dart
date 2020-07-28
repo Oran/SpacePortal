@@ -167,8 +167,12 @@ class PODContents extends StatelessWidget {
                               )
                             : ClipRRect(
                                 borderRadius: BorderRadius.circular(50.0),
-                                child: Image.network(
-                                  list[0],
+                                //TODO: Fix this for the web version.
+                                child: Expanded(
+                                  child: Image.network(
+                                    list[0],
+                                    fit: BoxFit.fill,
+                                  ),
                                 ),
                               ),
                   ),

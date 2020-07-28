@@ -7,5 +7,5 @@ final ThemeData themeData = ThemeData(
   primaryColor: Colors.amber,
   accentColor: Colors.amber,
   //accentColorBrightness: Brightness.light,
-  canvasColor: kPrimaryDarkPurple,
+  canvasColor: kPrimaryBlack,
 );
