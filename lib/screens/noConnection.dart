@@ -1,6 +1,5 @@
 import 'package:SpacePortal/constants.dart';
 import 'package:flare_flutter/flare_actor.dart';
-import 'package:flare_flutter/flare_cache.dart';
 import 'package:flutter/material.dart';
 
 class NoConnectionPage extends StatelessWidget {

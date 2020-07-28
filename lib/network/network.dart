@@ -1,6 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
+import 'package:hive/hive.dart';
 
 final String _apiKey = 'pc7RPSAONSoBlJTGozeFT1EcaDa0mwXoD17XsKd3';
 
@@ -8,6 +9,7 @@ class NasaPODData {
   static String url = 'https://api.nasa.gov/planetary/apod?api_key=$_apiKey';
 
   Future getData() async {
+    var box = Hive.box('cache');
     http.Response response = await http.get(url);
     var decodedData = jsonDecode(response.body);
     var image = decodedData['url'];
@@ -17,7 +19,13 @@ class NasaPODData {
     var mediaType = decodedData['media_type'];
     var statusCode = decodedData['code'];
     var msg = decodedData['msg'];
-    print(response.statusCode);
+    print(statusCode);
+    if (statusCode != 404) {
+      box.put('image', image);
+      box.put('title', title);
+      box.put('date', date);
+      box.put('exp', exp);
+    }
     return [image, title, date, exp, mediaType, statusCode, msg];
   }
 }
