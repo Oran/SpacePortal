@@ -287,12 +287,21 @@ class _MarsState extends State<Mars> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(30.0),
                             child: GestureDetector(
-                              child: Image.network(
-                                list['photos'][index]['img_src'],
-                                fit: BoxFit.fill,
+                              child: Hero(
+                                tag: 'tag' + index.toString(),
+                                child: Image.network(
+                                  list['photos'][index]['img_src'],
+                                  fit: BoxFit.fill,
+                                ),
                               ),
                               onTap: () {
-                                launch(list['photos'][index]['img_src']);
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ImageViewer(
+                                        index: index, list: list['photos'][index]['img_src']),
+                                  ),
+                                );
                               },
                             ),
                           ),
@@ -304,43 +313,25 @@ class _MarsState extends State<Mars> {
   }
 }
 
-// ListView.builder(
-//               physics: BouncingScrollPhysics(),
-//               itemCount: list == null
-//                   ? 0
-//                   : list['photos'].length == 856 ? 20 : list['photos'].length,
-//               itemBuilder: (context, index) {
-//                 return Container(
-//                   decoration: BoxDecoration(
-//                     boxShadow: [
-//                       BoxShadow(
-//                         color: Colors.black45,
-//                         spreadRadius: -10,
-//                         blurRadius: 30,
-//                         offset: Offset(0, 0),
-//                       ),
-//                     ],
-//                   ),
-//                   child: list == null
-//                       ? Center(
-//                           child: Padding(
-//                             padding: EdgeInsets.all(8.0),
-//                             child: Text(
-//                               'Image is null',
-//                               style: kTitleDateTS.copyWith(color: Colors.black),
-//                             ),
-//                           ),
-//                         )
-//                       : Padding(
-//                           padding: EdgeInsets.all(20.0),
-//                           child: ClipRRect(
-//                             borderRadius: BorderRadius.circular(30.0),
-//                             child: Image.network(
-//                               list['photos'][index]['img_src'],
-//                               fit: BoxFit.fill,
-//                             ),
-//                           ),
-//                         ),
-//                 );
-//               },
-//             ),
+class ImageViewer extends StatelessWidget {
+  ImageViewer({this.index, this.list});
+
+  final list;
+  final index;
+
+  @override
+  Widget build(BuildContext context) {
+    var index = ModalRoute.of(context).settings.arguments;
+    return Scaffold(
+      appBar: AppBar(),
+      body: InkWell(
+        child: Container(
+          child: Hero(
+            tag: 'tag' + index.toString(),
+            child: Image.network(list),
+          ),
+        ),
+      ),
+    );
+  }
+}
