@@ -84,8 +84,7 @@ class _NasaPodState extends State<NasaPod> {
             child: GestureDetector(
                 child: Icon(Icons.cached),
                 onTap: () {
-                  //getImageData();
-                  // NasaPODData().getData();
+                  NasaPODData().getData();
                 }),
           ),
         ],
