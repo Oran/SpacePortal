@@ -58,6 +58,12 @@ class _MyAppState extends State<MyApp> {
   }
 
   @override
+  void dispose() async {
+    await Hive.close();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp, // forces potrait mode for devices

@@ -26,7 +26,7 @@ class NasaPODData {
       box.put('date', date);
       box.put('exp', exp);
     }
-    return [image, title, date, exp, mediaType, statusCode, msg];
+    return [mediaType, statusCode, msg];
   }
 }
 
