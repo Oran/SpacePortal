@@ -8,8 +8,12 @@ import 'package:SpacePortal/screens/nasapod.dart';
 import 'package:SpacePortal/screens/spacex.dart';
 import 'package:flutter/services.dart';
 import 'constants.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  await Hive.openBox('cache');
   runApp(MyApp());
 }
 
@@ -51,6 +55,12 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     checkConnection();
     super.initState();
+  }
+
+  @override
+  void dispose() async {
+    await Hive.close();
+    super.dispose();
   }
 
   @override
