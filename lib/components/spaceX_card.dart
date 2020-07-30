@@ -23,7 +23,7 @@ class SpaceXCard extends StatelessWidget {
             height: (MediaQuery.of(context).size.height * 0.70),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(40),
-              border: Border.all(color: kAccentAmber, width: 1.5),
+              border: Border.all(color: kAccentColor, width: 1.5),
             ),
             child: Padding(
               padding: EdgeInsets.all(8.0),

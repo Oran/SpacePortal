@@ -13,6 +13,7 @@ class NoConnectionPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
+                //TODO: Make this adaptable to web and mobile
                 height: 400.0,
                 width: 400.0,
                 child: FlareActor(

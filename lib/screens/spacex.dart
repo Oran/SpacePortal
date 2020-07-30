@@ -32,7 +32,8 @@ class _SpaceXState extends State<SpaceX> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: kAppBarColor,
+        // backgroundColor: kAppBarColor,
+        flexibleSpace: Container(decoration: kAppbarBoxDecoration),
         title: Text('SpaceX'),
       ),
       body: Container(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:SpacePortal/constants.dart';
 
+//TODO: Still in development
 class ImageViewer extends StatelessWidget {
   ImageViewer({this.index, this.list});
 
@@ -11,7 +13,9 @@ class ImageViewer extends StatelessWidget {
   Widget build(BuildContext context) {
     var index = ModalRoute.of(context).settings.arguments;
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        flexibleSpace: Container(decoration: kAppbarBoxDecoration),
+      ),
       body: Column(
         children: [
           Container(

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flare_flutter/flare_actor.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:SpacePortal/constants.dart';
 import 'package:SpacePortal/network/network.dart';
@@ -31,6 +32,7 @@ class _NasaPodState extends State<NasaPod> {
 
   @override
   Widget build(BuildContext context) {
+    var orientation = (MediaQuery.of(context).orientation);
     return Scaffold(
       // backgroundColor: kPrimaryDarkPurple,
       drawer: Drawer(
@@ -77,7 +79,8 @@ class _NasaPodState extends State<NasaPod> {
       appBar: AppBar(
         title: Text('Picture of the day'),
         elevation: 0,
-        backgroundColor: kAppBarColor,
+        //backgroundColor: kAppBarColor,
+        flexibleSpace: Container(decoration: kAppbarBoxDecoration),
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 20.0),
@@ -96,8 +99,12 @@ class _NasaPodState extends State<NasaPod> {
                 ? PODContents(list: list, networkData: networkData)
                 : Center(
                     child: Container(
-                      height: 400.0,
-                      width: 400.0,
+                      height: kIsWeb && (orientation == Orientation.landscape)
+                          ? 700.0
+                          : 400.0,
+                      width: kIsWeb && (orientation == Orientation.landscape)
+                          ? 700.0
+                          : 400.0,
                       child: FlareActor(
                         'assets/animations/space.flr',
                         animation: 'Untitled',

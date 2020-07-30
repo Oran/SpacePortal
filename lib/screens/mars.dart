@@ -108,7 +108,8 @@ class _MarsState extends State<Mars> {
       appBar: AppBar(
         title: Text('Mars Rover Images\nNumber of Images - $numOfPics'),
         elevation: 0,
-        backgroundColor: kAppBarColor,
+        //backgroundColor: kAppBarColor,
+        flexibleSpace: Container(decoration: kAppbarBoxDecoration),
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 20.0),
@@ -167,7 +168,7 @@ class _MarsState extends State<Mars> {
                       width: 150.0,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: kAccentAmber),
+                        border: Border.all(color: kAccentColor),
                       ),
                       child: Padding(
                         padding: EdgeInsets.only(left: 10.0),
@@ -181,7 +182,7 @@ class _MarsState extends State<Mars> {
                       width: 150.0,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: kAccentAmber),
+                        border: Border.all(color: kAccentColor),
                       ),
                       child: Padding(
                         padding: EdgeInsets.only(left: 10.0),
@@ -194,16 +195,16 @@ class _MarsState extends State<Mars> {
                       width: 150.0,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: kAccentAmber),
+                        border: Border.all(color: kAccentColor),
                       ),
                       child: TextField(
-                        cursorColor: kAccentAmber,
+                        cursorColor: kAccentColor,
                         keyboardType: TextInputType.number,
                         textAlign: TextAlign.center,
                         decoration: InputDecoration(
                           labelText: 'Days on Mars',
                           labelStyle: kDetailsTS.copyWith(
-                            color: kAccentAmber,
+                            color: kAccentColor,
                           ),
                           contentPadding: EdgeInsets.all(11),
                           border: InputBorder.none,
@@ -228,11 +229,11 @@ class _MarsState extends State<Mars> {
                         width: 60.0,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: kAccentAmber),
-                            color: kAccentAmber),
+                            border: Border.all(color: kAccentColor),
+                            color: kAccentColor),
                         child: Icon(
                           Icons.cached,
-                          color: kPrimaryDarkPurple,
+                          color: kPrimaryBlack,
                         ),
                       ),
                     ),
