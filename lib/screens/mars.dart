@@ -266,9 +266,9 @@ class _MarsState extends State<Mars> {
                   decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black45,
-                        spreadRadius: -10,
-                        blurRadius: 30,
+                        color: Colors.grey,
+                        spreadRadius: -20,
+                        blurRadius: 25,
                         offset: Offset(0, 0),
                       ),
                     ],
