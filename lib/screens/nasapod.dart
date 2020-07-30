@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -160,8 +161,8 @@ class PODContents extends StatelessWidget {
                     : ClipRRect(
                         borderRadius: BorderRadius.circular(50.0),
                         //TODO: Fix this for the web version.
-                        child: Image.network(
-                          box.get('image'),
+                        child: CachedNetworkImage(
+                          imageUrl: box.get('image'),
                           fit: BoxFit.fill,
                         ),
                       ),

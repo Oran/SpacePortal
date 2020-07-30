@@ -1,5 +1,6 @@
 import 'package:SpacePortal/components/image_viewer.dart';
 import 'package:SpacePortal/constants.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:SpacePortal/network/network.dart';
 
@@ -264,14 +265,14 @@ class _MarsState extends State<Mars> {
               itemBuilder: (context, index) {
                 return Container(
                   decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey,
-                        spreadRadius: -20,
-                        blurRadius: 25,
-                        offset: Offset(0, 0),
-                      ),
-                    ],
+                    // boxShadow: [
+                    //   BoxShadow(
+                    //     color: Colors.grey,
+                    //     spreadRadius: -20,
+                    //     blurRadius: 25,
+                    //     offset: Offset(0, 0),
+                    //   ),
+                    // ],
                   ),
                   child: list == null
                       ? Center(
@@ -290,8 +291,8 @@ class _MarsState extends State<Mars> {
                             child: GestureDetector(
                               child: Hero(
                                 tag: 'tag' + index.toString(),
-                                child: Image.network(
-                                  list['photos'][index]['img_src'],
+                                child: CachedNetworkImage(
+                                  imageUrl: list['photos'][index]['img_src'],
                                   fit: BoxFit.fill,
                                 ),
                               ),

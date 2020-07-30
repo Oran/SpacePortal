@@ -1,5 +1,6 @@
 import 'package:SpacePortal/components/unicorn_container.dart';
 import 'package:SpacePortal/constants.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:SpacePortal/network/network.dart';
@@ -91,8 +92,9 @@ class SXContents extends StatelessWidget {
                           : Container(
                               height: 200.0,
                               width: 200.0,
-                              child: Image.network(
-                                spaceXList[index]['links']['mission_patch'],
+                              child: CachedNetworkImage(
+                                imageUrl: spaceXList[index]['links']
+                                    ['mission_patch'],
                               ),
                             ),
                       SizedBox(

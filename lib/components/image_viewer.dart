@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:SpacePortal/constants.dart';
@@ -24,7 +25,7 @@ class ImageViewer extends StatelessWidget {
               tag: 'tag' + index.toString(),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(25.0),
-                child: Image.network(list),
+                child: CachedNetworkImage(imageUrl: list),
               ),
             ),
           ),
