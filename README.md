@@ -27,7 +27,9 @@
 - [x] Style the Image containers
 - [x] Add Labels to every buttons and input
 - [ ] Open Image in webview
+  - [x] Open single image in a new page
   - [ ] Add Image save option
+    - [ ] Download button with images saving to downloads folder
 
 ### NADA POD Page
 
