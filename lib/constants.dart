@@ -27,10 +27,13 @@ const Color kDropDownButtonColor = kAccentSkyBlue;
 
 //Color Gradient
 BoxDecoration kAppbarBoxDecoration = BoxDecoration(
-  gradient: LinearGradient(
-      colors: kcolorGradient,
-      begin: Alignment.centerRight,
-      end: Alignment.centerLeft),
+  gradient: kGradient,
+);
+
+Gradient kGradient = LinearGradient(
+  colors: kcolorGradient,
+  begin: Alignment.centerRight,
+  end: Alignment.centerLeft,
 );
 
 List<Color> kcolorGradient = [
