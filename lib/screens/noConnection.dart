@@ -42,10 +42,10 @@ class NoConnectionPage extends StatelessWidget {
                 indent: 50.0,
               ),
               Text(
-                'Please connect to internet and restart to use this app',
+                'Please connect to the internet and restart to use this app',
                 textAlign: TextAlign.center,
                 style: kTitleDateTS.copyWith(
-                  fontSize: 23.0,
+                  fontSize: 21.0,
                 ),
               ),
             ],

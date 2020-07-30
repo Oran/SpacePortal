@@ -12,6 +12,8 @@
 - [ ] Setting page
 - [ ] Design a logo for the app
 - [ ] Make a License Page with all the credits
+- [ ] Make the drawer look better
+  - [ ] Custom Icons for each
 
 ### SpaceX Page
 

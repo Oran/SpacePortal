@@ -93,7 +93,7 @@ class _NasaPodState extends State<NasaPod> {
         ],
       ),
       body: FutureBuilder(
-        future: Future.delayed(Duration(seconds: 2)),
+        future: Future.delayed(Duration(milliseconds: 1400)),
         builder: (context, snapshot) =>
             snapshot.connectionState == ConnectionState.done
                 ? PODContents(list: list, networkData: networkData)

@@ -2,7 +2,7 @@ import 'package:SpacePortal/components/unicorn_container.dart';
 import 'package:SpacePortal/constants.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import '../network/network.dart';
+import 'package:SpacePortal/network/network.dart';
 
 class SpaceXCard extends StatelessWidget {
   const SpaceXCard({
@@ -23,6 +23,7 @@ class SpaceXCard extends StatelessWidget {
           padding: EdgeInsets.all(10.0),
           child: Container(
               height: (MediaQuery.of(context).size.height) * 0.70,
+              //TODO: Remove this check after bug is fixed check flutter repo.
               child: !kIsWeb
                   ? UnicornOutlineContainer(
                       radius: 20.0,
