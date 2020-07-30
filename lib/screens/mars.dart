@@ -1,7 +1,7 @@
+import 'package:SpacePortal/components/image_viewer.dart';
 import 'package:SpacePortal/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:SpacePortal/network/network.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class Mars extends StatefulWidget {
   @override
@@ -299,7 +299,8 @@ class _MarsState extends State<Mars> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => ImageViewer(
-                                        index: index, list: list['photos'][index]['img_src']),
+                                        index: index,
+                                        list: list['photos'][index]['img_src']),
                                   ),
                                 );
                               },
@@ -313,25 +314,3 @@ class _MarsState extends State<Mars> {
   }
 }
 
-class ImageViewer extends StatelessWidget {
-  ImageViewer({this.index, this.list});
-
-  final list;
-  final index;
-
-  @override
-  Widget build(BuildContext context) {
-    var index = ModalRoute.of(context).settings.arguments;
-    return Scaffold(
-      appBar: AppBar(),
-      body: InkWell(
-        child: Container(
-          child: Hero(
-            tag: 'tag' + index.toString(),
-            child: Image.network(list),
-          ),
-        ),
-      ),
-    );
-  }
-}
