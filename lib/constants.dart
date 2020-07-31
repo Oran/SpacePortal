@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 //Routes for navigation
-const String knasapod_ID = 'nasapod';
-const String kspaceX_ID = 'spacex';
-const String kmars_ID = 'mars';
-const String knoConnection_ID = 'noConnection';
+const String kHome_Page = 'home_page';
+const String kNASAPod_Page = 'nasapod_page';
+const String kSpaceX_Page = 'spacex_page';
+const String kMars_Page = 'mars_page';
+const String kNoConnection_Page = 'noConnection_page';
 
 // New Colors
 const Color kPrimaryWhite = Colors.white;

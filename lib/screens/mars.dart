@@ -1,6 +1,7 @@
 import 'package:SpacePortal/components/image_viewer.dart';
 import 'package:SpacePortal/constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:SpacePortal/network/network.dart';
 
@@ -29,6 +30,7 @@ class _MarsState extends State<Mars> {
     });
   }
 
+  //? Not sure why I have this block
   void setData() {
     setState(() {
       selectedCam = camIn;
@@ -143,7 +145,7 @@ class _MarsState extends State<Mars> {
                         style: kDetailsTS,
                       ),
                       onTap: () {
-                        Navigator.pushNamed(context, knasapod_ID);
+                        Navigator.pushNamed(context, kNASAPod_Page);
                       },
                     ),
                     ListTile(
@@ -157,7 +159,7 @@ class _MarsState extends State<Mars> {
                         style: kDetailsTS,
                       ),
                       onTap: () {
-                        Navigator.pushNamed(context, kspaceX_ID);
+                        Navigator.pushNamed(context, kSpaceX_Page);
                       },
                     ),
                   ],
@@ -265,15 +267,15 @@ class _MarsState extends State<Mars> {
               itemBuilder: (context, index) {
                 return Container(
                   decoration: BoxDecoration(
-                    // boxShadow: [
-                    //   BoxShadow(
-                    //     color: Colors.grey,
-                    //     spreadRadius: -20,
-                    //     blurRadius: 25,
-                    //     offset: Offset(0, 0),
-                    //   ),
-                    // ],
-                  ),
+                      // boxShadow: [
+                      //   BoxShadow(
+                      //     color: Colors.grey,
+                      //     spreadRadius: -20,
+                      //     blurRadius: 25,
+                      //     offset: Offset(0, 0),
+                      //   ),
+                      // ],
+                      ),
                   child: list == null
                       ? Center(
                           child: Padding(
@@ -291,10 +293,14 @@ class _MarsState extends State<Mars> {
                             child: GestureDetector(
                               child: Hero(
                                 tag: 'tag' + index.toString(),
-                                child: CachedNetworkImage(
-                                  imageUrl: list['photos'][index]['img_src'],
-                                  fit: BoxFit.fill,
-                                ),
+                                child: kIsWeb
+                                    ? Image.network(
+                                        list['photos'][index]['img_src'])
+                                    : CachedNetworkImage(
+                                        imageUrl: list['photos'][index]
+                                            ['img_src'],
+                                        fit: BoxFit.fill,
+                                      ),
                               ),
                               onTap: () {
                                 Navigator.push(

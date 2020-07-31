@@ -61,7 +61,7 @@ class _SpaceXState extends State<SpaceX> {
                     style: kDetailsTS,
                   ),
                   onTap: () {
-                    Navigator.pushNamed(context, knasapod_ID);
+                    Navigator.pushNamed(context, kNASAPod_Page);
                   },
                 ),
                 ListTile(
@@ -75,7 +75,7 @@ class _SpaceXState extends State<SpaceX> {
                     style: kDetailsTS,
                   ),
                   onTap: () {
-                    Navigator.pushNamed(context, kmars_ID);
+                    Navigator.pushNamed(context, kMars_Page);
                   },
                 ),
               ],

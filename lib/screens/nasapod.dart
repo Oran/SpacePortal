@@ -55,7 +55,7 @@ class _NasaPodState extends State<NasaPod> {
                     style: kDetailsTS,
                   ),
                   onTap: () {
-                    Navigator.pushNamed(context, kspaceX_ID);
+                    Navigator.pushNamed(context, kSpaceX_Page);
                   },
                 ),
                 ListTile(
@@ -69,7 +69,7 @@ class _NasaPodState extends State<NasaPod> {
                     style: kDetailsTS,
                   ),
                   onTap: () {
-                    Navigator.pushNamed(context, kmars_ID);
+                    Navigator.pushNamed(context, kMars_Page);
                   },
                 ),
               ],
@@ -94,7 +94,7 @@ class _NasaPodState extends State<NasaPod> {
         ],
       ),
       body: FutureBuilder(
-        future: Future.delayed(Duration(milliseconds: 1400)),
+        future: Future.delayed(Duration(milliseconds: 1500)),
         builder: (context, snapshot) =>
             snapshot.connectionState == ConnectionState.done
                 ? PODContents(list: list, networkData: networkData)
@@ -161,10 +161,15 @@ class PODContents extends StatelessWidget {
                     : ClipRRect(
                         borderRadius: BorderRadius.circular(50.0),
                         //TODO: Fix this for the web version.
-                        child: CachedNetworkImage(
-                          imageUrl: box.get('image'),
-                          fit: BoxFit.fill,
-                        ),
+                        child: kIsWeb
+                            ? Image.network(
+                                box.get('image'),
+                                fit: BoxFit.fill,
+                              )
+                            : CachedNetworkImage(
+                                imageUrl: box.get('image'),
+                                fit: BoxFit.fill,
+                              ),
                       ),
               ),
               Padding(

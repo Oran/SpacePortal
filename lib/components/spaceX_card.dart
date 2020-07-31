@@ -92,10 +92,13 @@ class SXContents extends StatelessWidget {
                           : Container(
                               height: 200.0,
                               width: 200.0,
-                              child: CachedNetworkImage(
-                                imageUrl: spaceXList[index]['links']
-                                    ['mission_patch'],
-                              ),
+                              child: kIsWeb
+                                  ? Image.network(spaceXList[index]['links']
+                                      ['mission_patch'])
+                                  : CachedNetworkImage(
+                                      imageUrl: spaceXList[index]['links']
+                                          ['mission_patch'],
+                                    ),
                             ),
                       SizedBox(
                         height: 15.0,
