@@ -138,7 +138,7 @@ class PODContents extends StatelessWidget {
               style: kTitleDateTS,
             ),
           )
-        : box.get('image') != null
+        : box.get('image') == null
             ? Center(
                 child: Text(
                   'Data not provided yet, \nmaybe check back later',
