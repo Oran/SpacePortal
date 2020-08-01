@@ -138,67 +138,80 @@ class PODContents extends StatelessWidget {
               style: kTitleDateTS,
             ),
           )
-        : ListView(
-            physics: BouncingScrollPhysics(),
-            children: <Widget>[
-              SizedBox(height: 10),
-              Container(
-                padding: EdgeInsets.all(10),
-                child: list[0] == 'video'
-                    ? Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.0),
-                        child: GestureDetector(
-                          onTap: () {
-                            launch(Hive.box('cacge').get('image'));
-                          },
-                          child: Text(
-                            '${Hive.box('cache').get('image')}',
-                            textAlign: TextAlign.center,
-                            style: kDetailsTS.copyWith(color: Colors.red),
-                          ),
-                        ),
-                      )
-                    : ClipRRect(
-                        borderRadius: BorderRadius.circular(50.0),
-                        //TODO: Fix this for the web version.
-                        child: kIsWeb
-                            ? Image.network(
-                                box.get('image'),
-                                fit: BoxFit.fill,
-                              )
-                            : CachedNetworkImage(
-                                imageUrl: box.get('image'),
-                                fit: BoxFit.fill,
-                              ),
-                      ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
+        : box.get('image') != null
+            ? Center(
                 child: Text(
-                  box.get('title'),
-                  style: kTitleDateTS.copyWith(fontSize: 25.0),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
-                child: Text(
-                  box.get('date'),
-                  style: kTitleDateTS.copyWith(fontSize: 18.0),
-                ),
-              ),
-              Container(
-                child: Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
-                  child: Text(
-                    box.get('exp'),
-                    style: kDetailsTS.copyWith(
-                      letterSpacing: 1.0,
-                    ),
+                  'Data not provided yet, \nmaybe check back later',
+                  textAlign: TextAlign.center,
+                  style: kTitleDateTS.copyWith(
+                    color: Colors.red[300],
+                    fontSize: 20.0,
                   ),
                 ),
-              ),
-            ],
-          );
+              )
+            : ListView(
+                physics: BouncingScrollPhysics(),
+                children: <Widget>[
+                  SizedBox(height: 10),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    child: list[0] == 'video'
+                        ? Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 8.0),
+                            child: GestureDetector(
+                              onTap: () {
+                                launch(Hive.box('cacge').get('image'));
+                              },
+                              child: Text(
+                                '${Hive.box('cache').get('image')}',
+                                textAlign: TextAlign.center,
+                                style: kDetailsTS.copyWith(color: Colors.red),
+                              ),
+                            ),
+                          )
+                        : ClipRRect(
+                            borderRadius: BorderRadius.circular(50.0),
+                            //TODO: Fix this for the web version.
+                            child: kIsWeb
+                                ? Image.network(
+                                    box.get('image'),
+                                    fit: BoxFit.fill,
+                                  )
+                                : CachedNetworkImage(
+                                    imageUrl: box.get('image'),
+                                    fit: BoxFit.fill,
+                                  ),
+                          ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
+                    child: Text(
+                      box.get('title'),
+                      style: kTitleDateTS.copyWith(fontSize: 25.0),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
+                    child: Text(
+                      box.get('date'),
+                      style: kTitleDateTS.copyWith(fontSize: 18.0),
+                    ),
+                  ),
+                  Container(
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
+                      child: Text(
+                        box.get('exp'),
+                        style: kDetailsTS.copyWith(
+                          letterSpacing: 1.0,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              );
   }
 }
