@@ -1,6 +1,8 @@
 # Space Portal
 
-## Todo's
+<details>
+
+<summary>Todo's</summary>
 
 ### General
 
@@ -42,6 +44,9 @@
     - [ ] Inline video player.
 - [x] Fix No interent connection bug
 - [x] **Cache Images and text until you get another image from nasa API.**
+- [ ] Cache null check
+  - [ ] Add a firestore caching system to duplicate offline cache
+  - [ ] temp null check for nasapod page
 
 ## Potential Features
 
@@ -58,6 +63,8 @@
 [image_downloader](https://pub.dev/packages/image_downloader)
 
 [webview_flutter](https://pub.dev/packages/webview_flutter)
+
+</details>
 
 ## Credits
 
