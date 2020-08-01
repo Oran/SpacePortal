@@ -1,5 +1,17 @@
 # Space Portal
 
+- [Space Portal](#space-portal)
+    - [General](#general)
+    - [SpaceX Page](#spacex-page)
+    - [Mars Page](#mars-page)
+    - [NADA POD Page](#nada-pod-page)
+  - [Potential Features](#potential-features)
+  - [Web](#web)
+  - [Stuff to look into](#stuff-to-look-into)
+  - [Credits](#credits)
+    - [Animation](#animation)
+    - [Packages](#packages)
+
 <details>
 
 <summary>Todo's</summary>
@@ -57,6 +69,10 @@
   - [ ] Make a dark theme for the app
   - [ ] Make a light theme for the app
 - [ ] Pull Down to refresh
+
+## Web
+
+- [ ] Add more stuff to the NASAPOD page for web version.
 
 ## Stuff to look into
 
