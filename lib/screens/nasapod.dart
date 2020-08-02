@@ -16,19 +16,15 @@ class NasaPod extends StatefulWidget {
 
 class _NasaPodState extends State<NasaPod> {
   NasaPODData networkData = NasaPODData();
-  List result;
-  List list;
+  var list;
 
   Future getImageData() async {
-    result = await networkData.getData();
-    setState(() {
-      list = result;
-    });
+    return await networkData.getData();
   }
 
   @override
   void initState() {
-    getImageData();
+    list = getImageData();
     super.initState();
   }
 
@@ -95,26 +91,28 @@ class _NasaPodState extends State<NasaPod> {
         ],
       ),
       body: FutureBuilder(
-        future: Future.delayed(Duration(milliseconds: 1500)),
-        builder: (context, snapshot) =>
-            snapshot.connectionState == ConnectionState.done
-                ? PODContents(list: list, networkData: networkData)
-                : Center(
-                    child: Container(
-                      height: kIsWeb && (orientation == Orientation.landscape)
-                          ? 700.0
-                          : 400.0,
-                      width: kIsWeb && (orientation == Orientation.landscape)
-                          ? 700.0
-                          : 400.0,
-                      child: FlareActor(
-                        'assets/animations/space.flr',
-                        animation: 'Untitled',
-                        fit: BoxFit.fill,
-                      ),
-                    ),
+          future: list,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return PODContents(list: snapshot.data, networkData: networkData);
+            } else {
+              return Center(
+                child: Container(
+                  height: kIsWeb && (orientation == Orientation.landscape)
+                      ? 700.0
+                      : 400.0,
+                  width: kIsWeb && (orientation == Orientation.landscape)
+                      ? 700.0
+                      : 400.0,
+                  child: FlareActor(
+                    'assets/animations/space.flr',
+                    animation: 'Untitled',
+                    fit: BoxFit.fill,
                   ),
-      ),
+                ),
+              );
+            }
+          }),
     );
   }
 }
@@ -125,7 +123,7 @@ class PODContents extends StatelessWidget {
     @required this.networkData,
   });
 
-  final List list;
+  final list;
   final NasaPODData networkData;
   final box = Hive.box('cache');
 
@@ -154,6 +152,7 @@ class PODContents extends StatelessWidget {
             : SingleChildScrollView(
                 physics: BouncingScrollPhysics(),
                 child: orientation == Orientation.landscape
+                    //TODO: Fix sizing error for larger images. (don't hard code)
                     ? PODRow(orientation: orientation, list: list, box: box)
                     : Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
