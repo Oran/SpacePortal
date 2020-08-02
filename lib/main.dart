@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:SpacePortal/screens/home_page.dart';
 import 'package:SpacePortal/screens/noConnection.dart';
 import 'package:SpacePortal/theme/theme.dart';
 import 'package:flare_flutter/flare_actor.dart';
@@ -72,8 +73,9 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       theme: themeData,
       debugShowCheckedModeBanner: false,
-      initialRoute: kNASAPod_Page,
+      initialRoute: kHome_Page,
       routes: {
+        kHome_Page: (context) => HomePage(),
         kNASAPod_Page: (context) => NasaPod(),
         kSpaceX_Page: (context) => SpaceX(),
         kMars_Page: (context) => Mars(),
