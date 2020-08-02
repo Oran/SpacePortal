@@ -24,8 +24,7 @@ class PODRow extends StatelessWidget {
       children: <Widget>[
         SizedBox(height: 10),
         Container(
-          height: orientation == Orientation.landscape ? 950.0 : null,
-          padding: EdgeInsets.all(10),
+          height: orientation == Orientation.landscape ? 800.0 : null,
           // color: Colors.green,
           child: list[0] == 'video'
               ? Padding(
@@ -56,8 +55,7 @@ class PODRow extends StatelessWidget {
                         ),
                 ),
         ),
-        Container(
-          width: (MediaQuery.of(context).size.width) * 0.50,
+        Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
