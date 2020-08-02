@@ -19,12 +19,13 @@
 ### General
 
 - [x] Choose colors for the app
-- [ ] Add font
+- [x] Add font
 - [x] Add Internet connection check with a message if no connection is available
   - [x] Internet Connection ckecks
   - [x] Internet connection bool bug
 - [ ] Setting page
 - [ ] Design a logo for the app
+  - [x] v0.1
 - [ ] Make a License Page with all the credits
 - [ ] Make the drawer look better
   - [ ] Custom Icons for each
