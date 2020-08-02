@@ -5,8 +5,8 @@
     - [SpaceX Page](#spacex-page)
     - [Mars Page](#mars-page)
     - [NADA POD Page](#nada-pod-page)
-  - [Potential Features](#potential-features)
-  - [Web](#web)
+    - [Potential Features](#potential-features)
+    - [Web](#web)
   - [Stuff to look into](#stuff-to-look-into)
   - [Credits](#credits)
     - [Animation](#animation)
@@ -60,7 +60,7 @@
   - [ ] Add a firestore caching system to duplicate offline cache
   - [ ] temp null check for nasapod page
 
-## Potential Features
+### Potential Features
 
 - [ ] Hubble Images
 - [ ] Information Panels
@@ -70,7 +70,7 @@
   - [ ] Make a light theme for the app
 - [ ] Pull Down to refresh
 
-## Web
+### Web
 
 - [ ] Add more stuff to the NASAPOD page for web version.
 
