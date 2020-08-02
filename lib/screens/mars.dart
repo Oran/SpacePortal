@@ -98,6 +98,19 @@ class _MarsState extends State<Mars> {
     );
   }
 
+  Widget circle(BuildContext context, String text) {
+    return Center(
+      child: Container(
+        height: 30.0,
+        width: 30.0,
+        child: CircularProgressIndicator(
+          strokeWidth: 2,
+          valueColor: AlwaysStoppedAnimation<Color>(kAccentSkyBlue),
+        ),
+      ),
+    );
+  }
+
   @override
   void initState() {
     getData(selectedCam, selectedRover, selectedSol);
@@ -300,6 +313,7 @@ class _MarsState extends State<Mars> {
                                         imageUrl: list['photos'][index]
                                             ['img_src'],
                                         fit: BoxFit.fill,
+                                        placeholder: circle,
                                       ),
                               ),
                               onTap: () {
