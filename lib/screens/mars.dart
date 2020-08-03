@@ -234,7 +234,7 @@ class _MarsState extends State<Mars> {
                         },
                       ),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 10),
                     GestureDetector(
                       onTap: () {
                         getData(selectedCam, selectedRover, selectedSol);
