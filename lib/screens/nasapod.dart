@@ -133,7 +133,7 @@ class PODContents extends StatelessWidget {
     return list == null
         ? Center(
             child: Text(
-              'No internet conenction\nNo Response from API',
+              'No Response from API',
               textAlign: TextAlign.center,
               style: kTitleDateTS,
             ),
