@@ -1,7 +1,15 @@
 import 'package:SpacePortal/components/Card.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+
+//To Remove the overscroll indicator
+class MyBehavior extends ScrollBehavior {
+  @override
+  Widget buildViewportChrome(
+      BuildContext context, Widget child, AxisDirection axisDirection) {
+    return child;
+  }
+}
 
 class HomePage extends StatefulWidget {
   @override
@@ -34,21 +42,24 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               Expanded(
-                child: PageView(
-                  controller: _pageController,
-                  physics: PageScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    DCard(
-                      text: box.get('title'),
-                      image: box.get('image'),
-                    ),
-                    DCard(
-                      image:
-                          'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/NASA_Mars_Rover.jpg/1125px-NASA_Mars_Rover.jpg',
-                      text: 'Mars Rover Images',
-                    ),
-                  ],
+                child: ScrollConfiguration(
+                  behavior: MyBehavior(),
+                  child: PageView(
+                    controller: _pageController,
+                    physics: PageScrollPhysics(),
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      DCard(
+                        text: box.get('title'),
+                        image: box.get('image'),
+                      ),
+                      DCard(
+                        image:
+                            'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/NASA_Mars_Rover.jpg/1125px-NASA_Mars_Rover.jpg',
+                        text: 'Mars Rover Images',
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
