@@ -20,11 +20,11 @@ const Color kPrimaryBlack = Colors.black;
 const Color kAccentSkyBlue = Color(0xFF00e9f2);
 
 // Theming for the app
-const Color kAccentColor = kAccentSkyBlue;
-const Color kDrawerColor = kPrimaryBlack;
-const Color kIconColor = kAccentSkyBlue;
-//const Color kAppBarColor = kAccentAmber;
-const Color kDropDownButtonColor = kAccentSkyBlue;
+const Color kAccentColor = kPrimaryBlack;
+const Color kDrawerColor = kPrimaryWhite;
+const Color kIconColor = kPrimaryWhite;
+const Color kAppBarColor = kPrimaryWhite;
+const Color kDropDownButtonColor = kPrimaryBlack;
 
 //Color Gradient
 BoxDecoration kAppbarBoxDecoration = BoxDecoration(
@@ -48,10 +48,10 @@ List<Color> kcolorGradient = [
 //TextStyle
 TextStyle kTitleDateTS = GoogleFonts.notoSans(
   fontSize: 18.0,
-  color: kPrimaryWhite,
+  color: kPrimaryBlack,
 );
 
 TextStyle kDetailsTS = GoogleFonts.notoSans(
   fontSize: 15.0,
-  color: kPrimaryWhite,
+  color: kPrimaryBlack,
 );
