@@ -33,14 +33,8 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.only(left: 15.0),
-                child: Text(
-                  'Welcome',
-                  style: TextStyle(
-                    fontSize: 30.0,
-                    fontWeight: FontWeight.w900,
-                  ),
-                ),
+                padding: EdgeInsets.only(left: 20.0),
+                child: Text('Welcome', style: kTitleLargeTS),
               ),
               Expanded(
                 child: ScrollConfiguration(
