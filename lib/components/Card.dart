@@ -41,11 +41,6 @@ class DCard extends StatelessWidget {
                     Container(
                       height: (MediaQuery.of(context).size.height),
                       width: (MediaQuery.of(context).size.width),
-                      // child: Image(
-                      //   alignment: Alignment.topCenter,
-                      //   image: image,
-                      //   fit: BoxFit.cover,
-                      // ),
                       child: CachedNetworkImage(
                         imageUrl: image,
                         fit: BoxFit.cover,
@@ -54,6 +49,7 @@ class DCard extends StatelessWidget {
                     Positioned(
                       top: 300.0,
                       child: Container(
+                        //color: Colors.white,
                         padding: EdgeInsets.all(15.0),
                         height: 300.0,
                         width: 230.0,
@@ -68,6 +64,23 @@ class DCard extends StatelessWidget {
                               color: Colors.white,
                               letterSpacing: 1,
                               fontWeight: FontWeight.w900,
+                              shadows: [
+                                Shadow(
+                                  color: Colors.black,
+                                  blurRadius: 30,
+                                  offset: Offset(0, 0),
+                                ),
+                                Shadow(
+                                  color: Colors.black,
+                                  blurRadius: 50,
+                                  offset: Offset(0, 0),
+                                ),
+                                Shadow(
+                                  color: Colors.black,
+                                  blurRadius: 70,
+                                  offset: Offset(0, 0),
+                                ),
+                              ],
                             ),
                           ),
                         ),
