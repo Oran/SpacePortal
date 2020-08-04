@@ -15,7 +15,8 @@ class ImageViewer extends StatelessWidget {
     var index = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: Container(decoration: kAppbarBoxDecoration),
+        backgroundColor: kAppBarColor,
+        elevation: 0,
       ),
       body: Column(
         children: [

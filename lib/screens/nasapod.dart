@@ -77,8 +77,7 @@ class _NasaPodState extends State<NasaPod> {
       appBar: AppBar(
         title: Text('Picture of the day'),
         elevation: 0,
-        //backgroundColor: kAppBarColor,
-        flexibleSpace: Container(decoration: kAppbarBoxDecoration),
+        backgroundColor: kAppBarColor,
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 20.0),
