@@ -60,18 +60,17 @@ class _MyAppState extends State<MyApp> {
       DeviceOrientation.portraitUp, // forces potrait mode for devices
       DeviceOrientation.portraitDown
     ]);
-    return !kIsWeb
+    return kIsWeb
         ? MaterialApp(
             theme: themeData,
             debugShowCheckedModeBanner: false,
             initialRoute: kHome_Page,
             routes: {
               kHome_Page: (context) => HomePage(),
-              // kHome_Page: (context) => HomePage(),
               kNASAPod_Page: (context) => NasaPod(),
               kSpaceX_Page: (context) => SpaceX(),
               kMars_Page: (context) => Mars(),
-              // kNoConnection_Page: (context) => NoConnectionPage(),
+              kNoConnection_Page: (context) => NoConnectionPage(),
             },
           )
         : FutureBuilder(
