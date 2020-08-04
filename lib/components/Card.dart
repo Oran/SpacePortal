@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:SpacePortal/constants.dart';
 
 class DCard extends StatelessWidget {
   DCard({
@@ -49,40 +50,19 @@ class DCard extends StatelessWidget {
                     ),
                     Positioned(
                       top: 300.0,
+                      left: -20,
                       child: Container(
-                        //color: Colors.white,
+                        // color: Colors.white,
                         padding: EdgeInsets.all(15.0),
                         height: 300.0,
-                        width: 230.0,
+                        width: 300.0,
                         alignment: Alignment.bottomCenter,
                         child: Center(
                           //TODO: Better TextStyle / Fonts
                           child: Text(
                             text,
                             textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 40.0,
-                              color: Colors.white,
-                              letterSpacing: 1,
-                              fontWeight: FontWeight.w900,
-                              shadows: [
-                                Shadow(
-                                  color: Colors.black,
-                                  blurRadius: 30,
-                                  offset: Offset(0, 0),
-                                ),
-                                Shadow(
-                                  color: Colors.black,
-                                  blurRadius: 50,
-                                  offset: Offset(0, 0),
-                                ),
-                                Shadow(
-                                  color: Colors.black,
-                                  blurRadius: 70,
-                                  offset: Offset(0, 0),
-                                ),
-                              ],
-                            ),
+                            style: kCardTS
                           ),
                         ),
                       ),
