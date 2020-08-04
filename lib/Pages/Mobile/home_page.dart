@@ -1,4 +1,5 @@
 import 'package:SpacePortal/components/Card.dart';
+import 'package:SpacePortal/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
@@ -52,11 +53,25 @@ class _HomePageState extends State<HomePage> {
                       DCard(
                         text: box.get('title'),
                         image: box.get('image'),
+                        onPressed: () {
+                          Navigator.pushNamed(context, kNASAPod_Page);
+                        },
                       ),
                       DCard(
                         image:
                             'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/NASA_Mars_Rover.jpg/1125px-NASA_Mars_Rover.jpg',
                         text: 'Mars Rover Images',
+                        onPressed: () {
+                          Navigator.pushNamed(context, kMars_Page);
+                        },
+                      ),
+                      DCard(
+                        image:
+                            'https://mk0spaceflightnoa02a.kinstacdn.com/wp-content/uploads/2020/06/49956109906_44a0b5541c_k.jpg',
+                        text: 'Upcoming Launches',
+                        onPressed: () {
+                          Navigator.pushNamed(context, kSpaceX_Page);
+                        },
                       ),
                     ],
                   ),

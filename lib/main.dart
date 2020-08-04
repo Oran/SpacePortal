@@ -68,9 +68,9 @@ class _MyAppState extends State<MyApp> {
             routes: {
               kHome_Page: (context) => HomePage(),
               // kHome_Page: (context) => HomePage(),
-              // kNASAPod_Page: (context) => NasaPod(),
-              // kSpaceX_Page: (context) => SpaceX(),
-              // kMars_Page: (context) => Mars(),
+              kNASAPod_Page: (context) => NasaPod(),
+              kSpaceX_Page: (context) => SpaceX(),
+              kMars_Page: (context) => Mars(),
               // kNoConnection_Page: (context) => NoConnectionPage(),
             },
           )
