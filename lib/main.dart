@@ -62,7 +62,7 @@ class _MyAppState extends State<MyApp> {
     ]);
     return !kIsWeb
         ? MaterialApp(
-            //theme: themeData,
+            theme: themeData,
             debugShowCheckedModeBanner: false,
             initialRoute: kHome_Page,
             routes: {
