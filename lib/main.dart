@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:SpacePortal/screens/home_page.dart';
+import 'package:SpacePortal/Pages/Mobile/home_page.dart';
 import 'package:SpacePortal/screens/noConnection.dart';
 import 'package:SpacePortal/theme/theme.dart';
 import 'package:flare_flutter/flare_actor.dart';

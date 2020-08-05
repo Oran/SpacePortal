@@ -30,15 +30,7 @@ class _MarsState extends State<Mars> {
     });
   }
 
-  //? Not sure why I have this block
-  void setData() {
-    setState(() {
-      selectedCam = camIn;
-      selectedRover = roverIn;
-    });
-  }
-
-  DropdownButtonFormField<String> getDropdownButtonCamera() {
+  DropdownButtonFormField<String> _getDropdownButtonCamera() {
     List<DropdownMenuItem<String>> dropdownItems = [];
     for (String camera in cam) {
       var newItem = DropdownMenuItem(
@@ -68,7 +60,7 @@ class _MarsState extends State<Mars> {
     );
   }
 
-  DropdownButtonFormField<String> getDropdownButtonRover() {
+  DropdownButtonFormField<String> _getDropdownButtonRover() {
     List<DropdownMenuItem<String>> dropdownItems = [];
     for (String rovers in rover) {
       var newItem = DropdownMenuItem(
@@ -105,80 +97,27 @@ class _MarsState extends State<Mars> {
         width: 30.0,
         child: CircularProgressIndicator(
           strokeWidth: 2,
-          valueColor: AlwaysStoppedAnimation<Color>(kAccentSkyBlue),
+          valueColor: AlwaysStoppedAnimation<Color>(kPrimaryBlack),
         ),
       ),
     );
   }
 
-  @override
-  void initState() {
-    getData(selectedCam, selectedRover, selectedSol);
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      // backgroundColor: kPrimaryDarkPurple,
-      appBar: AppBar(
-        title: Text('Mars Rover Images\nNumber of Images - $numOfPics'),
-        elevation: 0,
-        //backgroundColor: kAppBarColor,
-        flexibleSpace: Container(decoration: kAppbarBoxDecoration),
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(right: 20.0),
-            child: GestureDetector(
-                child: Icon(Icons.cached),
-                onTap: () {
-                  getData(selectedCam, selectedRover, selectedSol);
-                }),
+  _createDialog(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30.0),
           ),
-        ],
-      ),
-      drawer: Drawer(
-        child: Container(
-          color: kDrawerColor,
           child: Padding(
-            padding: EdgeInsets.only(top: 30.0, bottom: 30.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Column(
-                  children: [
-                    ListTile(
-                      contentPadding: EdgeInsets.symmetric(horizontal: 25.0),
-                      leading: Icon(
-                        Icons.account_balance,
-                        color: kIconColor,
-                      ),
-                      title: Text(
-                        'NASA Picture of the day',
-                        style: kDetailsTS,
-                      ),
-                      onTap: () {
-                        Navigator.pushNamed(context, kNASAPod_Page);
-                      },
-                    ),
-                    ListTile(
-                      contentPadding: EdgeInsets.symmetric(horizontal: 25.0),
-                      leading: Icon(
-                        Icons.account_balance,
-                        color: kIconColor,
-                      ),
-                      title: Text(
-                        'SpaceX Launch Timetable',
-                        style: kDetailsTS,
-                      ),
-                      onTap: () {
-                        Navigator.pushNamed(context, kSpaceX_Page);
-                      },
-                    ),
-                  ],
-                ),
-                SizedBox(height: (MediaQuery.of(context).size.height * 0.10)),
-                Column(
+            padding: EdgeInsets.only(top: 20.0),
+            child: Container(
+              height: 300.0,
+              width: 300.0,
+              child: Center(
+                child: Column(
                   children: [
                     Container(
                       width: 150.0,
@@ -189,7 +128,7 @@ class _MarsState extends State<Mars> {
                       child: Padding(
                         padding: EdgeInsets.only(left: 10.0),
                         child: Center(
-                          child: getDropdownButtonCamera(),
+                          child: _getDropdownButtonCamera(),
                         ),
                       ),
                     ),
@@ -202,7 +141,9 @@ class _MarsState extends State<Mars> {
                       ),
                       child: Padding(
                         padding: EdgeInsets.only(left: 10.0),
-                        child: Center(child: getDropdownButtonRover()),
+                        child: Center(
+                          child: _getDropdownButtonRover(),
+                        ),
                       ),
                     ),
                     SizedBox(height: 15.0),
@@ -249,89 +190,163 @@ class _MarsState extends State<Mars> {
                             color: kAccentColor),
                         child: Icon(
                           Icons.cached,
-                          color: kPrimaryBlack,
+                          color: kIconColor,
                         ),
                       ),
                     ),
                   ],
                 ),
-              ],
+              ),
             ),
           ),
+        );
+      },
+    );
+  }
+
+  @override
+  void initState() {
+    getData(selectedCam, selectedRover, selectedSol);
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30.0),
+              ),
+              padding: EdgeInsets.only(top: 40.0, left: 10.0),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(right: 20.0),
+                        child: GestureDetector(
+                          child: Icon(
+                            Icons.subject,
+                            size: 30.0,
+                          ),
+                          onTap: () {
+                            _createDialog(context);
+                          },
+                        ),
+                      ),
+                      Text(
+                        'Mars Rover Images',
+                        style: kTitleLargeTS.copyWith(
+                          fontSize: 30.0,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text('Number of pictures: $numOfPics',
+                          style: kMarsStatsStyle),
+                      Text('Rover: $selectedRover', style: kMarsStatsStyle),
+                      Text('Camera: $selectedCam', style: kMarsStatsStyle),
+                      Text('Sol Days on mars: $selectedSol',
+                          style: kMarsStatsStyle),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: numOfPics == 0
+                  ? Center(
+                      child: Text(
+                        'No Images Provided',
+                        style: kTitleDateTS,
+                      ),
+                    )
+                  : GridView.builder(
+                      physics: BouncingScrollPhysics(),
+                      itemCount: list == null
+                          ? 0
+                          : list['photos'].length == 856
+                              ? 20
+                              : list['photos'].length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: (MediaQuery.of(context).orientation ==
+                                  Orientation.portrait)
+                              ? 2
+                              : 5),
+                      itemBuilder: (context, index) {
+                        return Container(
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey,
+                                spreadRadius: -20,
+                                blurRadius: 25,
+                                offset: Offset(0, 0),
+                              ),
+                              BoxShadow(
+                                color: Colors.grey,
+                                spreadRadius: -15,
+                                blurRadius: 15,
+                                offset: Offset(0, 0),
+                              ),
+                            ],
+                          ),
+                          child: list == null
+                              ? Center(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: Text(
+                                      'Image is null',
+                                      style: kTitleDateTS.copyWith(
+                                          color: Colors.black),
+                                    ),
+                                  ),
+                                )
+                              : Padding(
+                                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                    child: GestureDetector(
+                                      child: Hero(
+                                        tag: 'tag' + index.toString(),
+                                        child: kIsWeb
+                                            ? Image.network(list['photos']
+                                                [index]['img_src'])
+                                            : CachedNetworkImage(
+                                                imageUrl: list['photos'][index]
+                                                    ['img_src'],
+                                                fit: BoxFit.fill,
+                                                placeholder: circle,
+                                              ),
+                                      ),
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => ImageViewer(
+                                                index: index,
+                                                list: list['photos'][index]
+                                                    ['img_src']),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ),
+                        );
+                      },
+                    ),
+            ),
+          ],
         ),
       ),
-      body: numOfPics == 0
-          ? Center(
-              child: Text(
-                'No Images Provided',
-                style: kTitleDateTS,
-              ),
-            )
-          : GridView.builder(
-              physics: BouncingScrollPhysics(),
-              itemCount: list == null
-                  ? 0
-                  : list['photos'].length == 856 ? 20 : list['photos'].length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: (MediaQuery.of(context).orientation ==
-                          Orientation.portrait)
-                      ? 2
-                      : 5),
-              itemBuilder: (context, index) {
-                return Container(
-                  decoration: BoxDecoration(
-                      // boxShadow: [
-                      //   BoxShadow(
-                      //     color: Colors.grey,
-                      //     spreadRadius: -20,
-                      //     blurRadius: 25,
-                      //     offset: Offset(0, 0),
-                      //   ),
-                      // ],
-                      ),
-                  child: list == null
-                      ? Center(
-                          child: Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text(
-                              'Image is null',
-                              style: kTitleDateTS.copyWith(color: Colors.black),
-                            ),
-                          ),
-                        )
-                      : Padding(
-                          padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(30.0),
-                            child: GestureDetector(
-                              child: Hero(
-                                tag: 'tag' + index.toString(),
-                                child: kIsWeb
-                                    ? Image.network(
-                                        list['photos'][index]['img_src'])
-                                    : CachedNetworkImage(
-                                        imageUrl: list['photos'][index]
-                                            ['img_src'],
-                                        fit: BoxFit.fill,
-                                        placeholder: circle,
-                                      ),
-                              ),
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => ImageViewer(
-                                        index: index,
-                                        list: list['photos'][index]['img_src']),
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                        ),
-                );
-              },
-            ),
     );
   }
 }
