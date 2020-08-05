@@ -34,7 +34,13 @@ class ImageViewer extends StatelessWidget {
             SizedBox(height: 10.0),
             GestureDetector(
               //TODO: Implement Image download function
-              onTap: () {},
+              onTap: () {
+                launch(
+                  list,
+                  // forceWebView: true,
+                  // enableJavaScript: true,
+                );
+              },
               child: Container(
                 height: 60.0,
                 width: 60.0,

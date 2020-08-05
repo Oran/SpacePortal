@@ -169,7 +169,11 @@ class PODContents extends StatelessWidget {
                                         EdgeInsets.symmetric(horizontal: 8.0),
                                     child: GestureDetector(
                                       onTap: () {
-                                        launch(Hive.box('cacge').get('image'));
+                                        launch(
+                                          Hive.box('cache').get('image'),
+                                          forceWebView: true,
+                                          enableJavaScript: true,
+                                        );
                                       },
                                       child: Text(
                                         '${Hive.box('cache').get('image')}',
