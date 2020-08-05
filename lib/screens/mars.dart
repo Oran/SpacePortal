@@ -30,14 +30,6 @@ class _MarsState extends State<Mars> {
     });
   }
 
-  //? Not sure why I have this block
-  void setData() {
-    setState(() {
-      selectedCam = camIn;
-      selectedRover = roverIn;
-    });
-  }
-
   DropdownButtonFormField<String> _getDropdownButtonCamera() {
     List<DropdownMenuItem<String>> dropdownItems = [];
     for (String camera in cam) {

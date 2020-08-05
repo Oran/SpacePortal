@@ -27,6 +27,7 @@ class NasaPODData {
       box.put('title', title);
       box.put('date', date);
       box.put('exp', exp);
+      box.put('mediaType', mediaType);
     }
     if (mediaType == 'video') {
       getThumbnail(image);
