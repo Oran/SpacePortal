@@ -1,5 +1,6 @@
 import 'package:SpacePortal/components/Card.dart';
 import 'package:SpacePortal/constants.dart';
+import 'package:SpacePortal/network/network.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
@@ -19,7 +20,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   PageController _pageController = PageController();
+  NasaPODData networkData = NasaPODData();
   var box = Hive.box('cache');
+
+  @override
+  void initState() {
+    networkData.getData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -170,16 +170,23 @@ class PODContents extends StatelessWidget {
                                     child: GestureDetector(
                                       onTap: () {
                                         launch(
-                                          Hive.box('cache').get('image'),
+                                          Hive.box('cache').get('videoURL'),
                                           forceWebView: true,
                                           enableJavaScript: true,
                                         );
                                       },
-                                      child: Text(
-                                        '${Hive.box('cache').get('image')}',
-                                        textAlign: TextAlign.center,
-                                        style: kDetailsTS.copyWith(
-                                            color: Colors.red),
+                                      child: Column(
+                                        children: [
+                                          Text('Tap to play video', style: kDetailsTS,),
+                                          SizedBox(height: 5,),
+                                          ClipRRect(
+                                            borderRadius: BorderRadius.circular(30),
+                                            child: CachedNetworkImage(
+                                              imageUrl: box.get('image'),
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   )
@@ -221,7 +228,8 @@ class PODContents extends StatelessWidget {
                               child: Text(
                                 box.get('exp'),
                                 style: kDetailsTS.copyWith(
-                                  letterSpacing: 1.0,
+                                  letterSpacing: 0.7,
+                                  fontWeight: FontWeight.w500
                                 ),
                               ),
                             ),

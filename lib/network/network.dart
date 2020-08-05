@@ -2,6 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 import 'package:hive/hive.dart';
+import 'package:youtube_explode_dart/youtube_explode_dart.dart' as yt;
 
 final String _apiKey = 'pc7RPSAONSoBlJTGozeFT1EcaDa0mwXoD17XsKd3';
 
@@ -18,15 +19,30 @@ class NasaPODData {
     var exp = decodedData['explanation'];
     var mediaType = decodedData['media_type'];
     var statusCode = decodedData['code'];
-    var msg = decodedData['msg'];
-    print(statusCode);
+    //print(statusCode);
     if (statusCode != 404) {
-      box.put('image', image);
+      if (mediaType == 'image') {
+        box.put('image', image);
+      }
       box.put('title', title);
       box.put('date', date);
       box.put('exp', exp);
     }
-    return [mediaType, statusCode, msg];
+    if (mediaType == 'video') {
+      getThumbnail(image);
+    }
+
+    return [mediaType];
+  }
+
+  void getThumbnail(String videoURL) {
+    var box = Hive.box('cache');
+    box.put('videoURL', videoURL);
+    RegExp exp = RegExp(r"embed\/([^#\&\?]{11})");
+    String videoID = exp.firstMatch(videoURL).group(1);
+    var videoImage = yt.ThumbnailSet(videoID).maxResUrl;
+    box.put('image', videoImage);
+    // print(box.get('image'));
   }
 }
 
