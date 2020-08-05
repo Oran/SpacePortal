@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "791399087362",
+    "firebase_url": "https://space-portal-2648c.firebaseio.com",
+    "project_id": "space-portal-2648c",
+    "storage_bucket": "space-portal-2648c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:791399087362:android:31e705185727daea50961b",
+        "android_client_info": {
+          "package_name": "com.oran.spaceportal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "791399087362-b8jk9vpaca2vi4d8qmsgfd2k1h7domif.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxawY0RZAlbHHwOXEwwFJ3cZ2UzcpCviU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "791399087362-b8jk9vpaca2vi4d8qmsgfd2k1h7domif.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
