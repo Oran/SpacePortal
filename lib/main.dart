@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:SpacePortal/Pages/Mobile/home_page.dart';
-import 'package:SpacePortal/network/models.dart';
 import 'package:SpacePortal/network/network.dart';
 import 'package:SpacePortal/screens/noConnection.dart';
 import 'package:SpacePortal/theme/theme.dart';
@@ -43,12 +42,11 @@ class _MyAppState extends State<MyApp> {
     try {
       final result = await InternetAddress.lookup('www.google.com');
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-        print('connected');
+        // print('connected');
         return cs.done;
-        //print(connectionValue);
       }
     } on SocketException catch (_) {
-      print('not connected');
+      // print('not connected');
       return cs.notDone;
     }
   }
@@ -82,14 +80,14 @@ class _MyAppState extends State<MyApp> {
             future: checkConnection(),
             builder: (context, snapshot) =>
                 snapshot.connectionState == ConnectionState.done
-                    ? StreamProvider<APIData>.value(
-                        value: NasaPODData().readFSData(),
-                        initialData: APIData(
-                          date: '',
-                          title: '',
-                          image: imageURL,
-                          exp: '',
-                        ),
+                    ? FutureProvider<Map>.value(
+                        value: NasaPODData().getFSData(),
+                        initialData: {
+                          'date': '',
+                          'title': '',
+                          'image': imageURL,
+                          'exp': '',
+                        },
                         child: MaterialApp(
                           theme: themeData,
                           debugShowCheckedModeBanner: false,

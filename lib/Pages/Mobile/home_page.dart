@@ -1,6 +1,5 @@
 import 'package:SpacePortal/components/Card.dart';
 import 'package:SpacePortal/constants.dart';
-import 'package:SpacePortal/network/models.dart';
 import 'package:SpacePortal/network/network.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -26,18 +25,16 @@ class _HomePageState extends State<HomePage> {
   NasaPODData networkData = NasaPODData();
   Firestore firestore = Firestore();
   var box = Hive.box('cache');
-  var fsList;
 
   @override
   void initState() {
     networkData.getData();
-    fsList = NasaPODData().readFSData();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    var data = Provider.of<APIData>(context);
+    var data = Provider.of<Map>(context);
     return Scaffold(
       //backgroundColor: Colors.blueGrey[100],
       body: Container(
@@ -49,15 +46,9 @@ class _HomePageState extends State<HomePage> {
             children: [
               Padding(
                 padding: EdgeInsets.only(left: 20.0),
-                child: InkWell(
-                  onTap: () {},
-                  onLongPress: () {
-                    NasaPODData().readFSData();
-                  },
-                  child: Text(
-                    'Welcome',
-                    style: kTitleLargeTS,
-                  ),
+                child: Text(
+                  'Welcome',
+                  style: kTitleLargeTS,
                 ),
               ),
               Expanded(
@@ -69,8 +60,8 @@ class _HomePageState extends State<HomePage> {
                     scrollDirection: Axis.horizontal,
                     children: [
                       DCard(
-                        text: data.title,
-                        image: data.image,
+                        text: data['title'],
+                        image: data['image'],
                         onPressed: () {
                           Navigator.pushNamed(context, kNASAPod_Page);
                         },
