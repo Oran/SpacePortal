@@ -1,12 +1,10 @@
 import 'package:SpacePortal/constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-// import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PODContents extends StatelessWidget {
-  // final box = Hive.box('cache');
 
   @override
   Widget build(BuildContext context) {

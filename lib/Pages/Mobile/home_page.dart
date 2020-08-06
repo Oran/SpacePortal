@@ -3,7 +3,6 @@ import 'package:SpacePortal/constants.dart';
 import 'package:SpacePortal/network/network.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
 
 //To Remove the overscroll indicator
@@ -24,7 +23,6 @@ class _HomePageState extends State<HomePage> {
   PageController _pageController = PageController();
   NasaPODData networkData = NasaPODData();
   Firestore firestore = Firestore();
-  var box = Hive.box('cache');
 
   @override
   void initState() {
