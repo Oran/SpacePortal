@@ -1,8 +1,9 @@
 import 'package:SpacePortal/components/Card.dart';
 import 'package:SpacePortal/constants.dart';
 import 'package:SpacePortal/network/network.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
+import 'package:provider/provider.dart';
 
 //To Remove the overscroll indicator
 class MyBehavior extends ScrollBehavior {
@@ -21,7 +22,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   PageController _pageController = PageController();
   NasaPODData networkData = NasaPODData();
-  var box = Hive.box('cache');
+  Firestore firestore = Firestore();
 
   @override
   void initState() {
@@ -31,6 +32,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    var data = Provider.of<Map>(context);
     return Scaffold(
       //backgroundColor: Colors.blueGrey[100],
       body: Container(
@@ -42,7 +44,10 @@ class _HomePageState extends State<HomePage> {
             children: [
               Padding(
                 padding: EdgeInsets.only(left: 20.0),
-                child: Text('Welcome', style: kTitleLargeTS),
+                child: Text(
+                  'Welcome',
+                  style: kTitleLargeTS,
+                ),
               ),
               Expanded(
                 child: ScrollConfiguration(
@@ -53,8 +58,8 @@ class _HomePageState extends State<HomePage> {
                     scrollDirection: Axis.horizontal,
                     children: [
                       DCard(
-                        text: box.get('title'),
-                        image: box.get('image'),
+                        text: data['title'],
+                        image: data['image'],
                         onPressed: () {
                           Navigator.pushNamed(context, kNASAPod_Page);
                         },

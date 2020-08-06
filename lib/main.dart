@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:SpacePortal/Pages/Mobile/home_page.dart';
+import 'package:SpacePortal/network/network.dart';
 import 'package:SpacePortal/screens/noConnection.dart';
 import 'package:SpacePortal/theme/theme.dart';
 import 'package:flare_flutter/flare_actor.dart';
@@ -10,12 +11,9 @@ import 'package:SpacePortal/screens/nasapod.dart';
 import 'package:SpacePortal/screens/spacex.dart';
 import 'package:flutter/services.dart';
 import 'package:SpacePortal/constants.dart';
-import 'package:hive/hive.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:provider/provider.dart';
 
-void main() async {
-  await Hive.initFlutter();
-  await Hive.openBox('cache');
+void main() {
   runApp(MyApp());
 }
 
@@ -32,25 +30,25 @@ enum cs {
 
 class _MyAppState extends State<MyApp> {
   var connectionValue = cs.noll;
+  final imageURL =
+      'https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png?format=jpg&quality=90&v=1530129081';
 
   // This block of code checks if there is an active internet connection.
   Future checkConnection() async {
     try {
       final result = await InternetAddress.lookup('www.google.com');
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-        print('connected');
+        // print('connected');
         return cs.done;
-        //print(connectionValue);
       }
     } on SocketException catch (_) {
-      print('not connected');
+      // print('not connected');
       return cs.notDone;
     }
   }
 
   @override
   void dispose() async {
-    await Hive.close();
     super.dispose();
   }
 
@@ -77,19 +75,28 @@ class _MyAppState extends State<MyApp> {
             future: checkConnection(),
             builder: (context, snapshot) =>
                 snapshot.connectionState == ConnectionState.done
-                    ? MaterialApp(
-                        theme: themeData,
-                        debugShowCheckedModeBanner: false,
-                        initialRoute: snapshot.data == cs.done
-                            ? kHome_Page
-                            : kNoConnection_Page,
-                        routes: {
-                          kHome_Page: (context) => HomePage(),
-                          kNASAPod_Page: (context) => NasaPod(),
-                          kSpaceX_Page: (context) => SpaceX(),
-                          kMars_Page: (context) => Mars(),
-                          kNoConnection_Page: (context) => NoConnectionPage(),
+                    ? FutureProvider<Map>.value(
+                        value: NasaPODData().getFSData(),
+                        initialData: {
+                          'date': '',
+                          'title': '',
+                          'image': imageURL,
+                          'exp': '',
                         },
+                        child: MaterialApp(
+                          theme: themeData,
+                          debugShowCheckedModeBanner: false,
+                          initialRoute: snapshot.data == cs.done
+                              ? kHome_Page
+                              : kNoConnection_Page,
+                          routes: {
+                            kHome_Page: (context) => HomePage(),
+                            kNASAPod_Page: (context) => NasaPod(),
+                            kSpaceX_Page: (context) => SpaceX(),
+                            kMars_Page: (context) => Mars(),
+                            kNoConnection_Page: (context) => NoConnectionPage(),
+                          },
+                        ),
                       )
                     : Center(
                         child: Container(
