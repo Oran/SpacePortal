@@ -59,17 +59,26 @@ class _MyAppState extends State<MyApp> {
       DeviceOrientation.portraitDown
     ]);
     return kIsWeb
-        ? MaterialApp(
-            theme: themeData,
-            debugShowCheckedModeBanner: false,
-            initialRoute: kHome_Page,
-            routes: {
-              kHome_Page: (context) => HomePage(),
-              kNASAPod_Page: (context) => NasaPod(),
-              kSpaceX_Page: (context) => SpaceX(),
-              kMars_Page: (context) => Mars(),
-              kNoConnection_Page: (context) => NoConnectionPage(),
+        ? FutureProvider<Map>.value(
+            value: NasaPODData().getFSData(),
+            initialData: {
+              'date': '',
+              'title': '',
+              'image': imageURL,
+              'exp': '',
             },
+            child: MaterialApp(
+              theme: themeData,
+              debugShowCheckedModeBanner: false,
+              initialRoute: kHome_Page,
+              routes: {
+                kHome_Page: (context) => HomePage(),
+                kNASAPod_Page: (context) => NasaPod(),
+                kSpaceX_Page: (context) => SpaceX(),
+                kMars_Page: (context) => Mars(),
+                kNoConnection_Page: (context) => NoConnectionPage(),
+              },
+            ),
           )
         : FutureBuilder(
             future: checkConnection(),
