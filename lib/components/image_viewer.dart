@@ -17,44 +17,36 @@ class ImageViewer extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: kAppBarColor,
         elevation: 0,
+        actions: [
+          GestureDetector(
+            //TODO: Implement Image download function
+            onTap: () {
+              launch(
+                list,
+                // forceWebView: true,
+                // enableJavaScript: true,
+              );
+            },
+            child: Container(
+              height: 60.0,
+              width: 60.0,
+              color: kPrimaryWhite,
+              child: Icon(
+                Icons.get_app,
+                color: Colors.black,
+              ),
+            ),
+          ),
+        ],
       ),
       body: Padding(
         padding: EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Container(
-              child: Hero(
-                tag: 'tag' + index.toString(),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(30.0),
-                  child: CachedNetworkImage(imageUrl: list),
-                ),
-              ),
-            ),
-            SizedBox(height: 10.0),
-            GestureDetector(
-              //TODO: Implement Image download function
-              onTap: () {
-                launch(
-                  list,
-                  // forceWebView: true,
-                  // enableJavaScript: true,
-                );
-              },
-              child: Container(
-                height: 60.0,
-                width: 60.0,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: kAccentColor),
-                    color: kAccentColor),
-                child: Icon(
-                  Icons.get_app,
-                  color: kIconColor,
-                ),
-              ),
-            ),
-          ],
+        child: Hero(
+          tag: 'tag' + index.toString(),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(30.0),
+            child: CachedNetworkImage(imageUrl: list),
+          ),
         ),
       ),
     );

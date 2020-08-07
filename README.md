@@ -7,7 +7,6 @@
     - [NADA POD Page](#nada-pod-page)
     - [Potential Features](#potential-features)
     - [Web](#web)
-  - [Stuff to look into](#stuff-to-look-into)
   - [Credits](#credits)
     - [Animation](#animation)
     - [Packages](#packages)
@@ -57,9 +56,9 @@
     - [ ] Inline video player.
 - [x] Fix No interent connection bug
 - [x] **Cache Images and text until you get another image from nasa API.**
-- [ ] Cache null check
-  - [ ] Add a firestore caching system to duplicate offline cache
-  - [ ] temp null check for nasapod page
+- [x] Cache null check
+  - [x] Add a firestore caching system to duplicate offline cache
+  - [x] temp null check for nasapod page
 
 ### Potential Features
 
@@ -73,13 +72,7 @@
 
 ### Web
 
-- [ ] Add more stuff to the NASAPOD page for web version.
-
-## Stuff to look into
-
-[image_downloader](https://pub.dev/packages/image_downloader)
-
-[webview_flutter](https://pub.dev/packages/webview_flutter)
+- [ ] Complete Redesign needed
 
 </details>
 

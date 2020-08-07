@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PODContents extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<Map>(context);
@@ -26,7 +25,21 @@ class PODContents extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(height: 10),
+                Container(
+                  height: 80.0,
+                  child: Center(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 24.0),
+                      child: Text(
+                        'Picture of the day',
+                        style: kTitleLargeTS.copyWith(
+                          fontSize: 34.0,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
                 Container(
                   height: orientation == Orientation.landscape ? 800.0 : null,
                   padding: EdgeInsets.all(10),
@@ -62,11 +75,26 @@ class PODContents extends StatelessWidget {
                             ),
                           ),
                         )
-                      : ClipRRect(
-                          borderRadius: BorderRadius.circular(50.0),
-                          child: CachedNetworkImage(
-                            imageUrl: data['image'],
-                            fit: BoxFit.fill,
+                      : Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30.0),
+                            color: Colors.black,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 10,
+                                blurRadius: 10,
+                                offset:
+                                    Offset(0, 3), // changes position of shadow
+                              ),
+                            ],
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(30.0),
+                            child: CachedNetworkImage(
+                              imageUrl: data['image'],
+                              fit: BoxFit.fill,
+                            ),
                           ),
                         ),
                 ),
@@ -75,7 +103,10 @@ class PODContents extends StatelessWidget {
                       EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
                   child: Text(
                     data['title'],
-                    style: kTitleDateTS.copyWith(fontSize: 25.0),
+                    style: kTitleDateTS.copyWith(
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
                 Padding(
@@ -83,7 +114,9 @@ class PODContents extends StatelessWidget {
                       EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
                   child: Text(
                     data['date'],
-                    style: kTitleDateTS.copyWith(fontSize: 18.0),
+                    style: kTitleDateTS.copyWith(
+                      fontSize: 18.0,
+                    ),
                   ),
                 ),
                 Container(
@@ -93,7 +126,8 @@ class PODContents extends StatelessWidget {
                     child: Text(
                       data['exp'],
                       style: kDetailsTS.copyWith(
-                          letterSpacing: 0.7, fontWeight: FontWeight.w500),
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ),

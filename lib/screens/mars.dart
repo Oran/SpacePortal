@@ -122,8 +122,8 @@ class _MarsState extends State<Mars> {
                     Container(
                       width: 150.0,
                       decoration: BoxDecoration(
+                        color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: kAccentColor),
                       ),
                       child: Padding(
                         padding: EdgeInsets.only(left: 10.0),
@@ -136,8 +136,8 @@ class _MarsState extends State<Mars> {
                     Container(
                       width: 150.0,
                       decoration: BoxDecoration(
+                        color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: kAccentColor),
                       ),
                       child: Padding(
                         padding: EdgeInsets.only(left: 10.0),
@@ -151,8 +151,8 @@ class _MarsState extends State<Mars> {
                       height: 60.0,
                       width: 150.0,
                       decoration: BoxDecoration(
+                        color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: kAccentColor),
                       ),
                       child: TextField(
                         cursorColor: kAccentColor,
