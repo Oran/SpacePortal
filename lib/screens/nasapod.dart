@@ -1,8 +1,6 @@
 import 'package:SpacePortal/components/pod_contents.dart';
 import 'package:flutter/material.dart';
 import 'package:SpacePortal/constants.dart';
-import 'package:SpacePortal/network/network.dart';
-
 
 class NasaPod extends StatelessWidget {
   @override
@@ -49,21 +47,6 @@ class NasaPod extends StatelessWidget {
             ),
           ),
         ),
-      ),
-      appBar: AppBar(
-        title: Text('Picture of the day'),
-        elevation: 0,
-        backgroundColor: kAppBarColor,
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(right: 20.0),
-            child: GestureDetector(
-                child: Icon(Icons.cached),
-                onTap: () {
-                  NasaPODData().getData();
-                }),
-          ),
-        ],
       ),
       body: PODContents(),
     );
