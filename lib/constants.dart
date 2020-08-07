@@ -39,22 +39,26 @@ List<Color> kcolorGradient = [
 TextStyle kTitleDateTS = GoogleFonts.notoSans(
   fontSize: 18.0,
   color: kPrimaryBlack,
+  letterSpacing: 0.8
 );
 
 TextStyle kDetailsTS = GoogleFonts.notoSans(
   fontSize: 15.0,
   color: kPrimaryBlack,
+  letterSpacing: 0.8
 );
 
 TextStyle kMarsStatsStyle = GoogleFonts.notoSans(
   fontSize: 15.0,
   color: kPrimaryBlack,
   fontWeight: FontWeight.bold,
+  letterSpacing: 0.8
 );
 
 TextStyle kTitleLargeTS = GoogleFonts.notoSans(
   fontSize: 40.0,
-  fontWeight: FontWeight.w900,
+  fontWeight: FontWeight.w600,
+  letterSpacing: 0.8
 );
 
 TextStyle kCardTS = GoogleFonts.notoSans(
