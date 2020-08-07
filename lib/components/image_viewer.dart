@@ -41,15 +41,11 @@ class ImageViewer extends StatelessWidget {
       ),
       body: Padding(
         padding: EdgeInsets.all(8.0),
-        child: InteractiveViewer(
-          maxScale: 10.0,
-          minScale: 0.8, 
-          child: Hero(
-            tag: 'tag' + index.toString(),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(30.0),
-              child: CachedNetworkImage(imageUrl: list),
-            ),
+        child: Hero(
+          tag: 'tag' + index.toString(),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(30.0),
+            child: CachedNetworkImage(imageUrl: list),
           ),
         ),
       ),
