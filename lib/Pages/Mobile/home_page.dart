@@ -1,6 +1,7 @@
-import 'package:SpacePortal/components/Card.dart';
+import 'package:SpacePortal/components/card.dart';
 import 'package:SpacePortal/constants.dart';
 import 'package:SpacePortal/network/network.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -58,27 +59,31 @@ class _HomePageState extends State<HomePage> {
                     scrollDirection: Axis.horizontal,
                     children: [
                       DCard(
+                        image: CachedNetworkImage(
+                          imageUrl: data['image'],
+                          fit: BoxFit.cover,
+                        ),
                         text: data['title'],
-                        image: data['image'],
-                        onPressed: () {
-                          Navigator.pushNamed(context, kNASAPod_Page);
-                        },
+                        onPressed: () =>
+                            Navigator.pushNamed(context, kNASAPod_Page),
                       ),
                       DCard(
-                        image:
-                            'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/NASA_Mars_Rover.jpg/1125px-NASA_Mars_Rover.jpg',
+                        image: Image.asset(
+                          'assets/images/mars_rover.jpg',
+                          fit: BoxFit.cover,
+                        ),
                         text: 'Mars Rover Images',
-                        onPressed: () {
-                          Navigator.pushNamed(context, kMars_Page);
-                        },
+                        onPressed: () =>
+                            Navigator.pushNamed(context, kMars_Page),
                       ),
                       DCard(
-                        image:
-                            'https://mk0spaceflightnoa02a.kinstacdn.com/wp-content/uploads/2020/06/49956109906_44a0b5541c_k.jpg',
-                        text: 'Upcoming Launches',
-                        onPressed: () {
-                          Navigator.pushNamed(context, kSpaceX_Page);
-                        },
+                        image: Image.asset(
+                          'assets/images/falcon_nine.jpg',
+                          fit: BoxFit.cover,
+                        ),
+                        text: data['title'],
+                        onPressed: () =>
+                            Navigator.pushNamed(context, kSpaceX_Page),
                       ),
                     ],
                   ),

@@ -1,17 +1,17 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:SpacePortal/constants.dart';
 
 class DCard extends StatelessWidget {
   DCard({
-    @required this.image,
+    this.image,
     this.onPressed,
     this.text = '',
   });
-  final String image;
+  //A widget because you need to use cachedNetworkImage
+  final Widget image;
   final Function onPressed;
   final String text;
-
+  
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -43,10 +43,7 @@ class DCard extends StatelessWidget {
                       height: (MediaQuery.of(context).size.height),
                       width: (MediaQuery.of(context).size.width),
                       //TODO: Make sure to download the imgaes and save them as assets
-                      child: CachedNetworkImage(
-                        imageUrl: image,
-                        fit: BoxFit.cover,
-                      ),
+                      child: image,
                     ),
                     Positioned(
                       top: 300.0,
@@ -59,11 +56,8 @@ class DCard extends StatelessWidget {
                         alignment: Alignment.bottomCenter,
                         child: Center(
                           //TODO: Better TextStyle / Fonts
-                          child: Text(
-                            text,
-                            textAlign: TextAlign.center,
-                            style: kCardTS
-                          ),
+                          child: Text(text,
+                              textAlign: TextAlign.center, style: kCardTS),
                         ),
                       ),
                     ),
