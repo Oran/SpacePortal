@@ -17,9 +17,9 @@ class _MarsState extends State<Mars> {
   var camIn;
   var roverIn;
   var solIn;
-  String selectedCam = 'navcam'; //Defaults
-  String selectedRover = 'opportunity';
-  String selectedSol = '100';
+  String selectedCam = 'mast'; //Defaults
+  String selectedRover = 'curiosity';
+  String selectedSol = '59';
 
   void getData(camIn, roverIn, solIn) async {
     marsData.setURL(camIn, roverIn, solIn);
