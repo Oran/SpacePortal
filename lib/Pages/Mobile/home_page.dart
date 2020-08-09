@@ -61,7 +61,7 @@ class HomePage extends StatelessWidget {
                           'assets/images/falcon_nine.jpg',
                           fit: BoxFit.cover,
                         ),
-                        text: data['title'],
+                        text: 'SpaceX Upcoming launches',
                         onPressed: () =>
                             Navigator.pushNamed(context, kSpaceX_Page),
                       ),

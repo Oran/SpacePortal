@@ -98,9 +98,10 @@ class NasaMarsData {
 class SpaceXData {
   static String url = 'https://api.spacexdata.com/v3/launches/upcoming';
 
-  Future getData() async {
+  Future<List<dynamic>> getData() async {
     http.Response response = await http.get(url);
-    var decodedData = jsonDecode(response.body);
+    List<dynamic> decodedData = jsonDecode(response.body);
+    //print(decodedData);
     return decodedData;
   }
 

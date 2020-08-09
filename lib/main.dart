@@ -50,6 +50,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     NasaPODData().getData();
+    SpaceXData().getData();
     super.initState();
   }
 
@@ -60,14 +61,18 @@ class _MyAppState extends State<MyApp> {
       DeviceOrientation.portraitDown
     ]);
     return kIsWeb
-        ? FutureProvider<Map>.value(
-            value: NasaPODData().getFSData(),
-            initialData: {
-              'date': '',
-              'title': '',
-              'image': imageURL,
-              'exp': '',
-            },
+        ? MultiProvider(
+            providers: [
+              FutureProvider.value(
+                value: NasaPODData().getFSData(),
+                initialData: {
+                  'date': '',
+                  'title': '',
+                  'image': imageURL,
+                  'exp': '',
+                },
+              ),
+            ],
             child: MaterialApp(
               theme: themeData,
               debugShowCheckedModeBanner: false,
@@ -85,14 +90,21 @@ class _MyAppState extends State<MyApp> {
             future: checkConnection(),
             builder: (context, snapshot) =>
                 snapshot.connectionState == ConnectionState.done
-                    ? FutureProvider<Map>.value(
-                        value: NasaPODData().getFSData(),
-                        initialData: {
-                          'date': '',
-                          'title': '',
-                          'image': imageURL,
-                          'exp': '',
-                        },
+                    ? MultiProvider(
+                        providers: [
+                          FutureProvider<Map>.value(
+                            value: NasaPODData().getFSData(),
+                            initialData: {
+                              'date': '',
+                              'title': '',
+                              'image': imageURL,
+                              'exp': '',
+                            },
+                          ),
+                          FutureProvider<List<dynamic>>.value(
+                            value: SpaceXData().getData(),
+                          )
+                        ],
                         child: MaterialApp(
                           theme: themeData,
                           debugShowCheckedModeBanner: false,

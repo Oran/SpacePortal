@@ -1,32 +1,8 @@
 import 'package:SpacePortal/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:SpacePortal/components/spaceX_card.dart';
-import 'package:SpacePortal/network/network.dart';
 
-class SpaceX extends StatefulWidget {
-  @override
-  _SpaceXState createState() => _SpaceXState();
-}
-
-class _SpaceXState extends State<SpaceX> {
-  SpaceXData spaceX = SpaceXData();
-  List result;
-  List spaceXList;
-
-  Future getDataSpaceX() async {
-    result = await spaceX.getData();
-
-    setState(() {
-      spaceXList = result;
-    });
-  }
-
-  @override
-  void initState() {
-    getDataSpaceX();
-    super.initState();
-  }
-
+class SpaceX extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +15,7 @@ class _SpaceXState extends State<SpaceX> {
         height: (MediaQuery.of(context).size.height),
         width: (MediaQuery.of(context).size.width),
         // color: kPrimaryDarkPurple,
-        child: SpaceXCard(spaceXList: spaceXList, spaceX: spaceX),
+        child: SpaceXCard(),
       ),
       drawer: Drawer(
         elevation: 20.0,
