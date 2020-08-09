@@ -1,8 +1,6 @@
 import 'package:SpacePortal/components/card.dart';
 import 'package:SpacePortal/constants.dart';
-import 'package:SpacePortal/network/network.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,27 +13,11 @@ class MyBehavior extends ScrollBehavior {
   }
 }
 
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  PageController _pageController = PageController();
-  NasaPODData networkData = NasaPODData();
-  Firestore firestore = Firestore();
-
-  @override
-  void initState() {
-    networkData.getData();
-    super.initState();
-  }
-
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<Map>(context);
     return Scaffold(
-      //backgroundColor: Colors.blueGrey[100],
       body: Container(
         width: double.infinity,
         child: Padding(
@@ -54,8 +36,6 @@ class _HomePageState extends State<HomePage> {
                 child: ScrollConfiguration(
                   behavior: MyBehavior(),
                   child: PageView(
-                    controller: _pageController,
-                    physics: PageScrollPhysics(),
                     scrollDirection: Axis.horizontal,
                     children: [
                       DCard(

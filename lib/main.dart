@@ -48,8 +48,9 @@ class _MyAppState extends State<MyApp> {
   }
 
   @override
-  void dispose() async {
-    super.dispose();
+  void initState() {
+    NasaPODData().getData();
+    super.initState();
   }
 
   @override
