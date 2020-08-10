@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:SpacePortal/constants.dart';
 import 'package:SpacePortal/network/network.dart';
+
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SXContents extends StatelessWidget {

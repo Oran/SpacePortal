@@ -1,18 +1,19 @@
 import 'dart:io';
-import 'package:SpacePortal/Pages/Mobile/home_page.dart';
 import 'package:SpacePortal/network/network.dart';
-import 'package:SpacePortal/screens/noConnection.dart';
 import 'package:SpacePortal/theme/theme.dart';
-import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:SpacePortal/screens/mars.dart';
-import 'package:SpacePortal/screens/nasapod.dart';
-import 'package:SpacePortal/screens/spacex.dart';
 import 'package:flutter/services.dart';
 import 'package:SpacePortal/constants.dart';
-import 'package:provider/provider.dart';
 
+import 'package:provider/provider.dart';
+import 'package:flare_flutter/flare_actor.dart';
+
+import 'package:SpacePortal/Pages/Mobile/home_page.dart';
+import 'package:SpacePortal/Pages/Mobile/mars_page.dart';
+import 'package:SpacePortal/Pages/Mobile/noConnection_page.dart';
+import 'package:SpacePortal/Pages/Mobile/nasapod_page.dart';
+import 'package:SpacePortal/Pages/Mobile/spacex_page.dart';
 void main() {
   runApp(MyApp());
 }

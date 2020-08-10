@@ -1,9 +1,9 @@
-import 'package:SpacePortal/components/image_viewer.dart';
-import 'package:SpacePortal/constants.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:SpacePortal/constants.dart';
+import 'package:SpacePortal/components/image_viewer.dart';
+import 'package:flutter/foundation.dart';
 import 'package:SpacePortal/network/network.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class Mars extends StatefulWidget {
   @override
