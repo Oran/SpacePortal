@@ -67,7 +67,7 @@
 - [ ] information about Stars and Exo planets
 - [ ] Add a theme change option
   - [ ] Make a dark theme for the app
-  - [ ] Make a light theme for the app
+  - [x] Make a light theme for the app
 - [ ] Pull Down to refresh
 
 ### Web
@@ -82,4 +82,3 @@
 
 [cosmos, Tani Magdieva](https://rive.app/a/tanimagdieva/files/flare/cosmos/preview)
 
-### Packages
