@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:SpacePortal/Pages/Mobile/loading_page.dart';
 import 'package:SpacePortal/network/network.dart';
 import 'package:SpacePortal/theme/theme.dart';
 import 'package:flutter/foundation.dart';
@@ -14,6 +15,7 @@ import 'package:SpacePortal/Pages/Mobile/mars_page.dart';
 import 'package:SpacePortal/Pages/Mobile/noConnection_page.dart';
 import 'package:SpacePortal/Pages/Mobile/nasapod_page.dart';
 import 'package:SpacePortal/Pages/Mobile/spacex_page.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -83,6 +85,7 @@ class _MyAppState extends State<MyApp> {
                 kNASAPod_Page: (context) => NasaPod(),
                 kSpaceX_Page: (context) => SpaceX(),
                 kMars_Page: (context) => Mars(),
+                kLoading_Page: (context) => LoadingPage(),
                 kNoConnection_Page: (context) => NoConnectionPage(),
               },
             ),
@@ -117,6 +120,7 @@ class _MyAppState extends State<MyApp> {
                             kNASAPod_Page: (context) => NasaPod(),
                             kSpaceX_Page: (context) => SpaceX(),
                             kMars_Page: (context) => Mars(),
+                            kLoading_Page: (context) => LoadingPage(),
                             kNoConnection_Page: (context) => NoConnectionPage(),
                           },
                         ),
