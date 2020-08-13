@@ -53,7 +53,7 @@ TextStyle kTitleLargeTS = GoogleFonts.notoSans(
     fontSize: 40.0, fontWeight: FontWeight.w600, letterSpacing: 0.8);
 
 TextStyle kCardTS = GoogleFonts.notoSans(
-  fontSize: 40.0,
+  fontSize: 35.0,
   color: Colors.white,
   letterSpacing: 1,
   fontWeight: FontWeight.w900,
