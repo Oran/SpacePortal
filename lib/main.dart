@@ -79,7 +79,7 @@ class _MyAppState extends State<MyApp> {
             child: MaterialApp(
               theme: themeData,
               debugShowCheckedModeBanner: false,
-              initialRoute: kHome_Page,
+              initialRoute: kLoading_Page,
               routes: {
                 kHome_Page: (context) => HomePage(),
                 kNASAPod_Page: (context) => NasaPod(),
@@ -113,7 +113,7 @@ class _MyAppState extends State<MyApp> {
                           theme: themeData,
                           debugShowCheckedModeBanner: false,
                           initialRoute: snapshot.data == cs.done
-                              ? kHome_Page
+                              ? kLoading_Page
                               : kNoConnection_Page,
                           routes: {
                             kHome_Page: (context) => HomePage(),
