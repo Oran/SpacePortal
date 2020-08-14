@@ -17,47 +17,6 @@ class SpaceX extends StatelessWidget {
         // color: kPrimaryDarkPurple,
         child: SpaceXCard(),
       ),
-      drawer: Drawer(
-        elevation: 20.0,
-        child: Container(
-          color: kDrawerColor,
-          child: Padding(
-            padding: EdgeInsets.only(top: 40.0),
-            child: Column(
-              children: [
-                ListTile(
-                  contentPadding: EdgeInsets.symmetric(horizontal: 25.0),
-                  leading: Icon(
-                    Icons.account_balance,
-                    color: kIconColor,
-                  ),
-                  title: Text(
-                    'NASA Picture of the day',
-                    style: kDetailsTS,
-                  ),
-                  onTap: () {
-                    Navigator.pushNamed(context, kNASAPod_Page);
-                  },
-                ),
-                ListTile(
-                  contentPadding: EdgeInsets.symmetric(horizontal: 25.0),
-                  leading: Icon(
-                    Icons.account_balance,
-                    color: kIconColor,
-                  ),
-                  title: Text(
-                    'Mars stuff',
-                    style: kDetailsTS,
-                  ),
-                  onTap: () {
-                    Navigator.pushNamed(context, kMars_Page);
-                  },
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
     );
   }
 }
