@@ -11,7 +11,7 @@ class DCard extends StatelessWidget {
   final Widget image;
   final Function onPressed;
   final String text;
-  
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -47,7 +47,7 @@ class DCard extends StatelessWidget {
                     ),
                     Positioned(
                       top: 300.0,
-                      left: -20,
+                      left: 5.0,
                       child: Container(
                         // color: Colors.white,
                         padding: EdgeInsets.all(15.0),
@@ -56,8 +56,11 @@ class DCard extends StatelessWidget {
                         alignment: Alignment.bottomCenter,
                         child: Center(
                           //TODO: Better TextStyle / Fonts
-                          child: Text(text,
-                              textAlign: TextAlign.center, style: kCardTS),
+                          child: Text(
+                            text,
+                            textAlign: TextAlign.center,
+                            style: kCardTS,
+                          ),
                         ),
                       ),
                     ),

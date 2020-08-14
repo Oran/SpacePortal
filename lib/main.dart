@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:SpacePortal/Pages/Mobile/loading_page.dart';
 import 'package:SpacePortal/network/network.dart';
 import 'package:SpacePortal/theme/theme.dart';
 import 'package:flutter/foundation.dart';
@@ -14,6 +15,7 @@ import 'package:SpacePortal/Pages/Mobile/mars_page.dart';
 import 'package:SpacePortal/Pages/Mobile/noConnection_page.dart';
 import 'package:SpacePortal/Pages/Mobile/nasapod_page.dart';
 import 'package:SpacePortal/Pages/Mobile/spacex_page.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -50,8 +52,8 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    NasaPODData().getData();
-    SpaceXData().getData();
+    // NasaPODData().getData();
+    // SpaceXData().getData();
     super.initState();
   }
 
@@ -77,12 +79,13 @@ class _MyAppState extends State<MyApp> {
             child: MaterialApp(
               theme: themeData,
               debugShowCheckedModeBanner: false,
-              initialRoute: kHome_Page,
+              initialRoute: kLoading_Page,
               routes: {
                 kHome_Page: (context) => HomePage(),
                 kNASAPod_Page: (context) => NasaPod(),
                 kSpaceX_Page: (context) => SpaceX(),
                 kMars_Page: (context) => Mars(),
+                kLoading_Page: (context) => LoadingPage(),
                 kNoConnection_Page: (context) => NoConnectionPage(),
               },
             ),
@@ -110,13 +113,14 @@ class _MyAppState extends State<MyApp> {
                           theme: themeData,
                           debugShowCheckedModeBanner: false,
                           initialRoute: snapshot.data == cs.done
-                              ? kHome_Page
+                              ? kLoading_Page
                               : kNoConnection_Page,
                           routes: {
                             kHome_Page: (context) => HomePage(),
                             kNASAPod_Page: (context) => NasaPod(),
                             kSpaceX_Page: (context) => SpaceX(),
                             kMars_Page: (context) => Mars(),
+                            kLoading_Page: (context) => LoadingPage(),
                             kNoConnection_Page: (context) => NoConnectionPage(),
                           },
                         ),
