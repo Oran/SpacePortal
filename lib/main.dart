@@ -52,8 +52,8 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    NasaPODData().getData();
-    SpaceXData().getData();
+    // NasaPODData().getData();
+    // SpaceXData().getData();
     super.initState();
   }
 
