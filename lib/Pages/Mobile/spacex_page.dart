@@ -1,6 +1,6 @@
 import 'package:SpacePortal/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:SpacePortal/components/spaceX_card.dart';
+import 'package:SpacePortal/components/spacex_page/spaceX_card.dart';
 
 class SpaceX extends StatelessWidget {
   @override

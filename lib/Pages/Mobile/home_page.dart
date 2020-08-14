@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:SpacePortal/components/card.dart';
+import 'package:SpacePortal/components/home_page/card.dart';
 import 'package:SpacePortal/constants.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';

@@ -1,4 +1,4 @@
-import 'package:SpacePortal/components/pod_contents.dart';
+import 'package:SpacePortal/components/nasapod_page/pod_contents.dart';
 import 'package:flutter/material.dart';
 import 'package:SpacePortal/constants.dart';
 
