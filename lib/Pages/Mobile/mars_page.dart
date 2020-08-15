@@ -316,10 +316,7 @@ class _MarsState extends State<Mars> {
                                     child: GestureDetector(
                                       child: Hero(
                                         tag: 'tag' + index.toString(),
-                                        child: kIsWeb
-                                            ? Image.network(list['photos']
-                                                [index]['img_src'])
-                                            : CachedNetworkImage(
+                                        child: CachedNetworkImage(
                                                 imageUrl: list['photos'][index]
                                                     ['img_src'],
                                                 fit: BoxFit.fill,
