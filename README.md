@@ -27,7 +27,7 @@
 - [ ] Make a License Page with all the credits
 - [ ] Make the drawer look better
   - [ ] Custom Icons for each
-- [x] Pull Down to refresh
+- [ ] Pull Down to refresh => might never be implemented
 
 ### SpaceX Page
 
