@@ -2,6 +2,7 @@ import 'package:SpacePortal/components/mars_page/mars_photos.dart';
 import 'package:flutter/material.dart';
 import 'package:SpacePortal/constants.dart';
 import 'package:SpacePortal/network/network.dart';
+import 'package:http/http.dart';
 
 class Mars extends StatefulWidget {
   @override
@@ -19,7 +20,7 @@ class _MarsState extends State<Mars> {
   String selectedRover = 'curiosity';
   String selectedSol = '59';
 
-  void getData(camIn, roverIn, solIn) async {
+  Future getData(camIn, roverIn, solIn) async {
     marsData.setURL(camIn, roverIn, solIn);
     var data = await marsData.getMarsData();
     setState(() {
@@ -198,55 +199,63 @@ class _MarsState extends State<Mars> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30.0),
-              ),
-              padding: EdgeInsets.only(top: 40.0, left: 10.0),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(right: 20.0),
-                        child: GestureDetector(
-                          child: Icon(
-                            Icons.subject,
-                            size: 30.0,
+      body: RefreshIndicator(
+        backgroundColor: kPrimaryBlack,
+        color: kPrimaryWhite,
+        onRefresh: () {
+          print('page refreshed');
+          return getData(selectedCam, selectedRover, selectedSol);
+        },
+        child: Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+                padding: EdgeInsets.only(top: 40.0, left: 10.0),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(right: 20.0),
+                          child: GestureDetector(
+                            child: Icon(
+                              Icons.subject,
+                              size: 30.0,
+                            ),
+                            onTap: () {
+                              _createDialog(context);
+                            },
                           ),
-                          onTap: () {
-                            _createDialog(context);
-                          },
                         ),
-                      ),
-                      Text(
-                        'Mars Rover Images',
-                        style: kTitleLargeTS.copyWith(
-                          fontSize: 30.0,
+                        Text(
+                          'Mars Rover Images',
+                          style: kTitleLargeTS.copyWith(
+                            fontSize: 30.0,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text('Number of pictures: $numOfPics',
-                          style: kMarsStatsStyle),
-                      Text('Rover: $selectedRover', style: kMarsStatsStyle),
-                      Text('Camera: $selectedCam', style: kMarsStatsStyle),
-                      Text('Sol Days on mars: $selectedSol',
-                          style: kMarsStatsStyle),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text('Number of pictures: $numOfPics',
+                            style: kMarsStatsStyle),
+                        Text('Rover: $selectedRover', style: kMarsStatsStyle),
+                        Text('Camera: $selectedCam', style: kMarsStatsStyle),
+                        Text('Sol Days on mars: $selectedSol',
+                            style: kMarsStatsStyle),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-            MarsPhotos(numOfPics: numOfPics, list: list),
-          ],
+              MarsPhotos(numOfPics: numOfPics, list: list),
+            ],
+          ),
         ),
       ),
     );
