@@ -63,7 +63,7 @@ TextStyle kTitleLargeTS = GoogleFonts.notoSans(
 
 TextStyle kSpaceXTS = GoogleFonts.notoSans(
   fontSize: 16.0,
-  color: kPrimaryBlack,
+  color: kPrimaryWhite,
   letterSpacing: 0.8,
 );
 
@@ -92,5 +92,5 @@ TextStyle kCardTS = GoogleFonts.notoSans(
 );
 
 //Image links
-final kPlaceholderImage =
+const kPlaceholderImage =
     'https://www.pngkey.com/png/full/233-2332677_image-500580-placeholder-transparent.png';

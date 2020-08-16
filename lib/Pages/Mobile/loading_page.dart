@@ -13,7 +13,6 @@ class LoadingPage extends StatelessWidget {
         NasaPODData().getData(),
         SpaceXData().getData(),
         Future.delayed(Duration(seconds: 3)),
-        NasaPODData().getFSData(),
       ]),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {

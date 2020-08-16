@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:SpacePortal/Pages/Mobile/loading_page.dart';
+import 'package:SpacePortal/network/models.dart';
 import 'package:SpacePortal/network/network.dart';
 import 'package:SpacePortal/theme/theme.dart';
 import 'package:flutter/foundation.dart';
@@ -64,17 +65,15 @@ class _MyAppState extends State<MyApp> {
     return kIsWeb
         ? MultiProvider(
             providers: [
-              FutureProvider.value(
+              StreamProvider<FSData>.value(
                 value: NasaPODData().getFSData(),
-                initialData: {
-                  'date': '',
-                  'title': '',
-                  'image': kPlaceholderImage,
-                  'exp': '',
-                },
+                initialData: FSData(
+                  image: kPlaceholderImage,
+                ),
               ),
               FutureProvider<List<dynamic>>.value(
                 value: SpaceXData().getData(),
+                catchError: (context, error) => [],
               ),
             ],
             child: MaterialApp(
@@ -97,17 +96,15 @@ class _MyAppState extends State<MyApp> {
                 snapshot.connectionState == ConnectionState.done
                     ? MultiProvider(
                         providers: [
-                          FutureProvider<Map>.value(
+                          StreamProvider<FSData>.value(
                             value: NasaPODData().getFSData(),
-                            initialData: {
-                              'date': '',
-                              'title': '',
-                              'image': kPlaceholderImage,
-                              'exp': '',
-                            },
+                            initialData: FSData(
+                              image: kPlaceholderImage,
+                            ),
                           ),
                           FutureProvider<List<dynamic>>.value(
                             value: SpaceXData().getData(),
+                            catchError: (context, error) => [],
                           ),
                         ],
                         child: MaterialApp(

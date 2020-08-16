@@ -1,5 +1,6 @@
 import 'package:SpacePortal/components/spacex_page/spacex_content.dart';
 import 'package:SpacePortal/components/spacex_page/spacex_viewer.dart';
+import 'package:SpacePortal/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +18,7 @@ class SpaceXCard extends StatelessWidget {
             child: Container(
               height: (MediaQuery.of(context).size.height) * 0.20,
               decoration: BoxDecoration(
-                color: Colors.grey[300],
+                color: kAccentColor,
                 borderRadius: BorderRadius.circular(40),
               ),
               child: GestureDetector(

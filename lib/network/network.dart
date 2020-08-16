@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:SpacePortal/network/models.dart';
 import 'package:http/http.dart' as http;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart' as yt;
@@ -32,13 +33,12 @@ class NasaPODData {
         'title': title,
         'exp': exp,
         'mediaType': mediaType,
+        // 'test_f': 'old data',
       });
     }
     if (mediaType == 'video') {
       getThumbnail(image);
     }
-
-    return [mediaType];
   }
 
   void getThumbnail(String videoURL) {
@@ -51,9 +51,18 @@ class NasaPODData {
     });
   }
 
-  Future<Map> getFSData() async {
-    var ds = await firestore.collection('api').document('nasa_api').get();
-    return ds.data;
+  Stream<FSData> getFSData() {
+    return firestore.collection('api').document('nasa_api').snapshots().map(
+          (ds) => FSData(
+            title: ds['title'],
+            date: ds['date'],
+            image: ds['image'],
+            videoURL: ds['videoURL'],
+            exp: ds['exp'],
+            mediaType: ds['mediaType'],
+            // testf: ds['test_f'],
+          ),
+        );
   }
 }
 
