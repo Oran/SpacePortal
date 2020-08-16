@@ -38,10 +38,16 @@ List<Color> kcolorGradient = [
 
 //TextStyle
 TextStyle kTitleDateTS = GoogleFonts.notoSans(
-    fontSize: 18.0, color: kPrimaryBlack, letterSpacing: 0.8);
+  fontSize: 18.0,
+  color: kPrimaryBlack,
+  letterSpacing: 0.8,
+);
 
 TextStyle kDetailsTS = GoogleFonts.notoSans(
-    fontSize: 15.0, color: kPrimaryBlack, letterSpacing: 0.8);
+  fontSize: 15.0,
+  color: kPrimaryBlack,
+  letterSpacing: 0.8,
+);
 
 TextStyle kMarsStatsStyle = GoogleFonts.notoSans(
     fontSize: 15.0,
@@ -50,7 +56,16 @@ TextStyle kMarsStatsStyle = GoogleFonts.notoSans(
     letterSpacing: 0.8);
 
 TextStyle kTitleLargeTS = GoogleFonts.notoSans(
-    fontSize: 40.0, fontWeight: FontWeight.w600, letterSpacing: 0.8);
+  fontSize: 40.0,
+  fontWeight: FontWeight.w600,
+  letterSpacing: 0.8,
+);
+
+TextStyle kSpaceXTS = GoogleFonts.notoSans(
+  fontSize: 16.0,
+  color: kPrimaryBlack,
+  letterSpacing: 0.8,
+);
 
 TextStyle kCardTS = GoogleFonts.notoSans(
   fontSize: 35.0,
@@ -75,3 +90,7 @@ TextStyle kCardTS = GoogleFonts.notoSans(
     // ),
   ],
 );
+
+//Image links
+final kPlaceholderImage =
+    'https://www.pngkey.com/png/full/233-2332677_image-500580-placeholder-transparent.png';

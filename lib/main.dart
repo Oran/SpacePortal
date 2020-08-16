@@ -33,8 +33,6 @@ enum cs {
 
 class _MyAppState extends State<MyApp> {
   var connectionValue = cs.noll;
-  final imageURL =
-      'https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png?format=jpg&quality=90&v=1530129081';
 
   // This block of code checks if there is an active internet connection.
   Future checkConnection() async {
@@ -71,9 +69,12 @@ class _MyAppState extends State<MyApp> {
                 initialData: {
                   'date': '',
                   'title': '',
-                  'image': imageURL,
+                  'image': kPlaceholderImage,
                   'exp': '',
                 },
+              ),
+              FutureProvider<List<dynamic>>.value(
+                value: SpaceXData().getData(),
               ),
             ],
             child: MaterialApp(
@@ -101,13 +102,13 @@ class _MyAppState extends State<MyApp> {
                             initialData: {
                               'date': '',
                               'title': '',
-                              'image': imageURL,
+                              'image': kPlaceholderImage,
                               'exp': '',
                             },
                           ),
                           FutureProvider<List<dynamic>>.value(
                             value: SpaceXData().getData(),
-                          )
+                          ),
                         ],
                         child: MaterialApp(
                           theme: themeData,
