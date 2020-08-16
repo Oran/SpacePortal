@@ -199,63 +199,55 @@ class _MarsState extends State<Mars> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: RefreshIndicator(
-        backgroundColor: kPrimaryBlack,
-        color: kPrimaryWhite,
-        onRefresh: () {
-          print('page refreshed');
-          return getData(selectedCam, selectedRover, selectedSol);
-        },
-        child: Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-                padding: EdgeInsets.only(top: 40.0, left: 10.0),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(right: 20.0),
-                          child: GestureDetector(
-                            child: Icon(
-                              Icons.subject,
-                              size: 30.0,
-                            ),
-                            onTap: () {
-                              _createDialog(context);
-                            },
-                          ),
-                        ),
-                        Text(
-                          'Mars Rover Images',
-                          style: kTitleLargeTS.copyWith(
-                            fontSize: 30.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text('Number of pictures: $numOfPics',
-                            style: kMarsStatsStyle),
-                        Text('Rover: $selectedRover', style: kMarsStatsStyle),
-                        Text('Camera: $selectedCam', style: kMarsStatsStyle),
-                        Text('Sol Days on mars: $selectedSol',
-                            style: kMarsStatsStyle),
-                      ],
-                    ),
-                  ],
-                ),
+      body: Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30.0),
               ),
-              MarsPhotos(numOfPics: numOfPics, list: list),
-            ],
-          ),
+              padding: EdgeInsets.only(top: 40.0, left: 10.0),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(right: 20.0),
+                        child: GestureDetector(
+                          child: Icon(
+                            Icons.subject,
+                            size: 30.0,
+                          ),
+                          onTap: () {
+                            _createDialog(context);
+                          },
+                        ),
+                      ),
+                      Text(
+                        'Mars Rover Images',
+                        style: kTitleLargeTS.copyWith(
+                          fontSize: 30.0,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text('Number of pictures: $numOfPics',
+                          style: kMarsStatsStyle),
+                      Text('Rover: $selectedRover', style: kMarsStatsStyle),
+                      Text('Camera: $selectedCam', style: kMarsStatsStyle),
+                      Text('Sol Days on mars: $selectedSol',
+                          style: kMarsStatsStyle),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            MarsPhotos(numOfPics: numOfPics, list: list),
+          ],
         ),
       ),
     );
