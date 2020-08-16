@@ -92,5 +92,5 @@ TextStyle kCardTS = GoogleFonts.notoSans(
 );
 
 //Image links
-final kPlaceholderImage =
+const kPlaceholderImage =
     'https://www.pngkey.com/png/full/233-2332677_image-500580-placeholder-transparent.png';

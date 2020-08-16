@@ -1,3 +1,4 @@
+import 'package:SpacePortal/network/models.dart';
 import 'package:flutter/material.dart';
 import 'package:SpacePortal/components/home_page/card.dart';
 import 'package:SpacePortal/constants.dart';
@@ -17,7 +18,7 @@ class MyBehavior extends ScrollBehavior {
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var data = Provider.of<Map>(context);
+    var data = Provider.of<FSData>(context);
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -41,10 +42,10 @@ class HomePage extends StatelessWidget {
                     children: [
                       DCard(
                         image: CachedNetworkImage(
-                          imageUrl: data['image'],
+                          imageUrl: data.image,
                           fit: BoxFit.cover,
                         ),
-                        text: data['title'],
+                        text: data.title,
                         onPressed: () =>
                             Navigator.pushNamed(context, kNASAPod_Page),
                       ),
