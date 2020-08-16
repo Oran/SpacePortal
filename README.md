@@ -9,7 +9,6 @@
     - [Web](#web)
   - [Credits](#credits)
     - [Animation](#animation)
-    - [Packages](#packages)
 
 <details>
 
@@ -28,6 +27,7 @@
 - [ ] Make a License Page with all the credits
 - [ ] Make the drawer look better
   - [ ] Custom Icons for each
+- [x] Pull Down to refresh
 
 ### SpaceX Page
 
@@ -68,7 +68,6 @@
 - [ ] Add a theme change option
   - [ ] Make a dark theme for the app
   - [x] Make a light theme for the app
-- [ ] Pull Down to refresh
 
 ### Web
 
