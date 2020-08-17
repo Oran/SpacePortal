@@ -68,10 +68,10 @@ TextStyle kSpaceXTS = GoogleFonts.notoSans(
 );
 
 TextStyle kCardTS = GoogleFonts.notoSans(
-  fontSize: 35.0,
+  fontSize: 25.0,
   color: Colors.white,
   letterSpacing: 1,
-  fontWeight: FontWeight.w900,
+  fontWeight: FontWeight.w600,
   shadows: [
     Shadow(
       color: Colors.black,

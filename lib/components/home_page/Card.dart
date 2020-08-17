@@ -20,7 +20,7 @@ class DCard extends StatelessWidget {
         child: GestureDetector(
           onTap: onPressed,
           child: Container(
-            height: (MediaQuery.of(context).size.height) * 0.80,
+            height: (MediaQuery.of(context).size.height) * 0.30,
             width: (MediaQuery.of(context).size.width) * 0.90,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30.0),
@@ -46,12 +46,12 @@ class DCard extends StatelessWidget {
                       child: image,
                     ),
                     Positioned(
-                      top: 300.0,
-                      left: 5.0,
+                      top: 70.0,
+                      left: 10.0,
                       child: Container(
                         // color: Colors.white,
                         padding: EdgeInsets.all(15.0),
-                        height: 300.0,
+                        height: 150.0,
                         width: 300.0,
                         alignment: Alignment.bottomCenter,
                         child: Center(
