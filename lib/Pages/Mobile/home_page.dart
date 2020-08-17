@@ -6,15 +6,6 @@ import 'package:SpacePortal/constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:provider/provider.dart';
 
-//To Remove the overscroll indicator
-class MyBehavior extends ScrollBehavior {
-  @override
-  Widget buildViewportChrome(
-      BuildContext context, Widget child, AxisDirection axisDirection) {
-    return child;
-  }
-}
-
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -35,41 +26,43 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: ScrollConfiguration(
-                  behavior: MyBehavior(),
-                  child: PageView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      DCard(
-                        image: CachedNetworkImage(
-                          imageUrl: data.image,
-                          fit: BoxFit.cover,
-                        ),
-                        text: data.title,
-                        onPressed: () =>
-                            Navigator.pushNamed(context, kNASAPod_Page),
+                child: PageView(
+                  scrollDirection: Axis.horizontal,
+                  physics: BouncingScrollPhysics(),
+                  children: [
+                    DCard(
+                      image: CachedNetworkImage(
+                        imageUrl: data.image,
+                        fit: BoxFit.cover,
                       ),
-                      DCard(
-                        image: Image.asset(
-                          'assets/images/mars_rover.jpg',
-                          fit: BoxFit.cover,
-                        ),
-                        text: 'Mars Rover Images',
-                        onPressed: () =>
-                            Navigator.pushNamed(context, kMars_Page),
+                      text: data.title,
+                      onPressed: () =>
+                          Navigator.pushNamed(context, kNASAPod_Page),
+                    ),
+                    DCard(
+                      image: Image.asset(
+                        'assets/images/mars_rover.jpg',
+                        fit: BoxFit.cover,
                       ),
-                      DCard(
-                        image: Image.asset(
-                          'assets/images/falcon_nine.jpg',
-                          fit: BoxFit.cover,
-                        ),
-                        text: 'SpaceX Upcoming launches',
-                        onPressed: () =>
-                            Navigator.pushNamed(context, kSpaceX_Page),
+                      text: 'Mars Rover Images',
+                      onPressed: () =>
+                          Navigator.pushNamed(context, kMars_Page),
+                    ),
+                    DCard(
+                      image: Image.asset(
+                        'assets/images/falcon_nine.jpg',
+                        fit: BoxFit.cover,
                       ),
-                    ],
-                  ),
+                      text: 'SpaceX Upcoming launches',
+                      onPressed: () =>
+                          Navigator.pushNamed(context, kSpaceX_Page),
+                    ),
+                  ],
                 ),
+              ),
+              Container(
+                height: (MediaQuery.of(context).size.height) * 0.50,
+                //TODO: Implement something here.
               ),
             ],
           ),
