@@ -120,3 +120,16 @@ class SpaceXData {
     return date;
   }
 }
+
+class MarsWeatherAPI {
+  static String url =
+      'https://api.nasa.gov/insight_weather/?api_key=$_apiKey&feedtype=json&ver=1.0';
+
+  Future<MarsWeather> getMarsWeather() async {
+    http.Response response = await http.get(url);
+    var decodedData = jsonDecode(response.body);
+    var mars = MarsWeather.fromJson(decodedData);
+    //print(mars.listDays[0].season);
+    return mars;
+  }
+}

@@ -10,6 +10,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<FSData>(context);
+    var mars = Provider.of<MarsWeather>(context);
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -45,8 +46,7 @@ class HomePage extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
                       text: 'Mars Rover Images',
-                      onPressed: () =>
-                          Navigator.pushNamed(context, kMars_Page),
+                      onPressed: () => Navigator.pushNamed(context, kMars_Page),
                     ),
                     DCard(
                       image: Image.asset(
@@ -63,6 +63,22 @@ class HomePage extends StatelessWidget {
               Container(
                 height: (MediaQuery.of(context).size.height) * 0.50,
                 //TODO: Implement something here.
+                child: ListView.builder(
+                  itemCount: mars.listDays.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      padding: EdgeInsets.all(10.0),
+                      child: Column(
+                        children: [
+                          Text('Sol Day: ${mars.listDays[index].day}'),
+                          Text('av: ${mars.listDays[index].av}'),
+                          Text('min: ${mars.listDays[index].mn}'),
+                          Text('max: ${mars.listDays[index].mx}'),
+                        ],
+                      ),
+                    );
+                  },
+                ),
               ),
             ],
           ),
