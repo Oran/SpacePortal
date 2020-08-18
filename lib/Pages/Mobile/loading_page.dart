@@ -10,6 +10,7 @@ class LoadingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: Future.wait([
+        //TODO: Find a better way to manage API requests
         NasaPODData().getData(),
         SpaceXData().getData(),
         MarsWeatherAPI().getMarsWeather(),

@@ -62,19 +62,26 @@ class HomePage extends StatelessWidget {
               ),
               Container(
                 height: (MediaQuery.of(context).size.height) * 0.50,
-                //TODO: Implement something here.
+                width:  300.0,
                 child: ListView.builder(
                   itemCount: mars.listDays.length,
                   itemBuilder: (context, index) {
-                    return Container(
-                      padding: EdgeInsets.all(10.0),
-                      child: Column(
-                        children: [
-                          Text('Sol Day: ${mars.listDays[index].day}'),
-                          Text('av: ${mars.listDays[index].av}'),
-                          Text('min: ${mars.listDays[index].mn}'),
-                          Text('max: ${mars.listDays[index].mx}'),
-                        ],
+                    return Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Container(
+                        height: 150.0,
+                        width: 150.0,
+                        padding: EdgeInsets.all(10.0),
+                        color: Colors.red[100],
+                        child: Column(
+                          children: [
+                            //TODO: Make this look prettier
+                            Text('Sol Day: ${mars.listDays[index].day}'),
+                            Text('av: ${mars.listDays[index].av}'),
+                            Text('min: ${mars.listDays[index].mn}'),
+                            Text('max: ${mars.listDays[index].mx}'),
+                          ],
+                        ),
                       ),
                     );
                   },

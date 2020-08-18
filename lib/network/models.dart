@@ -1,5 +1,4 @@
 import 'package:SpacePortal/constants.dart';
-import 'dart:convert';
 
 class FSData {
   FSData({
@@ -57,7 +56,7 @@ class SolDays {
       av: map['AT']['av'], // Average temp in F
       ct: map['AT']['ct'], // recorded samples over the sol
       mn: map['AT']['mn'], // Min Temp
-      mx: map['AT']['mx'], // Max Temp 
+      mx: map['AT']['mx'], // Max Temp
       season: map['Season'], // Current Season
     );
   }
