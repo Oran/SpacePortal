@@ -70,6 +70,7 @@ class _MyAppState extends State<MyApp> {
               ),
               FutureProvider<MarsWeather>.value(
                 value: MarsWeatherAPI().getMarsWeather(),
+                initialData: MarsWeather(listDays: []),
               ),
             ],
             child: MaterialApp(
@@ -104,6 +105,7 @@ class _MyAppState extends State<MyApp> {
                           ),
                           FutureProvider<MarsWeather>.value(
                             value: MarsWeatherAPI().getMarsWeather(),
+                            initialData: MarsWeather(listDays: []),
                           ),
                         ],
                         child: MaterialApp(

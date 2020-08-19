@@ -67,6 +67,13 @@ TextStyle kSpaceXTS = GoogleFonts.notoSans(
   letterSpacing: 0.8,
 );
 
+TextStyle kWeatherCardTS = GoogleFonts.notoSans(
+  fontSize: 23.0,
+  color: kPrimaryBlack,
+  letterSpacing: 0.8,
+  fontWeight: FontWeight.w800,
+);
+
 TextStyle kCardTS = GoogleFonts.notoSans(
   fontSize: 25.0,
   color: Colors.white,
