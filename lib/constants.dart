@@ -90,16 +90,6 @@ TextStyle kCardTS = GoogleFonts.notoSans(
       blurRadius: 30,
       offset: Offset(0, 0),
     ),
-    // Shadow(
-    //   color: Colors.black,
-    //   blurRadius: 40,
-    //   offset: Offset(0, 0),
-    // ),
-    // Shadow(
-    //   color: Colors.black,
-    //   blurRadius: 70,
-    //   offset: Offset(0, 0),
-    // ),
   ],
 );
 
