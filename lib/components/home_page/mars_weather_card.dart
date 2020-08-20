@@ -18,7 +18,7 @@ class MarsWeatherCard extends StatelessWidget {
       itemCount: mars.listDays.length,
       itemBuilder: (context, index) {
         return Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
+          padding: EdgeInsets.only(left: 15.0, right: 15.0, bottom: 10.0),
           child: Container(
             height: 80.0,
             width: (MediaQuery.of(context).size.width),
@@ -34,9 +34,7 @@ class MarsWeatherCard extends StatelessWidget {
                   Text(
                     'SOL: ${mars.listDays[index].day}',
                     style: kWeatherCardTS.copyWith(
-                      color: Colors.grey[600],
-                      fontSize: 20.0
-                    ),
+                        color: Colors.grey[600], fontSize: 20.0,),
                   ),
                   SizedBox(width: 16.0),
                   Padding(

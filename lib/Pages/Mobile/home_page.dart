@@ -60,9 +60,24 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               Container(
-                height: (MediaQuery.of(context).size.height) * 0.50,
-                width: (MediaQuery.of(context).size.width),
-                child: MarsWeatherCard(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.only(left: 15.0),
+                      child: Text(
+                        'Mars Weather',
+                        style: kWeatherCardTS,
+                        textScaleFactor: 1.1,
+                      ),
+                    ),
+                    Container(
+                      height: (MediaQuery.of(context).size.height) * 0.45,
+                      width: (MediaQuery.of(context).size.width),
+                      child: MarsWeatherCard(),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
