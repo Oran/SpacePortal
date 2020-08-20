@@ -81,21 +81,27 @@ class MarsPhotos extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(30.0),
                             child: GestureDetector(
-                              child: Hero(
-                                tag: 'tag' + index.toString(),
-                                child: CachedNetworkImage(
-                                  imageUrl: list['photos'][index]['img_src'],
-                                  fit: BoxFit.fill,
-                                  placeholder: circle,
-                                ),
+                              child: CachedNetworkImage(
+                                imageUrl: list['photos'][index]['img_src'],
+                                fit: BoxFit.fill,
+                                placeholder: circle,
                               ),
                               onTap: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => ImageViewer(
-                                        index: index,
-                                        list: list['photos'][index]['img_src']),
+                                      index: index,
+                                      list: list['photos'][index]['img_src'],
+                                      earthDate: list['photos'][index]
+                                          ['earth_date'],
+                                      cameraName: list['photos'][index]
+                                          ['camera']['full_name'],
+                                      roverName: list['photos'][index]['rover']
+                                          ['name'],
+                                      status: list['photos'][index]['rover']
+                                          ['status'],
+                                    ),
                                   ),
                                 );
                               },
