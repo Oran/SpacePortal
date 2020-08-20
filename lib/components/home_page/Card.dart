@@ -42,7 +42,6 @@ class DCard extends StatelessWidget {
                     Container(
                       height: (MediaQuery.of(context).size.height),
                       width: (MediaQuery.of(context).size.width),
-                      //TODO: Make sure to download the imgaes and save them as assets
                       child: image,
                     ),
                     Positioned(
