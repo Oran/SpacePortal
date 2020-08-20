@@ -1,8 +1,8 @@
+import 'package:SpacePortal/components/home_page/mars_weather_card.dart';
 import 'package:SpacePortal/network/models.dart';
 import 'package:flutter/material.dart';
 import 'package:SpacePortal/components/home_page/card.dart';
 import 'package:SpacePortal/constants.dart';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:provider/provider.dart';
 
@@ -45,8 +45,7 @@ class HomePage extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
                       text: 'Mars Rover Images',
-                      onPressed: () =>
-                          Navigator.pushNamed(context, kMars_Page),
+                      onPressed: () => Navigator.pushNamed(context, kMars_Page),
                     ),
                     DCard(
                       image: Image.asset(
@@ -61,8 +60,24 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               Container(
-                height: (MediaQuery.of(context).size.height) * 0.50,
-                //TODO: Implement something here.
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.only(left: 15.0),
+                      child: Text(
+                        'Mars Weather',
+                        style: kWeatherCardTS,
+                        textScaleFactor: 1.1,
+                      ),
+                    ),
+                    Container(
+                      height: (MediaQuery.of(context).size.height) * 0.45,
+                      width: (MediaQuery.of(context).size.width),
+                      child: MarsWeatherCard(),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

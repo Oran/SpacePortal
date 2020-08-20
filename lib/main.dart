@@ -50,13 +50,6 @@ class _MyAppState extends State<MyApp> {
   }
 
   @override
-  void initState() {
-    // NasaPODData().getData();
-    // SpaceXData().getData();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp, // forces potrait mode for devices
@@ -74,6 +67,10 @@ class _MyAppState extends State<MyApp> {
               FutureProvider<List<dynamic>>.value(
                 value: SpaceXData().getData(),
                 catchError: (context, error) => [],
+              ),
+              FutureProvider<MarsWeather>.value(
+                value: MarsWeatherAPI().getMarsWeather(),
+                initialData: MarsWeather(listDays: []),
               ),
             ],
             child: MaterialApp(
@@ -105,6 +102,10 @@ class _MyAppState extends State<MyApp> {
                           FutureProvider<List<dynamic>>.value(
                             value: SpaceXData().getData(),
                             catchError: (context, error) => [],
+                          ),
+                          FutureProvider<MarsWeather>.value(
+                            value: MarsWeatherAPI().getMarsWeather(),
+                            initialData: MarsWeather(listDays: []),
                           ),
                         ],
                         child: MaterialApp(
