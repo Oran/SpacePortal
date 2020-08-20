@@ -73,6 +73,11 @@ TextStyle kWeatherCardTS = GoogleFonts.notoSans(
   letterSpacing: 0.8,
   fontWeight: FontWeight.w800,
 );
+TextStyle kMarsRoverImageStatsTS = GoogleFonts.notoSans(
+  fontSize: 17.0,
+  color: kPrimaryBlack,
+  letterSpacing: 0.8,
+);
 
 TextStyle kCardTS = GoogleFonts.notoSans(
   fontSize: 25.0,
