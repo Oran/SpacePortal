@@ -60,10 +60,11 @@ class SXContents extends StatelessWidget {
                                 style: kSpaceXTS,
                               ),
                               Text(
-                                  SpaceXData().parseString(
-                                    spcx[index]['launch_date_utc'],
-                                  ),
-                                  style: kSpaceXTS),
+                                SpaceXData().parseString(
+                                  spcx[index]['launch_date_utc'],
+                                ),
+                                style: kSpaceXTS,
+                              ),
                             ],
                           ),
                         ),

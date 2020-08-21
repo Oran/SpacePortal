@@ -63,7 +63,7 @@ TextStyle kTitleLargeTS = GoogleFonts.notoSans(
 
 TextStyle kSpaceXTS = GoogleFonts.notoSans(
   fontSize: 16.0,
-  color: kPrimaryWhite,
+  color: kPrimaryBlack,
   letterSpacing: 0.8,
 );
 
