@@ -77,7 +77,7 @@ class MarsPhotos extends StatelessWidget {
                                 imageUrl: list['photos'][index]['img_src'],
                                 fit: BoxFit.fill,
                                 placeholder: circle,
-                                
+
                               ),
                               onTap: () {
                                 Navigator.push(
@@ -110,16 +110,3 @@ class MarsPhotos extends StatelessWidget {
           );
   }
 }
-
-// primary: true,
-//               cacheExtent: 200.0,
-//               physics: BouncingScrollPhysics(),
-//               itemCount: list == null
-//                   ? 0
-//                   : list['photos'].length == 856 ? 20 : list['photos'].length,
-//               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-//                   crossAxisCount: (MediaQuery.of(context).orientation ==
-//                           Orientation.portrait)
-//                       ? 2
-//                       : 5),
-//               itemBuilder
