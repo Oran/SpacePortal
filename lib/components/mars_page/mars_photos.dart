@@ -28,27 +28,18 @@ class MarsPhotos extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: numOfPics == 0
-          ? Center(
-              child: Text(
-                'No Images Provided',
-                style: kTitleDateTS,
-              ),
-            )
-          : GridView.builder(
-              primary: true,
-              cacheExtent: 200.0,
-              physics: BouncingScrollPhysics(),
-              itemCount: list == null
-                  ? 0
-                  : list['photos'].length == 856 ? 20 : list['photos'].length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: (MediaQuery.of(context).orientation ==
-                          Orientation.portrait)
-                      ? 2
-                      : 5),
-              itemBuilder: (context, index) {
+    return numOfPics == 0
+        ? Center(
+            child: Text(
+              'No Images Provided',
+              style: kTitleDateTS,
+            ),
+          )
+        : SliverGrid(
+            gridDelegate:
+                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
                 return Container(
                   decoration: BoxDecoration(
                     boxShadow: [
@@ -72,7 +63,8 @@ class MarsPhotos extends StatelessWidget {
                             padding: EdgeInsets.all(8.0),
                             child: Text(
                               'Image is null',
-                              style: kTitleDateTS.copyWith(color: Colors.black),
+                              style:
+                                  kTitleDateTS.copyWith(color: Colors.black),
                             ),
                           ),
                         )
@@ -85,6 +77,7 @@ class MarsPhotos extends StatelessWidget {
                                 imageUrl: list['photos'][index]['img_src'],
                                 fit: BoxFit.fill,
                                 placeholder: circle,
+
                               ),
                               onTap: () {
                                 Navigator.push(
@@ -97,8 +90,8 @@ class MarsPhotos extends StatelessWidget {
                                           ['earth_date'],
                                       cameraName: list['photos'][index]
                                           ['camera']['full_name'],
-                                      roverName: list['photos'][index]['rover']
-                                          ['name'],
+                                      roverName: list['photos'][index]
+                                          ['rover']['name'],
                                       status: list['photos'][index]['rover']
                                           ['status'],
                                     ),
@@ -110,7 +103,10 @@ class MarsPhotos extends StatelessWidget {
                         ),
                 );
               },
+              childCount: list == null
+                  ? 0
+                  : list['photos'].length == 856 ? 20 : list['photos'].length,
             ),
-    );
+          );
   }
 }
