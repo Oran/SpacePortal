@@ -2,7 +2,6 @@ import 'package:SpacePortal/components/mars_page/mars_photos.dart';
 import 'package:flutter/material.dart';
 import 'package:SpacePortal/constants.dart';
 import 'package:SpacePortal/network/network.dart';
-import 'package:http/http.dart';
 
 class Mars extends StatefulWidget {
   @override

@@ -4,7 +4,6 @@ import 'package:SpacePortal/constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-//TODO: Still in development
 class ImageViewer extends StatelessWidget {
   ImageViewer(
       {this.index,
@@ -23,14 +22,12 @@ class ImageViewer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var index = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kAppBarColor,
         elevation: 0,
         actions: [
           GestureDetector(
-            //TODO: Implement Image download function
             onTap: () {
               launch(
                 list,
