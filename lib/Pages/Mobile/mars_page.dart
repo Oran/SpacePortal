@@ -198,41 +198,32 @@ class _MarsState extends State<Mars> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30.0),
+      body: CustomScrollView(
+        physics: BouncingScrollPhysics(),
+        cacheExtent: 500.0,
+        slivers: [
+          SliverAppBar(
+            backgroundColor: kPrimaryWhite,
+            pinned: true,
+            expandedHeight: 200.0,
+            leading: GestureDetector(
+              child: Icon(
+                Icons.subject,
+                size: 30.0,
               ),
-              padding: EdgeInsets.only(top: 40.0, left: 10.0),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(right: 20.0),
-                        child: GestureDetector(
-                          child: Icon(
-                            Icons.subject,
-                            size: 30.0,
-                          ),
-                          onTap: () {
-                            _createDialog(context);
-                          },
-                        ),
-                      ),
-                      Text(
-                        'Mars Rover Images',
-                        style: kTitleLargeTS.copyWith(
-                          fontSize: 30.0,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+              onTap: () {
+                _createDialog(context);
+              },
+            ),
+            flexibleSpace: FlexibleSpaceBar(
+              collapseMode: CollapseMode.pin,
+              title: Text('Mars Rover Images'),
+              background: Container(
+                color: Colors.amber[100],
+                child: Center(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text('Number of pictures: $numOfPics',
                           style: kMarsStatsStyle),
@@ -242,13 +233,82 @@ class _MarsState extends State<Mars> {
                           style: kMarsStatsStyle),
                     ],
                   ),
-                ],
+                ),
               ),
             ),
-            MarsPhotos(numOfPics: numOfPics, list: list),
-          ],
-        ),
+            // flexibleSpace: Container(
+            //   color: Colors.amber[100],
+            //   child: Center(
+            //     child: Column(
+            //       crossAxisAlignment: CrossAxisAlignment.center,
+            //       mainAxisAlignment: MainAxisAlignment.center,
+            //       children: [
+            //         Text('Number of pictures: $numOfPics',
+            //             style: kMarsStatsStyle),
+            //         Text('Rover: $selectedRover', style: kMarsStatsStyle),
+            //         Text('Camera: $selectedCam', style: kMarsStatsStyle),
+            //         Text('Sol Days on mars: $selectedSol',
+            //             style: kMarsStatsStyle),
+            //       ],
+            //     ),
+            //   ),
+            // ),
+          ),
+          MarsPhotos(numOfPics: numOfPics, list: list),
+        ],
       ),
     );
   }
 }
+
+// Container(
+//   child: Column(
+//     crossAxisAlignment: CrossAxisAlignment.start,
+//     children: [
+//       Container(
+//         decoration: BoxDecoration(
+//           borderRadius: BorderRadius.circular(30.0),
+//         ),
+//         padding: EdgeInsets.only(top: 40.0, left: 10.0),
+//         child: Column(
+//           children: [
+//             Row(
+//               children: [
+//                 Padding(
+//                   padding: EdgeInsets.only(right: 20.0),
+// child: GestureDetector(
+//   child: Icon(
+//     Icons.subject,
+//     size: 30.0,
+//   ),
+//   onTap: () {
+//     _createDialog(context);
+//   },
+// ),
+// ),
+//                 Text(
+//                   'Mars Rover Images',
+//                   style: kTitleLargeTS.copyWith(
+//                     fontSize: 30.0,
+//                   ),
+//                 ),
+//               ],
+//             ),
+// Column(
+//   mainAxisAlignment: MainAxisAlignment.start,
+//   children: [
+//     Text('Number of pictures: $numOfPics',
+//         style: kMarsStatsStyle),
+//     Text('Rover: $selectedRover', style: kMarsStatsStyle),
+//     Text('Camera: $selectedCam', style: kMarsStatsStyle),
+//     Text('Sol Days on mars: $selectedSol',
+//         style: kMarsStatsStyle),
+//   ],
+// ),
+//           ],
+//         ),
+//       ),
+//       MarsPhotos(numOfPics: numOfPics, list: list),
+//     ],
+//   ),
+// ),
