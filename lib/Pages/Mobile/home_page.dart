@@ -21,7 +21,6 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    try {
       Timer.periodic(Duration(seconds: 5), (timer) {
         if (_currentPage < 2) {
           _currentPage++;
@@ -32,14 +31,11 @@ class _HomePageState extends State<HomePage> {
         if (_pageController.hasClients) {
           _pageController.animateToPage(
             _currentPage,
-            duration: Duration(milliseconds: 1000),
+            duration: Duration(milliseconds: 800),
             curve: Curves.easeInExpo,
           );
         }
       });
-    } catch (error) {
-      print(error);
-    }
   }
 
   @override
