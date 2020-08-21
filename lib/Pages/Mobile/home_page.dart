@@ -5,8 +5,43 @@ import 'package:SpacePortal/components/home_page/card.dart';
 import 'package:SpacePortal/constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:provider/provider.dart';
+import 'dart:async';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _currentPage = 0;
+  PageController _pageController = PageController(
+    initialPage: 0,
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    try {
+      Timer.periodic(Duration(seconds: 5), (timer) {
+        if (_currentPage < 2) {
+          _currentPage++;
+        } else {
+          _currentPage = 0;
+        }
+
+        if (_pageController.hasClients) {
+          _pageController.animateToPage(
+            _currentPage,
+            duration: Duration(milliseconds: 1000),
+            curve: Curves.easeInExpo,
+          );
+        }
+      });
+    } catch (error) {
+      print(error);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<FSData>(context);
@@ -27,8 +62,9 @@ class HomePage extends StatelessWidget {
               ),
               Expanded(
                 child: PageView(
+                  controller: _pageController,
                   scrollDirection: Axis.horizontal,
-                  physics: BouncingScrollPhysics(),
+                  physics: AlwaysScrollableScrollPhysics(),
                   children: [
                     DCard(
                       image: CachedNetworkImage(
