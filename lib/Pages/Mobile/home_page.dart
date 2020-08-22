@@ -21,6 +21,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    try {
       Timer.periodic(Duration(seconds: 5), (timer) {
         if (_currentPage < 2) {
           _currentPage++;
@@ -32,10 +33,13 @@ class _HomePageState extends State<HomePage> {
           _pageController.animateToPage(
             _currentPage,
             duration: Duration(milliseconds: 800),
-            curve: Curves.easeInExpo,
+            curve: Curves.easeInOutCirc,
           );
         }
       });
+    } catch (error) {
+      print(error);
+    }
   }
 
   @override
@@ -60,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                 child: PageView(
                   controller: _pageController,
                   scrollDirection: Axis.horizontal,
-                  physics: AlwaysScrollableScrollPhysics(),
+                  physics: BouncingScrollPhysics(),
                   children: [
                     DCard(
                       image: CachedNetworkImage(
