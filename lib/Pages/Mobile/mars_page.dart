@@ -51,9 +51,7 @@ class _MarsState extends State<Mars> {
       items: dropdownItems,
       onChanged: (value) {
         print(value);
-        setState(() {
-          selectedCam = value;
-        });
+        selectedCam = value;
       },
     );
   }
@@ -81,9 +79,7 @@ class _MarsState extends State<Mars> {
       items: dropdownItems,
       onChanged: (value) {
         print(value);
-        setState(() {
-          selectedRover = value;
-        });
+        selectedRover = value;
       },
     );
   }
@@ -154,9 +150,7 @@ class _MarsState extends State<Mars> {
                         style: kDetailsTS,
                         onChanged: (value) {
                           print(value);
-                          setState(() {
-                            selectedSol = value;
-                          });
+                          selectedSol = value;
                         },
                       ),
                     ),
@@ -241,7 +235,18 @@ class _MarsState extends State<Mars> {
               },
             ),
           ),
-          MarsPhotos(numOfPics: numOfPics, list: list),
+          numOfPics == 0
+              ? SliverList(
+                  delegate: SliverChildListDelegate([
+                    Center(
+                      child: Text(
+                        'No Images Provided',
+                        style: kTitleDateTS,
+                      ),
+                    ),
+                  ]),
+                )
+              : MarsPhotos(list: list),
         ],
       ),
     );

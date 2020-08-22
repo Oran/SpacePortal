@@ -5,12 +5,9 @@ import 'package:flutter/material.dart';
 
 class MarsPhotos extends StatelessWidget {
   const MarsPhotos({
-    Key key,
-    @required this.numOfPics,
     @required this.list,
-  }) : super(key: key);
+  });
 
-  final int numOfPics;
   final list;
 
   Widget circle(BuildContext context, String text) {
@@ -28,14 +25,7 @@ class MarsPhotos extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return numOfPics == 0
-        ? Center(
-            child: Text(
-              'No Images Provided',
-              style: kTitleDateTS,
-            ),
-          )
-        : SliverGrid(
+    return SliverGrid(
             gridDelegate:
                 SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
             delegate: SliverChildBuilderDelegate(
