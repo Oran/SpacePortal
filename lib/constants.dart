@@ -50,13 +50,14 @@ TextStyle kDetailsTS = GoogleFonts.notoSans(
 );
 
 TextStyle kMarsStatsStyle = GoogleFonts.notoSans(
-    fontSize: 15.0,
-    color: kPrimaryBlack,
-    fontWeight: FontWeight.bold,
-    letterSpacing: 0.8);
+  fontSize: 15.0,
+  color: kPrimaryBlack,
+  fontWeight: FontWeight.bold,
+  letterSpacing: 0.8,
+);
 
 TextStyle kTitleLargeTS = GoogleFonts.notoSans(
-  fontSize: 40.0,
+  fontSize: 45.0,
   fontWeight: FontWeight.w600,
   letterSpacing: 0.8,
 );
@@ -73,6 +74,7 @@ TextStyle kWeatherCardTS = GoogleFonts.notoSans(
   letterSpacing: 0.8,
   fontWeight: FontWeight.w800,
 );
+
 TextStyle kMarsRoverImageStatsTS = GoogleFonts.notoSans(
   fontSize: 17.0,
   color: kPrimaryBlack,
