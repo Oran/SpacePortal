@@ -5,12 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:SpacePortal/network/models.dart';
 
 class MarsWeatherCard extends StatelessWidget {
-  /// Converts Temprature from Fahrenheit to Celcius
-  int _convertTemp(double temp) {
-    var result = (temp - 32) * 5 / 9;
-    return result.round();
-  }
-
   @override
   Widget build(BuildContext context) {
     var mars = Provider.of<MarsWeather>(context);
@@ -25,7 +19,7 @@ class MarsWeatherCard extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => MarsWeatherPage(index: index),
+                  builder: (context) => MarsWeatherPage(),
                 ),
               );
             },
@@ -58,7 +52,7 @@ class MarsWeatherCard extends StatelessWidget {
                           verticalDirection: VerticalDirection.up,
                           children: [
                             Text(
-                              '${_convertTemp(mars.listDays[index].mx)}\u2103',
+                              '${mars.listDays[index].mx}\u2103',
                               style: kWeatherCardTS,
                             ),
                             Text(
@@ -83,7 +77,7 @@ class MarsWeatherCard extends StatelessWidget {
                           verticalDirection: VerticalDirection.up,
                           children: [
                             Text(
-                              '${_convertTemp(mars.listDays[index].mn)}\u2103',
+                              '${mars.listDays[index].mn}\u2103',
                               style: kWeatherCardTS,
                             ),
                             Text(

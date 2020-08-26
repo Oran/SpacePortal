@@ -51,12 +51,17 @@ class SolDays {
   });
 
   factory SolDays.fromMap(Map<String, dynamic> map, String d) {
+    int _convertTemp(double temp) {
+      var result = (temp - 32) * 5 / 9;
+      return result.round();
+    }
+
     return SolDays(
       day: d,
-      av: map['AT']['av'], // Average temp in F
+      av: _convertTemp(map['AT']['av']), // Average temp in F
       ct: map['AT']['ct'], // recorded samples over the sol
-      mn: map['AT']['mn'], // Min Temp
-      mx: map['AT']['mx'], // Max Temp
+      mn: _convertTemp(map['AT']['mn']), // Min Temp
+      mx: _convertTemp(map['AT']['mx']), // Max Temp
       season: map['Season'], // Current Season
     );
   }

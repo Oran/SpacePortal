@@ -5,14 +5,18 @@ import 'package:SpacePortal/network/models.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class MarsWeatherPage extends StatelessWidget {
-  MarsWeatherPage({this.index});
-  final index;
+class MarsWeatherPage extends StatefulWidget {
+  @override
+  _MarsWeatherPageState createState() => _MarsWeatherPageState();
+}
 
-  /// Converts Temprature from Fahrenheit to Celcius
-  int _convertTemp(double temp) {
-    var result = (temp - 32) * 5 / 9;
-    return result.round();
+class _MarsWeatherPageState extends State<MarsWeatherPage> {
+  int index = 0;
+
+  void updateMarsWeather(int dayIndex) {
+    setState(() {
+      index = dayIndex;
+    });
   }
 
   @override
@@ -32,11 +36,11 @@ class MarsWeatherPage extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    '607',
+                    '${mars.listDays[index].day}',
                     style: kMarsWeatherPageTS.copyWith(fontSize: 35.0),
                   ),
                   Text(
-                    '${-54}\u2103',
+                    '${mars.listDays[index].av}\u2103',
                     style: kMarsWeatherPageTS.copyWith(
                       fontSize: 80.0,
                       fontWeight: FontWeight.w100,
@@ -77,7 +81,9 @@ class MarsWeatherPage extends StatelessWidget {
               color: Colors.grey,
               height: (MediaQuery.of(context).size.height) * 0.20,
               width: (MediaQuery.of(context).size.width),
-              child: MarsWMiniCard(),
+              child: MarsWMiniCard(
+                func: updateMarsWeather,
+              ),
             ),
             Container(
               color: Colors.redAccent[100],
