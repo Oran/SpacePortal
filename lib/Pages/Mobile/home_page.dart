@@ -46,6 +46,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<FSData>(context);
+    var mars = Provider.of<MarsWeather>(context);
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -98,10 +99,10 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               Container(
-                child: Container(
-                  // height: (MediaQuery.of(context).size.height) * 0.49,
-                  // width: (MediaQuery.of(context).size.width) * 0.20,
-                  child: WeatherCard(),
+                child: WeatherCard(
+                  text: '${mars.listDays[0].av}\u2103',
+                  onPressed: () =>
+                      Navigator.pushNamed(context, kMarsWeather_Page),
                 ),
               ),
             ],
