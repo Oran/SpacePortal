@@ -1,4 +1,3 @@
-import 'package:SpacePortal/components/mars_weather_page/mars_weather_card.dart';
 import 'package:SpacePortal/components/mars_weather_page/mars_weather_minicard.dart';
 import 'package:SpacePortal/constants.dart';
 import 'package:SpacePortal/network/models.dart';

@@ -1,4 +1,4 @@
-import 'package:SpacePortal/components/mars_weather_page/mars_weather_page.dart';
+import 'package:SpacePortal/Pages/Mobile/mars_weather_page.dart';
 import 'package:SpacePortal/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

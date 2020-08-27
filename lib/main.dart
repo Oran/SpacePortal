@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:SpacePortal/Pages/Mobile/loading_page.dart';
+import 'package:SpacePortal/Pages/Mobile/mars_weather_page.dart';
 import 'package:SpacePortal/network/models.dart';
 import 'package:SpacePortal/network/network.dart';
 import 'package:SpacePortal/theme/theme.dart';
@@ -120,6 +121,7 @@ class _MyAppState extends State<MyApp> {
                             kSpaceX_Page: (context) => SpaceX(),
                             kMars_Page: (context) => Mars(),
                             kLoading_Page: (context) => LoadingPage(),
+                            kMarsWeather_Page: (context) => MarsWeatherPage(),
                             kNoConnection_Page: (context) => NoConnectionPage(),
                           },
                         ),
