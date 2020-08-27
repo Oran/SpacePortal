@@ -62,7 +62,7 @@ TextStyle kTitleLargeTS = GoogleFonts.notoSans(
   letterSpacing: 0.8,
 );
 
-TextStyle kSpaceXTS = GoogleFonts.notoSans(
+TextStyle kSpaceXTS = GoogleFonts.roboto(
   fontSize: 16.0,
   color: kPrimaryBlack,
   letterSpacing: 0.8,
@@ -87,7 +87,7 @@ TextStyle kMarsRoverImageStatsTS = GoogleFonts.notoSans(
   letterSpacing: 0.8,
 );
 
-TextStyle kCardTS = GoogleFonts.notoSans(
+TextStyle kCardTS = GoogleFonts.roboto(
   fontSize: 25.0,
   color: Colors.white,
   letterSpacing: 1,
