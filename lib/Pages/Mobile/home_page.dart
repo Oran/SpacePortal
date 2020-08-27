@@ -1,3 +1,4 @@
+import 'package:SpacePortal/components/home_page/card.dart';
 import 'package:SpacePortal/components/mars_weather_page/mars_weather_card.dart';
 import 'package:SpacePortal/network/models.dart';
 import 'package:flutter/material.dart';
@@ -60,7 +61,8 @@ class _HomePageState extends State<HomePage> {
                   style: kTitleLargeTS,
                 ),
               ),
-              Expanded(
+              Container(
+                height: (MediaQuery.of(context).size.height) * 0.35,
                 child: PageView(
                   controller: _pageController,
                   scrollDirection: Axis.horizontal,
@@ -96,23 +98,10 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.only(left: 15.0),
-                      child: Text(
-                        'Mars Weather',
-                        style: kWeatherCardTS,
-                        textScaleFactor: 1.1,
-                      ),
-                    ),
-                    Container(
-                      height: (MediaQuery.of(context).size.height) * 0.49,
-                      width: (MediaQuery.of(context).size.width),
-                      child: MarsWeatherCard(),
-                    ),
-                  ],
+                child: Container(
+                  // height: (MediaQuery.of(context).size.height) * 0.49,
+                  // width: (MediaQuery.of(context).size.width) * 0.20,
+                  child: WeatherCard(),
                 ),
               ),
             ],
