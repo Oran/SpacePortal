@@ -87,53 +87,59 @@ class WeatherCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(20.0),
-      child: Container(
-        height: 200.0,
-        width: 200.0,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30.0),
-          color: Colors.black,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 10,
-              blurRadius: 10,
-              offset: Offset(0, 3), // changes position of shadow
-            ),
-          ],
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(30.0),
-          child: Center(
-            child: Stack(
-              children: [
-                Container(
-                  height: (MediaQuery.of(context).size.height),
-                  width: (MediaQuery.of(context).size.width),
-                  child: Image.network(
-                    'https://cdn.mos.cms.futurecdn.net/U5Ws8AHMqEhcRnu6KDSxZi.jpg',
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                Text(
-                  '',
-                  style: kCardTS.copyWith(
-                    fontSize: 15.0,
-                  ),
-                ),
-                Positioned(
-                  top: 150.0,
-                  left: 28.0,
-                  child: Text(
-                    'Mars Weather',
-                    style: kCardTS.copyWith(
-                      fontSize: 20.0,
+    return GestureDetector(
+      onTap: onPressed,
+      child: Padding(
+        padding: EdgeInsets.all(20.0),
+        child: Container(
+          height: 200.0,
+          width: 200.0,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30.0),
+            color: Colors.black,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 10,
+                blurRadius: 10,
+                offset: Offset(0, 3), // changes position of shadow
+              ),
+            ],
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(30.0),
+            child: Center(
+              child: Stack(
+                children: [
+                  Container(
+                    height: (MediaQuery.of(context).size.height),
+                    width: (MediaQuery.of(context).size.width),
+                    child: Image.asset(
+                      'assets/images/mars_insight.jpg',
+                      fit: BoxFit.cover,
                     ),
                   ),
-                ),
-              ],
+                  Center(
+                    child: Text(
+                      text,
+                      style: kCardTS.copyWith(
+                        fontSize: 55.0,
+                        fontWeight: FontWeight.w100,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 150.0,
+                    left: 28.0,
+                    child: Text(
+                      'Mars Weather',
+                      style: kCardTS.copyWith(
+                        fontSize: 20.0,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
