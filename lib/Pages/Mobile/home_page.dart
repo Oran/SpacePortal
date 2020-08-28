@@ -1,8 +1,6 @@
 import 'package:SpacePortal/components/home_page/card.dart';
-import 'package:SpacePortal/components/mars_weather_page/mars_weather_card.dart';
 import 'package:SpacePortal/network/models.dart';
 import 'package:flutter/material.dart';
-import 'package:SpacePortal/components/home_page/card.dart';
 import 'package:SpacePortal/constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:provider/provider.dart';

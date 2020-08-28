@@ -1,6 +1,5 @@
 import 'package:SpacePortal/components/spacex_page/spacex_content.dart';
 import 'package:SpacePortal/components/spacex_page/spacex_viewer.dart';
-import 'package:SpacePortal/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

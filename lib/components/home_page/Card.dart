@@ -54,7 +54,6 @@ class DCard extends StatelessWidget {
                         width: 300.0,
                         alignment: Alignment.bottomCenter,
                         child: Center(
-                          //TODO: Better TextStyle / Fonts
                           child: Text(
                             text,
                             textAlign: TextAlign.center,
