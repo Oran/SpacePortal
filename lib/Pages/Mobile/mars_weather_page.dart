@@ -49,7 +49,7 @@ class _MarsWeatherPageState extends State<MarsWeatherPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        '${-70}\u2103',
+                        '${mars.listDays[index].mn}\u2103',
                         style: kMarsWeatherPageTS.copyWith(
                           fontSize: 40.0,
                           fontWeight: FontWeight.normal,
@@ -57,7 +57,7 @@ class _MarsWeatherPageState extends State<MarsWeatherPage> {
                       ),
                       SizedBox(width: 35.0),
                       Text(
-                        '${-28}\u2103',
+                        '${mars.listDays[index].mx}\u2103',
                         style: kMarsWeatherPageTS.copyWith(
                           fontSize: 40.0,
                           fontWeight: FontWeight.normal,
@@ -77,18 +77,15 @@ class _MarsWeatherPageState extends State<MarsWeatherPage> {
             ),
             SizedBox(height: 20.0),
             Container(
-              color: Colors.grey,
+              // color: Colors.grey,
               height: (MediaQuery.of(context).size.height) * 0.20,
               width: (MediaQuery.of(context).size.width),
-              child: MarsWMiniCard(
-                func: updateMarsWeather,
-              ),
+              child: MarsWMiniCard(func: updateMarsWeather),
             ),
             Container(
-              color: Colors.redAccent[100],
-              height: (MediaQuery.of(context).size.height) * 0.41,
+              // color: Colors.redAccent[100],
+              height: (MediaQuery.of(context).size.height) * 0.34,
               width: (MediaQuery.of(context).size.width),
-              // child: MarsWMiniCard(),
             ),
           ],
         ),

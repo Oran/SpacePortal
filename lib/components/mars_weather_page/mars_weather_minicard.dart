@@ -21,8 +21,16 @@ class MarsWMiniCard extends StatelessWidget {
             padding: EdgeInsets.all(8.0),
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.amber[100],
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(30.0),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 2,
+                    blurRadius: 10,
+                    offset: Offset(0, 0), // changes position of shadow
+                  ),
+                ],
               ),
               height: 100.0,
               width: 100.0,
