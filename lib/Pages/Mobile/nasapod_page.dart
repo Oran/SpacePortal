@@ -1,13 +1,45 @@
 import 'dart:ui';
-
 import 'package:SpacePortal/constants.dart';
 import 'package:SpacePortal/network/models.dart';
+import 'package:SpacePortal/theme/theme.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NasaPod extends StatelessWidget {
+  String parseString(String dateTime) {
+    RegExp exp = RegExp(r"(\d\d\d\d-\d\d-\d\d)");
+    String date = exp.firstMatch(dateTime).group(1);
+    return date;
+  }
+
+  _openDialog(BuildContext context) {
+    return showDatePicker(
+      context: context,
+      lastDate: DateTime.now(),
+      firstDate: DateTime.parse('2000-01-01'),
+      initialDate: DateTime.now(),
+      builder: (context, child) {
+        return Theme(
+          data: themeData.copyWith(
+            colorScheme: ColorScheme.light(
+              primary: Colors.black,
+              onPrimary: Colors.white,
+              surface: Colors.white,
+              onSurface: Colors.black,
+            ),
+            dialogBackgroundColor: Colors.white,
+          ),
+          child: child,
+        );
+      },
+    ).then((value) => {
+          print(parseString(value?.toString() ?? DateTime.now().toString())),
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<FSData>(context);
@@ -17,16 +49,9 @@ class NasaPod extends StatelessWidget {
         physics: BouncingScrollPhysics(),
         slivers: [
           SliverAppBar(
-            actions: [
-              Container(
-                color: Colors.transparent,
-                height: 100.0,
-                width: (MediaQuery.of(context).size.width),
-              )
-            ],
             stretch: true,
             elevation: 0,
-            backgroundColor: Colors.white,
+            backgroundColor: kPrimaryWhite,
             pinned: true,
             floating: false,
             expandedHeight: 100.0,
@@ -63,11 +88,17 @@ class NasaPod extends StatelessWidget {
                 child: BackdropFilter(
                   filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
                   child: Text(
-                    'data',
+                    '1',
                     style: TextStyle(color: Colors.transparent),
                   ),
                 ),
               ),
+            ),
+            leading: GestureDetector(
+              onTap: () {
+                _openDialog(context);
+              },
+              child: Icon(Icons.tune_rounded),
             ),
           ),
           SliverList(
@@ -165,12 +196,6 @@ class NasaPod extends StatelessWidget {
             ]),
           )
         ],
-        // Column(
-        //   crossAxisAlignment: CrossAxisAlignment.start,
-        //   children: <Widget>[
-
-        //   ],
-        // ),
       ),
     );
   }
