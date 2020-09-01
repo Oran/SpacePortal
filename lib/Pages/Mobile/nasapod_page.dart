@@ -37,13 +37,18 @@ class NasaPod extends StatelessWidget {
         );
       },
     ).then((value) => {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => NasaPODViewer(
-                      date: parseString(value?.toString() ?? DateTime.now().toString()),
-                    )),
-          )
+          parseString(value?.toString() ?? DateTime.now().toString()) ==
+                  parseString(DateTime.now().toString())
+              ? print('dates are the same')
+              : Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NasaPODViewer(
+                      date: parseString(
+                          value?.toString() ?? DateTime.now().toString()),
+                    ),
+                  ),
+                ),
         });
   }
 
