@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:SpacePortal/components/nasapod_page/nasa_pod_viewer.dart';
 import 'package:SpacePortal/constants.dart';
 import 'package:SpacePortal/network/models.dart';
 import 'package:SpacePortal/theme/theme.dart';
@@ -36,7 +37,13 @@ class NasaPod extends StatelessWidget {
         );
       },
     ).then((value) => {
-          print(parseString(value?.toString() ?? DateTime.now().toString())),
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => NasaPODViewer(
+                      date: parseString(value?.toString() ?? DateTime.now().toString()),
+                    )),
+          )
         });
   }
 
