@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:SpacePortal/constants.dart';
 import 'package:SpacePortal/network/models.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -11,37 +13,65 @@ class NasaPod extends StatelessWidget {
     var data = Provider.of<FSData>(context);
     var orientation = (MediaQuery.of(context).orientation);
     return Scaffold(
-      body: data.image == null
-        ? Center(
-            child: Text(
-              'Data not provided yet, \nmaybe check back later',
-              textAlign: TextAlign.center,
-              style: kTitleDateTS.copyWith(
-                color: Colors.red[300],
-                fontSize: 20.0,
-              ),
-            ),
-          )
-        : SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
+      body: CustomScrollView(
+        physics: BouncingScrollPhysics(),
+        slivers: [
+          SliverAppBar(
+            actions: [
               Container(
-                height: 80.0,
-                child: Center(
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 24.0),
-                    child: Text(
-                      'Picture of the day',
-                      style: kTitleLargeTS.copyWith(
-                        fontSize: 34.0,
-                        fontWeight: FontWeight.w600,
-                      ),
+                color: Colors.transparent,
+                height: 100.0,
+                width: (MediaQuery.of(context).size.width),
+              )
+            ],
+            stretch: true,
+            elevation: 0,
+            backgroundColor: Colors.white,
+            pinned: true,
+            floating: false,
+            expandedHeight: 100.0,
+            flexibleSpace: FlexibleSpaceBar(
+              stretchModes: [
+                StretchMode.blurBackground,
+                StretchMode.zoomBackground,
+                // StretchMode.fadeTitle,
+              ],
+              centerTitle: true,
+              title: Text(
+                'Picture Of The Day',
+                style: kTitleDateTS.copyWith(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  shadows: [
+                    Shadow(
+                      color: Colors.white,
+                      blurRadius: 30,
+                      offset: Offset(0, 0),
                     ),
+                  ],
+                ),
+              ),
+              background: Container(
+                height: (MediaQuery.of(context).size.height),
+                width: (MediaQuery.of(context).size.width),
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(data.image),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
+                  child: Text(
+                    'data',
+                    style: TextStyle(color: Colors.transparent),
                   ),
                 ),
               ),
+            ),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate([
               Container(
                 height: orientation == Orientation.landscape ? 800.0 : null,
                 padding: EdgeInsets.all(10),
@@ -86,8 +116,8 @@ class NasaPod extends StatelessWidget {
                               color: Colors.grey.withOpacity(0.5),
                               spreadRadius: 10,
                               blurRadius: 10,
-                              offset: Offset(
-                                  0, 3), // changes position of shadow
+                              offset:
+                                  Offset(0, 3), // changes position of shadow
                             ),
                           ],
                         ),
@@ -101,8 +131,7 @@ class NasaPod extends StatelessWidget {
                       ),
               ),
               Padding(
-                padding:
-                    EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
+                padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
                 child: Text(
                   data.title,
                   style: kTitleDateTS.copyWith(
@@ -112,8 +141,7 @@ class NasaPod extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding:
-                    EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
+                padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
                 child: Text(
                   data.date,
                   style: kTitleDateTS.copyWith(
@@ -134,11 +162,16 @@ class NasaPod extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 10.0),
-            ],
-          ),
-        )
+            ]),
+          )
+        ],
+        // Column(
+        //   crossAxisAlignment: CrossAxisAlignment.start,
+        //   children: <Widget>[
+
+        //   ],
+        // ),
+      ),
     );
   }
 }
-
-
