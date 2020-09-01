@@ -7,6 +7,30 @@ import 'package:youtube_explode_dart/youtube_explode_dart.dart' as yt;
 
 final String _apiKey = 'pc7RPSAONSoBlJTGozeFT1EcaDa0mwXoD17XsKd3';
 
+String parseString(String dateTime) {
+  RegExp exp = RegExp(r"(\d\d\d\d-\d\d-\d\d)");
+  String date = exp.firstMatch(dateTime).group(1);
+  return date;
+}
+
+String nasaPodUrl =
+    'https://api.nasa.gov/planetary/apod?api_key=$_apiKey&date=${parseString(DateTime.now().toString())}';
+
+class OldNasaPodData {
+  Firestore firestore = Firestore.instance;
+  void setURL(String date) {
+    nasaPodUrl =
+        'https://api.nasa.gov/planetary/apod?api_key=$_apiKey&date=$date';
+  }
+
+  Future<OldNasaData> getOldNasaPodData() async {
+    http.Response response = await http.get(nasaPodUrl);
+    var decodedData = jsonDecode(response.body);
+    var data = OldNasaData.fromJson(decodedData);
+    return data;
+  }
+}
+
 class NasaPODData {
   static String url = 'https://api.nasa.gov/planetary/apod?api_key=$_apiKey';
   Firestore firestore = Firestore.instance;
@@ -84,21 +108,21 @@ final List<String> rover = [
   'spirit',
 ];
 
-String url =
+String marsUrl =
     'https://api.nasa.gov/mars-photos/api/v1/rovers/${rover[1]}/photos?sol=100&camera=${cam[6]}&api_key=$_apiKey';
 
 class NasaMarsData {
   void printURL() {
-    print(url);
+    print(marsUrl);
   }
 
   void setURL(camIn, roverIn, solIn) {
-    url =
+    marsUrl =
         'https://api.nasa.gov/mars-photos/api/v1/rovers/$roverIn/photos?sol=$solIn&camera=$camIn&api_key=$_apiKey';
   }
 
   Future getMarsData() async {
-    http.Response response = await http.get(url);
+    http.Response response = await http.get(marsUrl);
     var decodedData = jsonDecode(response.body);
     return decodedData;
   }
