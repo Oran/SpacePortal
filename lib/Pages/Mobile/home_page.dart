@@ -1,4 +1,4 @@
-import 'package:SpacePortal/components/home_page/card.dart';
+import 'package:SpacePortal/components/home_page/Card.dart';
 import 'package:SpacePortal/network/models.dart';
 import 'package:flutter/material.dart';
 import 'package:SpacePortal/constants.dart';
@@ -98,7 +98,7 @@ class _HomePageState extends State<HomePage> {
               ),
               Container(
                 child: WeatherCard(
-                  text: '${mars.listDays[0].av}\u2103',
+                  text: '${10}\u2103',
                   onPressed: () =>
                       Navigator.pushNamed(context, kMarsWeather_Page),
                 ),

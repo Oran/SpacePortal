@@ -35,11 +35,11 @@ class _MarsWeatherPageState extends State<MarsWeatherPage> {
               child: Column(
                 children: [
                   Text(
-                    '${mars.listDays[index].day}',
+                    '${10}',
                     style: kMarsWeatherPageTS.copyWith(fontSize: 35.0),
                   ),
                   Text(
-                    '${mars.listDays[index].av}\u2103',
+                    '${10}\u2103',
                     style: kMarsWeatherPageTS.copyWith(
                       fontSize: 80.0,
                       fontWeight: FontWeight.w100,
@@ -49,7 +49,7 @@ class _MarsWeatherPageState extends State<MarsWeatherPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        '${mars.listDays[index].mn}\u2103',
+                        '${10}\u2103',
                         style: kMarsWeatherPageTS.copyWith(
                           fontSize: 40.0,
                           fontWeight: FontWeight.normal,
@@ -57,7 +57,7 @@ class _MarsWeatherPageState extends State<MarsWeatherPage> {
                       ),
                       SizedBox(width: 35.0),
                       Text(
-                        '${mars.listDays[index].mx}\u2103',
+                        '${10}\u2103',
                         style: kMarsWeatherPageTS.copyWith(
                           fontSize: 40.0,
                           fontWeight: FontWeight.normal,
