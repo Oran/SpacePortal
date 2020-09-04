@@ -66,64 +66,66 @@ class NasaPod extends StatelessWidget {
             pinned: true,
             floating: false,
             expandedHeight: 100.0,
-            flexibleSpace: Stack(children: [
-              Container(
-                height: (MediaQuery.of(context).size.height),
-                width: (MediaQuery.of(context).size.width),
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: CacheImage(data.image),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                child: ClipRRect(
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-                    child: Text(
-                      '0',
-                      style: TextStyle(color: Colors.transparent),
+            flexibleSpace: Stack(
+              children: [
+                Container(
+                  height: (MediaQuery.of(context).size.height),
+                  width: (MediaQuery.of(context).size.width),
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: CacheImage(data.image),
+                      fit: BoxFit.cover,
                     ),
                   ),
-                ),
-              ),
-              Container(
-                child: FlexibleSpaceBar(
-                  collapseMode: CollapseMode.parallax,
-                  background: Container(
-                    height: (MediaQuery.of(context).size.height),
-                    width: (MediaQuery.of(context).size.width),
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: CacheImage(data.image),
-                        fit: BoxFit.cover,
+                  child: ClipRRect(
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+                      child: Text(
+                        '0',
+                        style: TextStyle(color: Colors.transparent),
                       ),
                     ),
-                    child: ClipRRect(
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-                        child: Text(
-                          '0',
-                          style: TextStyle(color: Colors.transparent),
+                  ),
+                ),
+                Container(
+                  child: FlexibleSpaceBar(
+                    collapseMode: CollapseMode.parallax,
+                    background: Container(
+                      height: (MediaQuery.of(context).size.height),
+                      width: (MediaQuery.of(context).size.width),
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: CacheImage(data.image),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      child: ClipRRect(
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+                          child: Text(
+                            '0',
+                            style: TextStyle(color: Colors.transparent),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  stretchModes: [
-                    StretchMode.blurBackground,
-                    StretchMode.zoomBackground,
-                    // StretchMode.fadeTitle,
-                  ],
-                  centerTitle: true,
-                  title: Text(
-                    'Picture Of The Day',
-                    style: kTitleDateTS.copyWith(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
+                    stretchModes: [
+                      StretchMode.blurBackground,
+                      StretchMode.zoomBackground,
+                      // StretchMode.fadeTitle,
+                    ],
+                    centerTitle: true,
+                    title: Text(
+                      'Picture Of The Day',
+                      style: kTitleDateTS.copyWith(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ]),
+              ],
+            ),
             leading: GestureDetector(
               onTap: () {
                 _openDialog(context);

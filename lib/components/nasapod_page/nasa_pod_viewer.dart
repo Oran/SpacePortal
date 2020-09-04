@@ -1,27 +1,16 @@
+import 'dart:ui';
+
 import 'package:SpacePortal/constants.dart';
 import 'package:SpacePortal/network/network.dart';
+import 'package:cache_image/cache_image.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NasaPODViewer extends StatefulWidget {
-  NasaPODViewer({
-    this.title = '',
-    this.date = '',
-    this.exp = '',
-    this.image = kPlaceholderImage,
-    this.mediaType = '',
-    this.testf = '',
-    this.videoURL = '',
-  });
-  final String title;
+  NasaPODViewer({this.date = ''});
   final String date;
-  final String image;
-  final String mediaType;
-  final String exp;
-  final String testf;
-  final String videoURL;
 
   @override
   _NasaPODViewerState createState() => _NasaPODViewerState();
@@ -52,7 +41,30 @@ class _NasaPODViewerState extends State<NasaPODViewer> {
           return Scaffold(
             appBar: AppBar(
               backgroundColor: kPrimaryWhite,
-              elevation: 0,
+              elevation: 10,
+              flexibleSpace: Container(
+                height: (MediaQuery.of(context).size.height),
+                width: (MediaQuery.of(context).size.width),
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: CacheImage(
+                      snapshot.data.mediaType == 'video'
+                          ? snapshot.data.videoThumb
+                          : snapshot.data.image,
+                    ),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: ClipRRect(
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                    child: Text(
+                      '0',
+                      style: TextStyle(color: Colors.transparent),
+                    ),
+                  ),
+                ),
+              ),
             ),
             body: SingleChildScrollView(
               physics: BouncingScrollPhysics(),
