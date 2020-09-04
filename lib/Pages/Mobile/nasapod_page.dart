@@ -4,6 +4,7 @@ import 'package:SpacePortal/components/nasapod_page/pod_contents.dart';
 import 'package:SpacePortal/constants.dart';
 import 'package:SpacePortal/network/models.dart';
 import 'package:SpacePortal/theme/theme.dart';
+import 'package:cache_image/cache_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -71,7 +72,7 @@ class NasaPod extends StatelessWidget {
                 width: (MediaQuery.of(context).size.width),
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: NetworkImage(data.image),
+                    image: CacheImage(data.image),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -93,13 +94,13 @@ class NasaPod extends StatelessWidget {
                     width: (MediaQuery.of(context).size.width),
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: NetworkImage(data.image),
+                        image: CacheImage(data.image),
                         fit: BoxFit.cover,
                       ),
                     ),
                     child: ClipRRect(
                       child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
+                        filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
                         child: Text(
                           '0',
                           style: TextStyle(color: Colors.transparent),
