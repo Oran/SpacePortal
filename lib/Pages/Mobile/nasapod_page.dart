@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:ui';
 import 'package:SpacePortal/components/nasapod_page/nasa_pod_viewer.dart';
 import 'package:SpacePortal/components/nasapod_page/pod_contents.dart';
@@ -7,7 +6,6 @@ import 'package:SpacePortal/network/models.dart';
 import 'package:SpacePortal/network/network.dart';
 import 'package:SpacePortal/theme/theme.dart';
 import 'package:cache_image/cache_image.dart';
-import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
