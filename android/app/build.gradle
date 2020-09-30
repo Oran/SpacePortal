@@ -53,6 +53,12 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+    //? this disables Lint checks
+    lintOptions { 
+
+        checkReleaseBuilds false
+
+    }
 }
 
 flutter {
