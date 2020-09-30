@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:SpacePortal/network/models.dart';
 import 'package:http/http.dart' as http;
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:image/image.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart' as yt;
 
 final String _apiKey = 'pc7RPSAONSoBlJTGozeFT1EcaDa0mwXoD17XsKd3';
@@ -23,11 +24,18 @@ class OldNasaPodData {
         'https://api.nasa.gov/planetary/apod?api_key=$_apiKey&date=$date';
   }
 
-  Future<OldNasaData> getOldNasaPodData() async {
+  Future checkImgColor(String url) async {
+    http.Response response = await http.get(url);
+    int whiteBalance = decodeImage(response.bodyBytes).getWhiteBalance();
+    return whiteBalance;
+  }
+
+  Future<List<dynamic>> getOldNasaPodData() async {
     http.Response response = await http.get(nasaPodUrl);
     var decodedData = jsonDecode(response.body);
     var data = OldNasaData.fromJson(decodedData);
-    return data;
+    var wb = await checkImgColor(data.image);
+    return [data, wb];
   }
 }
 
@@ -68,11 +76,17 @@ class NasaPODData {
   void getThumbnail(String videoURL) {
     RegExp exp = RegExp(r"embed\/([^#\&\?]{11})");
     String videoID = exp.firstMatch(videoURL).group(1);
-    var videoImage = yt.ThumbnailSet(videoID).maxResUrl;
+    var videoImage = yt.ThumbnailSet(videoID).highResUrl;
     firestore.collection('api').document('nasa_api').updateData({
       'image': videoImage,
       'videoURL': videoURL,
     });
+  }
+
+  Future checkImgColor(String url) async {
+    http.Response response = await http.get(url);
+    int whiteBalance = decodeImage(response.bodyBytes).getWhiteBalance();
+    return whiteBalance;
   }
 
   Stream<FSData> getFSData() {

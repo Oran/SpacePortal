@@ -18,17 +18,11 @@ class NasaPODViewer extends StatefulWidget {
 
 class _NasaPODViewerState extends State<NasaPODViewer> {
   OldNasaPodData oldData = OldNasaPodData();
-  var newData;
 
   Future getData() async {
     oldData.setURL(widget.date);
     var ddata = await oldData.getOldNasaPodData();
     return ddata;
-  }
-
-  @override
-  void initState() {
-    super.initState();
   }
 
   @override
@@ -41,6 +35,9 @@ class _NasaPODViewerState extends State<NasaPODViewer> {
           return Scaffold(
             appBar: AppBar(
               backgroundColor: kPrimaryWhite,
+              iconTheme: IconThemeData(
+                color: snapshot.data[1] < 127 ? Colors.white : Colors.black,
+              ),
               elevation: 10,
               flexibleSpace: Container(
                 height: (MediaQuery.of(context).size.height),
@@ -48,9 +45,9 @@ class _NasaPODViewerState extends State<NasaPODViewer> {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: CacheImage(
-                      snapshot.data.mediaType == 'video'
-                          ? snapshot.data.videoThumb
-                          : snapshot.data.image,
+                      snapshot.data[0].mediaType == 'video'
+                          ? snapshot.data[0].videoThumb
+                          : snapshot.data[0].image,
                     ),
                     fit: BoxFit.cover,
                   ),
@@ -76,13 +73,13 @@ class _NasaPODViewerState extends State<NasaPODViewer> {
                       height:
                           orientation == Orientation.landscape ? 800.0 : null,
                       padding: EdgeInsets.all(10),
-                      child: snapshot.data.mediaType == 'video'
+                      child: snapshot.data[0].mediaType == 'video'
                           ? Padding(
                               padding: EdgeInsets.symmetric(horizontal: 8.0),
                               child: GestureDetector(
                                 onTap: () {
                                   launch(
-                                    snapshot.data.videoURL,
+                                    snapshot.data[0].videoURL,
                                     forceWebView: true,
                                     enableJavaScript: true,
                                   );
@@ -99,7 +96,7 @@ class _NasaPODViewerState extends State<NasaPODViewer> {
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(30),
                                       child: CachedNetworkImage(
-                                        imageUrl: snapshot.data.videoThumb,
+                                        imageUrl: snapshot.data[0].videoThumb,
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -124,7 +121,7 @@ class _NasaPODViewerState extends State<NasaPODViewer> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(30.0),
                                 child: CachedNetworkImage(
-                                  imageUrl: snapshot.data.image,
+                                  imageUrl: snapshot.data[0].image,
                                   fit: BoxFit.fill,
                                 ),
                               ),
@@ -134,7 +131,7 @@ class _NasaPODViewerState extends State<NasaPODViewer> {
                       padding:
                           EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
                       child: Text(
-                        snapshot.data.title,
+                        snapshot.data[0].title,
                         style: kTitleDateTS.copyWith(
                           fontSize: 25.0,
                           fontWeight: FontWeight.w500,
@@ -145,7 +142,7 @@ class _NasaPODViewerState extends State<NasaPODViewer> {
                       padding:
                           EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
                       child: Text(
-                        snapshot.data.date,
+                        snapshot.data[0].date,
                         style: kTitleDateTS.copyWith(
                           fontSize: 18.0,
                         ),
@@ -156,7 +153,7 @@ class _NasaPODViewerState extends State<NasaPODViewer> {
                         padding: EdgeInsets.symmetric(
                             horizontal: 15.0, vertical: 8.0),
                         child: Text(
-                          snapshot.data.exp,
+                          snapshot.data[0].exp,
                           style: kDetailsTS.copyWith(
                             fontWeight: FontWeight.w500,
                           ),
