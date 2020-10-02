@@ -35,11 +35,11 @@ class _MarsWeatherPageState extends State<MarsWeatherPage> {
               child: Column(
                 children: [
                   Text(
-                    '${10}',
+                    '${mars.listDays[index].day}',
                     style: kMarsWeatherPageTS.copyWith(fontSize: 35.0),
                   ),
                   Text(
-                    '${10}\u2103',
+                    '${mars.listDays[index].av}\u2103',
                     style: kMarsWeatherPageTS.copyWith(
                       fontSize: 80.0,
                       fontWeight: FontWeight.w100,
@@ -49,7 +49,7 @@ class _MarsWeatherPageState extends State<MarsWeatherPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        '${10}\u2103',
+                        '${mars.listDays[index].mx}\u2103',
                         style: kMarsWeatherPageTS.copyWith(
                           fontSize: 40.0,
                           fontWeight: FontWeight.normal,
@@ -57,7 +57,7 @@ class _MarsWeatherPageState extends State<MarsWeatherPage> {
                       ),
                       SizedBox(width: 35.0),
                       Text(
-                        '${10}\u2103',
+                        '${mars.listDays[index].mn}\u2103',
                         style: kMarsWeatherPageTS.copyWith(
                           fontSize: 40.0,
                           fontWeight: FontWeight.normal,
@@ -66,7 +66,7 @@ class _MarsWeatherPageState extends State<MarsWeatherPage> {
                     ],
                   ),
                   Text(
-                    'summer',
+                    '${mars.listDays[index].season}',
                     style: kMarsWeatherPageTS.copyWith(
                       fontSize: 30.0,
                       fontWeight: FontWeight.w100,
@@ -78,7 +78,7 @@ class _MarsWeatherPageState extends State<MarsWeatherPage> {
             SizedBox(height: 20.0),
             Container(
               // color: Colors.grey,
-              height: (MediaQuery.of(context).size.height) * 0.20,
+              height: (MediaQuery.of(context).size.height) * 0.22,
               width: (MediaQuery.of(context).size.width),
               child: MarsWMiniCard(func: updateMarsWeather),
             ),

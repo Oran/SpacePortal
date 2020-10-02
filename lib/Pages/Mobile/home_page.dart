@@ -98,7 +98,7 @@ class _HomePageState extends State<HomePage> {
               ),
               Container(
                 child: WeatherCard(
-                  text: '${10}\u2103',
+                  text: '${mars.listDays[0].av}\u2103',
                   onPressed: () =>
                       Navigator.pushNamed(context, kMarsWeather_Page),
                 ),
