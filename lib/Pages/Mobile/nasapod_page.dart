@@ -6,6 +6,7 @@ import 'package:SpacePortal/network/models.dart';
 import 'package:SpacePortal/network/network.dart';
 import 'package:SpacePortal/theme/theme.dart';
 import 'package:cache_image/cache_image.dart';
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -166,7 +167,19 @@ class _NasaPodState extends State<NasaPod> {
             ),
           );
         } else {
-          return Scaffold();
+          return Scaffold(
+            body: Center(
+              child: Container(
+                height: 400.0,
+                width: 400.0,
+                child: FlareActor(
+                  'assets/animations/space.flr',
+                  animation: 'Untitled',
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ),
+          );
         }
       },
     );
