@@ -3,7 +3,6 @@ import 'package:SpacePortal/Pages/Mobile/loading_page.dart';
 import 'package:SpacePortal/network/models.dart';
 import 'package:SpacePortal/network/network.dart';
 import 'package:SpacePortal/theme/theme.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:SpacePortal/constants.dart';
