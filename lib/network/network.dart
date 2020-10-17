@@ -30,11 +30,12 @@ class OldNasaPodData {
     return whiteBalance;
   }
 
-  Future<List<dynamic>> getOldNasaPodData() async {
+  Future<dynamic> getOldNasaPodData() async {
     http.Response response = await http.get(nasaPodUrl);
     var decodedData = jsonDecode(response.body);
     var data = OldNasaData.fromJson(decodedData);
-    var wb = await checkImgColor(data.image);
+    var wb = await checkImgColor(
+        data.mediaType == 'image' ? data.image : data.videoThumb);
     return [data, wb];
   }
 }
@@ -76,7 +77,7 @@ class NasaPODData {
   void getThumbnail(String videoURL) {
     RegExp exp = RegExp(r"embed\/([^#\&\?]{11})");
     String videoID = exp.firstMatch(videoURL).group(1);
-    var videoImage = yt.ThumbnailSet(videoID).highResUrl;
+    var videoImage = yt.ThumbnailSet(videoID).maxResUrl;
     firestore.collection('api').document('nasa_api').updateData({
       'image': videoImage,
       'videoURL': videoURL,
