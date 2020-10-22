@@ -77,7 +77,7 @@ class NasaPODData {
   void getThumbnail(String videoURL) {
     RegExp exp = RegExp(r"embed\/([^#\&\?]{11})");
     String videoID = exp.firstMatch(videoURL).group(1);
-    var videoImage = yt.ThumbnailSet(videoID).maxResUrl;
+    var videoImage = yt.ThumbnailSet(videoID).highResUrl;
     firestore.collection('api').document('nasa_api').updateData({
       'image': videoImage,
       'videoURL': videoURL,
