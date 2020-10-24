@@ -71,14 +71,14 @@ TextStyle kSpaceXTS = GoogleFonts.roboto(
 
 TextStyle kWeatherCardTS = GoogleFonts.roboto(
   fontSize: 23.0,
-  color: kPrimaryBlack,
+  color: Colors.black,
   letterSpacing: 0.8,
   fontWeight: FontWeight.w800,
 );
 
 TextStyle kMarsWeatherPageTS = GoogleFonts.roboto(
   fontSize: 23.0,
-  color: kPrimaryBlack,
+  color: kPrimaryWhite,
   letterSpacing: 0.8,
 );
 
