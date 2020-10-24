@@ -24,7 +24,7 @@ class _MarsWeatherPageState extends State<MarsWeatherPage> {
     return Scaffold(
       body: Container(
         padding: EdgeInsets.only(top: 25.0),
-        color: Colors.white,
+        color: Color(0xff0A0F2E),
         height: (MediaQuery.of(context).size.height),
         width: (MediaQuery.of(context).size.width),
         child: Column(
@@ -75,17 +75,18 @@ class _MarsWeatherPageState extends State<MarsWeatherPage> {
                 ],
               ),
             ),
-            SizedBox(height: 20.0),
             Container(
-              // color: Colors.grey,
+              // color: Colors.red,
+              height: (MediaQuery.of(context).size.height) * 0.42,
+              width: (MediaQuery.of(context).size.width),
+              child: null, //TODO: Add wind data here.
+            ),
+            // SizedBox(height: 20.0),
+            Container(
+              color: Colors.transparent,
               height: (MediaQuery.of(context).size.height) * 0.22,
               width: (MediaQuery.of(context).size.width),
               child: MarsWMiniCard(func: updateMarsWeather),
-            ),
-            Container(
-              // color: Colors.redAccent[100],
-              height: (MediaQuery.of(context).size.height) * 0.34,
-              width: (MediaQuery.of(context).size.width),
             ),
           ],
         ),
