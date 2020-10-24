@@ -22,13 +22,13 @@ class MarsWMiniCard extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30.0),
-                color: Colors.white,
+                color: Colors.white.withOpacity(0.7),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 2,
-                    blurRadius: 10,
-                    offset: Offset(0, 0), // changes position of shadow
+                    color: Colors.black87.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 8,
+                    offset: Offset(1, 1), // changes position of shadow
                   ),
                 ],
               ),
@@ -39,6 +39,7 @@ class MarsWMiniCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    //TODO: Change this Icon, Maybe add Animation
                     Icon(
                       Icons.ac_unit,
                       size: 40.0,
