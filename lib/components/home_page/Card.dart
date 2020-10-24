@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:SpacePortal/constants.dart';
 
@@ -54,10 +55,11 @@ class DCard extends StatelessWidget {
                         width: 300.0,
                         alignment: Alignment.bottomCenter,
                         child: Center(
-                          child: Text(
+                          child: AutoSizeText(
                             text,
                             textAlign: TextAlign.center,
                             style: kCardTS,
+                            maxLines: 3,
                           ),
                         ),
                       ),

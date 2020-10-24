@@ -3,7 +3,6 @@ import 'package:SpacePortal/Pages/Mobile/loading_page.dart';
 import 'package:SpacePortal/network/models.dart';
 import 'package:SpacePortal/network/network.dart';
 import 'package:SpacePortal/theme/theme.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:SpacePortal/constants.dart';
@@ -55,86 +54,54 @@ class _MyAppState extends State<MyApp> {
       DeviceOrientation.portraitUp, // forces potrait mode for devices
       DeviceOrientation.portraitDown
     ]);
-    return kIsWeb
-        ? MultiProvider(
-            providers: [
-              StreamProvider<FSData>.value(
-                value: NasaPODData().getFSData(),
-                initialData: FSData(
-                  image: kPlaceholderImage,
-                ),
-              ),
-              FutureProvider<List<dynamic>>.value(
-                value: SpaceXData().getData(),
-                catchError: (context, error) => [],
-              ),
-              FutureProvider<MarsWeather>.value(
-                value: MarsWeatherAPI().getMarsWeather(),
-                initialData: MarsWeather(listDays: []),
-              ),
-            ],
-            child: MaterialApp(
-              theme: themeData,
-              debugShowCheckedModeBanner: false,
-              initialRoute: kLoading_Page,
-              routes: {
-                kHome_Page: (context) => HomePage(),
-                kNASAPod_Page: (context) => NasaPod(),
-                kSpaceX_Page: (context) => SpaceX(),
-                kMars_Page: (context) => Mars(),
-                kLoading_Page: (context) => LoadingPage(),
-                kNoConnection_Page: (context) => NoConnectionPage(),
-              },
-            ),
-          )
-        : FutureBuilder(
-            future: checkConnection(),
-            builder: (context, snapshot) =>
-                snapshot.connectionState == ConnectionState.done
-                    ? MultiProvider(
-                        providers: [
-                          StreamProvider<FSData>.value(
-                            value: NasaPODData().getFSData(),
-                            initialData: FSData(
-                              image: kPlaceholderImage,
-                            ),
-                          ),
-                          FutureProvider<List<dynamic>>.value(
-                            value: SpaceXData().getData(),
-                            catchError: (context, error) => [],
-                          ),
-                          FutureProvider<MarsWeather>.value(
-                            value: MarsWeatherAPI().getMarsWeather(),
-                            initialData: MarsWeather(listDays: []),
-                          ),
-                        ],
-                        child: MaterialApp(
-                          theme: themeData,
-                          debugShowCheckedModeBanner: false,
-                          initialRoute: snapshot.data == cs.done
-                              ? kLoading_Page
-                              : kNoConnection_Page,
-                          routes: {
-                            kHome_Page: (context) => HomePage(),
-                            kNASAPod_Page: (context) => NasaPod(),
-                            kSpaceX_Page: (context) => SpaceX(),
-                            kMars_Page: (context) => Mars(),
-                            kLoading_Page: (context) => LoadingPage(),
-                            kNoConnection_Page: (context) => NoConnectionPage(),
-                          },
-                        ),
-                      )
-                    : Center(
-                        child: Container(
-                          height: 400.0,
-                          width: 400.0,
-                          child: FlareActor(
-                            'assets/animations/space.flr',
-                            animation: 'Untitled',
-                            fit: BoxFit.fill,
-                          ),
-                        ),
+    return FutureBuilder(
+      future: checkConnection(),
+      builder: (context, snapshot) =>
+          snapshot.connectionState == ConnectionState.done
+              ? MultiProvider(
+                  providers: [
+                    StreamProvider<FSData>.value(
+                      value: NasaPODData().getFSData(),
+                      initialData: FSData(
+                        image: kPlaceholderImage,
                       ),
-          );
+                    ),
+                    FutureProvider<List<dynamic>>.value(
+                      value: SpaceXData().getData(),
+                      catchError: (context, error) => [],
+                    ),
+                    FutureProvider<MarsWeather>.value(
+                      value: MarsWeatherAPI().getMarsWeather(),
+                      initialData: MarsWeather(listDays: []),
+                    ),
+                  ],
+                  child: MaterialApp(
+                    theme: themeData,
+                    debugShowCheckedModeBanner: false,
+                    initialRoute: snapshot.data == cs.done
+                        ? kLoading_Page
+                        : kNoConnection_Page,
+                    routes: {
+                      kHome_Page: (context) => HomePage(),
+                      kNASAPod_Page: (context) => NasaPod(),
+                      kSpaceX_Page: (context) => SpaceX(),
+                      kMars_Page: (context) => Mars(),
+                      kLoading_Page: (context) => LoadingPage(),
+                      kNoConnection_Page: (context) => NoConnectionPage(),
+                    },
+                  ),
+                )
+              : Center(
+                  child: Container(
+                    height: 400.0,
+                    width: 400.0,
+                    child: FlareActor(
+                      'assets/animations/space.flr',
+                      animation: 'Untitled',
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ),
+    );
   }
 }

@@ -30,11 +30,12 @@ class OldNasaPodData {
     return whiteBalance;
   }
 
-  Future<List<dynamic>> getOldNasaPodData() async {
+  Future<dynamic> getOldNasaPodData() async {
     http.Response response = await http.get(nasaPodUrl);
     var decodedData = jsonDecode(response.body);
     var data = OldNasaData.fromJson(decodedData);
-    var wb = await checkImgColor(data.image);
+    var wb = await checkImgColor(
+        data.mediaType == 'image' ? data.image : data.videoThumb);
     return [data, wb];
   }
 }
