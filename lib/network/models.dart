@@ -22,13 +22,15 @@ class FSData {
 
 class MarsWeather {
   var listDays;
+  var numOfDays;
 
-  MarsWeather({this.listDays});
+  MarsWeather({this.listDays, this.numOfDays});
 
   factory MarsWeather.fromJson(Map<String, dynamic> map) {
     return MarsWeather(
       listDays:
           map['sol_keys'].map((day) => SolDays.fromMap(map[day], day)).toList(),
+      numOfDays: map['sol_keys'].length,
     );
   }
 }
@@ -55,6 +57,10 @@ class SolDays {
       var result = (temp - 32) * 5 / 9;
       return result.round();
     }
+
+    //TODO: Add wind speed and wind direction
+    // wind direction = map['WD']['most_common']
+    // wind speed = map['HWS']['av', 'mn', 'mx']
 
     return SolDays(
       day: d,
