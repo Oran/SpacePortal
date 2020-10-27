@@ -23,7 +23,6 @@ class _MarsWeatherPageState extends State<MarsWeatherPage> {
   @override
   Widget build(BuildContext context) {
     var mars = Provider.of<MarsWeather>(context);
-    print(mars.listDays[index].wdCompassDegree);
     return Scaffold(
       body: Container(
         padding: EdgeInsets.only(top: 25.0),
@@ -80,9 +79,12 @@ class _MarsWeatherPageState extends State<MarsWeatherPage> {
             ),
             SizedBox(height: 20.0),
             Container(
-              // color: Colors.red,
-              height: (MediaQuery.of(context).size.height) * 0.35,
-              width: (MediaQuery.of(context).size.width),
+              decoration: BoxDecoration(
+                //color: Colors.red,
+                shape: BoxShape.circle,
+              ),
+              height: (MediaQuery.of(context).size.height) * 0.34,
+              width: (MediaQuery.of(context).size.width) * 0.591,
               child: CompassCircle(
                 child: AnimatedRotation(
                   angle: mars.listDays[index].wdCompassDegree,
