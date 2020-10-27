@@ -23,7 +23,7 @@ class DCard extends StatelessWidget {
             height: (MediaQuery.of(context).size.height) * 0.30,
             width: (MediaQuery.of(context).size.width) * 0.90,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30.0),
+              borderRadius: BorderRadius.circular(20.0),
               color: Colors.black,
               boxShadow: [
                 BoxShadow(
@@ -35,7 +35,7 @@ class DCard extends StatelessWidget {
               ],
             ),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(30.0),
+              borderRadius: BorderRadius.circular(20.0),
               child: Container(
                 child: Stack(
                   children: [
@@ -91,10 +91,10 @@ class WeatherCard extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.all(20.0),
         child: Container(
-          height: 200.0,
-          width: 200.0,
+          height: 150.0,
+          width: 400.0,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30.0),
+            borderRadius: BorderRadius.circular(20.0),
             color: Colors.black,
             boxShadow: [
               BoxShadow(
@@ -106,7 +106,7 @@ class WeatherCard extends StatelessWidget {
             ],
           ),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(30.0),
+            borderRadius: BorderRadius.circular(20.0),
             child: Center(
               child: Stack(
                 children: [
@@ -118,7 +118,9 @@ class WeatherCard extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  Center(
+                  Positioned(
+                    top: 15.0,
+                    left: 15.0,
                     child: Text(
                       text,
                       style: kCardTS.copyWith(
@@ -128,12 +130,12 @@ class WeatherCard extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    top: 150.0,
-                    left: 28.0,
+                    top: 100.0,
+                    left: 155.0,
                     child: Text(
                       'Mars Weather',
                       style: kCardTS.copyWith(
-                        fontSize: 20.0,
+                        fontSize: 26.0,
                       ),
                     ),
                   ),
