@@ -1,6 +1,8 @@
+import 'package:SpacePortal/components/mars_weather_page/compass.dart';
 import 'package:SpacePortal/components/mars_weather_page/mars_weather_minicard.dart';
 import 'package:SpacePortal/constants.dart';
 import 'package:SpacePortal/network/models.dart';
+import 'package:animated_rotation/animated_rotation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,6 +23,7 @@ class _MarsWeatherPageState extends State<MarsWeatherPage> {
   @override
   Widget build(BuildContext context) {
     var mars = Provider.of<MarsWeather>(context);
+    print(mars.listDays[index].wdCompassDegree);
     return Scaffold(
       body: Container(
         padding: EdgeInsets.only(top: 25.0),
@@ -75,13 +78,26 @@ class _MarsWeatherPageState extends State<MarsWeatherPage> {
                 ],
               ),
             ),
+            SizedBox(height: 20.0),
             Container(
               // color: Colors.red,
-              height: (MediaQuery.of(context).size.height) * 0.42,
+              height: (MediaQuery.of(context).size.height) * 0.35,
               width: (MediaQuery.of(context).size.width),
-              child: null, //TODO: Add wind data here.
+              child: CompassCircle(
+                child: AnimatedRotation(
+                  angle: mars.listDays[index].wdCompassDegree,
+                  curve: Curves.linear,
+                  duration: Duration(milliseconds: 800),
+                  child: Icon(
+                    //TODO: Choose another Icon
+                    Icons.navigation_rounded,
+                    color: Colors.white,
+                    size: 80.0,
+                  ),
+                ),
+              ),
             ),
-            // SizedBox(height: 20.0),
+            SizedBox(height: 20.0),
             Container(
               color: Colors.transparent,
               height: (MediaQuery.of(context).size.height) * 0.22,
