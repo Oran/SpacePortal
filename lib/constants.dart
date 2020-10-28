@@ -57,10 +57,10 @@ TextStyle kMarsStatsStyle = GoogleFonts.notoSans(
   letterSpacing: 0.8,
 );
 
-TextStyle kTitleLargeTS = GoogleFonts.notoSans(
-  fontSize: 45.0,
-  fontWeight: FontWeight.w600,
-  letterSpacing: 0.8,
+TextStyle kTitleLargeTS = GoogleFonts.lobster(
+  fontSize: 55.0,
+  fontWeight: FontWeight.w800,
+  letterSpacing: 1.2,
 );
 
 TextStyle kSpaceXTS = GoogleFonts.roboto(
