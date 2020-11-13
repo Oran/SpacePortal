@@ -1,5 +1,4 @@
 import 'package:SpacePortal/constants.dart';
-import 'package:flutter/material.dart';
 
 class FSData {
   FSData({
