@@ -96,15 +96,15 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              mars.numOfDays == 0
-                  ? Container()
-                  : Container(
+              mars.weatherData
+                  ? Container(
                       child: WeatherCard(
                         text: '${mars.listDays[0].av}\u2103',
                         onPressed: () =>
                             Navigator.pushNamed(context, kMarsWeather_Page),
                       ),
-                    ),
+                    )
+                  : Container(),
             ],
           ),
         ),
