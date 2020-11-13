@@ -87,7 +87,7 @@ class _MarsWeatherPageState extends State<MarsWeatherPage> {
               width: (MediaQuery.of(context).size.width) * 0.591,
               child: CompassCircle(
                 child: AnimatedRotation(
-                  angle: mars.listDays[index].wdCompassDegree,
+                  angle: mars.listDays[index].wd,
                   curve: Curves.linear,
                   duration: Duration(milliseconds: 800),
                   child: Icon(
