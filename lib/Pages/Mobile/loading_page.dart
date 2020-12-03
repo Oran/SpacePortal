@@ -13,7 +13,7 @@ class LoadingPage extends StatelessWidget {
         NasaPODData().getData(),
         SpaceXData().getData(),
         MarsWeatherAPI().getMarsWeather(),
-        Future.delayed(Duration(seconds: 3)),
+        Future.delayed(Duration(milliseconds: 1500)),
       ]),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {

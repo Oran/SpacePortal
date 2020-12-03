@@ -8,6 +8,7 @@ const String kSpaceX_Page = 'spacex_page';
 const String kMars_Page = 'mars_page';
 const String kNoConnection_Page = 'noConnection_page';
 const String kLoading_Page = 'loading_page';
+const String kMarsWeather_Page = 'mars_weather_page';
 
 // New Colors
 const Color kPrimaryWhite = Colors.white;
@@ -56,23 +57,29 @@ TextStyle kMarsStatsStyle = GoogleFonts.notoSans(
   letterSpacing: 0.8,
 );
 
-TextStyle kTitleLargeTS = GoogleFonts.notoSans(
-  fontSize: 45.0,
-  fontWeight: FontWeight.w600,
-  letterSpacing: 0.8,
+TextStyle kTitleLargeTS = GoogleFonts.lobster(
+  fontSize: 55.0,
+  fontWeight: FontWeight.w800,
+  letterSpacing: 1.2,
 );
 
-TextStyle kSpaceXTS = GoogleFonts.notoSans(
+TextStyle kSpaceXTS = GoogleFonts.roboto(
   fontSize: 16.0,
   color: kPrimaryBlack,
   letterSpacing: 0.8,
 );
 
-TextStyle kWeatherCardTS = GoogleFonts.notoSans(
+TextStyle kWeatherCardTS = GoogleFonts.roboto(
   fontSize: 23.0,
-  color: kPrimaryBlack,
+  color: Colors.black,
   letterSpacing: 0.8,
   fontWeight: FontWeight.w800,
+);
+
+TextStyle kMarsWeatherPageTS = GoogleFonts.roboto(
+  fontSize: 23.0,
+  color: kPrimaryWhite,
+  letterSpacing: 0.8,
 );
 
 TextStyle kMarsRoverImageStatsTS = GoogleFonts.notoSans(
@@ -81,7 +88,7 @@ TextStyle kMarsRoverImageStatsTS = GoogleFonts.notoSans(
   letterSpacing: 0.8,
 );
 
-TextStyle kCardTS = GoogleFonts.notoSans(
+TextStyle kCardTS = GoogleFonts.roboto(
   fontSize: 25.0,
   color: Colors.white,
   letterSpacing: 1,

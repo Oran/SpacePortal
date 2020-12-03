@@ -168,7 +168,6 @@ class MarsWeatherAPI {
     http.Response response = await http.get(url);
     var decodedData = jsonDecode(response.body);
     var mars = MarsWeather.fromJson(decodedData);
-    // print(mars.listDays[0].av);
     return mars;
   }
 }

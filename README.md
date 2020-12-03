@@ -2,7 +2,7 @@
 
 ## ChangeLog
 
-### v0.0.1-1pre
+### v0.0.1+1pre
 * **Alpha version**
 * Nasa Picture of the day
 * Mars weather info

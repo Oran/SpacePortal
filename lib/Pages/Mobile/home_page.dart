@@ -1,7 +1,6 @@
-import 'package:SpacePortal/components/home_page/mars_weather_card.dart';
+import 'package:SpacePortal/components/home_page/Card.dart';
 import 'package:SpacePortal/network/models.dart';
 import 'package:flutter/material.dart';
-import 'package:SpacePortal/components/home_page/card.dart';
 import 'package:SpacePortal/constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:provider/provider.dart';
@@ -45,6 +44,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<FSData>(context);
+    var mars = Provider.of<MarsWeather>(context);
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -60,7 +60,8 @@ class _HomePageState extends State<HomePage> {
                   style: kTitleLargeTS,
                 ),
               ),
-              Expanded(
+              Container(
+                height: (MediaQuery.of(context).size.height) * 0.35,
                 child: PageView(
                   controller: _pageController,
                   scrollDirection: Axis.horizontal,
@@ -95,26 +96,19 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.only(left: 15.0),
-                      child: Text(
-                        'Mars Weather',
-                        style: kWeatherCardTS,
-                        textScaleFactor: 1.1,
+              mars.weatherData
+                  ? Container(
+                      child: WeatherCard(
+                        text: '${mars.listDays[0].av}\u2103',
+                        onPressed: () =>
+                            Navigator.pushNamed(context, kMarsWeather_Page),
+                      ),
+                    )
+                  : Container(
+                      child: Center(
+                        child: Text("Mars weather data is not available"),
                       ),
                     ),
-                    Container(
-                      height: (MediaQuery.of(context).size.height) * 0.49,
-                      width: (MediaQuery.of(context).size.width),
-                      child: MarsWeatherCard(),
-                    ),
-                  ],
-                ),
-              ),
             ],
           ),
         ),
