@@ -20,8 +20,6 @@ dependencies:
   flutter_svg: ^0.19.1
   google_fonts: ^1.1.0
   http: ^0.12.1
-  google_fonts: ^1.1.0
-  http: ^0.12.1
   image: ^2.1.14
   provider: ^4.3.1
   url_launcher: ^5.5.0
