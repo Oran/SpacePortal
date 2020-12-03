@@ -3,9 +3,42 @@ import 'dart:convert';
 import 'package:SpacePortal/network/models.dart';
 import 'package:http/http.dart' as http;
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:image/image.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart' as yt;
 
 final String _apiKey = 'pc7RPSAONSoBlJTGozeFT1EcaDa0mwXoD17XsKd3';
+
+String parseString(String dateTime) {
+  RegExp exp = RegExp(r"(\d\d\d\d-\d\d-\d\d)");
+  String date = exp.firstMatch(dateTime).group(1);
+  return date;
+}
+
+String nasaPodUrl =
+    'https://api.nasa.gov/planetary/apod?api_key=$_apiKey&date=${parseString(DateTime.now().toString())}';
+
+class OldNasaPodData {
+  Firestore firestore = Firestore.instance;
+  void setURL(String date) {
+    nasaPodUrl =
+        'https://api.nasa.gov/planetary/apod?api_key=$_apiKey&date=$date';
+  }
+
+  Future checkImgColor(String url) async {
+    http.Response response = await http.get(url);
+    int whiteBalance = decodeImage(response.bodyBytes).getWhiteBalance();
+    return whiteBalance;
+  }
+
+  Future<dynamic> getOldNasaPodData() async {
+    http.Response response = await http.get(nasaPodUrl);
+    var decodedData = jsonDecode(response.body);
+    var data = OldNasaData.fromJson(decodedData);
+    var wb = await checkImgColor(
+        data.mediaType == 'image' ? data.image : data.videoThumb);
+    return [data, wb];
+  }
+}
 
 class NasaPODData {
   static String url = 'https://api.nasa.gov/planetary/apod?api_key=$_apiKey';
@@ -44,11 +77,17 @@ class NasaPODData {
   void getThumbnail(String videoURL) {
     RegExp exp = RegExp(r"embed\/([^#\&\?]{11})");
     String videoID = exp.firstMatch(videoURL).group(1);
-    var videoImage = yt.ThumbnailSet(videoID).maxResUrl;
+    var videoImage = yt.ThumbnailSet(videoID).highResUrl;
     firestore.collection('api').document('nasa_api').updateData({
       'image': videoImage,
       'videoURL': videoURL,
     });
+  }
+
+  Future checkImgColor(String url) async {
+    http.Response response = await http.get(url);
+    int whiteBalance = decodeImage(response.bodyBytes).getWhiteBalance();
+    return whiteBalance;
   }
 
   Stream<FSData> getFSData() {
@@ -84,21 +123,21 @@ final List<String> rover = [
   'spirit',
 ];
 
-String url =
+String marsUrl =
     'https://api.nasa.gov/mars-photos/api/v1/rovers/${rover[1]}/photos?sol=100&camera=${cam[6]}&api_key=$_apiKey';
 
 class NasaMarsData {
   void printURL() {
-    print(url);
+    print(marsUrl);
   }
 
   void setURL(camIn, roverIn, solIn) {
-    url =
+    marsUrl =
         'https://api.nasa.gov/mars-photos/api/v1/rovers/$roverIn/photos?sol=$solIn&camera=$camIn&api_key=$_apiKey';
   }
 
   Future getMarsData() async {
-    http.Response response = await http.get(url);
+    http.Response response = await http.get(marsUrl);
     var decodedData = jsonDecode(response.body);
     return decodedData;
   }

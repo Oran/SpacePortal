@@ -1,4 +1,5 @@
 import 'package:SpacePortal/constants.dart';
+import 'package:youtube_explode_dart/youtube_explode_dart.dart' as yt;
 
 class FSData {
   FSData({
@@ -18,6 +19,46 @@ class FSData {
   String exp;
   String testf;
   String videoURL;
+}
+
+class OldNasaData {
+  OldNasaData({
+    this.title = '',
+    this.date = '',
+    this.exp = '',
+    this.image = kPlaceholderImage,
+    this.mediaType = '',
+    this.testf = '',
+    this.videoURL = '',
+    this.videoThumb = '',
+  });
+  String title;
+  String date;
+  String image;
+  String mediaType;
+  String exp;
+  String testf;
+  String videoURL;
+  String videoThumb;
+
+  factory OldNasaData.fromJson(Map<String, dynamic> map) {
+    String getThumbnail(String videoURL) {
+      RegExp exp = RegExp(r"embed\/([^#\&\?]{11})");
+      String videoID = exp.firstMatch(videoURL).group(1);
+      var videoImage = yt.ThumbnailSet(videoID).highResUrl;
+      return videoImage;
+    }
+
+    return OldNasaData(
+      title: map['title'],
+      date: map['date'],
+      image: map['url'],
+      mediaType: map['media_type'],
+      exp: map['explanation'],
+      videoURL: map['url'],
+      videoThumb: map['media_type'] == 'video' ? getThumbnail(map['url']) : '',
+    );
+  }
 }
 
 class MarsWeather {
