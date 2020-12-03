@@ -89,6 +89,7 @@ class _MyAppState extends State<MyApp> {
                       kMars_Page: (context) => Mars(),
                       kLoading_Page: (context) => LoadingPage(),
                       kNoConnection_Page: (context) => NoConnectionPage(),
+                      kMarsWeather_Page: (context) => MarsWeatherPage(),
                     },
                   ),
                 )
