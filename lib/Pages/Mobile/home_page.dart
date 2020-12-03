@@ -104,7 +104,11 @@ class _HomePageState extends State<HomePage> {
                             Navigator.pushNamed(context, kMarsWeather_Page),
                       ),
                     )
-                  : Container(),
+                  : Container(
+                      child: Center(
+                        child: Text("Mars weather data is not available"),
+                      ),
+                    ),
             ],
           ),
         ),
