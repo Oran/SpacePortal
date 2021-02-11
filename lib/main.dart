@@ -7,6 +7,7 @@ import 'package:SpacePortal/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:SpacePortal/constants.dart';
+import 'package:image/image.dart';
 
 import 'package:provider/provider.dart';
 import 'package:flare_flutter/flare_actor.dart';
@@ -55,6 +56,10 @@ class _MyAppState extends State<MyApp> {
       DeviceOrientation.portraitUp, // forces potrait mode for devices
       DeviceOrientation.portraitDown
     ]);
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarIconBrightness: Brightness.dark,
+      statusBarColor: Colors.transparent,
+    ));
     return FutureBuilder(
       future: checkConnection(),
       builder: (context, snapshot) =>
