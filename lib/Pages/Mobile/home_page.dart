@@ -87,6 +87,14 @@ class _HomePageState extends State<HomePage> {
                         );
                       },
                     ),
+                    DCard(
+                      image: Image.asset(
+                        'assets/images/mars_rover.jpg',
+                        fit: BoxFit.cover,
+                      ),
+                      text: 'Mars Rover Images',
+                      onPressed: () => Navigator.pushNamed(context, kMars_Page),
+                    ),
                   ],
                 ),
               ),
