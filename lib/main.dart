@@ -1,25 +1,24 @@
 import 'dart:io';
 import 'package:SpacePortal/Pages/Mobile/loading_page.dart';
 import 'package:SpacePortal/Pages/Mobile/mars_weather_page.dart';
-import 'package:SpacePortal/network/models.dart';
-import 'package:SpacePortal/network/network.dart';
+//import 'package:SpacePortal/network/models.dart';
+//import 'package:SpacePortal/network/network.dart';
 import 'package:SpacePortal/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:SpacePortal/constants.dart';
-import 'package:image/image.dart';
-
-import 'package:provider/provider.dart';
 import 'package:flare_flutter/flare_actor.dart';
-
 import 'package:SpacePortal/Pages/Mobile/home_page.dart';
 import 'package:SpacePortal/Pages/Mobile/mars_page.dart';
 import 'package:SpacePortal/Pages/Mobile/noConnection_page.dart';
 import 'package:SpacePortal/Pages/Mobile/nasapod_page.dart';
 import 'package:SpacePortal/Pages/Mobile/spacex_page.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ProviderScope(child: MyApp()),
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -64,39 +63,21 @@ class _MyAppState extends State<MyApp> {
       future: checkConnection(),
       builder: (context, snapshot) =>
           snapshot.connectionState == ConnectionState.done
-              ? MultiProvider(
-                  providers: [
-                    StreamProvider<FSData>.value(
-                      value: NasaPODData().getFSData(),
-                      initialData: FSData(
-                        image: kPlaceholderImage,
-                      ),
-                    ),
-                    FutureProvider<List<dynamic>>.value(
-                      value: SpaceXData().getData(),
-                      catchError: (context, error) => [],
-                    ),
-                    FutureProvider<MarsWeather>.value(
-                      value: MarsWeatherAPI().getMarsWeather(),
-                      initialData: MarsWeather(listDays: []),
-                    ),
-                  ],
-                  child: MaterialApp(
-                    theme: themeData,
-                    debugShowCheckedModeBanner: false,
-                    initialRoute: snapshot.data == cs.done
-                        ? kLoading_Page
-                        : kNoConnection_Page,
-                    routes: {
-                      kHome_Page: (context) => HomePage(),
-                      kNASAPod_Page: (context) => NasaPod(),
-                      kSpaceX_Page: (context) => SpaceX(),
-                      kMars_Page: (context) => Mars(),
-                      kLoading_Page: (context) => LoadingPage(),
-                      kNoConnection_Page: (context) => NoConnectionPage(),
-                      kMarsWeather_Page: (context) => MarsWeatherPage(),
-                    },
-                  ),
+              ? MaterialApp(
+                  theme: themeData,
+                  debugShowCheckedModeBanner: false,
+                  initialRoute: snapshot.data == cs.done
+                      ? kLoading_Page
+                      : kNoConnection_Page,
+                  routes: {
+                    kHome_Page: (context) => HomePage(),
+                    kNASAPod_Page: (context) => NasaPod(),
+                    //kSpaceX_Page: (context) => SpaceX(),
+                    kMars_Page: (context) => Mars(),
+                    kLoading_Page: (context) => LoadingPage(),
+                    kNoConnection_Page: (context) => NoConnectionPage(),
+                    //kMarsWeather_Page: (context) => MarsWeatherPage(),
+                  },
                 )
               : Center(
                   child: Container(

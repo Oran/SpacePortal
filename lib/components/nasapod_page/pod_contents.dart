@@ -1,14 +1,16 @@
 import 'package:SpacePortal/constants.dart';
 import 'package:SpacePortal/network/models.dart';
+import 'package:SpacePortal/providers.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class PodContents extends StatelessWidget {
+class PodContents extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
-    var data = Provider.of<FSData>(context);
+  Widget build(BuildContext context, ScopedReader watch) {
+    // var data = Provider.of<FSData>(context);
+    var apodProviderData = watch(apodProvider);
     var orientation = (MediaQuery.of(context).orientation);
     return SliverList(
       delegate: SliverChildListDelegate([
@@ -16,13 +18,13 @@ class PodContents extends StatelessWidget {
           height: orientation == Orientation.landscape ? 800.0 : null,
           padding: EdgeInsets.all(10),
           // color: Colors.green,
-          child: data.mediaType == 'video'
+          child: apodProviderData.data.value.mediaType == 'video'
               ? Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8.0),
                   child: GestureDetector(
                     onTap: () {
                       launch(
-                        data.videoURL,
+                        apodProviderData.data.value.videoURL,
                         forceWebView: true,
                         enableJavaScript: true,
                       );
@@ -39,7 +41,7 @@ class PodContents extends StatelessWidget {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(30),
                           child: CachedNetworkImage(
-                            imageUrl: data.image,
+                            imageUrl: apodProviderData.data.value.image,
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -56,15 +58,14 @@ class PodContents extends StatelessWidget {
                         color: Colors.grey.withOpacity(0.5),
                         spreadRadius: 10,
                         blurRadius: 10,
-                        offset:
-                            Offset(0, 3), // changes position of shadow
+                        offset: Offset(0, 3), // changes position of shadow
                       ),
                     ],
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(30.0),
                     child: CachedNetworkImage(
-                      imageUrl: data.image,
+                      imageUrl: apodProviderData.data.value.image,
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -73,7 +74,7 @@ class PodContents extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
           child: Text(
-            data.title,
+            apodProviderData.data.value.title,
             style: kTitleDateTS.copyWith(
               fontSize: 25.0,
               fontWeight: FontWeight.w500,
@@ -83,7 +84,7 @@ class PodContents extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
           child: Text(
-            data.date,
+            apodProviderData.data.value.date,
             style: kTitleDateTS.copyWith(
               fontSize: 18.0,
             ),
@@ -91,10 +92,9 @@ class PodContents extends StatelessWidget {
         ),
         Container(
           child: Padding(
-            padding:
-                EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
+            padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
             child: Text(
-              data.exp,
+              apodProviderData.data.value.exp,
               style: kDetailsTS.copyWith(
                 fontWeight: FontWeight.w500,
               ),

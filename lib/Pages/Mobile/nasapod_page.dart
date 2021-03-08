@@ -4,22 +4,20 @@ import 'package:SpacePortal/components/nasapod_page/pod_contents.dart';
 import 'package:SpacePortal/constants.dart';
 import 'package:SpacePortal/network/models.dart';
 import 'package:SpacePortal/network/network.dart';
+import 'package:SpacePortal/providers.dart';
 import 'package:SpacePortal/theme/theme.dart';
 import 'package:cache_image/cache_image.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class NasaPod extends StatefulWidget {
-  @override
-  _NasaPodState createState() => _NasaPodState();
-}
-
+//import 'package:provider/provider.dart';
 enum wb { white, black }
 
-class _NasaPodState extends State<NasaPod> {
-  var bulll;
+// ignore: must_be_immutable
+class NasaPod extends ConsumerWidget {
+  wb bulll;
 
   String parseString(String dateTime) {
     RegExp exp = RegExp(r"(\d\d\d\d-\d\d-\d\d)");
@@ -64,10 +62,11 @@ class _NasaPodState extends State<NasaPod> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    var data = Provider.of<FSData>(context);
+  Widget build(BuildContext context, ScopedReader watch) {
+    //var data = Provider.of<FSData>(context);
+    var apodProviderData = watch(apodProvider);
     return FutureBuilder(
-      future: NasaPODData().checkImgColor(data.image),
+      future: NasaPODData().checkImgColor(apodProviderData.data.value.image),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return Scaffold(
@@ -88,7 +87,8 @@ class _NasaPodState extends State<NasaPod> {
                         width: (MediaQuery.of(context).size.width),
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: CacheImage(data.image),
+                            image:
+                                CacheImage(apodProviderData.data.value.image),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -110,7 +110,8 @@ class _NasaPodState extends State<NasaPod> {
                             width: (MediaQuery.of(context).size.width),
                             decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: CacheImage(data.image),
+                                image: CacheImage(
+                                    apodProviderData.data.value.image),
                                 fit: BoxFit.cover,
                               ),
                             ),
