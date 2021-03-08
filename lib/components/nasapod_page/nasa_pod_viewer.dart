@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:SpacePortal/constants.dart';
 import 'package:SpacePortal/network/network.dart';
 import 'package:cache_image/cache_image.dart';

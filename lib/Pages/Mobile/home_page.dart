@@ -43,8 +43,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    //var data = Provider.of<FSData>(context);
-    // var mars = Provider.of<MarsWeather>(context);
     return Scaffold(
       body: Container(
         width: double.infinity,

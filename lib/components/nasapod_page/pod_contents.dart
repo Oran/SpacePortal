@@ -1,5 +1,4 @@
 import 'package:SpacePortal/constants.dart';
-import 'package:SpacePortal/network/models.dart';
 import 'package:SpacePortal/providers.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
