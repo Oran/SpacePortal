@@ -21,7 +21,7 @@ class DCard extends StatelessWidget {
         padding: EdgeInsets.all(8.0),
         child: Center(
           child: Container(
-            height: (MediaQuery.of(context).size.height) * 0.30,
+            height: (MediaQuery.of(context).size.height) * 0.20,
             width: (MediaQuery.of(context).size.width) * 0.90,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.0),
@@ -46,8 +46,8 @@ class DCard extends StatelessWidget {
                       child: image,
                     ),
                     Positioned(
-                      top: 70.0,
-                      left: 10.0,
+                      top: 45.0,
+                      left: 0.0,
                       child: Container(
                         // color: Colors.white,
                         padding: EdgeInsets.all(15.0),

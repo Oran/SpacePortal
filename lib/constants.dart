@@ -89,7 +89,7 @@ TextStyle kMarsRoverImageStatsTS = GoogleFonts.notoSans(
 );
 
 TextStyle kCardTS = GoogleFonts.roboto(
-  fontSize: 25.0,
+  fontSize: 20.0,
   color: Colors.white,
   letterSpacing: 1,
   fontWeight: FontWeight.w600,
