@@ -1,3 +1,4 @@
+import 'package:SpacePortal/Pages/test_page.dart';
 import 'package:SpacePortal/components/home_page/Card.dart';
 import 'package:SpacePortal/providers.dart';
 import 'package:flutter/material.dart';
@@ -92,6 +93,15 @@ class _HomePageState extends State<HomePage> {
                       ),
                       text: 'Mars Rover Images',
                       onPressed: () => Navigator.pushNamed(context, kMars_Page),
+                    ),
+                    DCard(
+                      image: Container(color: Colors.black),
+                      text: 'TEST PAGE',
+                      onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => TestPage(),
+                        ),
+                      ),
                     ),
                   ],
                 ),

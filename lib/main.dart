@@ -1,14 +1,14 @@
 import 'dart:io';
-import 'package:SpacePortal/Pages/Mobile/loading_page.dart';
+import 'package:SpacePortal/Pages/loading_page.dart';
 import 'package:SpacePortal/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:SpacePortal/constants.dart';
 import 'package:flare_flutter/flare_actor.dart';
-import 'package:SpacePortal/Pages/Mobile/home_page.dart';
-import 'package:SpacePortal/Pages/Mobile/mars_page.dart';
-import 'package:SpacePortal/Pages/Mobile/noConnection_page.dart';
-import 'package:SpacePortal/Pages/Mobile/nasapod_page.dart';
+import 'package:SpacePortal/Pages/home_page.dart';
+import 'package:SpacePortal/Pages/mars_page.dart';
+import 'package:SpacePortal/Pages/noConnection_page.dart';
+import 'package:SpacePortal/Pages/nasapod_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
