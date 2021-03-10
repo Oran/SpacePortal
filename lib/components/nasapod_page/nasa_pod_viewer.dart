@@ -46,7 +46,9 @@ class _NasaPODViewerState extends State<NasaPODViewer> {
                     image: CacheImage(
                       snapshot.data[0].mediaType == 'video'
                           ? snapshot.data[0].videoThumb
-                          : snapshot.data[0].image,
+                          : snapshot.data[0].mediaType == 'other'
+                              ? kPlaceholderImageBlack
+                              : snapshot.data[0].image,
                     ),
                     fit: BoxFit.cover,
                   ),
@@ -103,28 +105,50 @@ class _NasaPODViewerState extends State<NasaPODViewer> {
                                 ),
                               ),
                             )
-                          : Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30.0),
-                                color: Colors.black,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 10,
-                                    blurRadius: 10,
-                                    offset: Offset(
-                                        0, 3), // changes position of shadow
+                          : snapshot.data[0].mediaType == 'other'
+                              ? GestureDetector(
+                                  onTap: () {
+                                    launch(
+                                      snapshot.data[0].apodSite,
+                                      forceWebView: true,
+                                      enableJavaScript: true,
+                                    );
+                                  },
+                                  child: Container(
+                                    height: 50,
+                                    //color: Colors.pink[100],
+                                    child: Center(
+                                      child: Text(
+                                        'This file format is not supported yet :( \nClick here to visit the page',
+                                        style: kDetailsTS.copyWith(
+                                          color: Colors.red,
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                ],
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(30.0),
-                                child: CachedNetworkImage(
-                                  imageUrl: snapshot.data[0].image,
-                                  fit: BoxFit.fill,
+                                )
+                              : Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                    color: Colors.black,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.5),
+                                        spreadRadius: 10,
+                                        blurRadius: 10,
+                                        offset: Offset(
+                                            0, 3), // changes position of shadow
+                                      ),
+                                    ],
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                    child: CachedNetworkImage(
+                                      imageUrl: snapshot.data[0].image,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
                     ),
                     Padding(
                       padding:

@@ -9,7 +9,8 @@ class FSData {
     this.image = kPlaceholderImage,
     this.mediaType = '',
     this.testf = '',
-    this.videoURL = ' ',
+    this.videoURL = '',
+    this.apodSite = '',
   });
 
   String title;
@@ -19,6 +20,7 @@ class FSData {
   String exp;
   String testf;
   String videoURL;
+  String apodSite;
 }
 
 class OldNasaData {
@@ -29,6 +31,7 @@ class OldNasaData {
     this.image = kPlaceholderImage,
     this.mediaType = '',
     this.testf = '',
+    this.apodSite = '',
     this.videoURL = '',
     this.videoThumb = '',
   });
@@ -40,6 +43,7 @@ class OldNasaData {
   String testf;
   String videoURL;
   String videoThumb;
+  String apodSite;
 
   factory OldNasaData.fromJson(Map<String, dynamic> map) {
     String getThumbnail(String videoURL) {
@@ -49,14 +53,24 @@ class OldNasaData {
       return videoImage;
     }
 
+    // Checks if the 'url' key is present
+    bool _checkKey(Map map) {
+      return map.containsKey('url');
+    }
+
+    //print(_checkKey(map));
+
     return OldNasaData(
       title: map['title'],
       date: map['date'],
-      image: map['url'],
+      image: _checkKey(map) ? map['url'] : kPlaceholderImage,
       mediaType: map['media_type'],
-      exp: map['explanation'],
-      videoURL: map['url'],
-      videoThumb: map['media_type'] == 'video' ? getThumbnail(map['url']) : '',
+      exp: map['description'],
+      apodSite: map['apod_site'],
+      videoURL: _checkKey(map) ? map['url'] : kPlaceholderImage,
+      videoThumb: map['media_type'] == 'video'
+          ? getThumbnail(map['url'])
+          : kPlaceholderImage,
     );
   }
 }

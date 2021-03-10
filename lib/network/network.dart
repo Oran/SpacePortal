@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:SpacePortal/constants.dart';
 import 'package:SpacePortal/network/models.dart';
 import 'package:http/http.dart' as http;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,14 +15,18 @@ String parseString(String dateTime) {
   return date;
 }
 
+// String nasaPodUrl =
+//     'https://api.nasa.gov/planetary/apod?api_key=$_apiKey&date=${parseString(DateTime.now().toString())}';
+
 String nasaPodUrl =
-    'https://api.nasa.gov/planetary/apod?api_key=$_apiKey&date=${parseString(DateTime.now().toString())}';
+    'http://10.0.2.2:3000/api/?date=${parseString(DateTime.now().toString())}';
 
 class OldNasaPodData {
   Firestore firestore = Firestore.instance;
   void setURL(String date) {
-    nasaPodUrl =
-        'https://api.nasa.gov/planetary/apod?api_key=$_apiKey&date=$date';
+    // nasaPodUrl =
+    //     'https://api.nasa.gov/planetary/apod?api_key=$_apiKey&date=$date';
+    nasaPodUrl = 'http://10.0.2.2:3000/api/?date=$date';
   }
 
   Future checkImgColor(String url) async {
@@ -41,7 +46,8 @@ class OldNasaPodData {
 }
 
 class NasaPODData {
-  static String url = 'https://api.nasa.gov/planetary/apod?api_key=$_apiKey';
+  // static String url = 'https://api.nasa.gov/planetary/apod?api_key=$_apiKey';
+  static String url = 'http://10.0.2.2:3000/api/';
   Firestore firestore = Firestore.instance;
 
   Future getData() async {
@@ -50,11 +56,11 @@ class NasaPODData {
     var image = decodedData['url'];
     var title = decodedData['title'];
     var date = decodedData['date'];
-    var exp = decodedData['explanation'];
+    var exp = decodedData['description'];
     var mediaType = decodedData['media_type'];
-    var statusCode = decodedData['code'];
-    //print(statusCode);
-    if (statusCode != 404) {
+    var apodSite = decodedData['apod_site'];
+    //var statusCode = response.statusCode;
+    if (true) {
       if (mediaType == 'image') {
         firestore
             .collection('api')
@@ -66,6 +72,7 @@ class NasaPODData {
         'title': title,
         'exp': exp,
         'mediaType': mediaType,
+        'apodSite': apodSite,
         // 'test_f': 'old data',
       });
     }
@@ -99,6 +106,7 @@ class NasaPODData {
             videoURL: ds['videoURL'],
             exp: ds['exp'],
             mediaType: ds['mediaType'],
+            apodSite: ds['apodSite']
             // testf: ds['test_f'],
           ),
         );
