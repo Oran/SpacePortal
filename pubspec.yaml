@@ -10,7 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  animated_rotation: ^1.0.0
   auto_size_text: ^2.1.0
   cache_image: ^1.0.5
   cached_network_image: ^2.2.0+1
