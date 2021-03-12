@@ -86,8 +86,10 @@ class NasaPod extends ConsumerWidget {
                         width: (MediaQuery.of(context).size.width),
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image:
-                                CacheImage(apodProviderData.data.value.image),
+                            image: CacheImage(
+                              apodProviderData.data.value.image,
+                              cache: true,
+                            ),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -107,13 +109,6 @@ class NasaPod extends ConsumerWidget {
                           background: Container(
                             height: (MediaQuery.of(context).size.height),
                             width: (MediaQuery.of(context).size.width),
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: CacheImage(
-                                    apodProviderData.data.value.image),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
                             child: ClipRRect(
                               child: BackdropFilter(
                                 filter:
@@ -125,11 +120,6 @@ class NasaPod extends ConsumerWidget {
                               ),
                             ),
                           ),
-                          stretchModes: [
-                            StretchMode.blurBackground,
-                            StretchMode.zoomBackground,
-                            // StretchMode.fadeTitle,
-                          ],
                           centerTitle: true,
                           title: AnimatedDefaultTextStyle(
                             style: kTitleDateTS.copyWith(
