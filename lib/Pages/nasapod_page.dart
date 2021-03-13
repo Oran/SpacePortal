@@ -5,7 +5,6 @@ import 'package:SpacePortal/constants.dart';
 import 'package:SpacePortal/network/network.dart';
 import 'package:SpacePortal/providers.dart';
 import 'package:SpacePortal/theme/theme.dart';
-import 'package:cache_image/cache_image.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -86,10 +85,7 @@ class NasaPod extends ConsumerWidget {
                         width: (MediaQuery.of(context).size.width),
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: CacheImage(
-                              apodProviderData.data.value.image,
-                              cache: true,
-                            ),
+                            image: NetworkImage(apodProviderData.data.value.image),
                             fit: BoxFit.cover,
                           ),
                         ),

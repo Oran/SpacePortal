@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:SpacePortal/constants.dart';
 import 'package:SpacePortal/network/network.dart';
-import 'package:cache_image/cache_image.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +42,7 @@ class _NasaPODViewerState extends State<NasaPODViewer> {
                 width: (MediaQuery.of(context).size.width),
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: CacheImage(
+                    image: NetworkImage(
                       snapshot.data[0].mediaType == 'video'
                           ? snapshot.data[0].videoThumb
                           : snapshot.data[0].mediaType == 'other'
