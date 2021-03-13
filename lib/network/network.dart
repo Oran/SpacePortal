@@ -9,9 +9,9 @@ import 'package:youtube_explode_dart/youtube_explode_dart.dart' as yt;
 
 final String _apiKey = 'pc7RPSAONSoBlJTGozeFT1EcaDa0mwXoD17XsKd3';
 
-String parseString(String dateTime) {
+String? parseString(String dateTime) {
   RegExp exp = RegExp(r"(\d\d\d\d-\d\d-\d\d)");
-  String date = exp.firstMatch(dateTime).group(1);
+  String? date = exp.firstMatch(dateTime)!.group(1);
   return date;
 }
 
@@ -23,7 +23,7 @@ String nasaPodUrl =
 
 class OldNasaPodData {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  void setURL(String date) {
+  void setURL(String? date) {
     // nasaPodUrl =
     //     'https://api.nasa.gov/planetary/apod?api_key=$_apiKey&date=$date';
     nasaPodUrl = 'http://10.0.2.2:3000/api/?date=$date';
@@ -31,7 +31,7 @@ class OldNasaPodData {
 
   Future checkImgColor(String url) async {
     http.Response response = await http.get(Uri.parse(url));
-    int whiteBalance = decodeImage(response.bodyBytes).getWhiteBalance();
+    int whiteBalance = decodeImage(response.bodyBytes)!.getWhiteBalance();
     return whiteBalance;
   }
 
@@ -40,7 +40,7 @@ class OldNasaPodData {
     var decodedData = jsonDecode(response.body);
     var data = OldNasaData.fromJson(decodedData);
     var wb = await checkImgColor(
-        data.mediaType == 'image' ? data.image : data.videoThumb);
+        data.mediaType == 'image' ? data.image! : data.videoThumb);
     return [data, wb];
   }
 }
@@ -80,7 +80,7 @@ class NasaPODData {
 
   void getThumbnail(String videoURL) {
     RegExp exp = RegExp(r"embed\/([^#\&\?]{11})");
-    String videoID = exp.firstMatch(videoURL).group(1);
+    String videoID = exp.firstMatch(videoURL)!.group(1)!;
     var videoImage = yt.ThumbnailSet(videoID).highResUrl;
     firestore.collection('api').doc('nasa_api').update({
       'image': videoImage,
@@ -90,7 +90,7 @@ class NasaPODData {
 
   Future checkImgColor(String url) async {
     var response = await http.get(Uri.parse(url));
-    int whiteBalance = decodeImage(response.bodyBytes).getWhiteBalance();
+    int whiteBalance = decodeImage(response.bodyBytes)!.getWhiteBalance();
     return whiteBalance;
   }
 
@@ -152,16 +152,16 @@ class NasaMarsData {
 class SpaceXData {
   static String url = 'https://api.spacexdata.com/v3/launches/upcoming';
 
-  Future<List<dynamic>> getData() async {
+  Future<List<dynamic>?> getData() async {
     http.Response response = await http.get(Uri.parse(url));
-    List<dynamic> decodedData = jsonDecode(response.body);
+    List<dynamic>? decodedData = jsonDecode(response.body);
     //print(decodedData);
     return decodedData;
   }
 
-  String parseString(String dateTime) {
+  String? parseString(String dateTime) {
     RegExp exp = RegExp(r"(\d\d\d\d-\d\d-\d\d)");
-    String date = exp.firstMatch(dateTime).group(1);
+    String? date = exp.firstMatch(dateTime)!.group(1);
     return date;
   }
 }

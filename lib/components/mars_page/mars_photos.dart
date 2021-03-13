@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 class MarsPhotos extends StatelessWidget {
   const MarsPhotos({
-    @required this.list,
+    required this.list,
   });
 
   final list;

@@ -17,7 +17,7 @@ class LoadingPage extends StatelessWidget {
       ]),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          SchedulerBinding.instance.addPostFrameCallback((_) {
+          SchedulerBinding.instance!.addPostFrameCallback((_) {
             Navigator.popAndPushNamed(context, kHome_Page);
           });
           return Container();

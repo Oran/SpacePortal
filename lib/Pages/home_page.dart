@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                         return apodProviderData.when(
                           data: (data) => DCard(
                             image: CachedNetworkImage(
-                              imageUrl: data.image,
+                              imageUrl: data.image!,
                               fit: BoxFit.cover,
                             ),
                             text: data.title,

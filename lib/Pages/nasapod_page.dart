@@ -15,11 +15,11 @@ enum wb { white, black }
 
 // ignore: must_be_immutable
 class NasaPod extends ConsumerWidget {
-  wb bulll;
+  wb? bulll;
 
-  String parseString(String dateTime) {
+  String? parseString(String dateTime) {
     RegExp exp = RegExp(r"(\d\d\d\d-\d\d-\d\d)");
-    String date = exp.firstMatch(dateTime).group(1);
+    String? date = exp.firstMatch(dateTime)!.group(1);
     return date;
   }
 
@@ -40,7 +40,7 @@ class NasaPod extends ConsumerWidget {
             ),
             dialogBackgroundColor: Colors.white,
           ),
-          child: child,
+          child: child!,
         );
       },
     ).then((value) => {
@@ -64,8 +64,8 @@ class NasaPod extends ConsumerWidget {
     //var data = Provider.of<FSData>(context);
     var apodProviderData = watch(apodProvider);
     return FutureBuilder(
-      future: NasaPODData().checkImgColor(apodProviderData.data.value.image),
-      builder: (context, snapshot) {
+      future: NasaPODData().checkImgColor(apodProviderData.data!.value.image!),
+      builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return Scaffold(
             body: CustomScrollView(
@@ -85,7 +85,7 @@ class NasaPod extends ConsumerWidget {
                         width: (MediaQuery.of(context).size.width),
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: NetworkImage(apodProviderData.data.value.image),
+                            image: NetworkImage(apodProviderData.data!.value.image!),
                             fit: BoxFit.cover,
                           ),
                         ),

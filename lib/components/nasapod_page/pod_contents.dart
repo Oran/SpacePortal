@@ -17,13 +17,13 @@ class PodContents extends ConsumerWidget {
           height: orientation == Orientation.landscape ? 800.0 : null,
           padding: EdgeInsets.all(10),
           // color: Colors.green,
-          child: apodProviderData.data.value.mediaType == 'video'
+          child: apodProviderData.data!.value.mediaType == 'video'
               ? Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8.0),
                   child: GestureDetector(
                     onTap: () {
                       launch(
-                        apodProviderData.data.value.videoURL,
+                        apodProviderData.data!.value.videoURL!,
                         forceWebView: true,
                         enableJavaScript: true,
                       );
@@ -40,7 +40,7 @@ class PodContents extends ConsumerWidget {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(30),
                           child: CachedNetworkImage(
-                            imageUrl: apodProviderData.data.value.image,
+                            imageUrl: apodProviderData.data!.value.image!,
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -48,11 +48,11 @@ class PodContents extends ConsumerWidget {
                     ),
                   ),
                 )
-              : apodProviderData.data.value.mediaType == 'other'
+              : apodProviderData.data!.value.mediaType == 'other'
                   ? GestureDetector(
                       onTap: () {
                         launch(
-                          apodProviderData.data.value.apodSite,
+                          apodProviderData.data!.value.apodSite!,
                           forceWebView: true,
                           enableJavaScript: true,
                         );
@@ -84,7 +84,7 @@ class PodContents extends ConsumerWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(30.0),
                         child: CachedNetworkImage(
-                          imageUrl: apodProviderData.data.value.image,
+                          imageUrl: apodProviderData.data!.value.image!,
                           fit: BoxFit.fill,
                         ),
                       ),
@@ -93,7 +93,7 @@ class PodContents extends ConsumerWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
           child: Text(
-            apodProviderData.data.value.title,
+            apodProviderData.data!.value.title!,
             style: kTitleDateTS.copyWith(
               fontSize: 25.0,
               fontWeight: FontWeight.w500,
@@ -103,7 +103,7 @@ class PodContents extends ConsumerWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
           child: Text(
-            apodProviderData.data.value.date,
+            apodProviderData.data!.value.date!,
             style: kTitleDateTS.copyWith(
               fontSize: 18.0,
             ),
@@ -113,7 +113,7 @@ class PodContents extends ConsumerWidget {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
             child: Text(
-              apodProviderData.data.value.exp,
+              apodProviderData.data!.value.exp!,
               style: kDetailsTS.copyWith(
                 fontWeight: FontWeight.w500,
               ),

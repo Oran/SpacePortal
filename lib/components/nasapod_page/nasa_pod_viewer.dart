@@ -8,7 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class NasaPODViewer extends StatefulWidget {
   NasaPODViewer({this.date = ''});
-  final String date;
+  final String? date;
 
   @override
   _NasaPODViewerState createState() => _NasaPODViewerState();
@@ -28,7 +28,7 @@ class _NasaPODViewerState extends State<NasaPODViewer> {
     var orientation = (MediaQuery.of(context).orientation);
     return FutureBuilder(
       future: getData(),
-      builder: (context, snapshot) {
+      builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return Scaffold(
             appBar: AppBar(
