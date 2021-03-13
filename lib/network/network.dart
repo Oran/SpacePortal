@@ -22,7 +22,7 @@ String nasaPodUrl =
     'http://10.0.2.2:3000/api/?date=${parseString(DateTime.now().toString())}';
 
 class OldNasaPodData {
-  Firestore firestore = Firestore.instance;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
   void setURL(String date) {
     // nasaPodUrl =
     //     'https://api.nasa.gov/planetary/apod?api_key=$_apiKey&date=$date';
@@ -30,13 +30,13 @@ class OldNasaPodData {
   }
 
   Future checkImgColor(String url) async {
-    http.Response response = await http.get(url);
+    http.Response response = await http.get(Uri.parse(url));
     int whiteBalance = decodeImage(response.bodyBytes).getWhiteBalance();
     return whiteBalance;
   }
 
   Future<dynamic> getOldNasaPodData() async {
-    http.Response response = await http.get(nasaPodUrl);
+    http.Response response = await http.get(Uri.parse(nasaPodUrl));
     var decodedData = jsonDecode(response.body);
     var data = OldNasaData.fromJson(decodedData);
     var wb = await checkImgColor(
@@ -48,10 +48,10 @@ class OldNasaPodData {
 class NasaPODData {
   // static String url = 'https://api.nasa.gov/planetary/apod?api_key=$_apiKey';
   static String url = 'http://10.0.2.2:3000/api/';
-  Firestore firestore = Firestore.instance;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   Future getData() async {
-    http.Response response = await http.get(url);
+    var response = await http.get(Uri.parse(url));
     var decodedData = jsonDecode(response.body);
     var image = decodedData['url'];
     var title = decodedData['title'];
@@ -62,12 +62,9 @@ class NasaPODData {
     //var statusCode = response.statusCode;
     if (true) {
       if (mediaType == 'image') {
-        firestore
-            .collection('api')
-            .document('nasa_api')
-            .updateData({'image': image});
+        firestore.collection('api').doc('nasa_api').update({'image': image});
       }
-      firestore.collection('api').document('nasa_api').updateData({
+      firestore.collection('api').doc('nasa_api').update({
         'date': date,
         'title': title,
         'exp': exp,
@@ -85,30 +82,30 @@ class NasaPODData {
     RegExp exp = RegExp(r"embed\/([^#\&\?]{11})");
     String videoID = exp.firstMatch(videoURL).group(1);
     var videoImage = yt.ThumbnailSet(videoID).highResUrl;
-    firestore.collection('api').document('nasa_api').updateData({
+    firestore.collection('api').doc('nasa_api').update({
       'image': videoImage,
       'videoURL': videoURL,
     });
   }
 
   Future checkImgColor(String url) async {
-    http.Response response = await http.get(url);
+    var response = await http.get(Uri.parse(url));
     int whiteBalance = decodeImage(response.bodyBytes).getWhiteBalance();
     return whiteBalance;
   }
 
   Stream<FSData> getFSData() {
-    return firestore.collection('api').document('nasa_api').snapshots().map(
+    return firestore.collection('api').doc('nasa_api').snapshots().map(
           (ds) => FSData(
-            title: ds['title'],
-            date: ds['date'],
-            image: ds['image'],
-            videoURL: ds['videoURL'],
-            exp: ds['exp'],
-            mediaType: ds['mediaType'],
-            apodSite: ds['apodSite']
-            // testf: ds['test_f'],
-          ),
+              title: ds['title'],
+              date: ds['date'],
+              image: ds['image'],
+              videoURL: ds['videoURL'],
+              exp: ds['exp'],
+              mediaType: ds['mediaType'],
+              apodSite: ds['apodSite']
+              // testf: ds['test_f'],
+              ),
         );
   }
 }
@@ -145,7 +142,8 @@ class NasaMarsData {
   }
 
   Future getMarsData() async {
-    http.Response response = await http.get(marsUrl);
+    Uri _marsUri = Uri.parse(marsUrl);
+    http.Response response = await http.get(_marsUri);
     var decodedData = jsonDecode(response.body);
     return decodedData;
   }
@@ -155,7 +153,7 @@ class SpaceXData {
   static String url = 'https://api.spacexdata.com/v3/launches/upcoming';
 
   Future<List<dynamic>> getData() async {
-    http.Response response = await http.get(url);
+    http.Response response = await http.get(Uri.parse(url));
     List<dynamic> decodedData = jsonDecode(response.body);
     //print(decodedData);
     return decodedData;
@@ -173,7 +171,7 @@ class MarsWeatherAPI {
       'https://api.nasa.gov/insight_weather/?api_key=$_apiKey&feedtype=json&ver=1.0';
 
   Future<MarsWeather> getMarsWeather() async {
-    http.Response response = await http.get(url);
+    http.Response response = await http.get(Uri.parse(url));
     var decodedData = jsonDecode(response.body);
     var mars = MarsWeather.fromJson(decodedData);
     return mars;

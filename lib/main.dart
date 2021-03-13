@@ -10,8 +10,11 @@ import 'package:SpacePortal/Pages/mars_page.dart';
 import 'package:SpacePortal/Pages/noConnection_page.dart';
 import 'package:SpacePortal/Pages/nasapod_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(
     ProviderScope(child: MyApp()),
   );
