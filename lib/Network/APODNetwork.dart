@@ -15,7 +15,7 @@ import 'package:image/image.dart';
 String nasaPodUrl =
     'https://apodapi.herokuapp.com/api/?date=${parseDates(DateTime.now().toString())}';
 
-class OldNasaPodData {
+class OldAPODData {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   void setURL(String? date) {
     // nasaPodUrl =
@@ -39,7 +39,7 @@ class OldNasaPodData {
   }
 }
 
-class NasaPODData {
+class APODData {
   // static String url = 'https://api.nasa.gov/planetary/apod?api_key=$_apiKey';
   static String url = 'https://apodapi.herokuapp.com/api/';
   FirebaseFirestore firestore = FirebaseFirestore.instance;

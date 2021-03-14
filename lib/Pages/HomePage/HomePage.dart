@@ -1,47 +1,12 @@
-import 'package:SpacePortal/Pages/test_page.dart';
+import 'package:SpacePortal/Pages/TestPage.dart';
 import 'package:SpacePortal/Pages/HomePage/Components/Card.dart';
-import 'package:SpacePortal/Providers/providers.dart';
+import 'package:SpacePortal/Providers/Providers.dart';
 import 'package:flutter/material.dart';
-import 'package:SpacePortal/constants.dart';
+import 'package:SpacePortal/Constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'dart:async';
 
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  int _currentPage = 0;
-  PageController _pageController = PageController(
-    initialPage: 0,
-  );
-
-  @override
-  void initState() {
-    super.initState();
-    try {
-      Timer.periodic(Duration(seconds: 5), (timer) {
-        if (_currentPage < 2) {
-          _currentPage++;
-        } else {
-          _currentPage = 0;
-        }
-
-        if (_pageController.hasClients) {
-          _pageController.animateToPage(
-            _currentPage,
-            duration: Duration(milliseconds: 800),
-            curve: Curves.easeInOutCirc,
-          );
-        }
-      });
-    } catch (error) {
-      print(error);
-    }
-  }
-
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

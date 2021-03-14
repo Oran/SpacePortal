@@ -1,4 +1,4 @@
-import 'package:SpacePortal/constants.dart';
+import 'package:SpacePortal/Constants.dart';
 
 class FSData {
   FSData({

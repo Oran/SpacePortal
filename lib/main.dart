@@ -1,14 +1,14 @@
 import 'dart:io';
-import 'package:SpacePortal/Pages/LoadingPage/loading_page.dart';
-import 'package:SpacePortal/theme/theme.dart';
+import 'package:SpacePortal/Pages/APODPage/APODPage.dart';
+import 'package:SpacePortal/Pages/LoadingPage/LoadingPage.dart';
+import 'package:SpacePortal/theme/Theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:SpacePortal/constants.dart';
+import 'package:SpacePortal/Constants.dart';
 import 'package:flare_flutter/flare_actor.dart';
-import 'package:SpacePortal/Pages/HomePage/home_page.dart';
-import 'package:SpacePortal/Pages/MarsRoverPage/mars_page.dart';
-import 'package:SpacePortal/Pages/NoConnectionPage/noConnection_page.dart';
-import 'package:SpacePortal/Pages/APODPage/nasapod_page.dart';
+import 'package:SpacePortal/Pages/HomePage/HomePage.dart';
+import 'package:SpacePortal/Pages/MarsRoverPage/MarsRoverPage.dart';
+import 'package:SpacePortal/Pages/NoConnectionPage/NoConnectionPage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -70,8 +70,8 @@ class _MyAppState extends State<MyApp> {
                       : kNoConnection_Page,
                   routes: {
                     kHome_Page: (context) => HomePage(),
-                    kNASAPod_Page: (context) => NasaPod(),
-                    kMars_Page: (context) => Mars(),
+                    kNASAPod_Page: (context) => APODPage(),
+                    kMars_Page: (context) => MarsRoverPage(),
                     kLoading_Page: (context) => LoadingPage(),
                     kNoConnection_Page: (context) => NoConnectionPage(),
                   },

@@ -25,7 +25,7 @@ final List<String> rover = [
 String marsUrl =
     'https://api.nasa.gov/mars-photos/api/v1/rovers/${rover[1]}/photos?sol=100&camera=${cam[6]}&api_key=$_apiKey';
 
-class MarsRoverData {
+class MarsRoverImageData {
   void printURL() {
     print(marsUrl);
   }

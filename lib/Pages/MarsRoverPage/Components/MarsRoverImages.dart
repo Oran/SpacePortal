@@ -1,10 +1,10 @@
-import 'package:SpacePortal/Pages/MarsRoverPage/Components/image_viewer.dart';
-import 'package:SpacePortal/constants.dart';
+import 'package:SpacePortal/Pages/MarsRoverPage/Components/ImageViewer.dart';
+import 'package:SpacePortal/Constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-class MarsPhotos extends StatelessWidget {
-  const MarsPhotos({
+class MarsRoverImages extends StatelessWidget {
+  const MarsRoverImages({
     required this.list,
   });
 

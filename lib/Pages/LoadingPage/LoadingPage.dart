@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:SpacePortal/Network/APODNetwork.dart';
-import 'package:SpacePortal/constants.dart';
+import 'package:SpacePortal/Constants.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -10,7 +10,7 @@ class LoadingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: Future.wait([
-        NasaPODData().getData(),
+        APODData().getData(),
         Future.delayed(Duration(milliseconds: 1500)),
       ]),
       builder: (context, snapshot) {

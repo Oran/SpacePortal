@@ -1,11 +1,11 @@
 import 'dart:ui';
 import 'package:SpacePortal/Functions.dart';
 import 'package:SpacePortal/Network/APODNetwork.dart';
-import 'package:SpacePortal/Pages/APODPage/Components/nasa_pod_viewer.dart';
-import 'package:SpacePortal/Pages/APODPage/Components/pod_contents.dart';
-import 'package:SpacePortal/constants.dart';
-import 'package:SpacePortal/Providers/providers.dart';
-import 'package:SpacePortal/theme/theme.dart';
+import 'package:SpacePortal/Pages/APODPage/Components/APODViewer.dart';
+import 'package:SpacePortal/Pages/APODPage/Components/APODContainer.dart';
+import 'package:SpacePortal/Constants.dart';
+import 'package:SpacePortal/Providers/Providers.dart';
+import 'package:SpacePortal/theme/Theme.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +15,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 enum wb { white, black }
 
 // ignore: must_be_immutable
-class NasaPod extends ConsumerWidget {
+class APODPage extends ConsumerWidget {
   wb? bulll;
 
   _openDialog(BuildContext context) {
@@ -45,7 +45,7 @@ class NasaPod extends ConsumerWidget {
               : Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => NasaPODViewer(
+                    builder: (context) => APODViewer(
                       date: parseDates(
                           value?.toString() ?? DateTime.now().toString()),
                     ),
@@ -58,7 +58,7 @@ class NasaPod extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     var apodProviderData = watch(apodProvider);
     return FutureBuilder(
-      future: NasaPODData().checkImgColor(apodProviderData.data!.value.image!),
+      future: APODData().checkImgColor(apodProviderData.data!.value.image!),
       builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return Scaffold(
@@ -142,7 +142,7 @@ class NasaPod extends ConsumerWidget {
                     ),
                   ),
                 ),
-                PodContents(),
+                APODContents(),
               ],
             ),
           );
