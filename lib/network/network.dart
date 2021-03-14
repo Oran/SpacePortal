@@ -19,14 +19,14 @@ String? parseString(String dateTime) {
 //     'https://api.nasa.gov/planetary/apod?api_key=$_apiKey&date=${parseString(DateTime.now().toString())}';
 
 String nasaPodUrl =
-    'http://10.0.2.2:3000/api/?date=${parseString(DateTime.now().toString())}';
+    'https://apodapi.herokuapp.com/api/?date=${parseString(DateTime.now().toString())}';
 
 class OldNasaPodData {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   void setURL(String? date) {
     // nasaPodUrl =
     //     'https://api.nasa.gov/planetary/apod?api_key=$_apiKey&date=$date';
-    nasaPodUrl = 'http://10.0.2.2:3000/api/?date=$date';
+    nasaPodUrl = 'https://apodapi.herokuapp.com/api/?date=$date';
   }
 
   Future checkImgColor(String url) async {
@@ -47,7 +47,7 @@ class OldNasaPodData {
 
 class NasaPODData {
   // static String url = 'https://api.nasa.gov/planetary/apod?api_key=$_apiKey';
-  static String url = 'http://10.0.2.2:3000/api/';
+  static String url = 'https://apodapi.herokuapp.com/api/';
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   Future getData() async {
@@ -146,34 +146,5 @@ class NasaMarsData {
     http.Response response = await http.get(_marsUri);
     var decodedData = jsonDecode(response.body);
     return decodedData;
-  }
-}
-
-class SpaceXData {
-  static String url = 'https://api.spacexdata.com/v3/launches/upcoming';
-
-  Future<List<dynamic>?> getData() async {
-    http.Response response = await http.get(Uri.parse(url));
-    List<dynamic>? decodedData = jsonDecode(response.body);
-    //print(decodedData);
-    return decodedData;
-  }
-
-  String? parseString(String dateTime) {
-    RegExp exp = RegExp(r"(\d\d\d\d-\d\d-\d\d)");
-    String? date = exp.firstMatch(dateTime)!.group(1);
-    return date;
-  }
-}
-
-class MarsWeatherAPI {
-  static String url =
-      'https://api.nasa.gov/insight_weather/?api_key=$_apiKey&feedtype=json&ver=1.0';
-
-  Future<MarsWeather> getMarsWeather() async {
-    http.Response response = await http.get(Uri.parse(url));
-    var decodedData = jsonDecode(response.body);
-    var mars = MarsWeather.fromJson(decodedData);
-    return mars;
   }
 }
