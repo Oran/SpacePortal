@@ -1,9 +1,9 @@
 import 'dart:ui';
-import 'package:SpacePortal/components/nasapod_page/nasa_pod_viewer.dart';
-import 'package:SpacePortal/components/nasapod_page/pod_contents.dart';
+import 'package:SpacePortal/Pages/APODPage/Components/nasa_pod_viewer.dart';
+import 'package:SpacePortal/Pages/APODPage/Components/pod_contents.dart';
 import 'package:SpacePortal/constants.dart';
 import 'package:SpacePortal/network/network.dart';
-import 'package:SpacePortal/providers.dart';
+import 'package:SpacePortal/Providers/providers.dart';
 import 'package:SpacePortal/theme/theme.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/cupertino.dart';

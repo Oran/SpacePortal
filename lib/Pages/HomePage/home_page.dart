@@ -1,6 +1,6 @@
 import 'package:SpacePortal/Pages/test_page.dart';
-import 'package:SpacePortal/components/home_page/Card.dart';
-import 'package:SpacePortal/providers.dart';
+import 'package:SpacePortal/Pages/HomePage/Components/Card.dart';
+import 'package:SpacePortal/Providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:SpacePortal/constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';

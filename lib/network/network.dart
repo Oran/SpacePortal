@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:SpacePortal/constants.dart';
-import 'package:SpacePortal/network/models.dart';
+import 'package:SpacePortal/Models/models.dart';
 import 'package:http/http.dart' as http;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image/image.dart';
