@@ -1,8 +1,9 @@
 import 'dart:ui';
+import 'package:SpacePortal/Functions.dart';
+import 'package:SpacePortal/Network/APODNetwork.dart';
 import 'package:SpacePortal/Pages/APODPage/Components/nasa_pod_viewer.dart';
 import 'package:SpacePortal/Pages/APODPage/Components/pod_contents.dart';
 import 'package:SpacePortal/constants.dart';
-import 'package:SpacePortal/network/network.dart';
 import 'package:SpacePortal/Providers/providers.dart';
 import 'package:SpacePortal/theme/theme.dart';
 import 'package:flare_flutter/flare_actor.dart';
@@ -16,12 +17,6 @@ enum wb { white, black }
 // ignore: must_be_immutable
 class NasaPod extends ConsumerWidget {
   wb? bulll;
-
-  String? parseString(String dateTime) {
-    RegExp exp = RegExp(r"(\d\d\d\d-\d\d-\d\d)");
-    String? date = exp.firstMatch(dateTime)!.group(1);
-    return date;
-  }
 
   _openDialog(BuildContext context) {
     return showDatePicker(
@@ -44,14 +39,14 @@ class NasaPod extends ConsumerWidget {
         );
       },
     ).then((value) => {
-          parseString(value?.toString() ?? DateTime.now().toString()) ==
-                  parseString(DateTime.now().toString())
+          parseDates(value?.toString() ?? DateTime.now().toString()) ==
+                  parseDates(DateTime.now().toString())
               ? print('dates are the same')
               : Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => NasaPODViewer(
-                      date: parseString(
+                      date: parseDates(
                           value?.toString() ?? DateTime.now().toString()),
                     ),
                   ),
@@ -61,7 +56,6 @@ class NasaPod extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    //var data = Provider.of<FSData>(context);
     var apodProviderData = watch(apodProvider);
     return FutureBuilder(
       future: NasaPODData().checkImgColor(apodProviderData.data!.value.image!),

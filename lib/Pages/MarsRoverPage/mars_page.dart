@@ -1,7 +1,7 @@
+import 'package:SpacePortal/Network/MarsRoverNetwork.dart';
 import 'package:SpacePortal/Pages/MarsRoverPage/Components/mars_photos.dart';
 import 'package:flutter/material.dart';
 import 'package:SpacePortal/constants.dart';
-import 'package:SpacePortal/network/network.dart';
 
 class Mars extends StatefulWidget {
   @override
@@ -9,7 +9,7 @@ class Mars extends StatefulWidget {
 }
 
 class _MarsState extends State<Mars> {
-  NasaMarsData marsData = NasaMarsData();
+  MarsRoverData marsData = MarsRoverData();
   var list;
   int? numOfPics;
   var camIn;

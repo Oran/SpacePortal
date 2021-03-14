@@ -1,24 +1,19 @@
-import 'dart:async';
 import 'dart:convert';
-import 'package:SpacePortal/Models/models.dart';
-import 'package:http/http.dart' as http;
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:image/image.dart';
+import 'package:SpacePortal/Models/FSData.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart' as yt;
+import 'package:SpacePortal/Models/OldNasaData.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:http/http.dart' as http;
+import 'package:SpacePortal/Functions.dart';
+import 'package:image/image.dart';
 
-final String _apiKey = 'pc7RPSAONSoBlJTGozeFT1EcaDa0mwXoD17XsKd3';
-
-String? parseString(String dateTime) {
-  RegExp exp = RegExp(r"(\d\d\d\d-\d\d-\d\d)");
-  String? date = exp.firstMatch(dateTime)!.group(1);
-  return date;
-}
 
 // String nasaPodUrl =
 //     'https://api.nasa.gov/planetary/apod?api_key=$_apiKey&date=${parseString(DateTime.now().toString())}';
 
+
 String nasaPodUrl =
-    'https://apodapi.herokuapp.com/api/?date=${parseString(DateTime.now().toString())}';
+    'https://apodapi.herokuapp.com/api/?date=${parseDates(DateTime.now().toString())}';
 
 class OldNasaPodData {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -106,44 +101,5 @@ class NasaPODData {
               // testf: ds['test_f'],
               ),
         );
-  }
-}
-
-final List<String> cam = [
-  'fhaz',
-  'rhaz',
-  'mast',
-  'chemcam',
-  'mahil',
-  'mardi',
-  'navcam',
-  'pancam',
-  'minites',
-];
-
-final List<String> rover = [
-  'curiosity',
-  'opportunity',
-  'spirit',
-];
-
-String marsUrl =
-    'https://api.nasa.gov/mars-photos/api/v1/rovers/${rover[1]}/photos?sol=100&camera=${cam[6]}&api_key=$_apiKey';
-
-class NasaMarsData {
-  void printURL() {
-    print(marsUrl);
-  }
-
-  void setURL(camIn, roverIn, solIn) {
-    marsUrl =
-        'https://api.nasa.gov/mars-photos/api/v1/rovers/$roverIn/photos?sol=$solIn&camera=$camIn&api_key=$_apiKey';
-  }
-
-  Future getMarsData() async {
-    Uri _marsUri = Uri.parse(marsUrl);
-    http.Response response = await http.get(_marsUri);
-    var decodedData = jsonDecode(response.body);
-    return decodedData;
   }
 }

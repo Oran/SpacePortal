@@ -1,6 +1,6 @@
 import 'dart:ui';
+import 'package:SpacePortal/Network/APODNetwork.dart';
 import 'package:SpacePortal/constants.dart';
-import 'package:SpacePortal/network/network.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
