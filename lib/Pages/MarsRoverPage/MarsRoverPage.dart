@@ -1,15 +1,15 @@
-import 'package:SpacePortal/components/mars_page/mars_photos.dart';
+import 'package:spaceportal/Network/MarsRoverNetwork.dart';
+import 'package:spaceportal/Pages/MarsRoverPage/Components/MarsRoverImages.dart';
 import 'package:flutter/material.dart';
-import 'package:SpacePortal/constants.dart';
-import 'package:SpacePortal/network/network.dart';
+import 'package:spaceportal/Constants.dart';
 
-class Mars extends StatefulWidget {
+class MarsRoverPage extends StatefulWidget {
   @override
-  _MarsState createState() => _MarsState();
+  _MarsRoverPageState createState() => _MarsRoverPageState();
 }
 
-class _MarsState extends State<Mars> {
-  NasaMarsData marsData = NasaMarsData();
+class _MarsRoverPageState extends State<MarsRoverPage> {
+  MarsRoverImageData marsData = MarsRoverImageData();
   var list;
   int? numOfPics;
   var camIn;
@@ -246,7 +246,7 @@ class _MarsState extends State<Mars> {
                     ),
                   ]),
                 )
-              : MarsPhotos(list: list),
+              : MarsRoverImages(list: list),
         ],
       ),
     );

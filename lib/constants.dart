@@ -22,21 +22,6 @@ const Color kIconColor = kPrimaryWhite;
 const Color kAppBarColor = kPrimaryWhite;
 const Color kDropDownButtonColor = kPrimaryBlack;
 
-//Color Gradient
-Gradient kGradient = LinearGradient(
-  colors: kcolorGradient,
-  begin: Alignment.centerRight,
-  end: Alignment.centerLeft,
-);
-
-List<Color> kcolorGradient = [
-  Color(0xFF0d53cc),
-  Color(0xFF00b1ea),
-  Color(0xFF00e9f2),
-  Color(0xFF00facf),
-  Color(0xFF20ea7a),
-];
-
 //TextStyle
 TextStyle kTitleDateTS = GoogleFonts.notoSans(
   fontSize: 18.0,

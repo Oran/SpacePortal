@@ -1,10 +1,11 @@
 import 'dart:ui';
-import 'package:SpacePortal/components/nasapod_page/nasa_pod_viewer.dart';
-import 'package:SpacePortal/components/nasapod_page/pod_contents.dart';
-import 'package:SpacePortal/constants.dart';
-import 'package:SpacePortal/network/network.dart';
-import 'package:SpacePortal/providers.dart';
-import 'package:SpacePortal/theme/theme.dart';
+import 'package:spaceportal/Functions.dart';
+import 'package:spaceportal/Network/APODNetwork.dart';
+import 'package:spaceportal/Pages/APODPage/Components/APODViewer.dart';
+import 'package:spaceportal/Pages/APODPage/Components/APODContainer.dart';
+import 'package:spaceportal/Constants.dart';
+import 'package:spaceportal/Providers/Providers.dart';
+import 'package:spaceportal/theme/Theme.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,14 +15,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 enum wb { white, black }
 
 // ignore: must_be_immutable
-class NasaPod extends ConsumerWidget {
+class APODPage extends ConsumerWidget {
   wb? bulll;
-
-  String? parseString(String dateTime) {
-    RegExp exp = RegExp(r"(\d\d\d\d-\d\d-\d\d)");
-    String? date = exp.firstMatch(dateTime)!.group(1);
-    return date;
-  }
 
   _openDialog(BuildContext context) {
     return showDatePicker(
@@ -44,14 +39,14 @@ class NasaPod extends ConsumerWidget {
         );
       },
     ).then((value) => {
-          parseString(value?.toString() ?? DateTime.now().toString()) ==
-                  parseString(DateTime.now().toString())
+          parseDates(value?.toString() ?? DateTime.now().toString()) ==
+                  parseDates(DateTime.now().toString())
               ? print('dates are the same')
               : Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => NasaPODViewer(
-                      date: parseString(
+                    builder: (context) => APODViewer(
+                      date: parseDates(
                           value?.toString() ?? DateTime.now().toString()),
                     ),
                   ),
@@ -61,10 +56,9 @@ class NasaPod extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    //var data = Provider.of<FSData>(context);
     var apodProviderData = watch(apodProvider);
     return FutureBuilder(
-      future: NasaPODData().checkImgColor(apodProviderData.data!.value.image!),
+      future: APODData().checkImgColor(apodProviderData.data!.value.image!),
       builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return Scaffold(
@@ -148,7 +142,7 @@ class NasaPod extends ConsumerWidget {
                     ),
                   ),
                 ),
-                PodContents(),
+                APODContents(),
               ],
             ),
           );

@@ -1,21 +1,21 @@
 import 'dart:ui';
-import 'package:SpacePortal/constants.dart';
-import 'package:SpacePortal/network/network.dart';
+import 'package:spaceportal/Network/APODNetwork.dart';
+import 'package:spaceportal/Constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class NasaPODViewer extends StatefulWidget {
-  NasaPODViewer({this.date = ''});
+class APODViewer extends StatefulWidget {
+  APODViewer({this.date = ''});
   final String? date;
 
   @override
-  _NasaPODViewerState createState() => _NasaPODViewerState();
+  _APODViewerState createState() => _APODViewerState();
 }
 
-class _NasaPODViewerState extends State<NasaPODViewer> {
-  OldNasaPodData oldData = OldNasaPodData();
+class _APODViewerState extends State<APODViewer> {
+  OldAPODData oldData = OldAPODData();
 
   Future getData() async {
     oldData.setURL(widget.date);
