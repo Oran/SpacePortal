@@ -11,8 +11,6 @@ class LoadingPage extends StatelessWidget {
     return FutureBuilder(
       future: Future.wait([
         NasaPODData().getData(),
-        SpaceXData().getData(),
-        MarsWeatherAPI().getMarsWeather(),
         Future.delayed(Duration(milliseconds: 1500)),
       ]),
       builder: (context, snapshot) {
