@@ -11,12 +11,12 @@ class Mars extends StatefulWidget {
 class _MarsState extends State<Mars> {
   NasaMarsData marsData = NasaMarsData();
   var list;
-  int numOfPics;
+  int? numOfPics;
   var camIn;
   var roverIn;
   var solIn;
-  String selectedCam = 'mast'; //Defaults
-  String selectedRover = 'curiosity';
+  String? selectedCam = 'mast'; //Defaults
+  String? selectedRover = 'curiosity';
   String selectedSol = '59';
 
   Future getData(camIn, roverIn, solIn) async {

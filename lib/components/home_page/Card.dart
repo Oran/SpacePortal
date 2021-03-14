@@ -9,19 +9,19 @@ class DCard extends StatelessWidget {
     this.text = '',
   });
   //A widget because you need to use cachedNetworkImage
-  final Widget image;
-  final Function onPressed;
-  final String text;
+  final Widget? image;
+  final Function? onPressed;
+  final String? text;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onPressed,
+      onTap: onPressed as void Function()?,
       child: Padding(
         padding: EdgeInsets.all(8.0),
         child: Center(
           child: Container(
-            height: (MediaQuery.of(context).size.height) * 0.30,
+            height: (MediaQuery.of(context).size.height) * 0.20,
             width: (MediaQuery.of(context).size.width) * 0.90,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.0),
@@ -46,8 +46,8 @@ class DCard extends StatelessWidget {
                       child: image,
                     ),
                     Positioned(
-                      top: 70.0,
-                      left: 10.0,
+                      top: 45.0,
+                      left: 0.0,
                       child: Container(
                         // color: Colors.white,
                         padding: EdgeInsets.all(15.0),
@@ -56,7 +56,7 @@ class DCard extends StatelessWidget {
                         alignment: Alignment.bottomCenter,
                         child: Center(
                           child: AutoSizeText(
-                            text,
+                            text!,
                             textAlign: TextAlign.center,
                             style: kCardTS,
                             maxLines: 3,
@@ -82,14 +82,14 @@ class WeatherCard extends StatelessWidget {
     this.text = '',
   });
   //A widget because you need to use cachedNetworkImage
-  final Widget image;
-  final Function onPressed;
+  final Widget? image;
+  final Function? onPressed;
   final String text;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onPressed,
+      onTap: onPressed as void Function()?,
       child: Padding(
         padding: EdgeInsets.all(20.0),
         child: Container(

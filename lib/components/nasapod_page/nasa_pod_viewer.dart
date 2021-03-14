@@ -1,8 +1,6 @@
 import 'dart:ui';
-
 import 'package:SpacePortal/constants.dart';
 import 'package:SpacePortal/network/network.dart';
-import 'package:cache_image/cache_image.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class NasaPODViewer extends StatefulWidget {
   NasaPODViewer({this.date = ''});
-  final String date;
+  final String? date;
 
   @override
   _NasaPODViewerState createState() => _NasaPODViewerState();
@@ -30,7 +28,7 @@ class _NasaPODViewerState extends State<NasaPODViewer> {
     var orientation = (MediaQuery.of(context).orientation);
     return FutureBuilder(
       future: getData(),
-      builder: (context, snapshot) {
+      builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return Scaffold(
             appBar: AppBar(
@@ -44,10 +42,12 @@ class _NasaPODViewerState extends State<NasaPODViewer> {
                 width: (MediaQuery.of(context).size.width),
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: CacheImage(
+                    image: NetworkImage(
                       snapshot.data[0].mediaType == 'video'
                           ? snapshot.data[0].videoThumb
-                          : snapshot.data[0].image,
+                          : snapshot.data[0].mediaType == 'other'
+                              ? kPlaceholderImageBlack
+                              : snapshot.data[0].image,
                     ),
                     fit: BoxFit.cover,
                   ),
@@ -104,28 +104,50 @@ class _NasaPODViewerState extends State<NasaPODViewer> {
                                 ),
                               ),
                             )
-                          : Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30.0),
-                                color: Colors.black,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 10,
-                                    blurRadius: 10,
-                                    offset: Offset(
-                                        0, 3), // changes position of shadow
+                          : snapshot.data[0].mediaType == 'other'
+                              ? GestureDetector(
+                                  onTap: () {
+                                    launch(
+                                      snapshot.data[0].apodSite,
+                                      forceWebView: true,
+                                      enableJavaScript: true,
+                                    );
+                                  },
+                                  child: Container(
+                                    height: 50,
+                                    //color: Colors.pink[100],
+                                    child: Center(
+                                      child: Text(
+                                        'This file format is not supported yet :( \nClick here to visit the page',
+                                        style: kDetailsTS.copyWith(
+                                          color: Colors.red,
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                ],
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(30.0),
-                                child: CachedNetworkImage(
-                                  imageUrl: snapshot.data[0].image,
-                                  fit: BoxFit.fill,
+                                )
+                              : Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                    color: Colors.black,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.5),
+                                        spreadRadius: 10,
+                                        blurRadius: 10,
+                                        offset: Offset(
+                                            0, 3), // changes position of shadow
+                                      ),
+                                    ],
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                    child: CachedNetworkImage(
+                                      imageUrl: snapshot.data[0].image,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
                     ),
                     Padding(
                       padding:

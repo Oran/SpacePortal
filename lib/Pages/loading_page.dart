@@ -11,13 +11,11 @@ class LoadingPage extends StatelessWidget {
     return FutureBuilder(
       future: Future.wait([
         NasaPODData().getData(),
-        SpaceXData().getData(),
-        MarsWeatherAPI().getMarsWeather(),
         Future.delayed(Duration(milliseconds: 1500)),
       ]),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          SchedulerBinding.instance.addPostFrameCallback((_) {
+          SchedulerBinding.instance!.addPostFrameCallback((_) {
             Navigator.popAndPushNamed(context, kHome_Page);
           });
           return Container();

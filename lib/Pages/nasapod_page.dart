@@ -2,28 +2,24 @@ import 'dart:ui';
 import 'package:SpacePortal/components/nasapod_page/nasa_pod_viewer.dart';
 import 'package:SpacePortal/components/nasapod_page/pod_contents.dart';
 import 'package:SpacePortal/constants.dart';
-import 'package:SpacePortal/network/models.dart';
 import 'package:SpacePortal/network/network.dart';
+import 'package:SpacePortal/providers.dart';
 import 'package:SpacePortal/theme/theme.dart';
-import 'package:cache_image/cache_image.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class NasaPod extends StatefulWidget {
-  @override
-  _NasaPodState createState() => _NasaPodState();
-}
-
+//import 'package:provider/provider.dart';
 enum wb { white, black }
 
-class _NasaPodState extends State<NasaPod> {
-  var bulll;
+// ignore: must_be_immutable
+class NasaPod extends ConsumerWidget {
+  wb? bulll;
 
-  String parseString(String dateTime) {
+  String? parseString(String dateTime) {
     RegExp exp = RegExp(r"(\d\d\d\d-\d\d-\d\d)");
-    String date = exp.firstMatch(dateTime).group(1);
+    String? date = exp.firstMatch(dateTime)!.group(1);
     return date;
   }
 
@@ -44,7 +40,7 @@ class _NasaPodState extends State<NasaPod> {
             ),
             dialogBackgroundColor: Colors.white,
           ),
-          child: child,
+          child: child!,
         );
       },
     ).then((value) => {
@@ -64,11 +60,12 @@ class _NasaPodState extends State<NasaPod> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    var data = Provider.of<FSData>(context);
+  Widget build(BuildContext context, ScopedReader watch) {
+    //var data = Provider.of<FSData>(context);
+    var apodProviderData = watch(apodProvider);
     return FutureBuilder(
-      future: NasaPODData().checkImgColor(data.image),
-      builder: (context, snapshot) {
+      future: NasaPODData().checkImgColor(apodProviderData.data!.value.image!),
+      builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return Scaffold(
             body: CustomScrollView(
@@ -88,7 +85,7 @@ class _NasaPodState extends State<NasaPod> {
                         width: (MediaQuery.of(context).size.width),
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: CacheImage(data.image),
+                            image: NetworkImage(apodProviderData.data!.value.image!),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -108,12 +105,6 @@ class _NasaPodState extends State<NasaPod> {
                           background: Container(
                             height: (MediaQuery.of(context).size.height),
                             width: (MediaQuery.of(context).size.width),
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: CacheImage(data.image),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
                             child: ClipRRect(
                               child: BackdropFilter(
                                 filter:
@@ -125,11 +116,6 @@ class _NasaPodState extends State<NasaPod> {
                               ),
                             ),
                           ),
-                          stretchModes: [
-                            StretchMode.blurBackground,
-                            StretchMode.zoomBackground,
-                            // StretchMode.fadeTitle,
-                          ],
                           centerTitle: true,
                           title: AnimatedDefaultTextStyle(
                             style: kTitleDateTS.copyWith(

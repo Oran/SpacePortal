@@ -89,7 +89,7 @@ TextStyle kMarsRoverImageStatsTS = GoogleFonts.notoSans(
 );
 
 TextStyle kCardTS = GoogleFonts.roboto(
-  fontSize: 25.0,
+  fontSize: 20.0,
   color: Colors.white,
   letterSpacing: 1,
   fontWeight: FontWeight.w600,
@@ -105,3 +105,6 @@ TextStyle kCardTS = GoogleFonts.roboto(
 //Image links
 const kPlaceholderImage =
     'https://www.pngkey.com/png/full/233-2332677_image-500580-placeholder-transparent.png';
+
+const kPlaceholderImageBlack =
+    'https://images.pexels.com/videos/3045163/free-video-3045163.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500';

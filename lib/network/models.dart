@@ -9,16 +9,18 @@ class FSData {
     this.image = kPlaceholderImage,
     this.mediaType = '',
     this.testf = '',
-    this.videoURL = ' ',
+    this.videoURL = '',
+    this.apodSite = '',
   });
 
-  String title;
-  String date;
-  String image;
-  String mediaType;
-  String exp;
+  String? title;
+  String? date;
+  String? image;
+  String? mediaType;
+  String? exp;
   String testf;
-  String videoURL;
+  String? videoURL;
+  String? apodSite;
 }
 
 class OldNasaData {
@@ -29,34 +31,46 @@ class OldNasaData {
     this.image = kPlaceholderImage,
     this.mediaType = '',
     this.testf = '',
+    this.apodSite = '',
     this.videoURL = '',
     this.videoThumb = '',
   });
-  String title;
-  String date;
-  String image;
-  String mediaType;
-  String exp;
+  String? title;
+  String? date;
+  String? image;
+  String? mediaType;
+  String? exp;
   String testf;
-  String videoURL;
+  String? videoURL;
   String videoThumb;
+  String? apodSite;
 
   factory OldNasaData.fromJson(Map<String, dynamic> map) {
     String getThumbnail(String videoURL) {
       RegExp exp = RegExp(r"embed\/([^#\&\?]{11})");
-      String videoID = exp.firstMatch(videoURL).group(1);
+      String videoID = exp.firstMatch(videoURL)!.group(1)!;
       var videoImage = yt.ThumbnailSet(videoID).highResUrl;
       return videoImage;
     }
 
+    // Checks if the 'url' key is present
+    bool _checkKey(Map map) {
+      return map.containsKey('url');
+    }
+
+    //print(_checkKey(map));
+
     return OldNasaData(
       title: map['title'],
       date: map['date'],
-      image: map['url'],
+      image: _checkKey(map) ? map['url'] : kPlaceholderImage,
       mediaType: map['media_type'],
-      exp: map['explanation'],
-      videoURL: map['url'],
-      videoThumb: map['media_type'] == 'video' ? getThumbnail(map['url']) : '',
+      exp: map['description'],
+      apodSite: map['apod_site'],
+      videoURL: _checkKey(map) ? map['url'] : kPlaceholderImage,
+      videoThumb: map['media_type'] == 'video'
+          ? getThumbnail(map['url'])
+          : kPlaceholderImage,
     );
   }
 }
@@ -70,13 +84,13 @@ class MarsWeather {
 
   factory MarsWeather.fromJson(Map<String, dynamic> map) {
     int days = map['sol_keys'].length;
-    List _listOfDays = map['sol_keys'].toList();
-    bool isThere;
+    List? _listOfDays = map['sol_keys'].toList();
+    bool? isThere;
 
     // Checks if the keys are null
     try {
       for (var i = 0; i <= days - 1; i++) {
-        var x = map[_listOfDays[i]].containsKey('AT');
+        var x = map[_listOfDays![i]].containsKey('AT');
         var y = map[_listOfDays[i]]['WD'].containsValue(null);
         // print('${_listOfDays[i]} AT ?there => $x , WD ?null => $y');
 
@@ -106,11 +120,11 @@ class MarsWeather {
 }
 
 class SolDays {
-  String day;
+  String? day;
   var av;
   var mn;
   var mx;
-  String season;
+  String? season;
   var wd;
 
   SolDays({
@@ -122,7 +136,7 @@ class SolDays {
     this.wd,
   });
 
-  factory SolDays.fromMap(Map<String, dynamic> map, String d) {
+  factory SolDays.fromMap(Map<String, dynamic>? map, String d) {
     int _convertTemp(double temp) {
       var result = (temp - 32) * 5 / 9;
       return result.round();
