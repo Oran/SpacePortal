@@ -1,5 +1,5 @@
-import 'package:SpacePortal/Constants.dart';
-import 'package:SpacePortal/Providers/Providers.dart';
+import 'package:spaceportal/Constants.dart';
+import 'package:spaceportal/Providers/Providers.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

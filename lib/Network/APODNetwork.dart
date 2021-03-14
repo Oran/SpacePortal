@@ -1,10 +1,10 @@
 import 'dart:convert';
-import 'package:SpacePortal/Models/FSData.dart';
+import 'package:spaceportal/Models/FSData.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart' as yt;
-import 'package:SpacePortal/Models/OldNasaData.dart';
+import 'package:spaceportal/Models/OldNasaData.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:http/http.dart' as http;
-import 'package:SpacePortal/Functions.dart';
+import 'package:spaceportal/Functions.dart';
 import 'package:image/image.dart';
 
 

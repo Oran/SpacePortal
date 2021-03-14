@@ -1,14 +1,14 @@
 import 'dart:io';
-import 'package:SpacePortal/Pages/APODPage/APODPage.dart';
-import 'package:SpacePortal/Pages/LoadingPage/LoadingPage.dart';
-import 'package:SpacePortal/theme/Theme.dart';
+import 'package:spaceportal/Pages/APODPage/APODPage.dart';
+import 'package:spaceportal/Pages/LoadingPage/LoadingPage.dart';
+import 'package:spaceportal/theme/Theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:SpacePortal/Constants.dart';
+import 'package:spaceportal/Constants.dart';
 import 'package:flare_flutter/flare_actor.dart';
-import 'package:SpacePortal/Pages/HomePage/HomePage.dart';
-import 'package:SpacePortal/Pages/MarsRoverPage/MarsRoverPage.dart';
-import 'package:SpacePortal/Pages/NoConnectionPage/NoConnectionPage.dart';
+import 'package:spaceportal/Pages/HomePage/HomePage.dart';
+import 'package:spaceportal/Pages/MarsRoverPage/MarsRoverPage.dart';
+import 'package:spaceportal/Pages/NoConnectionPage/NoConnectionPage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
 

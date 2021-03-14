@@ -1,5 +1,5 @@
-import 'package:SpacePortal/Pages/MarsRoverPage/Components/ImageViewer.dart';
-import 'package:SpacePortal/Constants.dart';
+import 'package:spaceportal/Pages/MarsRoverPage/Components/ImageViewer.dart';
+import 'package:spaceportal/Constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 

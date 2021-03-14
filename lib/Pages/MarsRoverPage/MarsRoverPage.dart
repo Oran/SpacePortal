@@ -1,7 +1,7 @@
-import 'package:SpacePortal/Network/MarsRoverNetwork.dart';
-import 'package:SpacePortal/Pages/MarsRoverPage/Components/MarsRoverImages.dart';
+import 'package:spaceportal/Network/MarsRoverNetwork.dart';
+import 'package:spaceportal/Pages/MarsRoverPage/Components/MarsRoverImages.dart';
 import 'package:flutter/material.dart';
-import 'package:SpacePortal/Constants.dart';
+import 'package:spaceportal/Constants.dart';
 
 class MarsRoverPage extends StatefulWidget {
   @override

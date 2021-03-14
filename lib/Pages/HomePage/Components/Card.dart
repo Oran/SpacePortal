@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:SpacePortal/Constants.dart';
+import 'package:spaceportal/Constants.dart';
 
 class DCard extends StatelessWidget {
   DCard({

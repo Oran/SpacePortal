@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:SpacePortal/Constants.dart';
+import 'package:spaceportal/Constants.dart';
 
 final ThemeData themeData = ThemeData(
   scaffoldBackgroundColor: kPrimaryWhite,

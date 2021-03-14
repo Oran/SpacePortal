@@ -1,8 +1,8 @@
-import 'package:SpacePortal/Pages/TestPage.dart';
-import 'package:SpacePortal/Pages/HomePage/Components/Card.dart';
-import 'package:SpacePortal/Providers/Providers.dart';
+import 'package:spaceportal/Pages/TestPage.dart';
+import 'package:spaceportal/Pages/HomePage/Components/Card.dart';
+import 'package:spaceportal/Providers/Providers.dart';
 import 'package:flutter/material.dart';
-import 'package:SpacePortal/Constants.dart';
+import 'package:spaceportal/Constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

@@ -1,4 +1,4 @@
-import 'package:SpacePortal/Network/APODNetwork.dart';
+import 'package:spaceportal/Network/APODNetwork.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 

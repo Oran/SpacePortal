@@ -1,4 +1,4 @@
-import 'package:SpacePortal/Constants.dart';
+import 'package:spaceportal/Constants.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart' as yt;
 
 class OldNasaData {
