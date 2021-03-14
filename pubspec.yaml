@@ -1,4 +1,4 @@
-name: space_portal
+name: SpacePortal
 description: A gateway into space.
 
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
