@@ -7,30 +7,19 @@ import 'package:http/http.dart' as http;
 import 'package:spaceportal/Functions.dart';
 import 'package:image/image.dart';
 
-
-// String nasaPodUrl =
-//     'https://api.nasa.gov/planetary/apod?api_key=$_apiKey&date=${parseString(DateTime.now().toString())}';
-
-
-String nasaPodUrl =
-    'https://apodapi.herokuapp.com/api/?date=${parseDates(DateTime.now().toString())}';
+Uri nasaPodUrl = Uri.https('apodapi.herokuapp.com', '/api',
+    {'date': '${parseDates(DateTime.now().toString())}'});
 
 class OldAPODData {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   void setURL(String? date) {
     // nasaPodUrl =
     //     'https://api.nasa.gov/planetary/apod?api_key=$_apiKey&date=$date';
-    nasaPodUrl = 'https://apodapi.herokuapp.com/api/?date=$date';
-  }
-
-  Future checkImgColor(String url) async {
-    http.Response response = await http.get(Uri.parse(url));
-    int whiteBalance = decodeImage(response.bodyBytes)!.getWhiteBalance();
-    return whiteBalance;
+    nasaPodUrl = Uri.https('apodapi.herokuapp.com', '/api', {'date': '$date'});
   }
 
   Future<dynamic> getOldNasaPodData() async {
-    http.Response response = await http.get(Uri.parse(nasaPodUrl));
+    http.Response response = await http.get(nasaPodUrl);
     var decodedData = jsonDecode(response.body);
     var data = OldNasaData.fromJson(decodedData);
     var wb = await checkImgColor(
@@ -41,11 +30,11 @@ class OldAPODData {
 
 class APODData {
   // static String url = 'https://api.nasa.gov/planetary/apod?api_key=$_apiKey';
-  static String url = 'https://apodapi.herokuapp.com/api/';
+  final Uri url = Uri.https('apodapi.herokuapp.com', '/api');
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   Future getData() async {
-    var response = await http.get(Uri.parse(url));
+    var response = await http.get(url);
     var decodedData = jsonDecode(response.body);
     var image = decodedData['url'];
     var title = decodedData['title'];
