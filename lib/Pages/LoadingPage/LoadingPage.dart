@@ -1,9 +1,8 @@
 import 'dart:async';
 import 'package:spaceportal/Network/APODNetwork.dart';
-import 'package:spaceportal/Constants.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
+import 'package:spaceportal/Pages/HomePage/HomePage.dart';
 
 class LoadingPage extends StatelessWidget {
   @override
@@ -11,14 +10,11 @@ class LoadingPage extends StatelessWidget {
     return FutureBuilder(
       future: Future.wait([
         APODData().getData(),
-        Future.delayed(Duration(milliseconds: 1500)),
+        Future.delayed(Duration(milliseconds: 1000)),
       ]),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          SchedulerBinding.instance!.addPostFrameCallback((_) {
-            Navigator.popAndPushNamed(context, kHome_Page);
-          });
-          return Container();
+          return HomePage();
         } else {
           return Scaffold(
             body: Center(
