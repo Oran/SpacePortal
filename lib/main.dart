@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:global_configuration/global_configuration.dart';
 import 'package:spaceportal/Pages/APODPage/APODPage.dart';
 import 'package:spaceportal/Pages/LoadingPage/LoadingPage.dart';
 import 'package:spaceportal/theme/Theme.dart';
@@ -10,11 +11,10 @@ import 'package:spaceportal/Pages/HomePage/HomePage.dart';
 import 'package:spaceportal/Pages/MarsRoverPage/MarsRoverPage.dart';
 import 'package:spaceportal/Pages/NoConnectionPage/NoConnectionPage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await GlobalConfiguration().loadFromPath('assets/json/apodCache.json');
   runApp(
     ProviderScope(child: MyApp()),
   );
