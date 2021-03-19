@@ -4,7 +4,7 @@ import 'package:spaceportal/Network/MarsRoverNetwork.dart';
 import 'package:spaceportal/Pages/MarsRoverPage/Components/MarsRoverImages.dart';
 import 'package:flutter/material.dart';
 import 'package:spaceportal/Constants.dart';
-import 'Components/SlidingUpPanel.dart';
+import 'package:spaceportal/Widgets/SlidingUpPanel.dart';
 
 class MarsRoverPage extends StatefulWidget {
   @override
