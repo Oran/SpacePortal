@@ -1,7 +1,7 @@
 import 'package:spaceportal/Constants.dart';
 
-class FSData {
-  FSData({
+class CachedData {
+  CachedData({
     this.title = '',
     this.date = '',
     this.exp = '',
@@ -20,4 +20,18 @@ class FSData {
   String testf;
   String? videoURL;
   String? apodSite;
+
+  factory CachedData.fromJson(Map<String, dynamic> map) {
+    return CachedData(
+      apodSite: map['apodSite'],
+      date: map['date'],
+      exp: map['description'],
+      image: map['image'],
+      mediaType: map['mediaType'],
+      title: map['title'],
+      videoURL: map['videoUrl'],
+    );
+  }
+
+  get data => null;
 }
