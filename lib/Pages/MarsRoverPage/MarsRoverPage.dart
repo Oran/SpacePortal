@@ -27,6 +27,14 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
   TextEditingController editingController = TextEditingController();
   FocusNode focusNode = FocusNode();
 
+  Widget panelIndicator() {
+    if (panelController.isAttached || panelController.isPanelOpen) {
+      return Icon(Icons.horizontal_rule_rounded);
+    } else {
+      return SizedBox(height: 10);
+    }
+  }
+
   Future getData(camIn, roverIn, solIn) async {
     //print('$selectedCam, $selectedRover, $selectedSol');
     marsData.setURL(camIn, roverIn, solIn);
@@ -70,7 +78,7 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
     return Scaffold(
       body: SlidingUpPanel(
         maxHeight: 400.0,
-        minHeight: 30.0,
+        minHeight: 40.0,
         backdropEnabled: true,
         defaultPanelState: PanelState.CLOSED,
         parallaxEnabled: true,
@@ -110,7 +118,7 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
             child: Center(
               child: Column(
                 children: [
-                  SizedBox(height: 20),
+                  Icon(Icons.keyboard_arrow_down),
                   Container(
                     width: 250.0,
                     decoration: BoxDecoration(
@@ -249,7 +257,7 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
               backgroundColor: kPrimaryWhite,
               pinned: true,
               floating: true,
-              expandedHeight: 120.0,
+              expandedHeight: 150.0,
               flexibleSpace: FlexibleSpaceBar(
                 collapseMode: CollapseMode.pin,
                 centerTitle: true,
