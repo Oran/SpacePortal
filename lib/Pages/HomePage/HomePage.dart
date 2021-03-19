@@ -36,18 +36,14 @@ class HomePage extends StatelessWidget {
                     Consumer(
                       builder: (context, watch, child) {
                         var apodProviderData = watch(apodProvider);
-                        return apodProviderData.when(
-                          data: (data) => DCard(
-                            image: CachedNetworkImage(
-                              imageUrl: data.image!,
-                              fit: BoxFit.cover,
-                            ),
-                            text: data.title,
-                            onPressed: () =>
-                                Navigator.pushNamed(context, kNASAPod_Page),
+                        return DCard(
+                          image: CachedNetworkImage(
+                            imageUrl: apodProviderData.image!,
+                            fit: BoxFit.cover,
                           ),
-                          loading: () => Container(color: Colors.black),
-                          error: (error, stack) => const Text('Oops'),
+                          text: apodProviderData.title,
+                          onPressed: () =>
+                              Navigator.pushNamed(context, kNASAPod_Page),
                         );
                       },
                     ),

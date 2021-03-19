@@ -9,8 +9,8 @@ class LoadingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: Future.wait([
-        APODData().getData(),
-        Future.delayed(Duration(milliseconds: 1000)),
+        APODData().setDataToCache(),
+        Future.delayed(Duration(milliseconds: 750)),
       ]),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
