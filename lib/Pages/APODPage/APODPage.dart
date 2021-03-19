@@ -11,7 +11,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-//import 'package:provider/provider.dart';
 enum wb { white, black }
 
 // ignore: must_be_immutable
@@ -74,42 +73,24 @@ class APODPage extends ConsumerWidget {
                   expandedHeight: 50.0,
                   flexibleSpace: Stack(
                     children: [
-                      Container(
-                        height: (MediaQuery.of(context).size.height),
-                        width: (MediaQuery.of(context).size.width),
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage(apodProviderData.data!.value.image!),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        child: ClipRRect(
-                          child: BackdropFilter(
-                            filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-                            child: Text(
-                              '0',
-                              style: TextStyle(color: Colors.transparent),
+                      ImageFiltered(
+                        imageFilter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
+                        child: Container(
+                          height: (MediaQuery.of(context).size.height),
+                          width: (MediaQuery.of(context).size.width),
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                  apodProviderData.data!.value.image!),
+                              fit: BoxFit.cover,
                             ),
                           ),
+                          child: null,
                         ),
                       ),
                       Container(
                         child: FlexibleSpaceBar(
                           collapseMode: CollapseMode.parallax,
-                          background: Container(
-                            height: (MediaQuery.of(context).size.height),
-                            width: (MediaQuery.of(context).size.width),
-                            child: ClipRRect(
-                              child: BackdropFilter(
-                                filter:
-                                    ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-                                child: Text(
-                                  '0',
-                                  style: TextStyle(color: Colors.transparent),
-                                ),
-                              ),
-                            ),
-                          ),
                           centerTitle: true,
                           title: AnimatedDefaultTextStyle(
                             style: kTitleDateTS.copyWith(

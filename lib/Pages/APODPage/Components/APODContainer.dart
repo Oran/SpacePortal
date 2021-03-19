@@ -13,6 +13,7 @@ class APODContents extends ConsumerWidget {
     var orientation = (MediaQuery.of(context).orientation);
     return SliverList(
       delegate: SliverChildListDelegate([
+        SizedBox(height: 25),
         Container(
           height: orientation == Orientation.landscape ? 800.0 : null,
           padding: EdgeInsets.all(10),

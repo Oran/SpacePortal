@@ -37,27 +37,21 @@ class _APODViewerState extends State<APODViewer> {
                 color: snapshot.data[1] < 127 ? Colors.white : Colors.black,
               ),
               elevation: 10,
-              flexibleSpace: Container(
-                height: (MediaQuery.of(context).size.height),
-                width: (MediaQuery.of(context).size.width),
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(
-                      snapshot.data[0].mediaType == 'video'
-                          ? snapshot.data[0].videoThumb
-                          : snapshot.data[0].mediaType == 'other'
-                              ? kPlaceholderImageBlack
-                              : snapshot.data[0].image,
-                    ),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                child: ClipRRect(
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                    child: Text(
-                      '0',
-                      style: TextStyle(color: Colors.transparent),
+              flexibleSpace: ImageFiltered(
+                imageFilter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
+                child: Container(
+                  height: (MediaQuery.of(context).size.height),
+                  width: (MediaQuery.of(context).size.width),
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(
+                        snapshot.data[0].mediaType == 'video'
+                            ? snapshot.data[0].videoThumb
+                            : snapshot.data[0].mediaType == 'other'
+                                ? kPlaceholderImageBlack
+                                : snapshot.data[0].image,
+                      ),
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
@@ -69,6 +63,7 @@ class _APODViewerState extends State<APODViewer> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    SizedBox(height: 25),
                     Container(
                       height:
                           orientation == Orientation.landscape ? 800.0 : null,
