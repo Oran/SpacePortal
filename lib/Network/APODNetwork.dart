@@ -35,7 +35,6 @@ class APODData {
   /// checks for dates and sets data to cache.
   Future setDataToCache() async {
     if (cacheData.getValue('date') != currentDate) {
-      print('this is running');
       http.Response response = await http.get(url);
       Map decodedData = jsonDecode(response.body);
       cacheData..updateValue('date', decodedData['date']);
