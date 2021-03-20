@@ -39,7 +39,18 @@ class APODPage extends ConsumerWidget {
     ).then((value) => {
           parseDates(value?.toString() ?? DateTime.now().toString()) ==
                   parseDates(DateTime.now().toString())
-              ? print('dates are the same')
+              ? ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Dates are the same'),
+                    duration: Duration(seconds: 3),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(30),
+                        topRight: Radius.circular(30),
+                      ),
+                    ),
+                  ),
+                )
               : Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -79,8 +90,7 @@ class APODPage extends ConsumerWidget {
                           width: (MediaQuery.of(context).size.width),
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: NetworkImage(
-                                  apodProviderData.image!),
+                              image: NetworkImage(apodProviderData.image!),
                               fit: BoxFit.cover,
                             ),
                           ),
