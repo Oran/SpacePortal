@@ -1,6 +1,5 @@
 import 'dart:ui';
 import 'package:spaceportal/Functions.dart';
-import 'package:spaceportal/Network/APODNetwork.dart';
 import 'package:spaceportal/Pages/APODPage/Components/APODViewer.dart';
 import 'package:spaceportal/Pages/APODPage/Components/APODContainer.dart';
 import 'package:spaceportal/Constants.dart';
@@ -40,7 +39,18 @@ class APODPage extends ConsumerWidget {
     ).then((value) => {
           parseDates(value?.toString() ?? DateTime.now().toString()) ==
                   parseDates(DateTime.now().toString())
-              ? print('dates are the same')
+              ? ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Dates are the same'),
+                    duration: Duration(seconds: 3),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(30),
+                        topRight: Radius.circular(30),
+                      ),
+                    ),
+                  ),
+                )
               : Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -57,7 +67,7 @@ class APODPage extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     var apodProviderData = watch(apodProvider);
     return FutureBuilder(
-      future: APODData().checkImgColor(apodProviderData.data!.value.image!),
+      future: checkImgColor(apodProviderData.image!),
       builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return Scaffold(
@@ -80,8 +90,7 @@ class APODPage extends ConsumerWidget {
                           width: (MediaQuery.of(context).size.width),
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: NetworkImage(
-                                  apodProviderData.data!.value.image!),
+                              image: NetworkImage(apodProviderData.image!),
                               fit: BoxFit.cover,
                             ),
                           ),
