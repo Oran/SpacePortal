@@ -9,6 +9,7 @@ const String kMars_Page = 'mars_page';
 const String kNoConnection_Page = 'noConnection_page';
 const String kLoading_Page = 'loading_page';
 const String kMarsWeather_Page = 'mars_weather_page';
+const String kArticles_Page = 'articles_page';
 
 // New Colors
 const Color kPrimaryWhite = Colors.white;

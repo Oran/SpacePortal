@@ -1,7 +1,9 @@
 import 'dart:io';
 import 'package:global_configuration/global_configuration.dart';
 import 'package:spaceportal/Pages/APODPage/APODPage.dart';
+import 'package:spaceportal/Pages/ArticlesPage/ArticlesPage.dart';
 import 'package:spaceportal/Pages/LoadingPage/LoadingPage.dart';
+import 'package:spaceportal/Routes.dart';
 import 'package:spaceportal/theme/Theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -68,13 +70,7 @@ class _MyAppState extends State<MyApp> {
                   initialRoute: snapshot.data == cs.done
                       ? kLoading_Page
                       : kNoConnection_Page,
-                  routes: {
-                    kHome_Page: (context) => HomePage(),
-                    kNASAPod_Page: (context) => APODPage(),
-                    kMars_Page: (context) => MarsRoverPage(),
-                    kLoading_Page: (context) => LoadingPage(),
-                    kNoConnection_Page: (context) => NoConnectionPage(),
-                  },
+                  routes: pageRoutes,
                 )
               : Center(
                   child: Container(
