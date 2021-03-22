@@ -1,7 +1,7 @@
 import 'package:spaceportal/Models/FSData.dart';
 import 'package:spaceportal/Network/APODNetwork.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:spaceportal/Network/NewsNetwork.dart';
+import 'package:spaceportal/Network/ArticleNetwork.dart'rt';
 
 final apodProvider = Provider<CachedData>(
   (ref) => APODData().getDataFromCache(),

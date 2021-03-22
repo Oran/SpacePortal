@@ -1,12 +1,11 @@
 class Articles {
-  var data;
+  List data;
   int length;
-  Articles({this.data, required this.length});
+  Articles({required this.data, required this.length});
 
   factory Articles.fromList(List list) {
-    var indexes = list.asMap().keys.toList();
     return Articles(
-      data: indexes.map((e) => new ArticleData.fromMap(list[e])).toList(),
+      data: list.map((article) => ArticleData.fromMap(article)).toList(),
       length: list.length,
     );
   }
@@ -35,7 +34,7 @@ class ArticleData {
     required this.url,
   });
 
-  factory ArticleData.fromMap(dynamic map) {
+  factory ArticleData.fromMap(Map<String, dynamic> map) {
     return ArticleData(
       id: map['id'],
       title: map['title'],
