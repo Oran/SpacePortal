@@ -1,17 +1,11 @@
 import 'dart:io';
 import 'package:global_configuration/global_configuration.dart';
-import 'package:spaceportal/Pages/APODPage/APODPage.dart';
-import 'package:spaceportal/Pages/ArticlesPage/ArticlesPage.dart';
-import 'package:spaceportal/Pages/LoadingPage/LoadingPage.dart';
 import 'package:spaceportal/Routes.dart';
 import 'package:spaceportal/theme/Theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:spaceportal/Constants.dart';
 import 'package:flare_flutter/flare_actor.dart';
-import 'package:spaceportal/Pages/HomePage/HomePage.dart';
-import 'package:spaceportal/Pages/MarsRoverPage/MarsRoverPage.dart';
-import 'package:spaceportal/Pages/NoConnectionPage/NoConnectionPage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 Future<void> main() async {
