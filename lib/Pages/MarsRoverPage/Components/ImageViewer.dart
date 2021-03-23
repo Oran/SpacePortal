@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:image_downloader/image_downloader.dart';
 import 'package:spaceportal/Constants.dart';
-
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ImageViewer extends StatelessWidget {
   ImageViewer(
@@ -20,6 +19,22 @@ class ImageViewer extends StatelessWidget {
   final status;
   final cameraName;
 
+  void downloadImage(context) async {
+    await ImageDownloader.downloadImage(
+      list,
+      destination: AndroidDestinationType.directoryDownloads,
+    );
+    ImageDownloader.callback(
+      onProgressUpdate: (id, progress) {
+        if (progress == 100) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Download Complete')),
+          );
+        }
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,11 +44,7 @@ class ImageViewer extends StatelessWidget {
         actions: [
           GestureDetector(
             onTap: () {
-              launch(
-                list,
-                // forceWebView: true,
-                // enableJavaScript: true,
-              );
+              downloadImage(context);
             },
             child: Container(
               height: 60.0,
