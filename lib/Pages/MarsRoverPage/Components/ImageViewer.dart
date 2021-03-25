@@ -19,6 +19,9 @@ class ImageViewer extends StatelessWidget {
   final status;
   final cameraName;
 
+  final double buttonHeight = 50;
+  final double buttonWidth = 130;
+
   void downloadImage(context) async {
     await ImageDownloader.downloadImage(
       list,
@@ -35,6 +38,99 @@ class ImageViewer extends StatelessWidget {
     );
   }
 
+  createDialog(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: Container(
+            height: 250,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(
+                  'Download Confirmation',
+                  style: kDialogBoxTS.copyWith(
+                    fontSize: 20.0,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  'Do you want to download?',
+                  style: kDialogBoxTS.copyWith(
+                    fontSize: 16,
+                    color: Colors.black,
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      onTap: () => Navigator.pop(context),
+                      child: Container(
+                        height: buttonHeight,
+                        width: buttonWidth,
+                        child: Center(
+                          child: Text(
+                            'Cancel',
+                            style: kDialogBoxTS.copyWith(
+                              color: Colors.black,
+                              fontSize: 17,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 25),
+                    InkWell(
+                      onTap: () {
+                        downloadImage(context);
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        height: buttonHeight,
+                        width: buttonWidth,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(color: kAccentColor),
+                          color: kAccentColor,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.download_rounded,
+                              color: kIconColor,
+                            ),
+                            SizedBox(width: 10),
+                            Text(
+                              'Confirm',
+                              style: kDialogBoxTS.copyWith(
+                                color: kPrimaryWhite,
+                                fontSize: 17,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +140,7 @@ class ImageViewer extends StatelessWidget {
         actions: [
           GestureDetector(
             onTap: () {
-              downloadImage(context);
+              createDialog(context);
             },
             child: Container(
               height: 60.0,
