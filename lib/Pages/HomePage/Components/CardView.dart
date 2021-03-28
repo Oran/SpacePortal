@@ -35,7 +35,6 @@ class _CardViewState extends State<CardView> {
 
   @override
   Widget build(BuildContext context) {
-    print(offsetValue(offset));
     return ListView(
       scrollDirection: Axis.vertical,
       controller: _controller,
