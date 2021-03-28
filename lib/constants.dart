@@ -88,6 +88,12 @@ TextStyle kCardTS = GoogleFonts.roboto(
   ],
 );
 
+TextStyle kDialogBoxTS = GoogleFonts.roboto(
+  fontSize: 17,
+  letterSpacing: 1,
+  color: Colors.black,
+);
+
 //Image links
 const kPlaceholderImage =
     'https://www.pngkey.com/png/full/233-2332677_image-500580-placeholder-transparent.png';

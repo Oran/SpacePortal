@@ -19,6 +19,9 @@ dependencies:
   url_launcher: ^6.0.2
   youtube_explode_dart: ^1.9.0-nullsafety.3
   global_configuration: ^2.0.0-nullsafety.0
+  image_downloader: ^0.30.0
+  permission_handler: ^6.1.1
+  instant: ^0.4.1
 
 dev_dependencies:
   flutter_test:

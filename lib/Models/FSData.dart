@@ -10,6 +10,7 @@ class CachedData {
     this.testf = '',
     this.videoURL = '',
     this.apodSite = '',
+    this.hdUrl = '',
   });
 
   String? title;
@@ -20,6 +21,7 @@ class CachedData {
   String testf;
   String? videoURL;
   String? apodSite;
+  String? hdUrl;
 
   factory CachedData.fromJson(Map<String, dynamic> map) {
     return CachedData(
@@ -30,6 +32,7 @@ class CachedData {
       mediaType: map['mediaType'],
       title: map['title'],
       videoURL: map['videoUrl'],
+      hdUrl: map['hdurl'],
     );
   }
 

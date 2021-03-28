@@ -9,6 +9,7 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:spaceportal/Pages/APODPage/Components/DownloadButton.dart';
 
 enum wb { white, black }
 
@@ -118,10 +119,18 @@ class APODPage extends ConsumerWidget {
                       ),
                     ],
                   ),
-                  leading: GestureDetector(
+                  actions: [
+                    DownloadButton(
+                      snapshot: snapshot,
+                      imageUrl: apodProviderData.hdUrl,
+                      mediaType: apodProviderData.mediaType,
+                    ),
+                  ],
+                  leading: InkWell(
                     onTap: () {
                       _openDialog(context);
                     },
+                    borderRadius: BorderRadius.circular(40),
                     child: AnimatedContainer(
                       duration: Duration(milliseconds: 250),
                       child: Icon(
