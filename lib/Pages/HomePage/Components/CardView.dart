@@ -41,7 +41,7 @@ class _CardViewState extends State<CardView> {
       padding: EdgeInsets.zero,
       physics: BouncingScrollPhysics(),
       children: [
-        SizedBox(height: 20),
+        SizedBox(height: 10),
         Consumer(
           builder: (context, watch, child) {
             var apodProviderData = watch(apodProvider);
