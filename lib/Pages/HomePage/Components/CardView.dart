@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spaceportal/Constants.dart';
 import 'package:spaceportal/Pages/HomePage/Components/Card.dart';
 import 'package:spaceportal/Pages/TestPage.dart';
-import 'package:spaceportal/Providers/providers.dart';
+import 'package:spaceportal/Providers/Providers.dart';
 
 class CardView extends StatefulWidget {
   @override
@@ -12,10 +12,27 @@ class CardView extends StatefulWidget {
 }
 
 class _CardViewState extends State<CardView> {
-  ScrollController _controller = ScrollController();
+  ScrollController _controller = ScrollController(
+    keepScrollOffset: true,
+  );
   double offset = 0;
+  double heightDiff = 0;
+
+  void getImgheight() {
+    var image = new Image.network(
+      ProviderContainer().read(apodProvider).image!,
+    );
+    image.image.resolve(new ImageConfiguration()).addListener(
+      ImageStreamListener(
+        (ImageInfo info, bool) {
+          heightDiff = 150 / info.image.height;
+        },
+      ),
+    );
+  }
 
   double offsetValue(double offset) {
+    getImgheight();
     if (offset < 0) {
       return -offset.abs();
     } else {
@@ -28,7 +45,7 @@ class _CardViewState extends State<CardView> {
     super.initState();
     _controller.addListener(() {
       setState(() {
-        offset = _controller.offset * -0.009;
+        offset = _controller.offset * -0.010;
       });
     });
   }
@@ -49,7 +66,7 @@ class _CardViewState extends State<CardView> {
               image: CachedNetworkImage(
                 imageUrl: apodProviderData.image!,
                 fit: BoxFit.cover,
-                alignment: Alignment(0, offsetValue(offset) * 0.5),
+                alignment: Alignment(0, offsetValue(offset) * heightDiff),
               ),
               text: apodProviderData.title,
               onPressed: () => Navigator.pushNamed(context, kNASAPod_Page),
@@ -61,7 +78,6 @@ class _CardViewState extends State<CardView> {
             'assets/images/mars_rover.jpg',
             fit: BoxFit.cover,
             alignment: Alignment(0, offsetValue(offset)),
-            repeat: ImageRepeat.repeatY,
           ),
           text: 'Mars Rover Images',
           onPressed: () => Navigator.pushNamed(context, kMars_Page),
