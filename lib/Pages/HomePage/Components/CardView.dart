@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spaceportal/Constants.dart';
+import 'package:spaceportal/Functions.dart';
 import 'package:spaceportal/Pages/HomePage/Components/Card.dart';
 import 'package:spaceportal/Pages/TestPage.dart';
 import 'package:spaceportal/Providers/Providers.dart';
@@ -12,37 +13,8 @@ class CardView extends StatefulWidget {
 }
 
 class _CardViewState extends State<CardView> {
-  ScrollController _controller = ScrollController(
-    keepScrollOffset: true,
-  );
+  ScrollController _controller = ScrollController();
   double offset = 0;
-  double heightDiff = 0;
-
-  void getImgheight() {
-    ProviderContainer _container = ProviderContainer();
-    var apodContainer = _container.read(apodProvider);
-    var image = new Image.network(
-      apodContainer.mediaType == 'video'
-          ? apodContainer.videoThumb!
-          : apodContainer.image!,
-    );
-    image.image.resolve(new ImageConfiguration()).addListener(
-      ImageStreamListener(
-        (ImageInfo info, bool) {
-          heightDiff = 150 / info.image.height;
-        },
-      ),
-    );
-  }
-
-  double offsetValue(double offset) {
-    getImgheight();
-    if (offset < 0) {
-      return -offset.abs();
-    } else {
-      return offset.abs();
-    }
-  }
 
   @override
   void initState() {
@@ -72,7 +44,15 @@ class _CardViewState extends State<CardView> {
                     ? apodProviderData.videoThumb!
                     : apodProviderData.image!,
                 fit: BoxFit.cover,
-                alignment: Alignment(0, offsetValue(offset) * heightDiff),
+                alignment: Alignment(
+                  0,
+                  offsetValue(offset) *
+                      getImgHeightDiff(
+                        apodProviderData.mediaType == 'video'
+                            ? apodProviderData.videoThumb!
+                            : apodProviderData.image!,
+                      ),
+                ),
               ),
               text: apodProviderData.title,
               onPressed: () => Navigator.pushNamed(context, kNASAPod_Page),
@@ -83,7 +63,7 @@ class _CardViewState extends State<CardView> {
           image: Image.asset(
             'assets/images/mars_rover.jpg',
             fit: BoxFit.cover,
-            alignment: Alignment(0, offsetValue(offset)),
+            alignment: Alignment(0, offsetValue(offset) * 0.5),
           ),
           text: 'Mars Rover Images',
           onPressed: () => Navigator.pushNamed(context, kMars_Page),
@@ -98,7 +78,11 @@ class _CardViewState extends State<CardView> {
                 image: CachedNetworkImage(
                   imageUrl: data.data[0].imageUrl,
                   fit: BoxFit.cover,
-                  alignment: Alignment(0, offsetValue(offset)),
+                  alignment: Alignment(
+                    0,
+                    offsetValue(offset) *
+                        getImgHeightDiff(data.data[0].imageUrl),
+                  ),
                 ),
                 text: 'News / Articles',
                 onPressed: () => Navigator.pushNamed(context, kArticles_Page),
