@@ -40,7 +40,7 @@ class APODContents extends ConsumerWidget {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(30),
                           child: CachedNetworkImage(
-                            imageUrl: apodProviderData.image!,
+                            imageUrl: apodProviderData.videoThumb!,
                             fit: BoxFit.cover,
                           ),
                         ),

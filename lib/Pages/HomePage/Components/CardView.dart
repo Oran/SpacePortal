@@ -19,8 +19,12 @@ class _CardViewState extends State<CardView> {
   double heightDiff = 0;
 
   void getImgheight() {
+    ProviderContainer _container = ProviderContainer();
+    var apodContainer = _container.read(apodProvider);
     var image = new Image.network(
-      ProviderContainer().read(apodProvider).image!,
+      apodContainer.mediaType == 'video'
+          ? apodContainer.videoThumb!
+          : apodContainer.image!,
     );
     image.image.resolve(new ImageConfiguration()).addListener(
       ImageStreamListener(
@@ -64,7 +68,9 @@ class _CardViewState extends State<CardView> {
             var apodProviderData = watch(apodProvider);
             return DCard(
               image: CachedNetworkImage(
-                imageUrl: apodProviderData.image!,
+                imageUrl: apodProviderData.mediaType == 'video'
+                    ? apodProviderData.videoThumb!
+                    : apodProviderData.image!,
                 fit: BoxFit.cover,
                 alignment: Alignment(0, offsetValue(offset) * heightDiff),
               ),

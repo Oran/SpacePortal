@@ -40,18 +40,18 @@ class APODData {
   Future setDataToCache() async {
     // print(cacheData.getValue('date'));
     // print(cacheData.appConfig);
-    if (cacheData.getValue('date') != edtDate.split(' ')[0]) {
+    // cacheData.getValue('date') == edtDate.split(' ')[0]
+    if (true) {
       http.Response response = await http.get(url);
       Map decodedData = jsonDecode(response.body);
       cacheData..updateValue('date', decodedData['date']);
       cacheData..updateValue('title', decodedData['title']);
-      //cacheData..updateValue('image', decodedData['url']);
       cacheData..updateValue('mediaType', decodedData['media_type']);
       cacheData..updateValue('description', decodedData['description']);
-      cacheData..updateValue('hdurl', decodedData['hdurl']);
 
       if (decodedData['media_type'] == 'image') {
         cacheData..updateValue('image', decodedData['url']);
+        cacheData..updateValue('hdurl', decodedData['hdurl']);
       }
       if (decodedData['media_type'] == 'video') {
         getThumbnail(decodedData['url']);
@@ -64,7 +64,7 @@ class APODData {
     RegExp exp = RegExp(r"embed\/([^#\&\?]{11})");
     String videoID = exp.firstMatch(videoURL)!.group(1)!;
     var videoImageUrl = yt.ThumbnailSet(videoID).highResUrl;
-    cacheData..updateValue('video', videoImageUrl);
+    cacheData..updateValue('videoThumb', videoImageUrl);
   }
 
   CachedData getDataFromCache() {

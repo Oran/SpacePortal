@@ -89,10 +89,12 @@ class APODPage extends ConsumerWidget {
                         height: (MediaQuery.of(context).size.height),
                         width: (MediaQuery.of(context).size.width),
                         child: CachedNetworkImage(
-                          imageUrl: apodProviderData.image!,
+                          imageUrl: apodProviderData.mediaType == 'video'
+                              ? apodProviderData.videoThumb!
+                              : apodProviderData.image!,
                           fit: BoxFit.cover,
-                          memCacheHeight: 30,
-                          memCacheWidth: 30,
+                          memCacheHeight: 50,
+                          memCacheWidth: 50,
                         ),
                       ),
                       Container(
