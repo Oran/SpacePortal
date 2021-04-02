@@ -81,7 +81,8 @@ class _CardViewState extends State<CardView> {
                   alignment: Alignment(
                     0,
                     offsetValue(offset) *
-                        getImgHeightDiff(data.data[0].imageUrl),
+                        getImgHeightDiff(data.data[0].imageUrl) *
+                        2.5,
                   ),
                 ),
                 text: 'News / Articles',
