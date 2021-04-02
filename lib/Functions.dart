@@ -1,5 +1,6 @@
 import 'package:http/http.dart' as http;
-import 'package:image/image.dart';
+import 'package:image/image.dart' as image;
+import 'package:flutter/material.dart';
 
 /// Parses dates using Regex into normal format.
 String? parseDates(String dateTime) {
@@ -11,6 +12,31 @@ String? parseDates(String dateTime) {
 /// Check WhiteBalance of the provided network image.
 Future checkImgColor(String url) async {
   var response = await http.get(Uri.parse(url));
-  int whiteBalance = decodeImage(response.bodyBytes)!.getWhiteBalance();
+  int whiteBalance = image.decodeImage(response.bodyBytes)!.getWhiteBalance();
   return whiteBalance;
+}
+
+/// Gets the height difference based on the provided image
+///
+/// heightDiff = 150 / imageHeight
+double getImgHeightDiff(String url) {
+  double heightDiff = 0;
+  var image = new Image.network(url);
+  image.image.resolve(new ImageConfiguration()).addListener(
+    ImageStreamListener(
+      (ImageInfo info, bool) {
+        heightDiff = (150 / info.image.height);
+      },
+    ),
+  );
+  return heightDiff;
+}
+
+/// Checks if the offset goes below a certain value
+double offsetValue(double offset) {
+  if (offset < 0) {
+    return -offset.abs();
+  } else {
+    return offset.abs();
+  }
 }
