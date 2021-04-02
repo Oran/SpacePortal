@@ -40,7 +40,7 @@ class APODData {
   Future setDataToCache() async {
     // print(cacheData.getValue('date'));
     // print(cacheData.appConfig);
-    if (cacheData.getValue('date') == edtDate.split(' ')[0]) {
+    if (cacheData.getValue('date') != edtDate.split(' ')[0]) {
       http.Response response = await http.get(url);
       Map decodedData = jsonDecode(response.body);
       cacheData..updateValue('date', decodedData['date']);
