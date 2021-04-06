@@ -22,6 +22,7 @@ dependencies:
   image_downloader: ^0.30.0
   permission_handler: ^6.1.1
   instant: ^0.4.1
+  localstorage: ^4.0.0+1
 
 dev_dependencies:
   flutter_test:
