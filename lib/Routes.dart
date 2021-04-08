@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spaceportal/Constants.dart';
-
+import 'Pages/LaunchPage/LaunchPage.dart';
 import 'Pages/APODPage/APODPage.dart';
 import 'Pages/ArticlesPage/ArticlesPage.dart';
 import 'Pages/HomePage/HomePage.dart';
@@ -15,4 +15,5 @@ Map<String, WidgetBuilder> pageRoutes = {
   kLoading_Page: (context) => LoadingPage(),
   kNoConnection_Page: (context) => NoConnectionPage(),
   kArticles_Page: (context) => ArticlesPage(),
+  kLaunch_Page: (context) => LaunchPage(),
 };
