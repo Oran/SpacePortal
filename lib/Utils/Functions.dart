@@ -40,3 +40,16 @@ double offsetValue(double offset) {
     return offset.abs();
   }
 }
+
+/// Convert String date to Local Time
+String convertDateToLocal(String date) {
+  return DateTime.parse(date).toLocal().toString();
+}
+
+/// Seperates date and time
+/// returns a list of [date, time]
+List<String> parseDateAndTime(String datetime) {
+  var date = datetime.split(' ')[0];
+  var time = datetime.split(' ')[1].split('.')[0];
+  return [date, time];
+}
