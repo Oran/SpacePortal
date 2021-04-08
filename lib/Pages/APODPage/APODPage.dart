@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:spaceportal/Functions.dart';
+import 'package:spaceportal/Utils/Functions.dart';
 import 'package:spaceportal/Pages/APODPage/Components/APODViewer.dart';
 import 'package:spaceportal/Pages/APODPage/Components/APODContainer.dart';
 import 'package:spaceportal/Constants.dart';

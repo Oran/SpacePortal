@@ -4,7 +4,7 @@ import 'package:spaceportal/Models/FSData.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart' as yt;
 import 'package:spaceportal/Models/OldNasaData.dart';
 import 'package:http/http.dart' as http;
-import 'package:spaceportal/Functions.dart';
+import 'package:spaceportal/Utils/Functions.dart';
 import 'package:instant/instant.dart';
 
 Uri nasaPodUrl = Uri.https('apodapi.herokuapp.com', '/api',

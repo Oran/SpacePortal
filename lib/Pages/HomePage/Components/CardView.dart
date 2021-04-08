@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spaceportal/Constants.dart';
-import 'package:spaceportal/Functions.dart';
+import 'package:spaceportal/Utils/Functions.dart';
 import 'package:spaceportal/Pages/HomePage/Components/Card.dart';
 import 'package:spaceportal/Pages/TestPage.dart';
 import 'package:spaceportal/Providers/Providers.dart';
@@ -67,6 +67,24 @@ class _CardViewState extends State<CardView> {
           ),
           text: 'Mars Rover Images',
           onPressed: () => Navigator.pushNamed(context, kMars_Page),
+        ),
+        Consumer(
+          builder: (context, watch, child) {
+            var data = watch(launchProvider);
+            return DCard(
+              image: CachedNetworkImage(
+                imageUrl: data.launchData[0].image,
+                fit: BoxFit.cover,
+                alignment: Alignment(
+                  0,
+                  offsetValue(offset) *
+                      getImgHeightDiff(data.launchData[0].image),
+                ),
+              ),
+              text: 'Launch Schedule',
+              onPressed: () => Navigator.pushNamed(context, kLaunch_Page),
+            );
+          },
         ),
         Consumer(
           builder: (context, watch, child) {
