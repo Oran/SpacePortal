@@ -7,10 +7,13 @@ import 'package:flutter/services.dart';
 import 'package:spaceportal/Constants.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:spaceportal/Network/LaunchNetwork.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GlobalConfiguration().loadFromPath('assets/json/apodCache.json');
+  await storage.ready;
+  storage.setItem('date', '2020-04-07T16:34:00Z');
   runApp(
     ProviderScope(child: MyApp()),
   );
