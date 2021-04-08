@@ -3,19 +3,16 @@ import 'package:http/http.dart' as http;
 import 'package:spaceportal/Models/LaunchData.dart';
 import 'package:localstorage/localstorage.dart';
 
-class LaunchNetwork {
-  final storage = LocalStorage('data.json');
+final storage = LocalStorage('data.json');
 
+class LaunchNetwork {
   Future setDataToCache() async {
     DateTime currentDateTime = DateTime.now();
     DateTime cacheDate = DateTime.parse(storage.getItem('date'));
-    Duration difference = cacheDate.difference(currentDateTime);
-
-    print(cacheDate);
-    print(difference.inMinutes.toString() + ' mins');
+    Duration difference = currentDateTime.difference(cacheDate);
 
     // Checks if the time difference is -12 hours
-    if (difference.inHours <= -12) {
+    if (difference.inHours >= 12) {
       Uri url = Uri.https(
         'll.thespacedevs.com',
         '/2.2.0/launch/upcoming/',
