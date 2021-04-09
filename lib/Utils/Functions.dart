@@ -53,3 +53,10 @@ List<String> parseDateAndTime(String datetime) {
   var time = datetime.split(' ')[1].split('.')[0];
   return [date, time];
 }
+
+/// returns the time difference from the Current datetime to the provided one.
+Duration timeDifference(String time) {
+  DateTime currentDateTime = DateTime.now();
+  DateTime parsedDate = DateTime.parse(time);
+  return currentDateTime.difference(parsedDate).abs();
+}
