@@ -1,3 +1,5 @@
+import 'package:spaceportal/Constants.dart';
+
 class Launches {
   List launchData;
   int length;
@@ -79,7 +81,7 @@ class LaunchData {
       mission: Mission.fromMap(map['mission'] ?? {}),
       pad: Pad.fromMap(map['pad'] ?? {}),
       webcastLive: map['webcast_live'] ?? false,
-      image: map['image'] ?? 'null',
+      image: map['image'] ?? kPlaceholderImage,
       infographic: map['infographic'] ?? 'null',
       program: map['program'] ?? [],
     );
