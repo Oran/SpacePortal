@@ -1,86 +1,115 @@
-import "dart:async";
+import 'dart:async';
+import 'package:flutter/material.dart';
 
-class CountDown {
-  /// reference point for start and resume
-  DateTime? _begin;
+class Countdown extends StatefulWidget {
+  const Countdown({
+    Key? key,
+    required this.duration,
+    required this.builder,
+    required this.onFinish,
+    this.interval = const Duration(seconds: 1),
+  }) : super(key: key);
+
+  final Duration duration;
+  final Duration interval;
+  final void Function() onFinish;
+  final Widget Function(BuildContext context, Duration remaining) builder;
+  @override
+  _CountdownState createState() => _CountdownState();
+}
+
+class _CountdownState extends State<Countdown> {
   Timer? _timer;
   Duration? _duration;
-  Duration? remainingTime;
-  bool? isPaused = false;
-  // ignore: close_sinks
-  StreamController<Duration>? _controller;
-  Duration? _refresh;
+  @override
+  void initState() {
+    _duration = widget.duration;
+    startTimer();
 
-  /// provide a way to send less data to the client but keep the data of the timer up to date
-  int? _everyTick;
-  int counter = 0;
-
-  /// once you instantiate the CountDown you need to register to receive information
-  CountDown(Duration duration,
-      {Duration refresh: const Duration(milliseconds: 10), int everyTick: 1}) {
-    _refresh = refresh;
-    _everyTick = everyTick;
-
-    this._duration = duration;
-    _controller = StreamController<Duration>(
-        onListen: _onListen,
-        onPause: _onPause,
-        onResume: _onResume,
-        onCancel: _onCancel);
+    super.initState();
   }
 
-  Stream<Duration> get stream => _controller!.stream;
-
-  /// _onListen
-  /// invoke when the first subscriber has subscribe and not before to avoid leak of memory
-  _onListen() {
-    // reference point
-    _begin = DateTime.now();
-    _timer = Timer.periodic(_refresh!, _tick);
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
   }
 
-  /// the remaining time is set at '_refresh' ms accurate
-  _onPause() {
-    isPaused = true;
-    _timer!.cancel();
-    _timer = null;
+  void startTimer() {
+    _timer = Timer.periodic(widget.interval, timerCallback);
   }
 
-  /// ...restart the timer with the duration
-  _onResume() {
-    _begin = DateTime.now();
-
-    _duration = this.remainingTime;
-    isPaused = false;
-
-    //  lance le timer
-    _timer = Timer.periodic(_refresh!, _tick);
-  }
-
-  _onCancel() {
-    // on pause we already cancel the _timer
-    if (!isPaused!) {
-      _timer!.cancel();
-      _timer = null;
-    }
-    // _controller.close(); // close automatically the "pipe" when the sub close it by sub.cancel()
-  }
-
-  void _tick(Timer? timer) {
-    counter++;
-    Duration alreadyConsumed = DateTime.now().difference(_begin!);
-    this.remainingTime = this._duration! - alreadyConsumed;
-    if (this.remainingTime!.isNegative) {
-      timer!.cancel();
-      timer = null;
-      // tell the onDone's subscriber that it's finish
-      _controller!.close();
-    } else {
-      // here we can control the frequency of sending data
-      if (counter % _everyTick! == 0) {
-        _controller!.add(this.remainingTime!);
-        counter = 0;
+  void timerCallback(Timer timer) {
+    setState(() {
+      if (_duration!.inSeconds == 0) {
+        timer.cancel();
+        widget.onFinish();
+      } else {
+        _duration = Duration(seconds: _duration!.inSeconds - 1);
       }
-    }
+    });
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return widget.builder(context, _duration!);
+  }
+}
+
+class CountdownFormatted extends StatelessWidget {
+  const CountdownFormatted({
+    Key? key,
+    required this.duration,
+    required this.builder,
+    required this.onFinish,
+    this.interval = const Duration(seconds: 1),
+    required this.formatter,
+  }) : super(key: key);
+
+  final Duration duration;
+  final Duration interval;
+  final void Function() onFinish;
+
+  /// An function to format the remaining time
+  final String Function(Duration) formatter;
+
+  final Widget Function(BuildContext context, String remaining) builder;
+
+  Function(Duration) _formatter() {
+    // ignore: unnecessary_null_comparison
+    if (formatter != null) return formatter;
+    if (duration.inHours >= 1) return formatByHours;
+    if (duration.inMinutes >= 1) return formatByMinutes;
+
+    return formatBySeconds;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Countdown(
+      interval: interval,
+      onFinish: onFinish,
+      duration: duration,
+      builder: (BuildContext ctx, Duration remaining) {
+        return builder(ctx, _formatter()(remaining));
+      },
+    );
+  }
+}
+
+String twoDigits(int n) {
+  if (n >= 10) return '$n';
+  return '0$n';
+}
+
+String formatBySeconds(Duration duration) =>
+    twoDigits(duration.inSeconds.remainder(60));
+
+String formatByMinutes(Duration duration) {
+  String twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60));
+  return '$twoDigitMinutes:${formatBySeconds(duration)}';
+}
+
+String formatByHours(Duration duration) {
+  return '${twoDigits(duration.inHours)}:${formatByMinutes(duration)}';
 }
