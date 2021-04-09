@@ -32,6 +32,22 @@ class ArticlesPage extends ConsumerWidget {
                   image: CachedNetworkImage(
                     imageUrl: data.data[index].imageUrl,
                     fit: BoxFit.cover,
+                    progressIndicatorBuilder: (context, url, progress) {
+                      return Center(
+                        child: Container(
+                          height: 50,
+                          width: 50,
+                          child: CircularProgressIndicator(
+                            backgroundColor: Colors.white,
+                            value: progress.progress,
+                            valueColor: AlwaysStoppedAnimation(Colors.black),
+                          ),
+                        ),
+                      );
+                    },
+                    errorWidget: (context, url, error) {
+                      return FlutterLogo();
+                    },
                   ),
                   text: data.data[index].title,
                   textStyle: kCardTS.copyWith(
