@@ -37,18 +37,21 @@ class _APODViewerState extends State<APODViewer> {
                 color: snapshot.data[1] < 127 ? Colors.white : Colors.black,
               ),
               elevation: 10,
-              flexibleSpace: Container(
-                height: (MediaQuery.of(context).size.height),
-                width: (MediaQuery.of(context).size.width),
-                child: CachedNetworkImage(
-                  imageUrl: snapshot.data[0].mediaType == 'video'
-                      ? snapshot.data[0].videoThumb
-                      : snapshot.data[0].mediaType == 'other'
-                          ? kPlaceholderImageBlack
-                          : snapshot.data[0].image,
-                  fit: BoxFit.cover,
-                  memCacheHeight: 30,
-                  memCacheWidth: 30,
+              flexibleSpace: ImageFiltered(
+                imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                child: Container(
+                  height: (MediaQuery.of(context).size.height),
+                  width: (MediaQuery.of(context).size.width),
+                  child: CachedNetworkImage(
+                    imageUrl: snapshot.data[0].mediaType == 'video'
+                        ? snapshot.data[0].videoThumb
+                        : snapshot.data[0].mediaType == 'other'
+                            ? kPlaceholderImageBlack
+                            : snapshot.data[0].image,
+                    fit: BoxFit.cover,
+                    memCacheHeight: 30,
+                    memCacheWidth: 30,
+                  ),
                 ),
               ),
             ),
