@@ -15,9 +15,14 @@ class ArticlesPage extends ConsumerWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        title: Text(
-          'Articles',
-          style: kTitleLargeTS,
+        title: Padding(
+          padding: EdgeInsets.only(bottom: 15),
+          child: Text(
+            'Articles',
+            style: kTitleLargeTS.copyWith(
+              fontSize: 45,
+            ),
+          ),
         ),
       ),
       body: articles.when(
