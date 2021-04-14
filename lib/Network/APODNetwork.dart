@@ -63,6 +63,7 @@ class APODData {
     RegExp exp = RegExp(r"embed\/([^#\&\?]{11})");
     String videoID = exp.firstMatch(videoURL)!.group(1)!;
     var videoImageUrl = yt.ThumbnailSet(videoID).highResUrl;
+    cacheData..updateValue('videoUrl', videoURL);
     cacheData..updateValue('videoThumb', videoImageUrl);
   }
 
