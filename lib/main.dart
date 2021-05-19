@@ -1,19 +1,21 @@
 import 'dart:io';
 import 'package:global_configuration/global_configuration.dart';
 import 'package:spaceportal/Routes.dart';
+import 'package:spaceportal/Utils/Functions.dart';
 import 'package:spaceportal/theme/Theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:spaceportal/Constants.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:spaceportal/Network/LaunchNetwork.dart';
+import 'Network/LaunchNetwork.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GlobalConfiguration().loadFromPath('assets/json/apodCache.json');
+  await GlobalConfiguration().loadFromPath('assets/json/configs.json');
   await storage.ready;
-  storage.setItem('date', '2020-04-07T16:34:00Z');
+  initStorage();
   runApp(
     ProviderScope(child: MyApp()),
   );
