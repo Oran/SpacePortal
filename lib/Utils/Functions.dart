@@ -1,6 +1,8 @@
+import 'package:global_configuration/global_configuration.dart';
 import 'package:http/http.dart' as http;
 import 'package:image/image.dart' as image;
 import 'package:flutter/material.dart';
+import 'package:spaceportal/Network/LaunchNetwork.dart';
 
 /// Parses dates using Regex into normal format.
 String? parseDates(String dateTime) {
@@ -59,4 +61,16 @@ Duration timeDifference(String time) {
   DateTime currentDateTime = DateTime.now();
   DateTime parsedDate = DateTime.parse(time);
   return currentDateTime.difference(parsedDate).abs();
+}
+
+// Checks if the dates are set if not, it will do it.
+Future<void> initStorage() async {
+  var configs = GlobalConfiguration();
+  if (configs.getValue('didRun')) {
+    print('Did not run');
+  } else {
+    storage.setItem('date', '2020-04-07T16:34:00Z');
+    configs.updateValue('didRun', true);
+    print('Ran');
+  }
 }
