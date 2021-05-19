@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:spaceportal/Constants.dart';
@@ -24,7 +26,7 @@ class LaunchCard extends StatelessWidget {
         padding: EdgeInsets.all(8.0),
         child: Center(
           child: Container(
-            height: (MediaQuery.of(context).size.height) * 0.30,
+            height: (MediaQuery.of(context).size.height) * 0.25,
             width: (MediaQuery.of(context).size.width) * 0.90,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.0),
@@ -46,57 +48,52 @@ class LaunchCard extends StatelessWidget {
                     Container(
                       height: (MediaQuery.of(context).size.height),
                       width: (MediaQuery.of(context).size.width),
-                      // alignment: Alignment.centerLeft,
                       child: image,
                     ),
-                    Positioned(
-                      left: (MediaQuery.of(context).size.width) * 0.3,
+                    Align(
+                      alignment: Alignment.bottomRight,
                       child: Container(
-                        height: (MediaQuery.of(context).size.height),
-                        width: (MediaQuery.of(context).size.height) * 0.3,
                         decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0.60),
+                          borderRadius: BorderRadius.circular(20),
                           gradient: LinearGradient(
                             colors: [
                               Colors.transparent,
                               Colors.black,
+                              Colors.black,
+                              Colors.black,
                             ],
                           ),
                         ),
-                      ),
-                    ),
-                    Positioned(
-                      top: 145.0,
-                      left: 90.0,
-                      child: Container(
-                        // color: Colors.white,
                         padding: EdgeInsets.all(15.0),
-                        height: 150.0,
-                        width: 300.0,
-                        alignment: Alignment.bottomCenter,
-                        child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              AutoSizeText(
-                                date!,
-                                textAlign: TextAlign.center,
-                                style: kCardTS.copyWith(
-                                  fontSize: 15,
-                                ),
-                                maxLines: 3,
+                        height: (MediaQuery.of(context).size.height) * 0.12,
+                        width: (MediaQuery.of(context).size.width) * 1,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            AutoSizeText(
+                              text!,
+                              textAlign: TextAlign.right,
+                              style: kCardTS.copyWith(
+                                fontSize: 18,
+                                shadows: null,
                               ),
-                              // AutoSizeText(
-                              //   parseDateAndTime(convertDateToLocal(date!))[0],
-                              //   textAlign: TextAlign.center,
-                              //   style: kCardTS.copyWith(
-                              //     fontSize: 15,
-                              //   ),
-                              //   maxLines: 3,
-                              // ),
-                              CountdownTimer(time: date!),
-                            ],
-                          ),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            SizedBox(height: 5),
+                            AutoSizeText(
+                              date!.toString().split('T')[0],
+                              textAlign: TextAlign.right,
+                              style: kCardTS.copyWith(
+                                fontSize: 15,
+                                shadows: null,
+                              ),
+                              maxLines: 3,
+                            ),
+                            SizedBox(height: 5),
+                            CountdownTimer(time: date!),
+                          ],
                         ),
                       ),
                     ),
