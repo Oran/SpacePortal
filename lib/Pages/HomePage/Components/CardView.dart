@@ -99,8 +99,7 @@ class _CardViewState extends State<CardView> {
                   alignment: Alignment(
                     0,
                     offsetValue(offset) *
-                        getImgHeightDiff(data.data[0].imageUrl) *
-                        2.5,
+                        getImgHeightDiff(data.data[0].imageUrl),
                   ),
                 ),
                 text: 'News / Articles',
@@ -109,15 +108,15 @@ class _CardViewState extends State<CardView> {
             );
           },
         ),
-        DCard(
-          image: Container(color: Colors.black),
-          text: 'TEST PAGE',
-          onPressed: () => Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => TestPage(),
-            ),
-          ),
-        ),
+        // DCard(
+        //   image: Container(color: Colors.black),
+        //   text: 'TEST PAGE',
+        //   onPressed: () => Navigator.of(context).push(
+        //     MaterialPageRoute(
+        //       builder: (context) => TestPage(),
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }
