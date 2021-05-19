@@ -282,9 +282,9 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
                   ),
                 ),
               ),
-              leading: GestureDetector(
+              leading: InkWell(
                 child: Icon(
-                  Icons.subject,
+                  Icons.more_vert_rounded,
                   size: 30.0,
                 ),
                 onTap: () {
