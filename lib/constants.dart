@@ -37,7 +37,7 @@ TextStyle kDetailsTS = GoogleFonts.notoSans(
   letterSpacing: 0.8,
 );
 
-TextStyle kMarsStatsStyle = GoogleFonts.notoSans(
+TextStyle kMarsStatsStyle = GoogleFonts.roboto(
   fontSize: 15.0,
   color: kPrimaryBlack,
   fontWeight: FontWeight.bold,
@@ -45,7 +45,7 @@ TextStyle kMarsStatsStyle = GoogleFonts.notoSans(
 );
 
 TextStyle kTitleLargeTS = GoogleFonts.lobster(
-  fontSize: 55.0,
+  fontSize: 60.0,
   fontWeight: FontWeight.w800,
   letterSpacing: 1.2,
 );
@@ -81,11 +81,10 @@ TextStyle kCardTS = GoogleFonts.roboto(
   letterSpacing: 1,
   fontWeight: FontWeight.w600,
   shadows: [
-    Shadow(
-      color: Colors.black,
-      blurRadius: 30,
-      offset: Offset(0, 0),
-    ),
+    // Shadow(
+    //   color: Colors.black,
+    //   blurRadius: 30,
+    // ),
   ],
 );
 
