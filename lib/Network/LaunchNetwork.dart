@@ -11,12 +11,19 @@ class LaunchNetwork {
     DateTime cacheDate = DateTime.parse(storage.getItem('date'));
     Duration difference = currentDateTime.difference(cacheDate);
 
-    // Checks if the time difference is -12 hours
+    print(cacheDate);
+    print(difference.inSeconds);
+
+    // Checks if the time difference is greater than 12 hours
     if (difference.inHours >= 12) {
       Uri url = Uri.https(
         'll.thespacedevs.com',
         '/2.2.0/launch/upcoming/',
-        {'format': 'json', 'limit': '20'},
+        {
+          'format': 'json',
+          'limit': '15',
+          'hide_recent_previous': 'true',
+        },
       );
       // gets data from API
       http.Response response = await http.get(url);
