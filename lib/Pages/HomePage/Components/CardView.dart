@@ -1,14 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:spaceportal/Constants.dart';
-import 'package:spaceportal/Pages/APODPage/APODPage.dart';
 import 'package:spaceportal/Routes.dart';
 import 'package:spaceportal/Utils/Functions.dart';
 import 'package:spaceportal/Pages/HomePage/Components/Card.dart';
 import 'package:spaceportal/Pages/TestPage.dart';
 import 'package:spaceportal/Providers/Providers.dart';
-import 'package:spaceportal/Utils/SlideRoute.dart';
 
 class CardView extends StatefulWidget {
   @override
