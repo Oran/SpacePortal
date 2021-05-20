@@ -282,15 +282,29 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
                   ),
                 ),
               ),
-              leading: InkWell(
-                child: Icon(
-                  Icons.more_vert_rounded,
-                  size: 30.0,
+              // leading: InkWell(
+              //   child: Icon(
+              //     Icons.more_vert_rounded,
+              //     size: 30.0,
+              //   ),
+              //   onTap: () {
+              //     panelController.open();
+              //   },
+              // ),
+              actions: [
+                InkWell(
+                  child: Padding(
+                    padding: EdgeInsets.only(right: 20),
+                    child: Icon(
+                      Icons.more_vert_rounded,
+                      size: 30.0,
+                    ),
+                  ),
+                  onTap: () {
+                    panelController.open();
+                  },
                 ),
-                onTap: () {
-                  panelController.open();
-                },
-              ),
+              ],
             ),
             numOfPics == 0
                 ? SliverList(
