@@ -17,3 +17,11 @@ Map<String, WidgetBuilder> pageRoutes = {
   kArticles_Page: (context) => ArticlesPage(),
   kLaunch_Page: (context) => LaunchPage(),
 };
+
+final rHomePage = HomePage();
+final rApodPage = APODPage();
+final rMarsPage = MarsRoverPage();
+final rLoadingPage = LoadingPage();
+final rNoConnectionPage = NoConnectionPage();
+final rArticlesPage = ArticlesPage();
+final rLaunchPage = LaunchPage();
