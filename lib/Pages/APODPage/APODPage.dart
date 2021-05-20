@@ -55,8 +55,8 @@ class APODPage extends ConsumerWidget {
                 )
               : Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => APODViewer(
+                  routeTo(
+                    APODViewer(
                       date: parseDates(
                           value?.toString() ?? DateTime.now().toString()),
                     ),
