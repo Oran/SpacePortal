@@ -74,3 +74,22 @@ Future<void> initStorage() async {
     print('Ran');
   }
 }
+
+// Routes to another page with page transition
+Route routeTo(var secondPage) {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => secondPage,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      var begin = Offset(1.0, 0.0);
+      var end = Offset.zero;
+      var curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
+}
