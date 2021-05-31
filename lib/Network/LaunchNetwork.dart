@@ -49,7 +49,6 @@ class LaunchNetwork {
   Launches getDataFromCache() {
     var box = Hive.box('launchCacheBox');
     var cacheData = box.get('launchCache');
-    //TODO: Fix if api is down (gives out null errors)
     var data = Launches.fromList(cacheData['results']);
     return data;
   }
@@ -60,20 +59,41 @@ class ServiceProviderNetwork {
     await Hive.openBox('ServiceProviderCache');
     var box = Hive.box('ServiceProviderCache');
 
+    var currentDateTime = DateTime.now();
+
     if (id != null) {
       // Checks if the cache exists for the specified id
       if (box.containsKey(id)) {
+        print('key exists, gets from cache');
         // If true, sends data from cache
 
-        // if (timediff >= 12hrs){
-        //   get data from api
-        // } else {
-        //   returns the data from cache
-        //   and updates with current date and time
-        // }
+        var newUnparsedDate = box.get(
+          'key$id',
+          defaultValue: '2020-12-07T16:34:00Z',
+        );
 
-        print('key exists, gets from cache');
-        return box.get(id);
+        DateTime cacheDate = DateTime.parse(newUnparsedDate);
+        Duration difference = currentDateTime.difference(cacheDate);
+
+        print('time diff in SP => ${difference.inSeconds}');
+
+        if (difference.inHours >= 12) {
+          // get data from api (updates the cache with new data)
+          print('time diff => ${difference.inSeconds} updating data');
+          Uri parsedUrl = Uri.parse(url);
+          http.Response response = await http.get(parsedUrl);
+          var decodedData = jsonDecode(response.body);
+
+          // Updates the date to currentDateTime
+          box.put(id, decodedData);
+          box.put('key$id', currentDateTime.toString());
+
+          return box.get(id);
+        } else {
+          // gets data from cache (without updating)
+          print('time diff => ${difference.inSeconds} not updating data');
+          return box.get(id);
+        }
       } else {
         print('key doesnt exits, gets from api');
 
@@ -84,6 +104,7 @@ class ServiceProviderNetwork {
 
         // Adds the data to the local database cache
         box.put(id, decodedData);
+        box.put('key$id', currentDateTime.toString());
         return box.get(id);
       }
     } else {
