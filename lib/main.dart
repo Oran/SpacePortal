@@ -8,14 +8,13 @@ import 'package:flutter/services.dart';
 import 'package:spaceportal/Constants.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'Network/LaunchNetwork.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 Future<void> main() async {
+  await Hive.initFlutter();
   WidgetsFlutterBinding.ensureInitialized();
   await GlobalConfiguration().loadFromPath('assets/json/apodCache.json');
-  await GlobalConfiguration().loadFromPath('assets/json/configs.json');
-  await storage.ready;
-  initStorage();
   runApp(
     ProviderScope(child: MyApp()),
   );

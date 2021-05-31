@@ -63,18 +63,6 @@ Duration timeDifference(String time) {
   return currentDateTime.difference(parsedDate).abs();
 }
 
-// Checks if the dates are set if not, it will do it.
-Future<void> initStorage() async {
-  var configs = GlobalConfiguration();
-  if (configs.getValue('didRun')) {
-    print('Did not run');
-  } else {
-    storage.setItem('date', '2020-04-07T16:34:00Z');
-    configs.updateValue('didRun', true);
-    print('Ran');
-  }
-}
-
 // Routes to another page with page transition
 Route routeTo(var secondPage) {
   return PageRouteBuilder(
