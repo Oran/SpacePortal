@@ -6,12 +6,12 @@ import 'package:spaceportal/Constants.dart';
 class DownloadButton extends StatefulWidget {
   const DownloadButton({
     Key? key,
-    this.snapshot,
+    this.snapshotData,
     this.imageUrl,
     this.mediaType,
   }) : super(key: key);
 
-  final snapshot;
+  final snapshotData;
   final imageUrl;
   final mediaType;
 
@@ -154,7 +154,7 @@ class _DownloadButtonState extends State<DownloadButton> {
         child: Center(
           child: Icon(
             Icons.download_rounded,
-            color: widget.snapshot.data < 127 ? Colors.white : Colors.black,
+            color: widget.snapshotData < 127 ? Colors.white : Colors.black,
           ),
         ),
       ),
