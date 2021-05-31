@@ -56,16 +56,38 @@ class LaunchNetwork {
 }
 
 class ServiceProviderNetwork {
-  Future getData(String? url) async {
-    print(url);
-    if (url != null) {
-      Uri parsedUrl = Uri.parse(url);
-      http.Response response = await http.get(parsedUrl);
-      var decodedData = jsonDecode(response.body);
-      print(decodedData['name']);
-      return decodedData;
+  Future getData(String url, int? id) async {
+    await Hive.openBox('ServiceProviderCache');
+    var box = Hive.box('ServiceProviderCache');
+
+    if (id != null) {
+      // Checks if the cache exists for the specified id
+      if (box.containsKey(id)) {
+        // If true, sends data from cache
+
+        // if (timediff >= 12hrs){
+        //   get data from api
+        // } else {
+        //   returns the data from cache
+        //   and updates with current date and time
+        // }
+
+        print('key exists, gets from cache');
+        return box.get(id);
+      } else {
+        print('key doesnt exits, gets from api');
+
+        // Fetches data from the api
+        Uri parsedUrl = Uri.parse(url);
+        http.Response response = await http.get(parsedUrl);
+        var decodedData = jsonDecode(response.body);
+
+        // Adds the data to the local database cache
+        box.put(id, decodedData);
+        return box.get(id);
+      }
     } else {
-      return {};
+      print('url is null || id is null');
     }
   }
 }
