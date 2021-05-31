@@ -45,12 +45,6 @@ class APODPage extends ConsumerWidget {
                   SnackBar(
                     content: Text('Dates are the same'),
                     duration: Duration(seconds: 3),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(30),
-                        topRight: Radius.circular(30),
-                      ),
-                    ),
                   ),
                 )
               : Navigator.push(
@@ -125,7 +119,7 @@ class APODPage extends ConsumerWidget {
                   ),
                   actions: [
                     DownloadButton(
-                      snapshot: snapshot,
+                      snapshotData: snapshot.data,
                       imageUrl: apodProviderData.hdUrl,
                       mediaType: apodProviderData.mediaType,
                     ),
