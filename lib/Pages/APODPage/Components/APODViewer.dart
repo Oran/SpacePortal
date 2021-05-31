@@ -4,6 +4,7 @@ import 'package:spaceportal/Constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
+import 'package:spaceportal/Pages/APODPage/Components/DownloadButton.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class APODViewer extends StatefulWidget {
@@ -56,6 +57,17 @@ class _APODViewerState extends State<APODViewer> {
                   ),
                 ),
               ),
+              actions: [
+                DownloadButton(
+                  imageUrl: snapshot.data[0].mediaType == 'video'
+                      ? snapshot.data[0].videoThumb
+                      : snapshot.data[0].mediaType == 'other'
+                          ? kPlaceholderImageBlack
+                          : snapshot.data[0].image,
+                  mediaType: 'image',
+                  snapshotData: snapshot.data[1],
+                )
+              ],
             ),
             body: SingleChildScrollView(
               physics: BouncingScrollPhysics(),
