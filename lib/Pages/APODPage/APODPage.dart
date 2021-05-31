@@ -85,18 +85,20 @@ class APODPage extends ConsumerWidget {
                   expandedHeight: 50.0,
                   flexibleSpace: Stack(
                     children: [
-                      ImageFiltered(
-                        imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                        child: Container(
-                          height: (MediaQuery.of(context).size.height),
-                          width: (MediaQuery.of(context).size.width),
-                          child: CachedNetworkImage(
-                            imageUrl: apodProviderData.mediaType == 'video'
-                                ? apodProviderData.videoThumb!
-                                : apodProviderData.image!,
-                            fit: BoxFit.cover,
-                            memCacheHeight: 50,
-                            memCacheWidth: 50,
+                      ClipRRect(
+                        child: ImageFiltered(
+                          imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                          child: Container(
+                            height: (MediaQuery.of(context).size.height),
+                            width: (MediaQuery.of(context).size.width),
+                            child: CachedNetworkImage(
+                              imageUrl: apodProviderData.mediaType == 'video'
+                                  ? apodProviderData.videoThumb!
+                                  : apodProviderData.image!,
+                              fit: BoxFit.cover,
+                              memCacheHeight: 50,
+                              memCacheWidth: 50,
+                            ),
                           ),
                         ),
                       ),
