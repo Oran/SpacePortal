@@ -22,7 +22,7 @@ class LaunchNetwork {
     print('Diff => ' + difference.inSeconds.toString());
 
     // Checks if the time difference is greater than 12 hours
-    if (difference.inHours >= 12) {
+    if (difference.inHours >= 5) {
       Uri url = Uri.https(
         'll.thespacedevs.com',
         '/2.2.0/launch/upcoming/',
@@ -77,7 +77,7 @@ class ServiceProviderNetwork {
 
         print('time diff in SP => ${difference.inSeconds}');
 
-        if (difference.inHours >= 12) {
+        if (difference.inHours >= 10) {
           // get data from api (updates the cache with new data)
           print('time diff => ${difference.inSeconds} updating data');
           Uri parsedUrl = Uri.parse(url);
