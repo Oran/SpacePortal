@@ -7,7 +7,8 @@ import 'package:spaceportal/Utils/Functions.dart';
 
 class CountdownTimer extends StatefulWidget {
   final String time;
-  CountdownTimer({required this.time});
+  final TextStyle? style;
+  CountdownTimer({required this.time, this.style});
   @override
   _CountdownTimerState createState() => _CountdownTimerState();
 }
@@ -45,12 +46,14 @@ class _CountdownTimerState extends State<CountdownTimer> {
       onFinish: () => print('finished'),
       builder: (context, remaining) {
         return AutoSizeText(
-          'T -${_formatDuration(remaining)}',
+          '-${_formatDuration(remaining)}',
           textAlign: TextAlign.right,
-          style: kCardTS.copyWith(
-            fontSize: 15,
-            shadows: null,
-          ),
+          style: widget.style == null
+              ? kCardTS.copyWith(
+                  fontSize: 15,
+                  shadows: null,
+                )
+              : widget.style,
         );
       },
     );
