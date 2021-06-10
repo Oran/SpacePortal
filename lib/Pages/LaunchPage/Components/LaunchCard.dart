@@ -5,23 +5,60 @@ import 'package:flutter/material.dart';
 import 'package:spaceportal/Constants.dart';
 import 'package:spaceportal/Pages/LaunchPage/Components/CountdownTimer.dart';
 
-class LaunchCard extends StatelessWidget {
+class LaunchCard extends StatefulWidget {
   LaunchCard({
     this.image,
     this.onPressed,
     this.text = '',
     this.date = '',
+    this.statusColor,
   });
   //A widget because you need to use cachedNetworkImage
   final Widget? image;
   final Function? onPressed;
   final String? text;
   final String? date;
+  final String? statusColor;
+
+  @override
+  _LaunchCardState createState() => _LaunchCardState();
+}
+
+class _LaunchCardState extends State<LaunchCard> {
+
+Color checkAbbrev(String? abbrev) {
+    var defaultColor = Color.fromRGBO(0, 0, 0, 0);
+    if (abbrev == 'Go') {
+      setState(() {
+        defaultColor = Color.fromRGBO(85, 218, 112, 1.0);
+      });
+    }
+
+    if (abbrev == 'TBC') {
+      setState(() {
+        defaultColor = Color.fromRGBO(85, 161, 218, 1.0);
+      });
+    }
+
+    if (abbrev == 'TBD') {
+      setState(() {
+        defaultColor = Color.fromRGBO(85, 161, 218, 1.0);
+      });
+    }
+
+    if (abbrev == 'TBD') {
+      setState(() {
+        defaultColor = Color.fromRGBO(85, 161, 218, 1.0);
+      });
+    }
+
+    return defaultColor;
+  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onPressed as void Function()?,
+      onTap: widget.onPressed as void Function()?,
       child: Padding(
         padding: EdgeInsets.all(8.0),
         child: Center(
@@ -48,7 +85,21 @@ class LaunchCard extends StatelessWidget {
                     Container(
                       height: (MediaQuery.of(context).size.height),
                       width: (MediaQuery.of(context).size.width),
-                      child: image,
+                      child: widget.image,
+                    ),
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: Padding(
+                        padding: EdgeInsets.only(right: 10, top: 10),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: checkAbbrev(widget.statusColor),
+                          ),
+                          height: 15,
+                          width: 15,
+                        ),
+                      ),
                     ),
                     Align(
                       alignment: Alignment.bottomRight,
@@ -73,7 +124,7 @@ class LaunchCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             AutoSizeText(
-                              text!,
+                              widget.text!,
                               textAlign: TextAlign.right,
                               style: kCardTS.copyWith(
                                 fontSize: 18,
@@ -83,7 +134,7 @@ class LaunchCard extends StatelessWidget {
                             ),
                             SizedBox(height: 5),
                             AutoSizeText(
-                              date!.toString().split('T')[0],
+                              widget.date!.toString().split('T')[0],
                               textAlign: TextAlign.right,
                               style: kCardTS.copyWith(
                                 fontSize: 15,
@@ -92,7 +143,7 @@ class LaunchCard extends StatelessWidget {
                               maxLines: 3,
                             ),
                             SizedBox(height: 5),
-                            CountdownTimer(time: date!),
+                            CountdownTimer(time: widget.date!),
                           ],
                         ),
                       ),
