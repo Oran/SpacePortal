@@ -43,8 +43,11 @@ class APODPage extends ConsumerWidget {
                   parseDates(DateTime.now().toString())
               ? ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    content: Text('Dates are the same'),
-                    duration: Duration(seconds: 3),
+                    content: Text(
+                      'Dates are the same',
+                      style: kDetailsTS.copyWith(color: Colors.white),
+                    ),
+                    duration: Duration(seconds: 2),
                   ),
                 )
               : Navigator.push(

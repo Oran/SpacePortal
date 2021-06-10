@@ -36,7 +36,13 @@ class _DownloadButtonState extends State<DownloadButton> {
           onProgressUpdate: (id, progress) {
             if (progress == 100) {
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('Download Complete')),
+                SnackBar(
+                  duration: Duration(seconds: 2),
+                  content: Text(
+                    'Download Complete',
+                    style: kDetailsTS.copyWith(color: Colors.white),
+                  ),
+                ),
               );
             }
           },
@@ -46,7 +52,13 @@ class _DownloadButtonState extends State<DownloadButton> {
       }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Media can\'t be downloaded')),
+        SnackBar(
+          duration: Duration(seconds: 2),
+          content: Text(
+            'Media can\'t be downloaded',
+            style: kDetailsTS.copyWith(color: Colors.white),
+          ),
+        ),
       );
     }
   }

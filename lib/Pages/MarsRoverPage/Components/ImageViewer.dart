@@ -31,7 +31,13 @@ class ImageViewer extends StatelessWidget {
       onProgressUpdate: (id, progress) {
         if (progress == 100) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Download Complete')),
+            SnackBar(
+              duration: Duration(seconds: 2),
+              content: Text(
+                'Download Complete',
+                style: kDetailsTS.copyWith(color: Colors.white),
+              ),
+            ),
           );
         }
       },
