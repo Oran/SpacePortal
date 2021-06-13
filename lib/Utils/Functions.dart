@@ -63,6 +63,13 @@ Duration timeDifference(String time) {
   return currentDateTime.difference(parsedDate).abs();
 }
 
+// Parses datetime from a different format from API
+List<String> parseDT(String dateTime) {
+  var date = dateTime.split('T')[0];
+  var time = dateTime.split('T')[1].split('Z')[0];
+  return [date, time];
+}
+
 // Routes to another page with page transition
 Route routeTo(var secondPage) {
   return PageRouteBuilder(
