@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:hive/hive.dart';
+import 'package:spaceportal/Constants.dart';
 import 'package:spaceportal/Models/FSData.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart' as yt;
 import 'package:spaceportal/Models/OldNasaData.dart';
@@ -90,15 +91,18 @@ class APODData {
   CachedData getDataFromCache() {
     var box = Hive.box('apodcache');
     Map<String, dynamic> cachedDataMap = {
-      "title": box.get('title'),
-      "date": box.get('date'),
-      "image": box.get('image'),
-      "hdurl": box.get('hdurl'),
-      "mediaType": box.get('mediaType'),
-      "videoThumb": box.get('videoThumb'),
-      "videoUrl": box.get('videoUrl'),
-      "apodSite": box.get('apodsite'),
-      "description": box.get('description'),
+      "title": box.get('title', defaultValue: 'Title => Null'),
+      "date": box.get('date', defaultValue: 'Date => Null'),
+      "image": box.get('image', defaultValue: kPlaceholderImage),
+      "hdurl": box.get('hdurl', defaultValue: kPlaceholderImage),
+      "mediaType": box.get('mediaType', defaultValue: 'image'),
+      "videoThumb": box.get('videoThumb', defaultValue: kPlaceholderImage),
+      "videoUrl": box.get(
+        'videoUrl',
+        defaultValue: 'https://www.youtube.com/embed/WJua8eXLX9o?rel=0',
+      ),
+      "apodSite": box.get('apodsite', defaultValue: 'site is null'),
+      "description": box.get('description', defaultValue: 'Null'),
     };
 
     var data = CachedData.fromJson(cachedDataMap);
