@@ -70,81 +70,65 @@ class APODPage extends ConsumerWidget {
       builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return Scaffold(
-            body: CustomScrollView(
-              physics: BouncingScrollPhysics(),
-              slivers: [
-                SliverAppBar(
-                  stretch: false,
-                  elevation: 0,
-                  backgroundColor: kPrimaryWhite,
-                  pinned: true,
-                  floating: false,
-                  expandedHeight: 50.0,
-                  flexibleSpace: Stack(
-                    children: [
-                      ClipRRect(
-                        child: ImageFiltered(
-                          imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                          child: Container(
-                            height: (MediaQuery.of(context).size.height),
-                            width: (MediaQuery.of(context).size.width),
-                            child: CachedNetworkImage(
-                              imageUrl: apodProviderData.mediaType == 'video'
-                                  ? apodProviderData.videoThumb!
-                                  : apodProviderData.image!,
-                              fit: BoxFit.cover,
-                              memCacheHeight: 50,
-                              memCacheWidth: 50,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        child: FlexibleSpaceBar(
-                          collapseMode: CollapseMode.parallax,
-                          centerTitle: true,
-                          title: AnimatedDefaultTextStyle(
-                            style: kTitleDateTS.copyWith(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold,
-                              color: snapshot.data < 127
-                                  ? Colors.white
-                                  : Colors.black,
-                            ),
-                            duration: Duration(milliseconds: 250),
-                            child: Text(
-                              'Picture Of The Day',
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  actions: [
-                    DownloadButton(
-                      snapshotData: snapshot.data,
-                      imageUrl: apodProviderData.hdUrl,
-                      mediaType: apodProviderData.mediaType,
+            appBar: AppBar(
+              elevation: 0,
+              backgroundColor: kPrimaryWhite,
+              title: Container(
+                child: FlexibleSpaceBar(
+                  collapseMode: CollapseMode.parallax,
+                  centerTitle: true,
+                  title: AnimatedDefaultTextStyle(
+                    style: kTitleDateTS.copyWith(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                      color: snapshot.data < 127 ? Colors.white : Colors.black,
                     ),
-                  ],
-                  leading: InkWell(
-                    onTap: () {
-                      _openDialog(context);
-                    },
-                    borderRadius: BorderRadius.circular(40),
-                    child: AnimatedContainer(
-                      duration: Duration(milliseconds: 250),
-                      child: Icon(
-                        Icons.tune_rounded,
-                        color:
-                            snapshot.data < 127 ? Colors.white : Colors.black,
-                      ),
+                    duration: Duration(milliseconds: 250),
+                    child: Text(
+                      'Picture Of The Day',
                     ),
                   ),
                 ),
-                APODContents(),
+              ),
+              flexibleSpace: ClipRRect(
+                child: ImageFiltered(
+                  imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                  child: Container(
+                    height: (MediaQuery.of(context).size.height),
+                    width: (MediaQuery.of(context).size.width),
+                    child: CachedNetworkImage(
+                      imageUrl: apodProviderData.mediaType == 'video'
+                          ? apodProviderData.videoThumb!
+                          : apodProviderData.image!,
+                      fit: BoxFit.cover,
+                      memCacheHeight: 30,
+                      memCacheWidth: 30,
+                    ),
+                  ),
+                ),
+              ),
+              actions: [
+                DownloadButton(
+                  snapshotData: snapshot.data,
+                  imageUrl: apodProviderData.hdUrl,
+                  mediaType: apodProviderData.mediaType,
+                ),
               ],
+              leading: InkWell(
+                onTap: () {
+                  _openDialog(context);
+                },
+                borderRadius: BorderRadius.circular(40),
+                child: AnimatedContainer(
+                  duration: Duration(milliseconds: 250),
+                  child: Icon(
+                    Icons.tune_rounded,
+                    color: snapshot.data < 127 ? Colors.white : Colors.black,
+                  ),
+                ),
+              ),
             ),
+            body: APODContents(),
           );
         } else {
           return Scaffold(

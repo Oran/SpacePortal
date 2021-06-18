@@ -10,8 +10,9 @@ class APODContents extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     var apodProviderData = watch(apodProvider);
     var orientation = (MediaQuery.of(context).orientation);
-    return SliverList(
-      delegate: SliverChildListDelegate([
+    return ListView(
+      physics: BouncingScrollPhysics(),
+      children: [
         SizedBox(height: 15),
         Container(
           height: orientation == Orientation.landscape ? 800.0 : null,
@@ -121,7 +122,7 @@ class APODContents extends ConsumerWidget {
           ),
         ),
         SizedBox(height: 10.0),
-      ]),
+      ],
     );
   }
 }
