@@ -1,8 +1,6 @@
-import 'package:global_configuration/global_configuration.dart';
 import 'package:http/http.dart' as http;
 import 'package:image/image.dart' as image;
 import 'package:flutter/material.dart';
-import 'package:spaceportal/Network/LaunchNetwork.dart';
 
 /// Parses dates using Regex into normal format.
 String? parseDates(String dateTime) {

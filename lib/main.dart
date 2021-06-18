@@ -1,7 +1,5 @@
 import 'dart:io';
-import 'package:global_configuration/global_configuration.dart';
 import 'package:spaceportal/Routes.dart';
-import 'package:spaceportal/Utils/Functions.dart';
 import 'package:spaceportal/theme/Theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -14,7 +12,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 Future<void> main() async {
   await Hive.initFlutter();
   WidgetsFlutterBinding.ensureInitialized();
-  await GlobalConfiguration().loadFromPath('assets/json/apodCache.json');
   runApp(
     ProviderScope(child: MyApp()),
   );
