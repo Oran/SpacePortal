@@ -44,15 +44,15 @@ class _CardViewState extends State<CardView> {
                     ? apodProviderData.videoThumb!
                     : apodProviderData.image!,
                 fit: BoxFit.cover,
-                alignment: Alignment(
-                  0,
-                  offsetValue(offset) *
-                      getImgHeightDiff(
-                        apodProviderData.mediaType == 'video'
-                            ? apodProviderData.videoThumb!
-                            : apodProviderData.image!,
-                      ),
-                ),
+                // alignment: Alignment(
+                //   0,
+                //   offsetValue(offset) *
+                //       getImgHeightDiff(
+                //         apodProviderData.mediaType == 'video'
+                //             ? apodProviderData.videoThumb!
+                //             : apodProviderData.image!,
+                //       ),
+                // ),
               ),
               text: apodProviderData.title,
               onPressed: () => Navigator.push(
@@ -68,7 +68,7 @@ class _CardViewState extends State<CardView> {
           image: Image.asset(
             'assets/images/mars_rover.jpg',
             fit: BoxFit.cover,
-            alignment: Alignment(0, offsetValue(offset) * 0.5),
+            // alignment: Alignment(0, offsetValue(offset) * 0.5),
           ),
           text: 'Mars Rover Images',
           onPressed: () => Navigator.push(
@@ -83,11 +83,11 @@ class _CardViewState extends State<CardView> {
               image: CachedNetworkImage(
                 imageUrl: data.launchData[0].image,
                 fit: BoxFit.cover,
-                alignment: Alignment(
-                  0,
-                  offsetValue(offset) *
-                      getImgHeightDiff(data.launchData[0].image),
-                ),
+                // alignment: Alignment(
+                //   0,
+                //   offsetValue(offset) *
+                //       getImgHeightDiff(data.launchData[0].image),
+                // ),
               ),
               text: 'Launch Schedule',
               onPressed: () => Navigator.push(
@@ -107,11 +107,11 @@ class _CardViewState extends State<CardView> {
                 image: CachedNetworkImage(
                   imageUrl: data.data[0].imageUrl,
                   fit: BoxFit.cover,
-                  alignment: Alignment(
-                    0,
-                    offsetValue(offset) *
-                        getImgHeightDiff(data.data[0].imageUrl),
-                  ),
+                  // alignment: Alignment(
+                  //   0,
+                  //   offsetValue(offset) *
+                  //       getImgHeightDiff(data.data[0].imageUrl),
+                  // ),
                 ),
                 text: 'News / Articles',
                 onPressed: () => Navigator.push(
