@@ -41,27 +41,37 @@ final List<String> rover = [
   'perseverance'
 ];
 
-Uri marsRoverUrl = Uri.https(
-  'api.nasa.gov',
-  '/mars-photos/api/v1/rovers/${rover[0]}/photos',
-  {
-    'sol': '100',
-    'camera': '${oldCam[7]}',
-    'api_key': '$_apiKey',
-  },
+// Uri marsRoverUrl = Uri.https(
+//   'api.nasa.gov',
+//   '/mars-photos/api/v1/rovers/${rover[0]}/photos',
+//   {
+//     'sol': '100',
+//     'camera': '${oldCam[7]}',
+//     'api_key': '$_apiKey',
+//   },
+// );
+
+Uri marsRoverUrl = Uri.parse(
+  'https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/latest_photos?api_key=$_apiKey',
 );
 
 class MarsRoverImageData {
-  void setURL(camIn, roverIn, solIn) {
-    marsRoverUrl = Uri.https(
-      'api.nasa.gov',
-      '/mars-photos/api/v1/rovers/$roverIn/photos',
-      {
-        'sol': '$solIn',
-        'camera': '$camIn',
-        'api_key': '$_apiKey',
-      },
-    );
+  void setURL(camIn, roverIn, solIn, isLatest) {
+    if (isLatest) {
+      marsRoverUrl = Uri.parse(
+        'https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/latest_photos?api_key=$_apiKey',
+      );
+    } else {
+      marsRoverUrl = Uri.https(
+        'api.nasa.gov',
+        '/mars-photos/api/v1/rovers/$roverIn/photos',
+        {
+          'sol': '$solIn',
+          'camera': '$camIn',
+          'api_key': '$_apiKey',
+        },
+      );
+    }
   }
 
   Future getMarsData() async {

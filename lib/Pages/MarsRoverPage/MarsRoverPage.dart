@@ -4,6 +4,7 @@ import 'package:spaceportal/Network/MarsRoverNetwork.dart';
 import 'package:spaceportal/Pages/MarsRoverPage/Components/MarsRoverImages.dart';
 import 'package:flutter/material.dart';
 import 'package:spaceportal/Constants.dart';
+import 'package:spaceportal/Pages/MarsRoverPage/Components/MarsRoverLatestImages.dart';
 import 'package:spaceportal/Widgets/SlidingUpPanel.dart';
 
 class MarsRoverPage extends StatefulWidget {
@@ -21,6 +22,7 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
   String? selectedCam = 'EDL_RUCAM'; //Defaults
   String? selectedRover = 'perseverance';
   String selectedSol = '1';
+  bool isLatestPhotos = true;
 
   var container = ProviderContainer();
   PanelController panelController = PanelController();
@@ -37,13 +39,23 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
 
   Future getData(camIn, roverIn, solIn) async {
     //print('$selectedCam, $selectedRover, $selectedSol');
-    marsData.setURL(camIn, roverIn, solIn);
-    var data = await marsData.getMarsData();
-    // print(data);
-    setState(() {
-      list = data;
-      numOfPics = data['photos'].length;
-    });
+    marsData.setURL(camIn, roverIn, solIn, isLatestPhotos);
+
+    if (isLatestPhotos) {
+      var latestPhotos = await marsData.getMarsData();
+      setState(() {
+        list = latestPhotos;
+        numOfPics = latestPhotos['latest_photos'].length;
+      });
+    } else {
+      var data = await marsData.getMarsData();
+
+      // print(data);
+      setState(() {
+        list = data;
+        numOfPics = data['photos'].length;
+      });
+    }
   }
 
   var roverList = rover.map<DropdownMenuItem<String>>((String value) {
@@ -214,35 +226,79 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
                     ),
                   ),
                   SizedBox(height: 10),
-                  GestureDetector(
-                    onTap: () {
-                      getData(selectedCam, selectedRover, selectedSol);
-                      focusNode.unfocus();
-                      panelController.close();
-                    },
-                    child: Container(
-                      height: 60.0,
-                      width: 150.0,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: kAccentColor),
-                          color: kAccentColor),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.cached,
-                            color: kIconColor,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            isLatestPhotos = false;
+                          });
+                          getData(selectedCam, selectedRover, selectedSol);
+                          focusNode.unfocus();
+                          panelController.close();
+                        },
+                        child: Container(
+                          height: 60.0,
+                          width: 150.0,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(color: kAccentColor),
+                              color: kAccentColor),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.search_rounded,
+                                color: kIconColor,
+                              ),
+                              SizedBox(width: 10),
+                              Text(
+                                'Search',
+                                style:
+                                    kDetailsTS.copyWith(color: kPrimaryWhite),
+                              )
+                            ],
                           ),
-                          SizedBox(width: 10),
-                          Text(
-                            'Reload',
-                            style: kDetailsTS.copyWith(color: kPrimaryWhite),
-                          )
-                        ],
+                        ),
                       ),
-                    ),
+                      SizedBox(width: 10),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            isLatestPhotos = true;
+                          });
+                          getData(selectedCam, selectedRover, selectedSol);
+                          focusNode.unfocus();
+                          panelController.close();
+                        },
+                        child: Container(
+                          height: 60.0,
+                          width: 150.0,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(color: kAccentColor),
+                              color: kAccentColor),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.cached,
+                                color: kIconColor,
+                              ),
+                              SizedBox(width: 10),
+                              Text(
+                                'Show Latest',
+                                style:
+                                    kDetailsTS.copyWith(color: kPrimaryWhite),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -317,7 +373,9 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
                       ),
                     ]),
                   )
-                : MarsRoverImages(list: list),
+                : isLatestPhotos
+                    ? MarsRoverLatestImages(list: list)
+                    : MarsRoverImages(list: list),
           ],
         ),
       ),

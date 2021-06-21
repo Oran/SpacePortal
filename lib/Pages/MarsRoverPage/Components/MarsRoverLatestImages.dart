@@ -4,14 +4,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:spaceportal/Utils/Functions.dart';
 
-class MarsRoverImages extends StatelessWidget {
-  const MarsRoverImages({
+class MarsRoverLatestImages extends StatelessWidget {
+  const MarsRoverLatestImages({
     required this.list,
   });
 
   final list;
 
-  Widget circle(BuildContext context, String text) {
+  Widget circle(BuildContext context, String? text) {
     return Center(
       child: Container(
         height: 30.0,
@@ -65,9 +65,9 @@ class MarsRoverImages extends StatelessWidget {
                       borderRadius: BorderRadius.circular(30.0),
                       child: GestureDetector(
                         child: CachedNetworkImage(
-                          imageUrl: list['photos'] == null
+                          imageUrl: list['latest_photos'] == null
                               ? kPlaceholderImage
-                              : list['photos'][index]['img_src'],
+                              : list['latest_photos'][index]['img_src'],
                           fit: BoxFit.fill,
                           placeholder: circle,
                         ),
@@ -77,13 +77,14 @@ class MarsRoverImages extends StatelessWidget {
                             routeTo(
                               ImageViewer(
                                 index: index,
-                                list: list['photos'][index]['img_src'],
-                                earthDate: list['photos'][index]['earth_date'],
-                                cameraName: list['photos'][index]['camera']
-                                    ['full_name'],
-                                roverName: list['photos'][index]['rover']
+                                list: list['latest_photos'][index]['img_src'],
+                                earthDate: list['latest_photos'][index]
+                                    ['earth_date'],
+                                cameraName: list['latest_photos'][index]
+                                    ['camera']['full_name'],
+                                roverName: list['latest_photos'][index]['rover']
                                     ['name'],
-                                status: list['photos'][index]['rover']
+                                status: list['latest_photos'][index]['rover']
                                     ['status'],
                               ),
                             ),
@@ -96,9 +97,9 @@ class MarsRoverImages extends StatelessWidget {
         },
         childCount: list == null
             ? 0
-            : list['photos'] == null
+            : list['latest_photos'] == null
                 ? 0
-                : list['photos'].length,
+                : list['latest_photos'].length,
       ),
     );
   }
