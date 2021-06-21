@@ -23,6 +23,8 @@ dependencies:
   instant: ^0.4.1
   hive: ^2.0.4
   hive_flutter: ^1.0.0
+  blurhash_dart: ^1.0.2
+  flutter_blurhash: ^0.6.0
 
 dev_dependencies:
   flutter_test:
