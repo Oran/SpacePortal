@@ -75,19 +75,19 @@ class APODPage extends ConsumerWidget {
             appBar: AppBar(
               elevation: 0,
               backgroundColor: kPrimaryWhite,
+              iconTheme: IconThemeData(
+                color: snapshot.data < 127 ? Colors.white : Colors.black,
+              ),
               title: Container(
                 child: FlexibleSpaceBar(
                   collapseMode: CollapseMode.parallax,
                   centerTitle: true,
-                  title: AnimatedDefaultTextStyle(
+                  title: Text(
+                    'Picture of the day',
                     style: kTitleDateTS.copyWith(
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold,
                       color: snapshot.data < 127 ? Colors.white : Colors.black,
-                    ),
-                    duration: Duration(milliseconds: 250),
-                    child: Text(
-                      'Picture Of The Day',
                     ),
                   ),
                 ),
@@ -132,25 +132,28 @@ class APODPage extends ConsumerWidget {
                 },
               ),
               actions: [
+                InkWell(
+                  onTap: () {
+                    _openDialog(context);
+                  },
+                  borderRadius: BorderRadius.circular(180),
+                  child: Container(
+                    padding: EdgeInsets.all(15),
+                    child: Center(
+                      child: Icon(
+                        Icons.event_rounded,
+                        color:
+                            snapshot.data < 127 ? Colors.white : Colors.black,
+                      ),
+                    ),
+                  ),
+                ),
                 DownloadButton(
                   snapshotData: snapshot.data,
                   imageUrl: apodProviderData.hdUrl,
                   mediaType: apodProviderData.mediaType,
                 ),
               ],
-              leading: InkWell(
-                onTap: () {
-                  _openDialog(context);
-                },
-                borderRadius: BorderRadius.circular(40),
-                child: AnimatedContainer(
-                  duration: Duration(milliseconds: 250),
-                  child: Icon(
-                    Icons.tune_rounded,
-                    color: snapshot.data < 127 ? Colors.white : Colors.black,
-                  ),
-                ),
-              ),
             ),
             body: APODContents(),
           );

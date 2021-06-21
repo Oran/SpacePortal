@@ -159,10 +159,10 @@ class _DownloadButtonState extends State<DownloadButton> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      borderRadius: BorderRadius.circular(40),
+      borderRadius: BorderRadius.circular(60),
       onTap: () => createDialog(),
       child: Container(
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.all(15),
         child: Center(
           child: Icon(
             Icons.download_rounded,
