@@ -29,7 +29,6 @@ class _APODViewerState extends State<APODViewer> {
 
   @override
   Widget build(BuildContext context) {
-    var orientation = (MediaQuery.of(context).orientation);
     return FutureBuilder(
       future: getData(),
       builder: (context, AsyncSnapshot snapshot) {
@@ -102,8 +101,6 @@ class _APODViewerState extends State<APODViewer> {
                   children: [
                     SizedBox(height: 25),
                     Container(
-                      height:
-                          orientation == Orientation.landscape ? 800.0 : null,
                       padding: EdgeInsets.all(10),
                       child: snapshot.data[0].mediaType == 'video'
                           ? Padding(
