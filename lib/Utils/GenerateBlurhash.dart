@@ -12,7 +12,7 @@ Future<String> computeBlurhash(targetUnit8List) async {
   // Decodes Image from Unit8List
   img.Image? image = img.decodeImage(targetUnit8List);
   //Encodes the given image into hash
-  BlurHash? blurhash = BlurHash.encode(image!, numCompX: 3, numCompY: 3);
+  BlurHash? blurhash = BlurHash.encode(image!, numCompX: 4, numCompY: 3);
   // print('hash => ' + blurhash.hash);
   return blurhash.hash;
 }
