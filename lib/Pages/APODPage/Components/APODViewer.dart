@@ -1,5 +1,4 @@
 import 'dart:ui';
-import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spaceportal/Network/APODNetwork.dart';
 import 'package:spaceportal/Constants.dart';
@@ -8,6 +7,7 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:spaceportal/Pages/APODPage/Components/DownloadButton.dart';
 import 'package:spaceportal/Providers/Providers.dart';
+import 'package:spaceportal/Utils/FadeInAppBar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class APODViewer extends StatefulWidget {
@@ -70,9 +70,7 @@ class _APODViewerState extends State<APODViewer> {
                             : snapshot.data[0].image,
                   ));
                   return provider.when(
-                    data: (value) => BlurHash(
-                      hash: value.toString(),
-                    ),
+                    data: (data) => FadeInAppBar(value: data),
                     loading: () => Container(),
                     error: (e, s) {
                       print(e);
