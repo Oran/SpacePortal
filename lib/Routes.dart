@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spaceportal/Constants.dart';
+import 'package:spaceportal/Pages/LaunchPage/ServiceProviderViewer/ServiceProviderViewer.dart';
+import 'package:spaceportal/Pages/TestPage.dart';
 import 'Pages/LaunchPage/LaunchPage.dart';
 import 'Pages/APODPage/APODPage.dart';
 import 'Pages/ArticlesPage/ArticlesPage.dart';
@@ -16,8 +18,16 @@ Map<String, WidgetBuilder> pageRoutes = {
   kNoConnection_Page: (context) => NoConnectionPage(),
   kArticles_Page: (context) => ArticlesPage(),
   kLaunch_Page: (context) => LaunchPage(),
+
+  //! DEVELOPMENT ROUTES
+  'test': (context) => ServiceProviderViewer(
+        url: 'https://ll.thespacedevs.com/2.2.0/agencies/88/?format=json',
+        id: 88,
+      ),
+  'testpage': (context) => TestPage(),
 };
 
+// Page Navigation
 final rHomePage = HomePage();
 final rApodPage = APODPage();
 final rMarsPage = MarsRoverPage();
