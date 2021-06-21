@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:spaceportal/Providers/Providers.dart';
 import 'package:spaceportal/Utils/Functions.dart';
 import 'package:spaceportal/Pages/APODPage/Components/APODViewer.dart';
 import 'package:spaceportal/Pages/APODPage/Components/APODContainer.dart';
@@ -11,6 +12,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spaceportal/Pages/APODPage/Components/DownloadButton.dart';
+import 'package:flutter_blurhash/flutter_blurhash.dart';
 
 enum wb { white, black }
 
@@ -90,22 +92,44 @@ class APODPage extends ConsumerWidget {
                   ),
                 ),
               ),
-              flexibleSpace: ClipRRect(
-                child: ImageFiltered(
-                  imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                  child: Container(
-                    height: (MediaQuery.of(context).size.height),
-                    width: (MediaQuery.of(context).size.width),
-                    child: CachedNetworkImage(
-                      imageUrl: apodProviderData.mediaType == 'video'
-                          ? apodProviderData.videoThumb!
-                          : apodProviderData.image!,
-                      fit: BoxFit.cover,
-                      memCacheHeight: 30,
-                      memCacheWidth: 30,
+              // flexibleSpace: ClipRRect(
+              //   child: ImageFiltered(
+              //     imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+              //     child: Container(
+              //       height: (MediaQuery.of(context).size.height),
+              //       width: (MediaQuery.of(context).size.width),
+              //       child: CachedNetworkImage(
+              //         imageUrl: apodProviderData.mediaType == 'video'
+              //             ? apodProviderData.videoThumb!
+              //             : apodProviderData.image!,
+              //         fit: BoxFit.cover,
+              //         memCacheHeight: 30,
+              //         memCacheWidth: 30,
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              flexibleSpace: Consumer(
+                builder: (context, watch, child) {
+                  var provider = watch(blurhashProvider(
+                    apodProviderData.mediaType == 'video'
+                        ? apodProviderData.videoThumb!
+                        : apodProviderData.image!,
+                  ));
+                  return provider.when(
+                    data: (value) => BlurHash(
+                      hash: value.toString(),
                     ),
-                  ),
-                ),
+                    loading: () => Container(),
+                    error: (e, s) {
+                      print(e);
+                      print(s);
+                      return Container(
+                        color: Colors.grey[100],
+                      );
+                    },
+                  );
+                },
               ),
               actions: [
                 DownloadButton(
