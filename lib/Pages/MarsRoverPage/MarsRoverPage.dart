@@ -1,10 +1,13 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spaceportal/Network/MarsRoverNetwork.dart';
+import 'package:spaceportal/Pages/MarsRoverPage/Components/MarsBoldText.dart';
 import 'package:spaceportal/Pages/MarsRoverPage/Components/MarsRoverImages.dart';
 import 'package:flutter/material.dart';
 import 'package:spaceportal/Constants.dart';
 import 'package:spaceportal/Pages/MarsRoverPage/Components/MarsRoverLatestImages.dart';
+import 'package:spaceportal/Providers/Providers.dart';
+import 'package:spaceportal/Widgets/FadeInAppBar.dart';
 import 'package:spaceportal/Widgets/SlidingUpPanel.dart';
 
 class MarsRoverPage extends StatefulWidget {
@@ -79,6 +82,22 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
     );
   }).toList();
 
+  String appBarUrl(apiData) {
+    if (isLatestPhotos) {
+      return apiData == null
+          ? kPlaceholderImage
+          : apiData['latest_photos'] == null
+              ? kPlaceholderImage
+              : apiData['latest_photos'][0]['img_src'];
+    } else {
+      return apiData == null
+          ? kPlaceholderImage
+          : apiData['photos'] == null
+              ? kPlaceholderImage
+              : apiData['photos'][0]['img_src'];
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -88,8 +107,44 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        centerTitle: true,
+        elevation: 0,
+        title: Text('Mars Rover Images'),
+        flexibleSpace: Consumer(
+          builder: (context, watch, child) {
+            var provider = watch(blurhashProvider(appBarUrl(list)));
+            return provider.when(
+              data: (data) => FadeInAppBar(value: data),
+              loading: () => Container(),
+              error: (e, s) {
+                print(e);
+                print(s);
+                return Container(
+                  color: Colors.grey[100],
+                );
+              },
+            );
+          },
+        ),
+        actions: [
+          InkWell(
+            child: Padding(
+              padding: EdgeInsets.only(right: 20),
+              child: Icon(
+                Icons.more_vert_rounded,
+                size: 30.0,
+              ),
+            ),
+            onTap: () {
+              panelController.open();
+            },
+          ),
+        ],
+      ),
       body: SlidingUpPanel(
-        maxHeight: 400.0,
+        maxHeight: 500.0,
         minHeight: 40.0,
         backdropEnabled: true,
         defaultPanelState: PanelState.CLOSED,
@@ -131,6 +186,38 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
               child: Column(
                 children: [
                   Icon(Icons.keyboard_arrow_down),
+                  Container(
+                    // color: Colors.pink[100],
+                    // height: (MediaQuery.of(context).size.height) * 0.30,
+                    width: (MediaQuery.of(context).size.height) * 0.90,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        MarsBoldText(
+                          text1: 'Number of Pictures: ',
+                          text2: '$numOfPics',
+                        ),
+                        MarsBoldText(
+                          text1: 'Rover Name: ',
+                          text2: '$selectedRover',
+                        ),
+                        isLatestPhotos
+                            ? Container()
+                            : MarsBoldText(
+                                text1: 'Camera: ',
+                                text2: '$selectedCam',
+                              ),
+                        isLatestPhotos
+                            ? Container()
+                            : MarsBoldText(
+                                text1: 'Sol Day: ',
+                                text2: '$selectedSol',
+                              ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 10),
                   Container(
                     width: 250.0,
                     decoration: BoxDecoration(
@@ -285,7 +372,7 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Icon(
-                                Icons.cached,
+                                Icons.cached_rounded,
                                 color: kIconColor,
                               ),
                               SizedBox(width: 10),
@@ -305,79 +392,16 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
             ),
           ),
         ),
-        body: CustomScrollView(
-          physics: BouncingScrollPhysics(),
-          cacheExtent: 500.0,
-          slivers: [
-            SliverAppBar(
-              backgroundColor: kPrimaryWhite,
-              pinned: true,
-              floating: true,
-              expandedHeight: 150.0,
-              flexibleSpace: FlexibleSpaceBar(
-                collapseMode: CollapseMode.pin,
-                centerTitle: true,
-                title: Text('Mars Rover Images'),
-                background: Container(
-                  child: Padding(
-                    padding: EdgeInsets.only(bottom: 25),
-                    child: Center(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('Number of pictures: $numOfPics',
-                              style: kMarsStatsStyle),
-                          Text('Rover: $selectedRover', style: kMarsStatsStyle),
-                          Text('Camera: $selectedCam', style: kMarsStatsStyle),
-                          Text('Sol Days on mars: $selectedSol',
-                              style: kMarsStatsStyle),
-                        ],
-                      ),
-                    ),
-                  ),
+        body: numOfPics == 0
+            ? Center(
+                child: Text(
+                  'No Images Provided',
+                  style: kTitleDateTS,
                 ),
-              ),
-              // leading: InkWell(
-              //   child: Icon(
-              //     Icons.more_vert_rounded,
-              //     size: 30.0,
-              //   ),
-              //   onTap: () {
-              //     panelController.open();
-              //   },
-              // ),
-              actions: [
-                InkWell(
-                  child: Padding(
-                    padding: EdgeInsets.only(right: 20),
-                    child: Icon(
-                      Icons.more_vert_rounded,
-                      size: 30.0,
-                    ),
-                  ),
-                  onTap: () {
-                    panelController.open();
-                  },
-                ),
-              ],
-            ),
-            numOfPics == 0
-                ? SliverList(
-                    delegate: SliverChildListDelegate([
-                      Center(
-                        child: Text(
-                          'No Images Provided',
-                          style: kTitleDateTS,
-                        ),
-                      ),
-                    ]),
-                  )
-                : isLatestPhotos
-                    ? MarsRoverLatestImages(list: list)
-                    : MarsRoverImages(list: list),
-          ],
-        ),
+              )
+            : isLatestPhotos
+                ? MarsRoverLatestImages(list: list)
+                : MarsRoverImages(list: list),
       ),
     );
   }
