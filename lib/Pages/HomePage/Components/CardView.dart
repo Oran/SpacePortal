@@ -44,6 +44,8 @@ class _CardViewState extends State<CardView> {
                     ? apodProviderData.videoThumb!
                     : apodProviderData.image!,
                 fit: BoxFit.cover,
+                memCacheHeight: 800,
+                memCacheWidth: 800,
                 // alignment: Alignment(
                 //   0,
                 //   offsetValue(offset) *
@@ -68,6 +70,8 @@ class _CardViewState extends State<CardView> {
           image: Image.asset(
             'assets/images/mars_rover.jpg',
             fit: BoxFit.cover,
+            cacheHeight: 800,
+            cacheWidth: 1000,
             // alignment: Alignment(0, offsetValue(offset) * 0.5),
           ),
           text: 'Mars Rover Images',
@@ -83,6 +87,8 @@ class _CardViewState extends State<CardView> {
               image: CachedNetworkImage(
                 imageUrl: data.launchData[0].image,
                 fit: BoxFit.cover,
+                memCacheHeight: 800,
+                memCacheWidth: 1000,
                 // alignment: Alignment(
                 //   0,
                 //   offsetValue(offset) *
@@ -107,6 +113,8 @@ class _CardViewState extends State<CardView> {
                 image: CachedNetworkImage(
                   imageUrl: data.data[0].imageUrl,
                   fit: BoxFit.cover,
+                  memCacheHeight: 800,
+                  memCacheWidth: 1000,
                   // alignment: Alignment(
                   //   0,
                   //   offsetValue(offset) *
