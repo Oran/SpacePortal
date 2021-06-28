@@ -50,7 +50,8 @@ class APODContents extends ConsumerWidget {
                   ),
                 )
               : apodProviderData.mediaType == 'other'
-                  ? GestureDetector(
+                  ? InkWell(
+                      borderRadius: BorderRadius.circular(20),
                       onTap: () {
                         launch(
                           apodProviderData.apodSite!,
@@ -61,10 +62,24 @@ class APODContents extends ConsumerWidget {
                       child: Container(
                         height: 80,
                         //color: Colors.pink[100],
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.red),
+                            borderRadius: BorderRadius.circular(20)),
                         child: Center(
-                          child: Text(
-                            'This file format is not supported yet :( \nClick here to visit the page',
-                            style: kDetailsTS.copyWith(color: Colors.red),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                apodProviderData.apodSite.toString(),
+                                style: kDetailsTS.copyWith(color: Colors.red),
+                              ),
+                              SizedBox(height: 10),
+                              Text(
+                                'This file format is not supported yet :( \nClick here to visit the page',
+                                style: kDetailsTS.copyWith(color: Colors.red),
+                              ),
+                            ],
                           ),
                         ),
                       ),
