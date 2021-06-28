@@ -7,7 +7,7 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:spaceportal/Pages/APODPage/Components/DownloadButton.dart';
 import 'package:spaceportal/Providers/Providers.dart';
-import 'package:spaceportal/Utils/FadeInAppBar.dart';
+import 'package:spaceportal/Widgets/FadeInAppBar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class APODViewer extends StatefulWidget {
