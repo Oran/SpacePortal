@@ -1,10 +1,10 @@
 import 'dart:ui';
 import 'package:spaceportal/Providers/Providers.dart';
-import 'package:spaceportal/Utils/FadeInAppBar.dart';
 import 'package:spaceportal/Utils/Functions.dart';
 import 'package:spaceportal/Pages/APODPage/Components/APODViewer.dart';
 import 'package:spaceportal/Pages/APODPage/Components/APODContainer.dart';
 import 'package:spaceportal/Constants.dart';
+import 'package:spaceportal/Widgets/FadeInAppBar.dart';
 import 'package:spaceportal/theme/Theme.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/cupertino.dart';
