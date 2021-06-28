@@ -58,7 +58,7 @@ class APODData {
       print('adding apod data to cache');
       box.put('date', decodedData['date']);
       box.put('title', decodedData['title']);
-      box.put('mediaType', decodedData['mediaType']);
+      box.put('mediaType', decodedData['media_type']);
       box.put('description', decodedData['description']);
       box.put('apodsite', decodedData['apod_site']);
 
@@ -90,6 +90,7 @@ class APODData {
 
   CachedData getDataFromCache() {
     var box = Hive.box('apodcache');
+    //TODO: This needs better default values
     Map<String, dynamic> cachedDataMap = {
       "title": box.get('title', defaultValue: 'Title => Null'),
       "date": box.get('date', defaultValue: 'Date => Null'),
