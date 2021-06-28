@@ -95,8 +95,7 @@ TextStyle kDialogBoxTS = GoogleFonts.roboto(
 );
 
 //Image links
-const kPlaceholderImage =
-    'https://www.pngkey.com/png/full/233-2332677_image-500580-placeholder-transparent.png';
+const kPlaceholderImage = 'https://i.imgur.com/AizUHEf.png';
 
 const kPlaceholderImageBlack =
     'https://images.pexels.com/videos/3045163/free-video-3045163.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500';
