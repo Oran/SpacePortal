@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:spaceportal/Constants.dart';
 import 'package:spaceportal/Pages/LaunchPage/Components/LaunchCard.dart';
 import 'package:spaceportal/Providers/Providers.dart';
 import 'package:spaceportal/Pages/LaunchPage/LaunchViewer/LaunchViewer.dart';
 import 'package:spaceportal/Utils/Functions.dart';
+import 'package:spaceportal/Widgets/FadeInAppBar.dart';
 
 class LaunchPage extends ConsumerWidget {
   @override
@@ -15,14 +15,23 @@ class LaunchPage extends ConsumerWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        title: Padding(
-          padding: EdgeInsets.only(bottom: 15),
-          child: Text(
-            'Launches',
-            style: kTitleLargeTS.copyWith(
-              fontSize: 45,
-            ),
-          ),
+        title: Text('Launches'),
+        centerTitle: true,
+        flexibleSpace: Consumer(
+          builder: (context, watch, child) {
+            var provider = watch(blurhashProvider(data.launchData[0].image));
+            return provider.when(
+              data: (data) => FadeInAppBar(value: data),
+              loading: () => Container(),
+              error: (e, s) {
+                print(e);
+                print(s);
+                return Container(
+                  color: Colors.grey[100],
+                );
+              },
+            );
+          },
         ),
       ),
       body: Container(

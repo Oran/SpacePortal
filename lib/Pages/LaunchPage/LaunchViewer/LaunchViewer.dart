@@ -9,7 +9,8 @@ import 'package:spaceportal/Pages/LaunchPage/LaunchViewer/Components/StatusText.
 import 'package:spaceportal/Pages/LaunchPage/ServiceProviderViewer/ServiceProviderViewer.dart';
 import 'package:spaceportal/Providers/Providers.dart';
 import 'package:spaceportal/Utils/Functions.dart';
-import 'package:spaceportal/Utils/ExpandableWidget.dart';
+import 'package:spaceportal/Widgets/ExpandableWidget.dart';
+import 'package:spaceportal/Widgets/FadeInAppBar.dart';
 
 class LaunchViewer extends ConsumerWidget {
   final int index;
@@ -25,11 +26,30 @@ class LaunchViewer extends ConsumerWidget {
         title: AutoSizeText(
           //TODO: Change this later
           data.launchData[index].name,
-          overflow: TextOverflow.fade,
+          overflow: TextOverflow.ellipsis,
           style: kTitleDateTS.copyWith(
             fontWeight: FontWeight.bold,
-            color: Colors.red,
+            // color: Colors.red,
           ),
+        ),
+        centerTitle: true,
+        flexibleSpace: Consumer(
+          builder: (context, watch, child) {
+            var provider = watch(
+              blurhashProvider(data.launchData[index].image),
+            );
+            return provider.when(
+              data: (data) => FadeInAppBar(value: data),
+              loading: () => Container(),
+              error: (e, s) {
+                print(e);
+                print(s);
+                return Container(
+                  color: Colors.grey[100],
+                );
+              },
+            );
+          },
         ),
       ),
       body: SingleChildScrollView(
