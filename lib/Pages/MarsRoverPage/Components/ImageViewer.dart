@@ -162,11 +162,23 @@ class ImageViewer extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(30.0),
-              child: CachedNetworkImage(imageUrl: list),
+          InteractiveViewer(
+            maxScale: 4,
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(30.0),
+                child: CachedNetworkImage(
+                  imageUrl: list,
+                  //TODO: Get a new Placeholder and Error widgets
+                  placeholder: (context, url) => CircularProgressIndicator(
+                    color: Colors.black,
+                  ),
+                  errorWidget: (context, url, error) => Container(
+                    color: Colors.red[100],
+                  ),
+                ),
+              ),
             ),
           ),
           Padding(
