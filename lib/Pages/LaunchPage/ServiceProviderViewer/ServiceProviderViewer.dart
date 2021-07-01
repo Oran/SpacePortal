@@ -38,7 +38,7 @@ class _ServiceProviderViewerState extends State<ServiceProviderViewer> {
                 // mainAxisAlignment: MainAxisAlignment.center,
                 // crossAxisAlignment: CrossAxisAlignment.center,
                 physics: BouncingScrollPhysics(),
-                
+
                 children: [
                   Container(
                     height: 200,
@@ -47,13 +47,13 @@ class _ServiceProviderViewerState extends State<ServiceProviderViewer> {
                       imageUrl: snapshot.data['logo_url'],
                     ),
                   ),
-                  Text(snapshot.data['name']),
-                  Text(snapshot.data['type']),
-                  Text(snapshot.data['founding_year']),
-                  Text(snapshot.data['country_code']),
-                  Text(snapshot.data['abbrev']),
-                  Text(snapshot.data['administrator']),
-                  Text(snapshot.data['description']),
+                  Text(snapshot.data['name'] ?? ''),
+                  Text(snapshot.data['type'] ?? ''),
+                  Text(snapshot.data['founding_year'] ?? ''),
+                  Text(snapshot.data['country_code'] ?? ''),
+                  Text(snapshot.data['abbrev'] ?? ''),
+                  Text(snapshot.data['administrator'] ?? ''),
+                  Text(snapshot.data['description'] ?? ''),
                 ],
               ),
             ),
