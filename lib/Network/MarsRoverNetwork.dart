@@ -59,7 +59,7 @@ class MarsRoverImageData {
   void setURL(camIn, roverIn, solIn, isLatest) {
     if (isLatest) {
       marsRoverUrl = Uri.parse(
-        'https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/latest_photos?api_key=$_apiKey',
+        'https://api.nasa.gov/mars-photos/api/v1/rovers/$roverIn/latest_photos?api_key=$_apiKey',
       );
     } else {
       marsRoverUrl = Uri.https(
