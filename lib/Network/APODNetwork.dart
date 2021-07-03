@@ -37,13 +37,16 @@ class APODData {
     datetime: DateTime.now(),
   ).toString();
 
-  //TODO: Change the caching database to hive
+  /// Opens hive box
+  Future openHiveBox() async {
+    await Hive.openBox('apodcache');
+  }
+
   /// checks for dates and sets data to cache.
   Future setDataToCache() async {
     // print(cacheData.getValue('date'));
     // print(cacheData.appConfig);
 
-    await Hive.openBox('apodcache');
     var box = Hive.box('apodcache');
 
     // sets default date

@@ -4,9 +4,13 @@ import 'package:spaceportal/Models/LaunchData.dart';
 import 'package:hive/hive.dart';
 
 class LaunchNetwork {
-  Future setDataToCache() async {
+  /// Opens hive box
+  Future openHiveBox() async {
     await Hive.openBox('launchCacheBox');
+  }
 
+  /// Checks if the cache exists and sets data to cache
+  Future setDataToCache() async {
     DateTime currentDateTime = DateTime.now();
     var box = Hive.box('launchCacheBox');
 
