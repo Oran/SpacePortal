@@ -5,28 +5,38 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spaceportal/Constants.dart';
 import 'package:spaceportal/Pages/ArticlesPage/Components/ArticleCard.dart';
 import 'package:spaceportal/Providers/Providers.dart';
+import 'package:spaceportal/Widgets/FadeInAppBar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ArticlesPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     var articles = watch(articleProvider);
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: Padding(
-          padding: EdgeInsets.only(bottom: 15),
-          child: Text(
-            'Articles',
-            style: kTitleLargeTS.copyWith(
-              fontSize: 45,
-            ),
+    return articles.when(
+      data: (data) => Scaffold(
+        appBar: AppBar(
+          backgroundColor: kPrimaryWhite,
+          elevation: 0,
+          centerTitle: true,
+          title: Text('Articles'),
+          flexibleSpace: Consumer(
+            builder: (context, watch, child) {
+              var provider = watch(blurhashProvider(data.data[0].imageUrl));
+              return provider.when(
+                data: (data) => FadeInAppBar(value: data),
+                loading: () => Container(),
+                error: (e, s) {
+                  print(e);
+                  print(s);
+                  return Container(
+                    color: Colors.grey[100],
+                  );
+                },
+              );
+            },
           ),
         ),
-      ),
-      body: articles.when(
-        data: (data) => Container(
+        body: Container(
           child: ListView.builder(
             padding: EdgeInsets.only(top: 20),
             physics: BouncingScrollPhysics(),
@@ -37,6 +47,8 @@ class ArticlesPage extends ConsumerWidget {
                   image: CachedNetworkImage(
                     imageUrl: data.data[index].imageUrl,
                     fit: BoxFit.cover,
+                    memCacheHeight: 700,
+                    memCacheWidth: 1000,
                     progressIndicatorBuilder: (context, url, progress) {
                       return Center(
                         child: Container(
@@ -78,16 +90,16 @@ class ArticlesPage extends ConsumerWidget {
             },
           ),
         ),
-        error: (error, stackTrace) => Text('Error'),
-        loading: () => Center(
-          child: Container(
-            height: 400.0,
-            width: 400.0,
-            child: FlareActor(
-              'assets/animations/space.flr',
-              animation: 'Untitled',
-              fit: BoxFit.fill,
-            ),
+      ),
+      error: (error, stackTrace) => Scaffold(body: Text('Error')),
+      loading: () => Center(
+        child: Container(
+          height: 400.0,
+          width: 400.0,
+          child: FlareActor(
+            'assets/animations/space.flr',
+            animation: 'Untitled',
+            fit: BoxFit.fill,
           ),
         ),
       ),
