@@ -106,26 +106,22 @@ class _CardViewState extends State<CardView> {
         Consumer(
           builder: (context, watch, child) {
             var article = watch(articleProvider);
-            return article.when(
-              loading: () => Container(),
-              error: (e, s) => Text(''),
-              data: (data) => DCard(
-                image: CachedNetworkImage(
-                  imageUrl: data.data[0].imageUrl,
-                  fit: BoxFit.cover,
-                  memCacheHeight: 800,
-                  memCacheWidth: 1000,
-                  // alignment: Alignment(
-                  //   0,
-                  //   offsetValue(offset) *
-                  //       getImgHeightDiff(data.data[0].imageUrl),
-                  // ),
-                ),
-                text: 'News / Articles',
-                onPressed: () => Navigator.push(
-                  context,
-                  routeTo(rArticlesPage),
-                ),
+            return DCard(
+              image: CachedNetworkImage(
+                imageUrl: article.data[0].imageUrl,
+                fit: BoxFit.cover,
+                memCacheHeight: 800,
+                memCacheWidth: 1000,
+                // alignment: Alignment(
+                //   0,
+                //   offsetValue(offset) *
+                //       getImgHeightDiff(data.data[0].imageUrl),
+                // ),
+              ),
+              text: 'News / Articles',
+              onPressed: () => Navigator.push(
+                context,
+                routeTo(rArticlesPage),
               ),
             );
           },

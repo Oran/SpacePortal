@@ -34,7 +34,7 @@ class ArticleData {
     required this.url,
   });
 
-  factory ArticleData.fromMap(Map<String, dynamic> map) {
+  factory ArticleData.fromMap(Map<dynamic, dynamic> map) {
     return ArticleData(
       id: map['id'],
       title: map['title'],

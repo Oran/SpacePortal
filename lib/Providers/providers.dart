@@ -9,8 +9,8 @@ final apodProvider = Provider<CachedData>(
   (ref) => APODData().getDataFromCache(),
 );
 
-final articleProvider = FutureProvider(
-  (ref) => ArticleAPI().getNewsData(),
+final articleProvider = Provider(
+  (ref) => ArticleAPI().getDataFromCache(),
 );
 
 final launchProvider = Provider(

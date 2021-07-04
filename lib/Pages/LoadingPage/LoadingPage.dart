@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:spaceportal/Network/APODNetwork.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
+import 'package:spaceportal/Network/ArticleNetwork.dart';
 import 'package:spaceportal/Network/LaunchNetwork.dart';
 import 'package:spaceportal/Pages/HomePage/HomePage.dart';
 
@@ -14,6 +15,8 @@ class LoadingPage extends StatelessWidget {
         LaunchNetwork().openHiveBox(),
         APODData().setDataToCache(),
         LaunchNetwork().setDataToCache(),
+        ArticleAPI().openHiveBox(),
+        ArticleAPI().setDataToCache(),
         Future.delayed(Duration(milliseconds: 750)),
       ]),
       builder: (context, snapshot) {
