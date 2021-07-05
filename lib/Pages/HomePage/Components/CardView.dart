@@ -6,6 +6,7 @@ import 'package:spaceportal/Utils/Functions.dart';
 import 'package:spaceportal/Pages/HomePage/Components/Card.dart';
 import 'package:spaceportal/Pages/TestPage.dart';
 import 'package:spaceportal/Providers/Providers.dart';
+import 'package:spaceportal/constants.dart';
 
 class CardView extends StatefulWidget {
   @override
@@ -85,7 +86,10 @@ class _CardViewState extends State<CardView> {
             var data = watch(launchProvider);
             return DCard(
               image: CachedNetworkImage(
-                imageUrl: data.launchData[0].image,
+                imageUrl: data
+                    .launchData[
+                        data.launchData[0].image == kPlaceholderImage ? 1 : 0]
+                    .image,
                 fit: BoxFit.cover,
                 memCacheHeight: 800,
                 memCacheWidth: 1000,

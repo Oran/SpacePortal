@@ -6,6 +6,7 @@ import 'package:spaceportal/Providers/Providers.dart';
 import 'package:spaceportal/Pages/LaunchPage/LaunchViewer/LaunchViewer.dart';
 import 'package:spaceportal/Utils/Functions.dart';
 import 'package:spaceportal/Widgets/FadeInAppBar.dart';
+import 'package:spaceportal/constants.dart';
 
 class LaunchPage extends ConsumerWidget {
   @override
@@ -19,7 +20,12 @@ class LaunchPage extends ConsumerWidget {
         centerTitle: true,
         flexibleSpace: Consumer(
           builder: (context, watch, child) {
-            var provider = watch(blurhashProvider(data.launchData[0].image));
+            var provider = watch(
+              blurhashProvider(data
+                  .launchData[
+                      data.launchData[0].image == kPlaceholderImage ? 1 : 0]
+                  .image),
+            );
             return provider.when(
               data: (data) => FadeInAppBar(value: data),
               loading: () => Container(),
