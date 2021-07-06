@@ -11,12 +11,9 @@ class LoadingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: Future.wait([
-        APODData().openHiveBox(),
-        LaunchNetwork().openHiveBox(),
         APODData().setDataToCache(),
-        LaunchNetwork().setDataToCache(),
-        ArticleAPI().openHiveBox(),
         ArticleAPI().setDataToCache(),
+        LaunchNetwork().setDataToCache(),
         Future.delayed(Duration(milliseconds: 750)),
       ]),
       builder: (context, snapshot) {
