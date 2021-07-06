@@ -1,3 +1,4 @@
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:http/http.dart' as http;
 import 'package:image/image.dart' as image;
 import 'package:flutter/material.dart';
@@ -84,5 +85,20 @@ Route routeTo(var secondPage) {
         child: child,
       );
     },
+  );
+}
+
+/// Flare loading animation
+Widget flareLoading() {
+  return Center(
+    child: Container(
+      height: 400.0,
+      width: 400.0,
+      child: FlareActor(
+        'assets/animations/space.flr',
+        animation: 'Untitled',
+        fit: BoxFit.fill,
+      ),
+    ),
   );
 }
