@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:spaceportal/Constants.dart';
-import 'package:spaceportal/Pages/LaunchPage/ServiceProviderViewer/ServiceProviderViewer.dart';
-import 'package:spaceportal/Pages/TestPage.dart';
-import 'Pages/LaunchPage/LaunchPage.dart';
-import 'Pages/APODPage/APODPage.dart';
-import 'Pages/ArticlesPage/ArticlesPage.dart';
-import 'Pages/HomePage/HomePage.dart';
-import 'Pages/LoadingPage/LoadingPage.dart';
-import 'Pages/MarsRoverPage/MarsRoverPage.dart';
-import 'Pages/NoConnectionPage/NoConnectionPage.dart';
+import 'package:spaceportal/constants.dart';
+import 'pages/launch_page/service_provider_viewer/service_provider_viewer.dart';
+import 'package:spaceportal/pages/test_page.dart';
+import 'pages/launch_page/launch_page.dart';
+import 'pages/apod_page/apod_page.dart';
+import 'pages/articles_page/articles_page.dart';
+import 'pages/home_page/home_page.dart';
+import 'pages/loading_page/loading_page.dart';
+import 'pages/mars_rover_page/mars_rover_page.dart';
+import 'pages/no_connection_page/no_connection_page.dart';
 
 Map<String, WidgetBuilder> pageRoutes = {
   kHome_Page: (context) => HomePage(),
