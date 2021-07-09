@@ -7,7 +7,6 @@ import 'package:spaceportal/pages/apod_page/components/apod_container.dart';
 import 'package:spaceportal/pages/apod_page/components/apod_viewer.dart';
 import 'package:spaceportal/pages/apod_page/components/download_button.dart';
 import 'package:spaceportal/theme/theme.dart';
-import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -155,17 +154,7 @@ class APODPage extends ConsumerWidget {
           );
         } else {
           return Scaffold(
-            body: Center(
-              child: Container(
-                height: 400.0,
-                width: 400.0,
-                child: FlareActor(
-                  'assets/animations/space.flr',
-                  animation: 'Untitled',
-                  fit: BoxFit.fill,
-                ),
-              ),
-            ),
+            body: flareLoadingAnimation(),
           );
         }
       },

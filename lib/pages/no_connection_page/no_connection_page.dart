@@ -1,6 +1,6 @@
 import 'package:spaceportal/constants.dart';
-import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
+import 'package:spaceportal/utils/functions.dart';
 
 class NoConnectionPage extends StatelessWidget {
   @override
@@ -14,11 +14,7 @@ class NoConnectionPage extends StatelessWidget {
               Container(
                 height: 400.0,
                 width: 400.0,
-                child: FlareActor(
-                  'assets/animations/space.flr',
-                  animation: 'Untitled',
-                  fit: BoxFit.fill,
-                ),
+                child: flareLoadingAnimation(),
               ),
               Icon(
                 Icons.cloud_off,

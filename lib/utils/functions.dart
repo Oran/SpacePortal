@@ -89,7 +89,7 @@ Route routeTo(var secondPage) {
 }
 
 /// Flare loading animation
-Widget flareLoading() {
+Widget flareLoadingAnimation() {
   return Center(
     child: Container(
       height: 400.0,
