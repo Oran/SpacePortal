@@ -18,10 +18,14 @@ dependencies:
   image: ^3.0.1
   url_launcher: ^6.0.2
   youtube_explode_dart: ^1.9.0-nullsafety.3
-  global_configuration: ^2.0.0-nullsafety.0
   image_downloader: ^0.30.0
   permission_handler: ^6.1.1
   instant: ^0.4.1
+  hive: ^2.0.4
+  hive_flutter: ^1.0.0
+  blurhash_dart: ^1.0.2
+  flutter_blurhash: ^0.6.0
+  flutter_fadein: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -34,4 +38,3 @@ flutter:
   assets:
     - assets/animations/
     - assets/images/
-    - assets/json/

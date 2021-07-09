@@ -1,16 +1,20 @@
 import 'dart:io';
-import 'package:global_configuration/global_configuration.dart';
-import 'package:spaceportal/Routes.dart';
-import 'package:spaceportal/theme/Theme.dart';
+import 'package:spaceportal/network/apod_network.dart';
+import 'package:spaceportal/network/articles_network.dart';
+import 'package:spaceportal/network/launch_network.dart';
+import 'package:spaceportal/routes.dart';
+import 'package:spaceportal/utils/functions.dart';
+import 'package:spaceportal/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:spaceportal/Constants.dart';
-import 'package:flare_flutter/flare_actor.dart';
+import 'package:spaceportal/constants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 Future<void> main() async {
+  await Hive.initFlutter();
   WidgetsFlutterBinding.ensureInitialized();
-  await GlobalConfiguration().loadFromPath('assets/json/apodCache.json');
   runApp(
     ProviderScope(child: MyApp()),
   );
@@ -55,28 +59,29 @@ class _MyAppState extends State<MyApp> {
       statusBarColor: Colors.transparent,
     ));
     return FutureBuilder(
-      future: checkConnection(),
-      builder: (context, snapshot) =>
-          snapshot.connectionState == ConnectionState.done
-              ? MaterialApp(
-                  theme: themeData,
-                  debugShowCheckedModeBanner: false,
-                  initialRoute: snapshot.data == cs.done
-                      ? kLoading_Page
-                      : kNoConnection_Page,
-                  routes: pageRoutes,
-                )
-              : Center(
-                  child: Container(
-                    height: 400.0,
-                    width: 400.0,
-                    child: FlareActor(
-                      'assets/animations/space.flr',
-                      animation: 'Untitled',
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                ),
-    );
+        future: Future.wait([
+          checkConnection(),
+          APODData().openHiveBox(),
+          LaunchNetwork().openHiveBox(),
+          ArticleAPI().openHiveBox(),
+        ]),
+        builder: (context, AsyncSnapshot snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasData) {
+              var data = snapshot.data;
+              return MaterialApp(
+                theme: themeData,
+                debugShowCheckedModeBanner: false,
+                initialRoute:
+                    data[0] == cs.done ? kLoading_Page : kNoConnection_Page,
+                routes: pageRoutes,
+              );
+            } else {
+              return flareLoading();
+            }
+          } else {
+            return flareLoading();
+          }
+        });
   }
 }

@@ -10,6 +10,7 @@ const String kNoConnection_Page = 'noConnection_page';
 const String kLoading_Page = 'loading_page';
 const String kMarsWeather_Page = 'mars_weather_page';
 const String kArticles_Page = 'articles_page';
+const String kLaunch_Page = 'launch_page';
 
 // New Colors
 const Color kPrimaryWhite = Colors.white;
@@ -36,7 +37,7 @@ TextStyle kDetailsTS = GoogleFonts.notoSans(
   letterSpacing: 0.8,
 );
 
-TextStyle kMarsStatsStyle = GoogleFonts.notoSans(
+TextStyle kMarsStatsStyle = GoogleFonts.roboto(
   fontSize: 15.0,
   color: kPrimaryBlack,
   fontWeight: FontWeight.bold,
@@ -44,7 +45,7 @@ TextStyle kMarsStatsStyle = GoogleFonts.notoSans(
 );
 
 TextStyle kTitleLargeTS = GoogleFonts.lobster(
-  fontSize: 55.0,
+  fontSize: 60.0,
   fontWeight: FontWeight.w800,
   letterSpacing: 1.2,
 );
@@ -80,11 +81,10 @@ TextStyle kCardTS = GoogleFonts.roboto(
   letterSpacing: 1,
   fontWeight: FontWeight.w600,
   shadows: [
-    Shadow(
-      color: Colors.black,
-      blurRadius: 30,
-      offset: Offset(0, 0),
-    ),
+    // Shadow(
+    //   color: Colors.black,
+    //   blurRadius: 30,
+    // ),
   ],
 );
 
@@ -95,8 +95,7 @@ TextStyle kDialogBoxTS = GoogleFonts.roboto(
 );
 
 //Image links
-const kPlaceholderImage =
-    'https://www.pngkey.com/png/full/233-2332677_image-500580-placeholder-transparent.png';
+const kPlaceholderImage = 'https://i.imgur.com/AizUHEf.png';
 
 const kPlaceholderImageBlack =
     'https://images.pexels.com/videos/3045163/free-video-3045163.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500';

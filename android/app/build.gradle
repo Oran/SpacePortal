@@ -53,6 +53,24 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+
+    flavorDimensions "flavor-type"
+
+    productFlavors {
+        
+        dev {
+            dimension "flavor-type"
+            applicationIdSuffix ".dev"
+            resValue "string", "app_name", "SP (DEV)"
+        }
+
+        prod {
+            dimension "flavor-type"
+            resValue "string", "app_name", "Space Portal"
+        }
+
+    }
+
     //? this disables Lint checks
     lintOptions { 
 

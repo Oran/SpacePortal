@@ -34,6 +34,35 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:791399087362:android:79754f4e77789ee650961b",
+        "android_client_info": {
+          "package_name": "com.oran.spaceportal.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "791399087362-b8jk9vpaca2vi4d8qmsgfd2k1h7domif.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxawY0RZAlbHHwOXEwwFJ3cZ2UzcpCviU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "791399087362-b8jk9vpaca2vi4d8qmsgfd2k1h7domif.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"
