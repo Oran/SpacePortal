@@ -5,8 +5,8 @@ import 'package:spaceportal/constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
-import 'package:spaceportal/Providers/providers.dart';
-import 'package:spaceportal/Widgets/fadein_appbar.dart';
+import 'package:spaceportal/providers/providers.dart';
+import 'package:spaceportal/widgets/fadein_appbar.dart';
 import 'package:spaceportal/pages/apod_page/components/download_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 

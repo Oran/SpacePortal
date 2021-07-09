@@ -1,7 +1,7 @@
 import 'package:spaceportal/constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:spaceportal/Utils/functions.dart';
+import 'package:spaceportal/utils/functions.dart';
 import 'package:spaceportal/pages/mars_rover_page/components/image_viewer.dart';
 
 class MarsRoverLatestImages extends StatelessWidget {

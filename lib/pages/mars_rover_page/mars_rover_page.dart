@@ -1,14 +1,14 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:spaceportal/constants.dart';
+import 'package:spaceportal/providers/providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:spaceportal/Network/mars_rover_network.dart';
+import 'package:spaceportal/network/mars_rover_network.dart';
+import 'package:spaceportal/widgets/fadein_appbar.dart';
+import 'package:spaceportal/widgets/slidingup_panel.dart';
 import 'components/mars_bold_text.dart';
 import 'components/mars_rover_images.dart';
 import 'components/mars_rover_latest_images.dart';
-import 'package:flutter/material.dart';
-import 'package:spaceportal/constants.dart';
-import 'package:spaceportal/providers/providers.dart';
-import 'package:spaceportal/widgets/fadein_appbar.dart';
-import 'package:spaceportal/widgets/slidingup_panel.dart';
 
 class MarsRoverPage extends StatefulWidget {
   @override

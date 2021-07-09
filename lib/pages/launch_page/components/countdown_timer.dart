@@ -2,8 +2,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:spaceportal/constants.dart';
-import 'package:spaceportal/Utils/CountDown.dart';
-import 'package:spaceportal/Utils/functions.dart';
+import 'package:spaceportal/utils/countdown.dart';
+import 'package:spaceportal/utils/functions.dart';
 
 class CountdownTimer extends StatefulWidget {
   final String time;

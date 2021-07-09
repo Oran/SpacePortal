@@ -4,8 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spaceportal/pages/home_page/components/card.dart';
 import 'package:spaceportal/pages/test_page.dart';
 import 'package:spaceportal/routes.dart';
-import 'package:spaceportal/Utils/functions.dart';
-import 'package:spaceportal/Providers/providers.dart';
+import 'package:spaceportal/utils/functions.dart';
+import 'package:spaceportal/providers/providers.dart';
 import 'package:spaceportal/constants.dart';
 
 class CardView extends StatefulWidget {

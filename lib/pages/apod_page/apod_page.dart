@@ -1,12 +1,12 @@
 import 'dart:ui';
-import 'package:spaceportal/Providers/providers.dart';
-import 'package:spaceportal/Utils/functions.dart';
+import 'package:spaceportal/providers/providers.dart';
+import 'package:spaceportal/utils/functions.dart';
 import 'package:spaceportal/constants.dart';
-import 'package:spaceportal/Widgets/fadein_appbar.dart';
+import 'package:spaceportal/widgets/fadein_appbar.dart';
 import 'package:spaceportal/pages/apod_page/components/apod_container.dart';
 import 'package:spaceportal/pages/apod_page/components/apod_viewer.dart';
 import 'package:spaceportal/pages/apod_page/components/download_button.dart';
-import 'package:spaceportal/theme/Theme.dart';
+import 'package:spaceportal/theme/theme.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

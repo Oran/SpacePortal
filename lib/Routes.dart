@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spaceportal/constants.dart';
 import 'pages/launch_page/service_provider_viewer/service_provider_viewer.dart';
-import 'package:spaceportal/pages/test_page.dart';
+import 'pages/test_page.dart';
 import 'pages/launch_page/launch_page.dart';
 import 'pages/apod_page/apod_page.dart';
 import 'pages/articles_page/articles_page.dart';
