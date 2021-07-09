@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:spaceportal/Network/apod_network.dart';
+import 'package:spaceportal/network/apod_network.dart';
 import 'package:spaceportal/constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flare_flutter/flare_actor.dart';
