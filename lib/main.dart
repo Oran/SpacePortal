@@ -77,10 +77,10 @@ class _MyAppState extends State<MyApp> {
                 routes: pageRoutes,
               );
             } else {
-              return flareLoading();
+              return flareLoadingAnimation();
             }
           } else {
-            return flareLoading();
+            return flareLoadingAnimation();
           }
         });
   }

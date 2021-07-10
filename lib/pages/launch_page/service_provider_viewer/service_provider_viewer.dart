@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:spaceportal/constants.dart';
 import 'package:spaceportal/network/launch_network.dart';
+import 'package:spaceportal/utils/functions.dart';
 
 class ServiceProviderViewer extends StatefulWidget {
   final String url;
@@ -64,11 +64,7 @@ class _ServiceProviderViewerState extends State<ServiceProviderViewer> {
               child: Container(
                 height: 400.0,
                 width: 400.0,
-                child: FlareActor(
-                  'assets/animations/space.flr',
-                  animation: 'Untitled',
-                  fit: BoxFit.fill,
-                ),
+                child: flareLoadingAnimation(),
               ),
             ),
           );

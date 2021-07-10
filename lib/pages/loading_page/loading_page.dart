@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:spaceportal/network/apod_network.dart';
-import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:spaceportal/network/articles_network.dart';
 import 'package:spaceportal/network/launch_network.dart';
 import 'package:spaceportal/pages/home_page/home_page.dart';
+import 'package:spaceportal/utils/functions.dart';
 
 class LoadingPage extends StatelessWidget {
   @override
@@ -26,11 +26,7 @@ class LoadingPage extends StatelessWidget {
                 color: Colors.white,
                 height: 400.0,
                 width: 400.0,
-                child: FlareActor(
-                  'assets/animations/space.flr',
-                  animation: 'Untitled',
-                  fit: BoxFit.fill,
-                ),
+                child: flareLoadingAnimation(),
               ),
             ),
           );
