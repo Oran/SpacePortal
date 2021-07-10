@@ -12,76 +12,103 @@ class LaunchPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     var data = watch(launchProvider);
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: Text('Launches'),
-        centerTitle: true,
-        flexibleSpace: Consumer(
-          builder: (context, watch, child) {
-            var provider = watch(
-              blurhashProvider(data
-                  .launchData[
-                      data.launchData[0].image == kPlaceholderImage ? 1 : 0]
-                  .image),
-            );
-            return provider.when(
-              data: (data) => FadeInAppBar(value: data),
-              loading: () => Container(),
-              error: (e, s) {
-                print(e);
-                print(s);
-                return Container(
-                  color: Colors.grey[100],
-                );
-              },
-            );
-          },
-        ),
+    return FutureBuilder(
+      future: checkImgColor(
+        data.launchData[data.launchData[0].image == kPlaceholderImage ? 1 : 0]
+            .image,
       ),
-      body: Container(
-        height: (MediaQuery.of(context).size.height),
-        width: (MediaQuery.of(context).size.width),
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                padding: EdgeInsets.only(top: 10),
-                physics: BouncingScrollPhysics(),
-                cacheExtent: data.length.toDouble(),
-                itemCount: data.length,
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        routeTo(
-                          LaunchViewer(index: index),
-                        ),
+      builder: (context, AsyncSnapshot snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          print('white balance is ${snapshot.data}');
+          return Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.white,
+              elevation: 0,
+              title: Text(
+                'Launches',
+                style: TextStyle(
+                  color: changeColorAppBar(snapshot.data),
+                ),
+              ),
+              iconTheme: IconThemeData(
+                color: changeColorAppBar(snapshot.data),
+              ),
+              centerTitle: true,
+              flexibleSpace: Consumer(
+                builder: (context, watch, child) {
+                  var provider = watch(
+                    blurhashProvider(
+                      data
+                          .launchData[
+                              data.launchData[0].image == kPlaceholderImage
+                                  ? 1
+                                  : 0]
+                          .image,
+                    ),
+                  );
+                  return provider.when(
+                    data: (data) => FadeInAppBar(value: data),
+                    loading: () => Container(),
+                    error: (e, s) {
+                      print(e);
+                      print(s);
+                      return Container(
+                        color: Colors.grey[100],
                       );
                     },
-                    borderRadius: BorderRadius.circular(20),
-                    child: LaunchCard(
-                      image: CachedNetworkImage(
-                        imageUrl: data.launchData[index].image,
-                        fit: BoxFit.cover,
-                        errorWidget: (context, url, error) {
-                          //TODO: this still needs testing.
-                          return CircularProgressIndicator();
-                        },
-                      ),
-                      text: data.launchData[index].name,
-                      date: data.launchData[index].net,
-                      statusColor: data.launchData[index].status.abbrev,
-                    ),
                   );
                 },
               ),
             ),
-          ],
-        ),
-      ),
+            body: Container(
+              height: (MediaQuery.of(context).size.height),
+              width: (MediaQuery.of(context).size.width),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: ListView.builder(
+                      padding: EdgeInsets.only(top: 10),
+                      physics: BouncingScrollPhysics(),
+                      cacheExtent: data.length.toDouble(),
+                      itemCount: data.length,
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              routeTo(
+                                LaunchViewer(index: index),
+                              ),
+                            );
+                          },
+                          borderRadius: BorderRadius.circular(20),
+                          child: LaunchCard(
+                            image: CachedNetworkImage(
+                              imageUrl: data.launchData[index].image,
+                              fit: BoxFit.cover,
+                              errorWidget: (context, url, error) {
+                                //TODO: this still needs testing.
+                                return CircularProgressIndicator();
+                              },
+                            ),
+                            text: data.launchData[index].name,
+                            date: data.launchData[index].net,
+                            statusColor: data.launchData[index].status.abbrev,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        } else {
+          return Scaffold(
+            body: flareLoadingAnimation(),
+          );
+        }
+      },
     );
   }
 }
