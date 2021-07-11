@@ -102,3 +102,14 @@ Widget flareLoadingAnimation() {
     ),
   );
 }
+
+/// Checks the white balance and returns color based on it.
+Color changeColorAppBar(var value) {
+  if (value.clamp(0, 80) == value) {
+    return Colors.white;
+  } else if (value.clamp(81, 255) == value) {
+    return Colors.black;
+  } else {
+    return Colors.black;
+  }
+}
