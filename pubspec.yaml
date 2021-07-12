@@ -26,6 +26,7 @@ dependencies:
   blurhash_dart: ^1.0.2
   flutter_blurhash: ^0.6.0
   flutter_fadein: ^2.0.0
+  theme_provider: ^0.5.0
 
 dev_dependencies:
   flutter_test:
