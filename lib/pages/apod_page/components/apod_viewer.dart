@@ -89,7 +89,7 @@ class _APODViewerState extends State<APODViewer> {
                           ? kPlaceholderImageBlack
                           : snapshot.data[0].image,
                   mediaType: 'image',
-                  snapshotData: snapshot.data[1],
+                  whiteBalance: snapshot.data[1],
                 )
               ],
             ),

@@ -59,83 +59,79 @@ class APODPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     var apodProviderData = watch(apodProvider);
-    return FutureBuilder(
-      future: checkImgColor(apodProviderData.image!),
-      builder: (context, AsyncSnapshot snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          return Scaffold(
-            appBar: AppBar(
-              elevation: 0,
-              backgroundColor: kPrimaryWhite,
-              iconTheme: IconThemeData(
-                color: snapshot.data < 127 ? Colors.white : Colors.black,
-              ),
-              title: Container(
-                child: FlexibleSpaceBar(
-                  collapseMode: CollapseMode.parallax,
-                  centerTitle: true,
-                  title: Text(
-                    'Picture of the day',
-                    style: kTitleDateTS.copyWith(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
-                      color: snapshot.data < 127 ? Colors.white : Colors.black,
-                    ),
-                  ),
+    var whiteBalance = watch(whiteBalanceProvider(
+      apodProviderData.mediaType == 'video'
+          ? apodProviderData.videoThumb!
+          : apodProviderData.image!,
+    ));
+    return whiteBalance.when(
+        data: (wb) => Scaffold(
+              appBar: AppBar(
+                elevation: 0,
+                backgroundColor: kPrimaryWhite,
+                iconTheme: IconThemeData(
+                  color: changeColorAppBar(wb),
                 ),
-              ),
-              flexibleSpace: Consumer(
-                builder: (context, watch, child) {
-                  var provider = watch(blurhashProvider(
-                    apodProviderData.mediaType == 'video'
-                        ? apodProviderData.videoThumb!
-                        : apodProviderData.image!,
-                  ));
-                  return provider.when(
-                    data: (data) => FadeInAppBar(value: data),
-                    loading: () => Container(),
-                    error: (e, s) {
-                      print(e);
-                      print(s);
-                      return Container(
-                        color: Colors.grey[100],
-                      );
-                    },
-                  );
-                },
-              ),
-              actions: [
-                InkWell(
-                  onTap: () {
-                    _openDialog(context);
-                  },
-                  borderRadius: BorderRadius.circular(180),
-                  child: Container(
-                    padding: EdgeInsets.all(15),
-                    child: Center(
-                      child: Icon(
-                        Icons.event_rounded,
-                        color:
-                            snapshot.data < 127 ? Colors.white : Colors.black,
+                title: Container(
+                  child: FlexibleSpaceBar(
+                    collapseMode: CollapseMode.parallax,
+                    centerTitle: true,
+                    title: Text(
+                      'Picture of the day',
+                      style: kTitleDateTS.copyWith(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                        color: changeColorAppBar(wb),
                       ),
                     ),
                   ),
                 ),
-                DownloadButton(
-                  snapshotData: snapshot.data,
-                  imageUrl: apodProviderData.hdUrl,
-                  mediaType: apodProviderData.mediaType,
+                flexibleSpace: Consumer(
+                  builder: (context, watch, child) {
+                    var provider = watch(blurhashProvider(
+                      apodProviderData.mediaType == 'video'
+                          ? apodProviderData.videoThumb!
+                          : apodProviderData.image!,
+                    ));
+                    return provider.when(
+                      data: (data) => FadeInAppBar(value: data),
+                      loading: () => Container(),
+                      error: (e, s) {
+                        print(e);
+                        print(s);
+                        return Container(
+                          color: Colors.grey[100],
+                        );
+                      },
+                    );
+                  },
                 ),
-              ],
+                actions: [
+                  InkWell(
+                    onTap: () {
+                      _openDialog(context);
+                    },
+                    borderRadius: BorderRadius.circular(180),
+                    child: Container(
+                      padding: EdgeInsets.all(15),
+                      child: Center(
+                        child: Icon(
+                          Icons.event_rounded,
+                          color: changeColorAppBar(wb),
+                        ),
+                      ),
+                    ),
+                  ),
+                  DownloadButton(
+                    whiteBalance: wb,
+                    imageUrl: apodProviderData.hdUrl,
+                    mediaType: apodProviderData.mediaType,
+                  ),
+                ],
+              ),
+              body: APODContents(),
             ),
-            body: APODContents(),
-          );
-        } else {
-          return Scaffold(
-            body: flareLoadingAnimation(),
-          );
-        }
-      },
-    );
+        loading: () => Scaffold(body: flareLoadingAnimation()),
+        error: (e, s) => Text('Error'));
   }
 }
