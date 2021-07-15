@@ -11,7 +11,7 @@ String? parseDates(String dateTime) {
 }
 
 /// Check WhiteBalance of the provided network image.
-Future checkImgColor(String url) async {
+Future checkImgColor(var url) async {
   var response = await http.get(Uri.parse(url));
   int whiteBalance = image.decodeImage(response.bodyBytes)!.getWhiteBalance();
   return whiteBalance;
