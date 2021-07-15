@@ -11,12 +11,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-enum wb { white, black }
-
-// ignore: must_be_immutable
 class APODPage extends ConsumerWidget {
-  wb? bulll;
-
   _openDialog(BuildContext context) {
     return showDatePicker(
       context: context,
@@ -89,23 +84,6 @@ class APODPage extends ConsumerWidget {
                   ),
                 ),
               ),
-              // flexibleSpace: ClipRRect(
-              //   child: ImageFiltered(
-              //     imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-              //     child: Container(
-              //       height: (MediaQuery.of(context).size.height),
-              //       width: (MediaQuery.of(context).size.width),
-              //       child: CachedNetworkImage(
-              //         imageUrl: apodProviderData.mediaType == 'video'
-              //             ? apodProviderData.videoThumb!
-              //             : apodProviderData.image!,
-              //         fit: BoxFit.cover,
-              //         memCacheHeight: 30,
-              //         memCacheWidth: 30,
-              //       ),
-              //     ),
-              //   ),
-              // ),
               flexibleSpace: Consumer(
                 builder: (context, watch, child) {
                   var provider = watch(blurhashProvider(
