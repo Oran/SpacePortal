@@ -9,13 +9,11 @@ class APODContents extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     var apodProviderData = watch(apodProvider);
-    var orientation = (MediaQuery.of(context).orientation);
     return ListView(
       physics: BouncingScrollPhysics(),
       children: [
         SizedBox(height: 15),
         Container(
-          height: orientation == Orientation.landscape ? 800.0 : null,
           padding: EdgeInsets.all(10),
           // color: Colors.green,
           child: apodProviderData.mediaType == 'video'
