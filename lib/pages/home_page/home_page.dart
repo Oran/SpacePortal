@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spaceportal/constants.dart';
 import 'package:spaceportal/pages/home_page/components/card_view.dart';
+import 'package:theme_provider/theme_provider.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -15,12 +16,26 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Padding(
-                padding: EdgeInsets.only(left: 20.0, top: 10.0),
-                child: Text(
-                  'Welcome',
-                  style: kTitleLargeTS,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: 20.0, top: 10.0),
+                    child: Text(
+                      'Welcome',
+                      style: kTitleLargeTS,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(20),
+                    child: InkWell(
+                      onTap: () {
+                        ThemeProvider.controllerOf(context).nextTheme();
+                      },
+                      child: Icon(Icons.palette_rounded),
+                    ),
+                  )
+                ],
               ),
               Flexible(
                 flex: 2,

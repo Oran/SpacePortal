@@ -11,6 +11,7 @@ import 'package:spaceportal/constants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:theme_provider/theme_provider.dart';
 
 Future<void> main() async {
   await Hive.initFlutter();
@@ -69,12 +70,25 @@ class _MyAppState extends State<MyApp> {
           if (snapshot.connectionState == ConnectionState.done) {
             if (snapshot.hasData) {
               var data = snapshot.data;
-              return MaterialApp(
-                theme: themeData,
-                debugShowCheckedModeBanner: false,
-                initialRoute:
-                    data[0] == cs.done ? kLoading_Page : kNoConnection_Page,
-                routes: pageRoutes,
+              return ThemeProvider(
+                themes: [
+                  AppTheme.light(),
+                  AppTheme.dark(),
+                ],
+                child: ThemeConsumer(
+                  child: Builder(
+                    builder: (context) {
+                      return MaterialApp(
+                        theme: themeData,
+                        debugShowCheckedModeBanner: false,
+                        initialRoute: data[0] == cs.done
+                            ? kLoading_Page
+                            : kNoConnection_Page,
+                        routes: pageRoutes,
+                      );
+                    },
+                  ),
+                ),
               );
             } else {
               return flareLoadingAnimation();
