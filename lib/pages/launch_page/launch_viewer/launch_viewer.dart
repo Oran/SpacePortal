@@ -2,7 +2,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:image/image.dart';
 import 'package:spaceportal/constants.dart';
 import 'package:spaceportal/providers/providers.dart';
 import 'package:spaceportal/utils/functions.dart';

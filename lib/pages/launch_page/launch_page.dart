@@ -12,26 +12,23 @@ class LaunchPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     var data = watch(launchProvider);
-    return FutureBuilder(
-      future: checkImgColor(
-        data.launchData[data.launchData[0].image == kPlaceholderImage ? 1 : 0]
-            .image,
-      ),
-      builder: (context, AsyncSnapshot snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          print('white balance is ${snapshot.data}');
-          return Scaffold(
+    var whiteBalance = watch(whiteBalanceProvider(
+      data.launchData[data.launchData[0].image == kPlaceholderImage ? 1 : 0]
+          .image,
+    ));
+    return whiteBalance.when(
+        data: (wb) => Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.white,
               elevation: 0,
               title: Text(
                 'Launches',
                 style: TextStyle(
-                  color: changeColorAppBar(snapshot.data),
+                  color: changeColorAppBar(wb),
                 ),
               ),
               iconTheme: IconThemeData(
-                color: changeColorAppBar(snapshot.data),
+                color: changeColorAppBar(wb),
               ),
               centerTitle: true,
               flexibleSpace: Consumer(
@@ -102,13 +99,8 @@ class LaunchPage extends ConsumerWidget {
                 ],
               ),
             ),
-          );
-        } else {
-          return Scaffold(
-            body: flareLoadingAnimation(),
-          );
-        }
-      },
-    );
+          ),
+        loading: () => Scaffold(body: flareLoadingAnimation()),
+        error: (e, s) => Text('Error'));
   }
 }
