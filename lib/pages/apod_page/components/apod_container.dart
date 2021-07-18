@@ -3,12 +3,15 @@ import 'package:spaceportal/providers/providers.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:spaceportal/utils/functions.dart';
+import 'package:theme_provider/theme_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class APODContents extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     var apodProviderData = watch(apodProvider);
+    var theme = ThemeProvider.themeOf(context);
     return ListView(
       physics: BouncingScrollPhysics(),
       children: [
@@ -86,14 +89,7 @@ class APODContents extends ConsumerWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30.0),
                         color: Colors.black,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 10,
-                            blurRadius: 10,
-                            offset: Offset(0, 3), // changes position of shadow
-                          ),
-                        ],
+                        boxShadow: showBoxShadow(theme.id),
                       ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(30.0),

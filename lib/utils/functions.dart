@@ -113,3 +113,34 @@ Color changeColorAppBar(var value) {
     return Colors.black;
   }
 }
+
+/// Checks the themeId and returns a box shadow.
+List<BoxShadow> showBoxShadow(String themeId, {bool isRoverImages = false}) {
+  if (themeId == 'sp_light') {
+    if (isRoverImages) {
+      return [
+        BoxShadow(
+          color: Colors.grey.withOpacity(0.5),
+          spreadRadius: -10,
+          blurRadius: 15,
+          offset: Offset(0, 0), // changes position of shadow
+        )
+      ];
+    } else {
+      return [
+        BoxShadow(
+          color: Colors.grey.withOpacity(0.5),
+          spreadRadius: 10,
+          blurRadius: 10,
+          offset: Offset(0, 3), // changes position of shadow
+        )
+      ];
+    }
+  } else {
+    return [
+      BoxShadow(
+        color: Colors.transparent,
+      )
+    ];
+  }
+}

@@ -11,6 +11,7 @@ import 'package:spaceportal/pages/launch_page/launch_viewer/components/countdown
 import 'package:spaceportal/pages/launch_page/launch_viewer/components/launch_config_text.dart';
 import 'package:spaceportal/pages/launch_page/launch_viewer/components/status_text.dart';
 import 'package:spaceportal/pages/launch_page/service_provider_viewer/service_provider_viewer.dart';
+import 'package:theme_provider/theme_provider.dart';
 
 class LaunchViewer extends ConsumerWidget {
   final int index;
@@ -19,6 +20,7 @@ class LaunchViewer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     var data = watch(launchProvider);
+    var theme = ThemeProvider.themeOf(context);
     return FutureBuilder(
       future: checkImgColor(data.launchData[index].image),
       builder: (context, snapshot) {
@@ -76,14 +78,7 @@ class LaunchViewer extends ConsumerWidget {
                       width: (MediaQuery.of(context).size.width) * 0.90,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 10,
-                            blurRadius: 10,
-                            offset: Offset(0, 3), // changes position of shadow
-                          ),
-                        ],
+                        boxShadow: showBoxShadow(theme.id),
                       ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(20),

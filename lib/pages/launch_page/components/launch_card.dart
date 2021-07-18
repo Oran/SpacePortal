@@ -3,6 +3,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:spaceportal/constants.dart';
 import 'package:spaceportal/pages/launch_page/components/countdown_timer.dart';
+import 'package:spaceportal/utils/functions.dart';
+import 'package:theme_provider/theme_provider.dart';
 
 class LaunchCard extends StatefulWidget {
   LaunchCard({
@@ -24,8 +26,7 @@ class LaunchCard extends StatefulWidget {
 }
 
 class _LaunchCardState extends State<LaunchCard> {
-
-Color checkAbbrev(String? abbrev) {
+  Color checkAbbrev(String? abbrev) {
     var defaultColor = Color.fromRGBO(0, 0, 0, 0);
     if (abbrev == 'Go') {
       setState(() {
@@ -56,6 +57,7 @@ Color checkAbbrev(String? abbrev) {
 
   @override
   Widget build(BuildContext context) {
+    var theme = ThemeProvider.themeOf(context);
     return GestureDetector(
       onTap: widget.onPressed as void Function()?,
       child: Padding(
@@ -67,14 +69,7 @@ Color checkAbbrev(String? abbrev) {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.0),
               color: Colors.black,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 10,
-                  blurRadius: 10,
-                  offset: Offset(0, 3), // changes position of shadow
-                ),
-              ],
+              boxShadow: showBoxShadow(theme.id),
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20.0),

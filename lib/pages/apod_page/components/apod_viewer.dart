@@ -8,6 +8,7 @@ import 'package:spaceportal/providers/providers.dart';
 import 'package:spaceportal/utils/functions.dart';
 import 'package:spaceportal/widgets/fadein_appbar.dart';
 import 'package:spaceportal/pages/apod_page/components/download_button.dart';
+import 'package:theme_provider/theme_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class APODViewer extends StatefulWidget {
@@ -29,6 +30,7 @@ class _APODViewerState extends State<APODViewer> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = ThemeProvider.themeOf(context);
     return FutureBuilder(
       future: getData(),
       builder: (context, AsyncSnapshot snapshot) {
@@ -161,15 +163,7 @@ class _APODViewerState extends State<APODViewer> {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(30.0),
                                     color: Colors.black,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.withOpacity(0.5),
-                                        spreadRadius: 10,
-                                        blurRadius: 10,
-                                        offset: Offset(
-                                            0, 3), // changes position of shadow
-                                      ),
-                                    ],
+                                    boxShadow: showBoxShadow(theme.id),
                                   ),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(30.0),

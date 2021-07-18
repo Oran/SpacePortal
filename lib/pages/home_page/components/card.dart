@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:spaceportal/constants.dart';
+import 'package:spaceportal/utils/functions.dart';
+import 'package:theme_provider/theme_provider.dart';
 
 class DCard extends StatelessWidget {
   DCard({
@@ -15,6 +17,7 @@ class DCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = ThemeProvider.themeOf(context);
     return GestureDetector(
       onTap: onPressed as void Function()?,
       child: Padding(
@@ -26,14 +29,7 @@ class DCard extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.0),
               color: Colors.black,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 10,
-                  blurRadius: 10,
-                  offset: Offset(0, 3), // changes position of shadow
-                ),
-              ],
+              boxShadow: showBoxShadow(theme.id),
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20.0),
