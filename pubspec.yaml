@@ -32,6 +32,11 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+cider:
+  link_template:
+    tag: 'https://github.com/Oran/SpacePortal/releases/tag/%tag%'
+    diff: 'https://github.com/Oran/SpacePortal/compare/%from%...%to%'
+
 flutter:
   uses-material-design: true
 
