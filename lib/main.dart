@@ -71,15 +71,18 @@ class _MyAppState extends State<MyApp> {
             if (snapshot.hasData) {
               var data = snapshot.data;
               return ThemeProvider(
+                defaultThemeId: 'sp_light',
+                loadThemeOnInit: true,
+                saveThemesOnChange: true,
                 themes: [
-                  AppTheme.light(),
-                  AppTheme.dark(),
+                  appThemeLight,
+                  appThemeDark,
                 ],
                 child: ThemeConsumer(
                   child: Builder(
                     builder: (context) {
                       return MaterialApp(
-                        theme: themeData,
+                        theme: ThemeProvider.themeOf(context).data,
                         debugShowCheckedModeBanner: false,
                         initialRoute: data[0] == cs.done
                             ? kLoading_Page

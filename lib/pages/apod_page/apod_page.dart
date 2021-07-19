@@ -13,6 +13,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class APODPage extends ConsumerWidget {
   _openDialog(BuildContext context) {
+    var themeData = Theme.of(context);
     return showDatePicker(
       context: context,
       lastDate: DateTime.now(),

@@ -6,6 +6,7 @@ import 'package:theme_provider/theme_provider.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var theme = ThemeProvider.themeOf(context);
     return Scaffold(
       body: Container(
         width: (MediaQuery.of(context).size.width),
@@ -32,7 +33,12 @@ class HomePage extends StatelessWidget {
                       onTap: () {
                         ThemeProvider.controllerOf(context).nextTheme();
                       },
-                      child: Icon(Icons.palette_rounded),
+                      child: Icon(
+                        theme.id == 'sp_dark'
+                            ? Icons.light_mode_rounded
+                            : Icons.dark_mode_rounded,
+                        color: theme.data.accentColor,
+                      ),
                     ),
                   )
                 ],
