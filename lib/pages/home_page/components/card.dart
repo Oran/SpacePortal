@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:spaceportal/constants.dart';
+import 'package:spaceportal/theme/colors.dart';
 import 'package:spaceportal/utils/functions.dart';
 import 'package:theme_provider/theme_provider.dart';
 
@@ -41,20 +42,21 @@ class DCard extends StatelessWidget {
                       width: (MediaQuery.of(context).size.width),
                       child: image,
                     ),
-                    Positioned(
-                      top: 45.0,
-                      left: 0.0,
+                    Align(
+                      alignment: Alignment.bottomLeft,
                       child: Container(
-                        // color: Colors.white,
+                        color: Colors.black.withOpacity(0.50),
                         padding: EdgeInsets.all(15.0),
-                        height: 150.0,
-                        width: 300.0,
-                        alignment: Alignment.bottomCenter,
-                        child: Center(
+                        height: 60.0,
+                        width: 400.0,
+                        child: Align(
+                          alignment: Alignment.bottomLeft,
                           child: AutoSizeText(
                             text!,
-                            textAlign: TextAlign.center,
-                            style: kCardTS,
+                            textAlign: TextAlign.left,
+                            style: theme.data.textTheme.headline6?.copyWith(
+                              color: Colors.white,
+                            ),
                             maxLines: 3,
                           ),
                         ),
