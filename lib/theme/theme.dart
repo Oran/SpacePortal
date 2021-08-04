@@ -20,10 +20,13 @@ final appThemeLight = AppTheme(
       backgroundColor: AppColors.primaryLight,
       elevation: 0,
       centerTitle: true,
+      actionsIconTheme: IconThemeData(
+        color: AppColors.accentLight,
+      ),
     ),
 
     // IconTheme
-    iconTheme: IconThemeData(color: AppColors.accentDark),
+    iconTheme: IconThemeData(color: AppColors.accentLight),
 
     // TextTheme
     textTheme: textThemeLight,
@@ -92,6 +95,9 @@ final appThemeDark = AppTheme(
       backgroundColor: AppColors.primaryDark,
       elevation: 0,
       centerTitle: true,
+      actionsIconTheme: IconThemeData(
+        color: AppColors.accentDark,
+      ),
     ),
 
     // IconTheme
