@@ -6,17 +6,48 @@ import 'package:spaceportal/theme/text_theme.dart';
 final appThemeLight = AppTheme(
   id: 'sp_light',
   data: ThemeData(
+    // Base Colors
     scaffoldBackgroundColor: AppColors.primaryLight,
     primaryColorLight: AppColors.primaryLight,
     primaryColorDark: AppColors.primaryDark,
+    primaryColor: AppColors.primaryLight,
     accentColor: AppColors.accentLight,
+    errorColor: AppColors.error,
+    primaryColorBrightness: Brightness.light,
+
+    //Appbar
+    appBarTheme: AppBarTheme(
+      backgroundColor: AppColors.primaryLight,
+      elevation: 0,
+    ),
+
+    // IconTheme
     iconTheme: IconThemeData(color: AppColors.accentDark),
+
+    // TextTheme
     textTheme: textThemeLight,
-    colorScheme: ColorScheme.light(),
+
+    // ColorScheme
+    colorScheme: ColorScheme.light(
+      primary: AppColors.accentLight,
+      onPrimary: Colors.white,
+      onSurface: AppColors.accentLight,
+    ),
+
+    // SnackBar Theme
+    snackBarTheme: SnackBarThemeData(
+      backgroundColor: AppColors.accentLight,
+      contentTextStyle: textThemeLight.bodyText1?.copyWith(
+        color: AppColors.accentLight,
+      ),
+    ),
+
+    //Dialog Theme
+    dialogBackgroundColor: AppColors.primaryLight,
     dialogTheme: DialogTheme(
       backgroundColor: AppColors.primaryLight,
       contentTextStyle: TextStyle(
-        color: AppColors.accentLight,
+        color: AppColors.accentDark,
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
@@ -29,13 +60,44 @@ final appThemeLight = AppTheme(
 final appThemeDark = AppTheme(
   id: 'sp_dark',
   data: ThemeData(
+    // Base Colors
     scaffoldBackgroundColor: AppColors.primaryDark,
     primaryColorLight: AppColors.primaryLight,
     primaryColorDark: AppColors.primaryDark,
+    primaryColor: AppColors.primaryDark,
     accentColor: AppColors.accentDark,
+    errorColor: AppColors.error,
+    primaryColorBrightness: Brightness.dark,
+
+    //Appbar
+    appBarTheme: AppBarTheme(
+      backgroundColor: AppColors.primaryDark,
+      elevation: 0,
+    ),
+
+    // IconTheme
     iconTheme: IconThemeData(color: AppColors.accentDark),
+
+    // TextTheme
     textTheme: textThemeDark,
-    colorScheme: ColorScheme.dark(),
+
+    // ColorScheme for Dialogs
+    colorScheme: ColorScheme.dark(
+      primary: AppColors.accentDark,
+      onPrimary: Colors.black,
+      onSurface: AppColors.accentDark,
+    ),
+
+    // Snackbar
+    snackBarTheme: SnackBarThemeData(
+      backgroundColor: AppColors.accentDark,
+      contentTextStyle: textThemeLight.bodyText1?.copyWith(
+        color: AppColors.accentLight,
+      ),
+    ),
+
+    // Dialog Theme
+    dialogBackgroundColor: AppColors.primaryDark,
     dialogTheme: DialogTheme(
       backgroundColor: AppColors.primaryDark,
       contentTextStyle: TextStyle(color: AppColors.accentDark),
