@@ -15,34 +15,34 @@ final _textColorDark = AppColors.accentDark;
 // Old Text Theme
 // ========================== //
 
-final _veryLargeTitle = GoogleFonts.lobster(
-  fontSize: 60.0,
-  fontWeight: FontWeight.w800,
-  letterSpacing: 1.2,
-);
+// final _veryLargeTitle = GoogleFonts.lobster(
+//   fontSize: 60.0,
+//   fontWeight: FontWeight.w800,
+//   letterSpacing: 1.2,
+// );
 
-final _cardTitle = GoogleFonts.notoSans(
-  fontSize: 20.0,
-  color: AppColors.accentLight,
-  letterSpacing: 0,
-  fontWeight: FontWeight.w600,
-);
+// final _cardTitle = GoogleFonts.notoSans(
+//   fontSize: 20.0,
+//   color: AppColors.accentLight,
+//   letterSpacing: 0,
+//   fontWeight: FontWeight.w600,
+// );
 
-final _mediumTitle = GoogleFonts.notoSans(
-  fontSize: 25.0,
-  fontWeight: FontWeight.w500,
-  letterSpacing: 0.8,
-);
+// final _mediumTitle = GoogleFonts.notoSans(
+//   fontSize: 25.0,
+//   fontWeight: FontWeight.w500,
+//   letterSpacing: 0.8,
+// );
 
-final _smallTitle = GoogleFonts.notoSans(
-  fontSize: 18.0,
-  letterSpacing: 0.8,
-);
+// final _smallTitle = GoogleFonts.notoSans(
+//   fontSize: 18.0,
+//   letterSpacing: 0.8,
+// );
 
-final _body = GoogleFonts.notoSans(
-  fontSize: 15.0,
-  letterSpacing: 0.8,
-);
+// final _body = GoogleFonts.notoSans(
+//   fontSize: 15.0,
+//   letterSpacing: 0.8,
+// );
 
 // ============================= //
 // TEXT THEME

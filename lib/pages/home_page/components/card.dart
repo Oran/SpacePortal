@@ -1,7 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:spaceportal/constants.dart';
-import 'package:spaceportal/theme/colors.dart';
 import 'package:spaceportal/utils/functions.dart';
 import 'package:theme_provider/theme_provider.dart';
 
