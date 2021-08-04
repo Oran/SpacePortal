@@ -34,7 +34,9 @@ class APODContents extends ConsumerWidget {
                       children: [
                         Text(
                           'Tap to play video',
-                          style: kDetailsTS,
+                          style: theme.data.textTheme.bodyText1?.copyWith(
+                            color: theme.data.accentColor,
+                          ),
                         ),
                         SizedBox(
                           height: 5,
@@ -73,12 +75,16 @@ class APODContents extends ConsumerWidget {
                             children: [
                               Text(
                                 apodProviderData.apodSite.toString(),
-                                style: kDetailsTS.copyWith(color: Colors.red),
+                                style: theme.data.textTheme.bodyText1?.copyWith(
+                                  color: theme.data.errorColor,
+                                ),
                               ),
                               SizedBox(height: 10),
                               Text(
                                 'This file format is not supported yet :( \nClick here to visit the page',
-                                style: kDetailsTS.copyWith(color: Colors.red),
+                                style: theme.data.textTheme.bodyText1?.copyWith(
+                                  color: theme.data.errorColor,
+                                ),
                               ),
                             ],
                           ),
@@ -104,19 +110,14 @@ class APODContents extends ConsumerWidget {
           padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
           child: Text(
             apodProviderData.title!,
-            style: kTitleDateTS.copyWith(
-              fontSize: 25.0,
-              fontWeight: FontWeight.w500,
-            ),
+            style: theme.data.textTheme.headline5,
           ),
         ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
           child: Text(
             apodProviderData.date!,
-            style: kTitleDateTS.copyWith(
-              fontSize: 18.0,
-            ),
+            style: theme.data.textTheme.subtitle1,
           ),
         ),
         Container(
@@ -124,9 +125,7 @@ class APODContents extends ConsumerWidget {
             padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
             child: Text(
               apodProviderData.exp!,
-              style: kDetailsTS.copyWith(
-                fontWeight: FontWeight.w500,
-              ),
+              style: theme.data.textTheme.bodyText1,
             ),
           ),
         ),

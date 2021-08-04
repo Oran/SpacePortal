@@ -13,35 +13,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class APODPage extends ConsumerWidget {
   _openDialog(BuildContext context) {
-    var themeData = Theme.of(context);
+    var theme = Theme.of(context);
     return showDatePicker(
       context: context,
       lastDate: DateTime.now(),
       firstDate: DateTime.parse('2000-01-01'),
       initialDate: DateTime.now(),
-      builder: (context, child) {
-        return Theme(
-          data: themeData.copyWith(
-            colorScheme: ColorScheme.light(
-              primary: Colors.black,
-              onPrimary: Colors.white,
-              surface: Colors.white,
-              onSurface: Colors.black,
-            ),
-            dialogBackgroundColor: Colors.white,
-          ),
-          child: child!,
-        );
-      },
     ).then((value) => {
           parseDates(value?.toString() ?? DateTime.now().toString()) ==
                   parseDates(DateTime.now().toString())
               ? ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    content: Text(
-                      'Dates are the same',
-                      style: kDetailsTS.copyWith(color: Colors.white),
-                    ),
+                    content: Text('Dates are the same'),
                     duration: Duration(seconds: 2),
                   ),
                 )
@@ -68,8 +51,6 @@ class APODPage extends ConsumerWidget {
     return whiteBalance.when(
         data: (wb) => Scaffold(
               appBar: AppBar(
-                elevation: 0,
-                backgroundColor: kPrimaryWhite,
                 iconTheme: IconThemeData(
                   color: changeColorAppBar(wb),
                 ),
@@ -79,9 +60,7 @@ class APODPage extends ConsumerWidget {
                     centerTitle: true,
                     title: Text(
                       'Picture of the day',
-                      style: kTitleDateTS.copyWith(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
+                      style: TextStyle(
                         color: changeColorAppBar(wb),
                       ),
                     ),
