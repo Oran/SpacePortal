@@ -128,8 +128,6 @@ class ImageViewer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: kAppBarColor,
-        elevation: 0,
         actions: [
           GestureDetector(
             onTap: () {
@@ -138,11 +136,7 @@ class ImageViewer extends StatelessWidget {
             child: Container(
               height: 60.0,
               width: 60.0,
-              color: kPrimaryWhite,
-              child: Icon(
-                Icons.get_app,
-                color: Colors.black,
-              ),
+              child: Icon(Icons.get_app),
             ),
           ),
         ],
