@@ -9,7 +9,3 @@ class AppColors {
 
   static const error = Color(0xffff424a);
 }
-
-// final ColorScheme colorSchemeLight = ColorScheme(
-
-// );
