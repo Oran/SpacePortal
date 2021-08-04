@@ -21,9 +21,6 @@ class _ServiceProviderViewerState extends State<ServiceProviderViewer> {
         if (snapshot.connectionState == ConnectionState.done) {
           return Scaffold(
             appBar: AppBar(
-              elevation: 0,
-              backgroundColor: Colors.white,
-              centerTitle: true,
               title: Text(
                 'Launch Provider',
                 style: kDetailsTS.copyWith(

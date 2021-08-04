@@ -16,8 +16,6 @@ class ArticlesPage extends ConsumerWidget {
     return whiteBalance.when(
         data: (wb) => Scaffold(
               appBar: AppBar(
-                backgroundColor: kPrimaryWhite,
-                elevation: 0,
                 centerTitle: true,
                 title: Text(
                   'Articles',

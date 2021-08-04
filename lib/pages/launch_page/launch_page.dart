@@ -19,8 +19,6 @@ class LaunchPage extends ConsumerWidget {
     return whiteBalance.when(
         data: (wb) => Scaffold(
             appBar: AppBar(
-              backgroundColor: Colors.white,
-              elevation: 0,
               title: Text(
                 'Launches',
                 style: TextStyle(
@@ -30,7 +28,6 @@ class LaunchPage extends ConsumerWidget {
               iconTheme: IconThemeData(
                 color: changeColorAppBar(wb),
               ),
-              centerTitle: true,
               flexibleSpace: Consumer(
                 builder: (context, watch, child) {
                   var provider = watch(

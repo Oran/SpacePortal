@@ -27,8 +27,6 @@ class LaunchViewer extends ConsumerWidget {
         if (snapshot.connectionState == ConnectionState.done) {
           return Scaffold(
             appBar: AppBar(
-              elevation: 0,
-              backgroundColor: Colors.white,
               title: AutoSizeText(
                 //TODO: Change this later
                 data.launchData[index].name,
