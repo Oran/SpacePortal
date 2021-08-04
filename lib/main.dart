@@ -55,10 +55,6 @@ class _MyAppState extends State<MyApp> {
       DeviceOrientation.portraitUp, // forces potrait mode for devices
       DeviceOrientation.portraitDown
     ]);
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarIconBrightness: Brightness.dark,
-      statusBarColor: Colors.transparent,
-    ));
     return FutureBuilder(
         future: Future.wait([
           checkConnection(),
