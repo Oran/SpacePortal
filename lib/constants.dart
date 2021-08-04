@@ -37,37 +37,37 @@ TextStyle kDetailsTS = GoogleFonts.notoSans(
   letterSpacing: 0.8,
 );
 
-TextStyle kMarsStatsStyle = GoogleFonts.roboto(
-  fontSize: 15.0,
-  color: kPrimaryBlack,
-  fontWeight: FontWeight.bold,
-  letterSpacing: 0.8,
-);
+// TextStyle kMarsStatsStyle = GoogleFonts.roboto(
+//   fontSize: 15.0,
+//   color: kPrimaryBlack,
+//   fontWeight: FontWeight.bold,
+//   letterSpacing: 0.8,
+// );
 
-TextStyle kTitleLargeTS = GoogleFonts.lobster(
-  fontSize: 60.0,
-  fontWeight: FontWeight.w800,
-  letterSpacing: 1.2,
-);
+// TextStyle kTitleLargeTS = GoogleFonts.lobster(
+//   fontSize: 60.0,
+//   fontWeight: FontWeight.w800,
+//   letterSpacing: 1.2,
+// );
 
-TextStyle kSpaceXTS = GoogleFonts.roboto(
-  fontSize: 16.0,
-  color: kPrimaryBlack,
-  letterSpacing: 0.8,
-);
+// TextStyle kSpaceXTS = GoogleFonts.roboto(
+//   fontSize: 16.0,
+//   color: kPrimaryBlack,
+//   letterSpacing: 0.8,
+// );
 
-TextStyle kWeatherCardTS = GoogleFonts.roboto(
-  fontSize: 23.0,
-  color: Colors.black,
-  letterSpacing: 0.8,
-  fontWeight: FontWeight.w800,
-);
+// TextStyle kWeatherCardTS = GoogleFonts.roboto(
+//   fontSize: 23.0,
+//   color: Colors.black,
+//   letterSpacing: 0.8,
+//   fontWeight: FontWeight.w800,
+// );
 
-TextStyle kMarsWeatherPageTS = GoogleFonts.roboto(
-  fontSize: 23.0,
-  color: kPrimaryWhite,
-  letterSpacing: 0.8,
-);
+// TextStyle kMarsWeatherPageTS = GoogleFonts.roboto(
+//   fontSize: 23.0,
+//   color: kPrimaryWhite,
+//   letterSpacing: 0.8,
+// );
 
 TextStyle kMarsRoverImageStatsTS = GoogleFonts.notoSans(
   fontSize: 17.0,
@@ -80,19 +80,13 @@ TextStyle kCardTS = GoogleFonts.roboto(
   color: Colors.white,
   letterSpacing: 1,
   fontWeight: FontWeight.w600,
-  shadows: [
-    // Shadow(
-    //   color: Colors.black,
-    //   blurRadius: 30,
-    // ),
-  ],
 );
 
-TextStyle kDialogBoxTS = GoogleFonts.roboto(
-  fontSize: 17,
-  letterSpacing: 1,
-  color: Colors.black,
-);
+// TextStyle kDialogBoxTS = GoogleFonts.roboto(
+//   fontSize: 17,
+//   letterSpacing: 1,
+//   color: Colors.black,
+// );
 
 //Image links
 const kPlaceholderImage = 'https://i.imgur.com/AizUHEf.png';
