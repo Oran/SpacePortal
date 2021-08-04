@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spaceportal/network/apod_network.dart';
 import 'package:spaceportal/constants.dart';
@@ -7,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:spaceportal/providers/providers.dart';
 import 'package:spaceportal/utils/functions.dart';
 import 'package:spaceportal/widgets/fadein_appbar.dart';
-import 'package:spaceportal/pages/apod_page/components/download_button.dart';
+import 'package:spaceportal/pages/apod_page/components/download_dialog.dart';
 import 'package:theme_provider/theme_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 

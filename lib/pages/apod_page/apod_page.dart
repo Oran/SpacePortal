@@ -1,19 +1,15 @@
-import 'dart:ui';
 import 'package:spaceportal/providers/providers.dart';
 import 'package:spaceportal/utils/functions.dart';
-import 'package:spaceportal/constants.dart';
 import 'package:spaceportal/widgets/fadein_appbar.dart';
 import 'package:spaceportal/pages/apod_page/components/apod_container.dart';
 import 'package:spaceportal/pages/apod_page/components/apod_viewer.dart';
-import 'package:spaceportal/pages/apod_page/components/download_button.dart';
-import 'package:spaceportal/theme/theme.dart';
+import 'package:spaceportal/pages/apod_page/components/download_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class APODPage extends ConsumerWidget {
   _openDialog(BuildContext context) {
-    var theme = Theme.of(context);
     return showDatePicker(
       context: context,
       lastDate: DateTime.now(),

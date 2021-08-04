@@ -39,10 +39,7 @@ class _DownloadButtonState extends State<DownloadButton> {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   duration: Duration(seconds: 2),
-                  content: Text(
-                    'Download Complete',
-                    style: kDetailsTS.copyWith(color: Colors.white),
-                  ),
+                  content: Text('Download Complete'),
                 ),
               );
             }
@@ -55,10 +52,7 @@ class _DownloadButtonState extends State<DownloadButton> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           duration: Duration(seconds: 2),
-          content: Text(
-            'Media can\'t be downloaded',
-            style: kDetailsTS.copyWith(color: Colors.white),
-          ),
+          content: Text('Media can\'t be downloaded'),
         ),
       );
     }
@@ -68,6 +62,7 @@ class _DownloadButtonState extends State<DownloadButton> {
     return showDialog(
       context: context,
       builder: (context) {
+        var theme = Theme.of(context);
         return Dialog(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
@@ -80,18 +75,11 @@ class _DownloadButtonState extends State<DownloadButton> {
               children: [
                 Text(
                   'Download Confirmation',
-                  style: kDialogBoxTS.copyWith(
-                    fontSize: 20.0,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: theme.textTheme.headline6,
                 ),
                 Text(
                   'Do you want to download?',
-                  style: kDialogBoxTS.copyWith(
-                    fontSize: 16,
-                    color: Colors.black,
-                  ),
+                  style: theme.textTheme.subtitle1,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -102,45 +90,38 @@ class _DownloadButtonState extends State<DownloadButton> {
                       child: Container(
                         height: buttonHeight,
                         width: buttonWidth,
-                        child: Center(
+                        child: TextButton(
+                          style: theme.textButtonTheme.style,
+                          onPressed: () => Navigator.pop(context),
                           child: Text(
                             'Cancel',
-                            style: kDialogBoxTS.copyWith(
-                              color: Colors.black,
-                              fontSize: 17,
-                            ),
+                            style: theme.textTheme.button,
                           ),
                         ),
                       ),
                     ),
                     SizedBox(width: 25),
-                    InkWell(
-                      onTap: () {
-                        downloadImage();
-                        Navigator.pop(context);
-                      },
-                      child: Container(
-                        height: buttonHeight,
-                        width: buttonWidth,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          border: Border.all(color: kAccentColor),
-                          color: kAccentColor,
-                        ),
+                    Container(
+                      height: buttonHeight,
+                      width: buttonWidth,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          downloadImage();
+                          Navigator.pop(context);
+                        },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Icon(
                               Icons.download_rounded,
-                              color: kIconColor,
+                              color: theme.primaryColor,
                             ),
                             SizedBox(width: 10),
                             Text(
                               'Confirm',
-                              style: kDialogBoxTS.copyWith(
-                                color: kPrimaryWhite,
-                                fontSize: 17,
+                              style: theme.textTheme.button?.copyWith(
+                                color: theme.primaryColor,
                               ),
                             )
                           ],
