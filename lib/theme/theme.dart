@@ -53,6 +53,23 @@ final appThemeLight = AppTheme(
         borderRadius: BorderRadius.circular(20),
       ),
     ),
+
+    // Button Themes
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+        backgroundColor: MaterialStateProperty.all(
+          AppColors.accentLight,
+        ),
+      ),
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(),
+    ),
   ),
   description: '',
 );
@@ -104,6 +121,23 @@ final appThemeDark = AppTheme(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
       ),
+    ),
+
+    // ElevatedButton Theme
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+        backgroundColor: MaterialStateProperty.all(
+          AppColors.accentDark,
+        ),
+      ),
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(),
     ),
   ),
   description: '',
