@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:spaceportal/constants.dart';
 import 'package:spaceportal/pages/home_page/components/card_view.dart';
 import 'package:theme_provider/theme_provider.dart';
 
@@ -24,7 +23,7 @@ class HomePage extends StatelessWidget {
                     padding: EdgeInsets.only(left: 20.0, top: 10.0),
                     child: Text(
                       'Welcome',
-                      style: kTitleLargeTS,
+                      style: theme.data.textTheme.headline2,
                     ),
                   ),
                   Padding(
