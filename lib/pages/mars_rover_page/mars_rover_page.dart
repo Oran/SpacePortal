@@ -150,6 +150,7 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
                         child: Icon(
                           Icons.more_vert_rounded,
                           size: 30.0,
+                          color: changeColorAppBar(wb),
                         ),
                       ),
                       onTap: () {
@@ -159,7 +160,7 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
                   ],
                 ),
                 body: SlidingUpPanel(
-                  maxHeight: 500.0,
+                  maxHeight: 450.0,
                   minHeight: 40.0,
                   backdropEnabled: true,
                   defaultPanelState: PanelState.CLOSED,
