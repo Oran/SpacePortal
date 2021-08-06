@@ -28,7 +28,6 @@ class LaunchViewer extends ConsumerWidget {
           return Scaffold(
             appBar: AppBar(
               title: AutoSizeText(
-                //TODO: Change this later
                 data.launchData[index].name,
                 overflow: TextOverflow.ellipsis,
                 style: kTitleDateTS.copyWith(

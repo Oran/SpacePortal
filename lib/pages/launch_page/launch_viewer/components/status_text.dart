@@ -1,7 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:spaceportal/constants.dart';
 import 'package:spaceportal/models/launch_model.dart';
 
 class StatusText extends StatefulWidget {
