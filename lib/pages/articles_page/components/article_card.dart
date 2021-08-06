@@ -42,6 +42,7 @@ class ArticleCard extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20.0),
               child: Container(
+                color: theme.data.cardColor,
                 child: Stack(
                   children: [
                     Container(
