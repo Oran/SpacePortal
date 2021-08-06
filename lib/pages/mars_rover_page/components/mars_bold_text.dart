@@ -1,6 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:spaceportal/constants.dart';
 
 class MarsBoldText extends StatelessWidget {
   const MarsBoldText({
@@ -13,16 +12,16 @@ class MarsBoldText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
     return AutoSizeText.rich(
       TextSpan(
         text: text1,
-        style: kDetailsTS.copyWith(fontSize: 17),
+        style: theme.textTheme.subtitle1,
         children: [
           TextSpan(
             text: text2,
-            style: kDetailsTS.copyWith(
+            style: theme.textTheme.subtitle1?.copyWith(
               fontWeight: FontWeight.bold,
-              fontSize: 17,
             ),
           )
         ],
