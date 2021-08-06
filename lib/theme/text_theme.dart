@@ -65,14 +65,16 @@ final _h3 = GoogleFonts.notoSans(
   letterSpacing: 0,
 );
 
-final _h4 = GoogleFonts.notoSans(
+final _h4 = GoogleFonts.roboto(
   fontSize: 34,
-  letterSpacing: 0.25,
+  // letterSpacing: 0.25,
+  fontWeight: FontWeight.w900,
 );
 
-final _h5 = GoogleFonts.notoSans(
-  fontSize: 24,
-  letterSpacing: -0.5,
+final _h5 = GoogleFonts.roboto(
+  fontSize: 27,
+  // letterSpacing: -0.5,
+  fontWeight: FontWeight.w900,
 );
 
 final _h6 = GoogleFonts.notoSans(

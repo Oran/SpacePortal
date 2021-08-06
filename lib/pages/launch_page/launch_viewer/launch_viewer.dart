@@ -99,9 +99,7 @@ class LaunchViewer extends ConsumerWidget {
                             child: Text(
                               data.launchData[index].name,
                               textAlign: TextAlign.center,
-                              style: kTitleDateTS.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: theme.data.textTheme.headline6,
                             ),
                           ),
                           SizedBox(height: 20),
@@ -114,8 +112,9 @@ class LaunchViewer extends ConsumerWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    InkWell(
-                                      borderRadius: BorderRadius.circular(20),
+                                    StatusText(
+                                      data: data,
+                                      index: index,
                                       onTap: () {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
@@ -124,17 +123,10 @@ class LaunchViewer extends ConsumerWidget {
                                             content: Text(
                                               data.launchData[index].status
                                                   .name,
-                                              style: kDetailsTS.copyWith(
-                                                color: Colors.white,
-                                              ),
                                             ),
                                           ),
                                         );
                                       },
-                                      child: StatusText(
-                                        data: data,
-                                        index: index,
-                                      ),
                                     ),
                                     SizedBox(width: 10),
                                     CountdownTimerText(
@@ -172,7 +164,7 @@ class LaunchViewer extends ConsumerWidget {
                                   // color: Colors.pink[200],
                                   child: Text(
                                     data.launchData[index].mission.description,
-                                    style: kDetailsTS,
+                                    style: theme.data.textTheme.bodyText2,
                                   ),
                                 ),
                               ),
