@@ -2,7 +2,7 @@ import 'package:spaceportal/constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:spaceportal/utils/functions.dart';
-import 'package:spaceportal/pages/mars_rover_page/components/image_viewer.dart';
+import 'package:spaceportal/pages/mars_rover_page/image_viewer/image_viewer.dart';
 import 'package:theme_provider/theme_provider.dart';
 
 class MarsRoverImages extends StatelessWidget {

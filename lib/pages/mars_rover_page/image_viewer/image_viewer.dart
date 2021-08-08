@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:image_downloader/image_downloader.dart';
 import 'package:spaceportal/constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:spaceportal/pages/mars_rover_page/image_viewer/components/mars_rover_stats.dart';
 
 class ImageViewer extends StatelessWidget {
   ImageViewer(
@@ -126,6 +127,7 @@ class ImageViewer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -141,84 +143,59 @@ class ImageViewer extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          InteractiveViewer(
-            maxScale: 4,
-            child: Padding(
-              padding: EdgeInsets.all(8.0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(30.0),
-                child: CachedNetworkImage(
-                  imageUrl: list,
-                  //TODO: Get a new Placeholder and Error widgets
-                  placeholder: (context, url) => CircularProgressIndicator(
-                    color: Colors.black,
-                  ),
-                  errorWidget: (context, url, error) => Container(
-                    color: Colors.red[100],
+      body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: Column(
+          children: [
+            InteractiveViewer(
+              maxScale: 4,
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(30.0),
+                  child: CachedNetworkImage(
+                    imageUrl: list,
+                    //TODO: Get a new Placeholder and Error widgets
+                    placeholder: (context, url) => CircularProgressIndicator(
+                      color: Colors.black,
+                    ),
+                    errorWidget: (context, url, error) => Container(
+                      color: Colors.red[100],
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Container(
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Text('Rover Name: ', style: kMarsRoverImageStatsTS),
-                      Text(
-                        '$roverName',
-                        style: kMarsRoverImageStatsTS.copyWith(
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text('Earth Date: ', style: kMarsRoverImageStatsTS),
-                      Text(
-                        '$earthDate',
-                        style: kMarsRoverImageStatsTS.copyWith(
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text('Camera: ', style: kMarsRoverImageStatsTS),
-                      Text(
-                        '$cameraName',
-                        style: kMarsRoverImageStatsTS.copyWith(
-                          fontWeight: FontWeight.w800,
-                          //fontSize: 15.0,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text('Status: ', style: kMarsRoverImageStatsTS),
-                      Text(
-                        '$status',
-                        style: kMarsRoverImageStatsTS.copyWith(
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Container(
+                width: (MediaQuery.of(context).size.width),
+                // color: Colors.grey[900],
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    MarsRoverImageStats(
+                      text1: 'Rover Name:',
+                      text2: '$roverName',
+                    ),
+                    MarsRoverImageStats(
+                      text1: 'Earth Date:',
+                      text2: '$earthDate',
+                    ),
+                    MarsRoverImageStats(
+                      text1: 'Camera:',
+                      text2: '$cameraName',
+                    ),
+                    MarsRoverImageStats(
+                      text1: 'Status:',
+                      text2: '$status',
+                    ),
+                  ],
+                ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
