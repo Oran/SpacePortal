@@ -42,9 +42,12 @@ class APODContents extends ConsumerWidget {
                         ),
                         ClipRRect(
                           borderRadius: BorderRadius.circular(30),
-                          child: CachedNetworkImage(
-                            imageUrl: apodProviderData.videoThumb!,
-                            fit: BoxFit.cover,
+                          child: InteractiveViewer(
+                            maxScale: 3,
+                            child: CachedNetworkImage(
+                              imageUrl: apodProviderData.videoThumb!,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ],
@@ -98,9 +101,12 @@ class APODContents extends ConsumerWidget {
                       ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(30.0),
-                        child: CachedNetworkImage(
-                          imageUrl: apodProviderData.image!,
-                          fit: BoxFit.fill,
+                        child: InteractiveViewer(
+                          maxScale: 3,
+                          child: CachedNetworkImage(
+                            imageUrl: apodProviderData.image!,
+                            fit: BoxFit.fill,
+                          ),
                         ),
                       ),
                     ),

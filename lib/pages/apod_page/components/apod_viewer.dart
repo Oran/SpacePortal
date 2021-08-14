@@ -107,11 +107,14 @@ class _APODViewerState extends State<APODViewer> {
                                     ),
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(30),
-                                      child: CachedNetworkImage(
-                                        imageUrl: snapshot.data[0].videoThumb,
-                                        fit: BoxFit.cover,
-                                        placeholder: (context, url) =>
-                                            CircularProgressIndicator(),
+                                      child: InteractiveViewer(
+                                        maxScale: 3,
+                                        child: CachedNetworkImage(
+                                          imageUrl: snapshot.data[0].videoThumb,
+                                          fit: BoxFit.cover,
+                                          placeholder: (context, url) =>
+                                              CircularProgressIndicator(),
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -149,9 +152,12 @@ class _APODViewerState extends State<APODViewer> {
                                   ),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(30.0),
-                                    child: CachedNetworkImage(
-                                      imageUrl: snapshot.data[0].image,
-                                      fit: BoxFit.fill,
+                                    child: InteractiveViewer(
+                                      maxScale: 3,
+                                      child: CachedNetworkImage(
+                                        imageUrl: snapshot.data[0].image,
+                                        fit: BoxFit.fill,
+                                      ),
                                     ),
                                   ),
                                 ),
