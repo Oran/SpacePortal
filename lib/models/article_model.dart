@@ -12,7 +12,7 @@ class Articles {
 }
 
 class ArticleData {
-  String id;
+  int id;
   String title;
   String url;
   String imageUrl;
