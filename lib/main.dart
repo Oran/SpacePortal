@@ -11,6 +11,7 @@ import 'package:spaceportal/constants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:spaceportal/utils/generate_blurhash.dart';
 import 'package:theme_provider/theme_provider.dart';
 
 Future<void> main() async {
@@ -61,6 +62,7 @@ class _MyAppState extends State<MyApp> {
           APODData().openHiveBox(),
           LaunchNetwork().openHiveBox(),
           ArticleAPI().openHiveBox(),
+          BlurH().openHiveBox(),
         ]),
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
