@@ -86,18 +86,19 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
   }).toList();
 
   String appBarUrl(apiData) {
+    //! This can break if the image on server is not avaliable.
     if (isLatestPhotos) {
       return apiData == null
-          ? kPlaceholderImage
+          ? kPlaceholderImageBlack
           : apiData['latest_photos'] == null ||
                   apiData['latest_photos'].length == 0
-              ? kPlaceholderImage
+              ? kPlaceholderImageBlack
               : apiData['latest_photos'][0]['img_src'];
     } else {
       return apiData == null
-          ? kPlaceholderImage
+          ? kPlaceholderImageBlack
           : apiData['photos'] == null || apiData['photos'].length == 0
-              ? kPlaceholderImage
+              ? kPlaceholderImageBlack
               : apiData['photos'][0]['img_src'];
     }
   }
