@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:spaceportal/utils/functions.dart';
+import 'package:theme_provider/theme_provider.dart';
 
 class ArticleCard extends StatelessWidget {
   ArticleCard({
@@ -25,6 +26,7 @@ class ArticleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = ThemeProvider.themeOf(context);
     return GestureDetector(
       onTap: onPressed as void Function()?,
       child: Padding(
@@ -35,19 +37,12 @@ class ArticleCard extends StatelessWidget {
             width: width ?? (MediaQuery.of(context).size.width) * 0.90,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.0),
-              color: Colors.black,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 10,
-                  blurRadius: 10,
-                  offset: Offset(0, 3), // changes position of shadow
-                ),
-              ],
+              boxShadow: showBoxShadow(theme.id),
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20.0),
               child: Container(
+                color: theme.data.cardColor,
                 child: Stack(
                   children: [
                     Container(
@@ -61,7 +56,7 @@ class ArticleCard extends StatelessWidget {
                         height: 100,
                         width: (MediaQuery.of(context).size.width),
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.93),
+                          color: theme.data.primaryColor.withOpacity(0.80),
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(20),
                             topRight: Radius.circular(20),
@@ -78,8 +73,8 @@ class ArticleCard extends StatelessWidget {
                                   text!,
                                   overflow: TextOverflow.fade,
                                   textAlign: TextAlign.center,
-                                  style: GoogleFonts.roboto(
-                                    fontSize: 15,
+                                  style:
+                                      theme.data.textTheme.bodyText2?.copyWith(
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -90,20 +85,19 @@ class ArticleCard extends StatelessWidget {
                                     AutoSizeText(
                                       'updated: $publishedDate',
                                       overflow: TextOverflow.fade,
-                                      style: GoogleFonts.roboto(
-                                        fontSize: 12,
-                                        color: Colors.grey[500],
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                      style: theme.data.textTheme.caption
+                                          ?.copyWith(
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.grey[600]),
                                     ),
                                     SizedBox(width: 10),
                                     AutoSizeText(
                                       'Source: $source',
                                       overflow: TextOverflow.fade,
-                                      style: GoogleFonts.roboto(
-                                        fontSize: 12,
-                                        color: Colors.grey[500],
+                                      style: theme.data.textTheme.caption
+                                          ?.copyWith(
                                         fontWeight: FontWeight.bold,
+                                        color: Colors.grey[600],
                                       ),
                                     ),
                                   ],

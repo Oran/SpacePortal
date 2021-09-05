@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spaceportal/network/apod_network.dart';
 import 'package:spaceportal/constants.dart';
@@ -7,7 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:spaceportal/providers/providers.dart';
 import 'package:spaceportal/utils/functions.dart';
 import 'package:spaceportal/widgets/fadein_appbar.dart';
-import 'package:spaceportal/pages/apod_page/components/download_button.dart';
+import 'package:spaceportal/pages/apod_page/components/download_dialog.dart';
+import 'package:theme_provider/theme_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class APODViewer extends StatefulWidget {
@@ -29,36 +29,16 @@ class _APODViewerState extends State<APODViewer> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = ThemeProvider.themeOf(context);
     return FutureBuilder(
       future: getData(),
       builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return Scaffold(
             appBar: AppBar(
-              backgroundColor: kPrimaryWhite,
               iconTheme: IconThemeData(
-                color: snapshot.data[1] < 127 ? Colors.white : Colors.black,
+                color: changeColorAppBar(snapshot.data[1]),
               ),
-              elevation: 0,
-              // flexibleSpace: ClipRRect(
-              //   child: ImageFiltered(
-              //     imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-              //     child: Container(
-              //       height: (MediaQuery.of(context).size.height),
-              //       width: (MediaQuery.of(context).size.width),
-              //       child: CachedNetworkImage(
-              //         imageUrl: snapshot.data[0].mediaType == 'video'
-              //             ? snapshot.data[0].videoThumb
-              //             : snapshot.data[0].mediaType == 'other'
-              //                 ? kPlaceholderImageBlack
-              //                 : snapshot.data[0].image,
-              //         fit: BoxFit.cover,
-              //         memCacheHeight: 30,
-              //         memCacheWidth: 30,
-              //       ),
-              //     ),
-              //   ),
-              // ),
               flexibleSpace: Consumer(
                 builder: (context, watch, child) {
                   var provider = watch(blurhashProvider(
@@ -117,18 +97,24 @@ class _APODViewerState extends State<APODViewer> {
                                   children: [
                                     Text(
                                       'Tap to play video',
-                                      style: kDetailsTS,
+                                      style: theme.data.textTheme.bodyText1
+                                          ?.copyWith(
+                                        color: theme.data.accentColor,
+                                      ),
                                     ),
                                     SizedBox(
                                       height: 5,
                                     ),
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(30),
-                                      child: CachedNetworkImage(
-                                        imageUrl: snapshot.data[0].videoThumb,
-                                        fit: BoxFit.cover,
-                                        placeholder: (context, url) =>
-                                            CircularProgressIndicator(),
+                                      child: InteractiveViewer(
+                                        maxScale: 3,
+                                        child: CachedNetworkImage(
+                                          imageUrl: snapshot.data[0].videoThumb,
+                                          fit: BoxFit.cover,
+                                          placeholder: (context, url) =>
+                                              CircularProgressIndicator(),
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -150,8 +136,9 @@ class _APODViewerState extends State<APODViewer> {
                                     child: Center(
                                       child: Text(
                                         'This file format is not supported yet :( \nClick here to visit the page',
-                                        style: kDetailsTS.copyWith(
-                                          color: Colors.red,
+                                        style: theme.data.textTheme.bodyText1
+                                            ?.copyWith(
+                                          color: theme.data.errorColor,
                                         ),
                                       ),
                                     ),
@@ -161,21 +148,16 @@ class _APODViewerState extends State<APODViewer> {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(30.0),
                                     color: Colors.black,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.withOpacity(0.5),
-                                        spreadRadius: 10,
-                                        blurRadius: 10,
-                                        offset: Offset(
-                                            0, 3), // changes position of shadow
-                                      ),
-                                    ],
+                                    boxShadow: showBoxShadow(theme.id),
                                   ),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(30.0),
-                                    child: CachedNetworkImage(
-                                      imageUrl: snapshot.data[0].image,
-                                      fit: BoxFit.fill,
+                                    child: InteractiveViewer(
+                                      maxScale: 3,
+                                      child: CachedNetworkImage(
+                                        imageUrl: snapshot.data[0].image,
+                                        fit: BoxFit.fill,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -185,10 +167,7 @@ class _APODViewerState extends State<APODViewer> {
                           EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
                       child: Text(
                         snapshot.data[0].title,
-                        style: kTitleDateTS.copyWith(
-                          fontSize: 25.0,
-                          fontWeight: FontWeight.w500,
-                        ),
+                        style: theme.data.textTheme.headline5,
                       ),
                     ),
                     Padding(
@@ -196,9 +175,7 @@ class _APODViewerState extends State<APODViewer> {
                           EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
                       child: Text(
                         snapshot.data[0].date,
-                        style: kTitleDateTS.copyWith(
-                          fontSize: 18.0,
-                        ),
+                        style: theme.data.textTheme.subtitle1,
                       ),
                     ),
                     Container(
@@ -207,9 +184,7 @@ class _APODViewerState extends State<APODViewer> {
                             horizontal: 15.0, vertical: 8.0),
                         child: Text(
                           snapshot.data[0].exp,
-                          style: kDetailsTS.copyWith(
-                            fontWeight: FontWeight.w500,
-                          ),
+                          style: theme.data.textTheme.bodyText1,
                         ),
                       ),
                     ),

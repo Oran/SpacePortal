@@ -1,7 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:spaceportal/constants.dart';
 import 'package:spaceportal/models/launch_model.dart';
 
 class StatusText extends StatefulWidget {
@@ -52,6 +50,7 @@ class _StatusTextState extends State<StatusText> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
     return InkWell(
       borderRadius: BorderRadius.circular(20),
       onTap: widget.onTap,
@@ -59,12 +58,9 @@ class _StatusTextState extends State<StatusText> {
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          // color: checkAbbrev(
-          //   widget.data.launchData[widget.index].status.abbrev,
-          // ),
           border: Border.all(
             width: 1,
-            color: Colors.black,
+            color: theme.accentColor,
           ),
         ),
         height: (MediaQuery.of(context).size.height) * 0.10,
@@ -79,15 +75,16 @@ class _StatusTextState extends State<StatusText> {
               children: [
                 AutoSizeText(
                   'Status:',
-                  style: kDetailsTS,
+                  style: theme.textTheme.bodyText2,
                 ),
                 AutoSizeText(
                   widget.data.launchData[widget.index].status.abbrev,
-                  style: GoogleFonts.roboto(
-                    fontSize: 34,
-                    fontWeight: FontWeight.w900,
-                    // color: checkAbbrev()
-                  ),
+                  // style: GoogleFonts.roboto(
+                  //   fontSize: 34,
+                  //   fontWeight: FontWeight.w900,
+                  //   // color: checkAbbrev()
+                  // ),
+                  style: theme.textTheme.headline4,
                 ),
               ],
             ),

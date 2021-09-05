@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spaceportal/network/apod_network.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:spaceportal/network/launch_network.dart';
 import 'package:spaceportal/pages/home_page/home_page.dart';
 import 'package:spaceportal/providers/providers.dart';
 import 'package:spaceportal/utils/functions.dart';
+import 'package:theme_provider/theme_provider.dart';
 
 class LoadingPage extends StatelessWidget {
   Future allFutures() async {
@@ -21,6 +23,12 @@ class LoadingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var themeId = ThemeProvider.themeOf(context).id;
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarIconBrightness:
+          themeId == 'sp_light' ? Brightness.dark : Brightness.light,
+      statusBarColor: Colors.transparent,
+    ));
     return Consumer(
       builder: (context, watch, child) {
         var futures = watch(loadingPageProvider);

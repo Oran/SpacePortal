@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -85,18 +86,19 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
   }).toList();
 
   String appBarUrl(apiData) {
+    //! This can break if the image on server is not avaliable.
     if (isLatestPhotos) {
       return apiData == null
-          ? kPlaceholderImage
+          ? kPlaceholderImageBlack
           : apiData['latest_photos'] == null ||
                   apiData['latest_photos'].length == 0
-              ? kPlaceholderImage
+              ? kPlaceholderImageBlack
               : apiData['latest_photos'][0]['img_src'];
     } else {
       return apiData == null
-          ? kPlaceholderImage
+          ? kPlaceholderImageBlack
           : apiData['photos'] == null || apiData['photos'].length == 0
-              ? kPlaceholderImage
+              ? kPlaceholderImageBlack
               : apiData['photos'][0]['img_src'];
     }
   }
@@ -109,6 +111,7 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
     return Consumer(
       builder: (context, watch, child) {
         var whiteBalance = watch(whiteBalanceProvider(appBarUrl(list)));
@@ -116,9 +119,6 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
             data: (wb) {
               return Scaffold(
                 appBar: AppBar(
-                  backgroundColor: Colors.white,
-                  centerTitle: true,
-                  elevation: 0,
                   title: Text(
                     'Mars Rover Images',
                     style: TextStyle(
@@ -151,6 +151,7 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
                         child: Icon(
                           Icons.more_vert_rounded,
                           size: 30.0,
+                          color: changeColorAppBar(wb),
                         ),
                       ),
                       onTap: () {
@@ -160,7 +161,7 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
                   ],
                 ),
                 body: SlidingUpPanel(
-                  maxHeight: 500.0,
+                  maxHeight: 450.0,
                   minHeight: 40.0,
                   backdropEnabled: true,
                   defaultPanelState: PanelState.CLOSED,
@@ -172,7 +173,7 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: theme.cardColor,
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(30),
                           topRight: Radius.circular(30),
@@ -195,8 +196,11 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
                       width: (MediaQuery.of(context).size.width),
                       padding: EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(30),
+                        color: theme.cardColor,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(30),
+                          topRight: Radius.circular(30),
+                        ),
                       ),
                       child: Center(
                         child: Column(
@@ -238,19 +242,18 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
                             Container(
                               width: 250.0,
                               decoration: BoxDecoration(
-                                color: Colors.grey[200],
+                                color: theme.cardColor,
+                                border: Border.all(color: theme.accentColor),
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Padding(
                                 padding: EdgeInsets.only(left: 10.0),
                                 child: Center(
                                   child: DropdownButtonFormField<String>(
-                                    style: kDetailsTS,
+                                    style: theme.textTheme.bodyText2,
                                     decoration: InputDecoration(
                                       labelText: 'Camera',
-                                      labelStyle: kDetailsTS.copyWith(
-                                        color: kDropDownButtonColor,
-                                      ),
+                                      labelStyle: theme.textTheme.bodyText2,
                                       border: InputBorder.none,
                                     ),
                                     value: selectedCam,
@@ -271,19 +274,18 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
                             Container(
                               width: 250.0,
                               decoration: BoxDecoration(
-                                color: Colors.grey[200],
+                                color: theme.cardColor,
+                                border: Border.all(color: theme.accentColor),
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Padding(
                                 padding: EdgeInsets.only(left: 10.0),
                                 child: Center(
                                   child: DropdownButtonFormField<String>(
-                                    style: kDetailsTS,
+                                    style: theme.textTheme.bodyText2,
                                     decoration: InputDecoration(
                                       labelText: 'Rover Name',
-                                      labelStyle: kDetailsTS.copyWith(
-                                        color: kDropDownButtonColor,
-                                      ),
+                                      labelStyle: theme.textTheme.bodyText2,
                                       border: InputBorder.none,
                                     ),
                                     value: selectedRover,
@@ -306,7 +308,8 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
                               height: 60.0,
                               width: 250.0,
                               decoration: BoxDecoration(
-                                color: Colors.grey[200],
+                                color: theme.cardColor,
+                                border: Border.all(color: theme.accentColor),
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: TextField(
@@ -316,13 +319,11 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
                                 controller: editingController,
                                 decoration: InputDecoration(
                                   labelText: 'Days on Mars (SOL days)',
-                                  labelStyle: kDetailsTS.copyWith(
-                                    color: kAccentColor,
-                                  ),
+                                  labelStyle: theme.textTheme.bodyText2,
                                   contentPadding: EdgeInsets.all(11),
                                   border: InputBorder.none,
                                 ),
-                                style: kDetailsTS,
+                                style: theme.textTheme.bodyText2,
                                 onChanged: (value) {
                                   selectedSol = value;
                                 },
@@ -333,78 +334,49 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      isLatestPhotos = false;
-                                    });
-                                    getData(selectedCam, selectedRover,
-                                        selectedSol);
-                                    focusNode.unfocus();
-                                    panelController.close();
-                                  },
-                                  child: Container(
-                                    height: 60.0,
-                                    width: 150.0,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        border: Border.all(color: kAccentColor),
-                                        color: kAccentColor),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons.search_rounded,
-                                          color: kIconColor,
-                                        ),
-                                        SizedBox(width: 10),
-                                        Text(
-                                          'Search',
-                                          style: kDetailsTS.copyWith(
-                                              color: kPrimaryWhite),
-                                        )
-                                      ],
+                                Container(
+                                  height: 60.0,
+                                  width: 150.0,
+                                  child: ElevatedButton.icon(
+                                    onPressed: () {
+                                      setState(() {
+                                        isLatestPhotos = false;
+                                      });
+                                      getData(selectedCam, selectedRover,
+                                          selectedSol);
+                                      focusNode.unfocus();
+                                      panelController.close();
+                                    },
+                                    icon: Icon(Icons.search_rounded),
+                                    label: Text(
+                                      'Search',
+                                      style: theme.textTheme.button?.copyWith(
+                                        color: theme.primaryColor,
+                                      ),
                                     ),
                                   ),
                                 ),
                                 SizedBox(width: 10),
-                                GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      isLatestPhotos = true;
-                                    });
-                                    getData(selectedCam, selectedRover,
-                                        selectedSol);
-                                    focusNode.unfocus();
-                                    panelController.close();
-                                  },
-                                  child: Container(
-                                    height: 60.0,
-                                    width: 150.0,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        border: Border.all(color: kAccentColor),
-                                        color: kAccentColor),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons.cached_rounded,
-                                          color: kIconColor,
-                                        ),
-                                        SizedBox(width: 10),
-                                        Text(
-                                          'Show Latest',
-                                          style: kDetailsTS.copyWith(
-                                              color: kPrimaryWhite),
-                                        )
-                                      ],
+                                Container(
+                                  height: 60.0,
+                                  width: 150.0,
+                                  child: ElevatedButton.icon(
+                                    onPressed: () {
+                                      setState(() {
+                                        isLatestPhotos = true;
+                                      });
+                                      getData(selectedCam, selectedRover,
+                                          selectedSol);
+                                      focusNode.unfocus();
+                                      panelController.close();
+                                    },
+                                    icon: Icon(Icons.cached_rounded),
+                                    label: AutoSizeText(
+                                      'Latest',
+                                      style: theme.textTheme.button?.copyWith(
+                                        color: theme.primaryColor,
+                                      ),
+                                      minFontSize: 10,
                                     ),
                                   ),
                                 ),

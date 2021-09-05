@@ -1,7 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:spaceportal/constants.dart';
 
 class LunchConfigText extends StatelessWidget {
   const LunchConfigText({
@@ -21,6 +19,7 @@ class LunchConfigText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(20),
@@ -31,7 +30,7 @@ class LunchConfigText extends StatelessWidget {
           // color: Colors.grey[300],
           border: Border.all(
             width: 1,
-            color: Colors.black,
+            color: theme.accentColor,
           ),
         ),
         height: height,
@@ -42,15 +41,12 @@ class LunchConfigText extends StatelessWidget {
           children: [
             AutoSizeText(
               text1,
-              style: kDetailsTS,
+              style: theme.textTheme.bodyText2,
             ),
+            SizedBox(height: 5),
             AutoSizeText(
               text2,
-              style: GoogleFonts.roboto(
-                fontSize: 29,
-                fontWeight: FontWeight.w900,
-                // color: checkAbbrev()
-              ),
+              style: theme.textTheme.headline5,
               minFontSize: 25,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,

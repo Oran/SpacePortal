@@ -2,7 +2,8 @@ import 'package:spaceportal/constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:spaceportal/utils/functions.dart';
-import 'package:spaceportal/pages/mars_rover_page/components/image_viewer.dart';
+import 'package:spaceportal/pages/mars_rover_page/image_viewer/image_viewer.dart';
+import 'package:theme_provider/theme_provider.dart';
 
 class MarsRoverLatestImages extends StatelessWidget {
   const MarsRoverLatestImages({
@@ -26,6 +27,7 @@ class MarsRoverLatestImages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = ThemeProvider.themeOf(context);
     return Scrollbar(
       interactive: true,
       child: GridView.count(
@@ -39,20 +41,7 @@ class MarsRoverLatestImages extends StatelessWidget {
                   : list['latest_photos'].length,
           (index) => Container(
             decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey,
-                  spreadRadius: -20,
-                  blurRadius: 25,
-                  offset: Offset(0, 0),
-                ),
-                BoxShadow(
-                  color: Colors.grey,
-                  spreadRadius: -15,
-                  blurRadius: 15,
-                  offset: Offset(0, 0),
-                ),
-              ],
+              boxShadow: showBoxShadow(theme.id, isRoverImages: true),
             ),
             child: list == null
                 ? Center(

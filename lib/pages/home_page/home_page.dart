@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:spaceportal/constants.dart';
 import 'package:spaceportal/pages/home_page/components/card_view.dart';
+import 'package:theme_provider/theme_provider.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var theme = ThemeProvider.themeOf(context);
     return Scaffold(
       body: Container(
         width: (MediaQuery.of(context).size.width),
@@ -15,12 +16,31 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Padding(
-                padding: EdgeInsets.only(left: 20.0, top: 10.0),
-                child: Text(
-                  'Welcome',
-                  style: kTitleLargeTS,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: 20.0, top: 10.0),
+                    child: Text(
+                      'Welcome',
+                      style: theme.data.textTheme.headline2,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(20),
+                    child: InkWell(
+                      onTap: () {
+                        ThemeProvider.controllerOf(context).nextTheme();
+                      },
+                      child: Icon(
+                        theme.id == 'sp_dark'
+                            ? Icons.light_mode_rounded
+                            : Icons.dark_mode_rounded,
+                        color: theme.data.accentColor,
+                      ),
+                    ),
+                  )
+                ],
               ),
               Flexible(
                 flex: 2,

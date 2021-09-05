@@ -1,11 +1,13 @@
-import 'package:spaceportal/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:spaceportal/utils/functions.dart';
 
 class NoConnectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
     return Scaffold(
+      appBar: AppBar(),
+      extendBodyBehindAppBar: true,
       body: Container(
         child: Center(
           child: Column(
@@ -17,19 +19,19 @@ class NoConnectionPage extends StatelessWidget {
                 child: flareLoadingAnimation(),
               ),
               Icon(
-                Icons.cloud_off,
+                Icons.cloud_off_rounded,
                 size: 50.0,
-                color: Colors.black,
+                color: theme.accentColor,
               ),
               Text(
                 'No Connection',
                 textAlign: TextAlign.center,
-                style: kTitleDateTS.copyWith(
-                  fontSize: 30.0,
+                style: theme.textTheme.bodyText1?.copyWith(
+                  fontSize: 30,
                 ),
               ),
               Divider(
-                color: Colors.black,
+                color: theme.accentColor,
                 thickness: 1.5,
                 height: 10.0,
                 endIndent: 50.0,
@@ -38,8 +40,8 @@ class NoConnectionPage extends StatelessWidget {
               Text(
                 'Please connect to the internet and restart to use this app',
                 textAlign: TextAlign.center,
-                style: kTitleDateTS.copyWith(
-                  fontSize: 21.0,
+                style: theme.textTheme.bodyText1?.copyWith(
+                  fontSize: 21,
                 ),
               ),
             ],

@@ -4,7 +4,7 @@ import 'package:spaceportal/models/article_model.dart';
 import 'package:hive/hive.dart';
 
 class ArticleAPI {
-  Uri url = Uri.https('spaceflightnewsapi.net', '/api/v2/articles');
+  Uri url = Uri.https('api.spaceflightnewsapi.net', '/v3/articles');
 
   Future openHiveBox() async {
     await Hive.openBox('articleCache');

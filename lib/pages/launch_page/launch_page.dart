@@ -18,88 +18,89 @@ class LaunchPage extends ConsumerWidget {
     ));
     return whiteBalance.when(
         data: (wb) => Scaffold(
-            appBar: AppBar(
-              backgroundColor: Colors.white,
-              elevation: 0,
-              title: Text(
-                'Launches',
-                style: TextStyle(
+              appBar: AppBar(
+                title: Text(
+                  'Launches',
+                  style: TextStyle(
+                    color: changeColorAppBar(wb),
+                  ),
+                ),
+                iconTheme: IconThemeData(
                   color: changeColorAppBar(wb),
                 ),
-              ),
-              iconTheme: IconThemeData(
-                color: changeColorAppBar(wb),
-              ),
-              centerTitle: true,
-              flexibleSpace: Consumer(
-                builder: (context, watch, child) {
-                  var provider = watch(
-                    blurhashProvider(
-                      data
-                          .launchData[
-                              data.launchData[0].image == kPlaceholderImage
-                                  ? 1
-                                  : 0]
-                          .image,
-                    ),
-                  );
-                  return provider.when(
-                    data: (data) => FadeInAppBar(value: data),
-                    loading: () => Container(),
-                    error: (e, s) {
-                      print(e);
-                      print(s);
-                      return Container(
-                        color: Colors.grey[100],
-                      );
-                    },
-                  );
-                },
-              ),
-            ),
-            body: Container(
-              height: (MediaQuery.of(context).size.height),
-              width: (MediaQuery.of(context).size.width),
-              child: Column(
-                children: [
-                  Expanded(
-                    child: ListView.builder(
-                      padding: EdgeInsets.only(top: 10),
-                      physics: BouncingScrollPhysics(),
-                      cacheExtent: data.length.toDouble(),
-                      itemCount: data.length,
-                      itemBuilder: (context, index) {
-                        return InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              routeTo(
-                                LaunchViewer(index: index),
-                              ),
-                            );
-                          },
-                          borderRadius: BorderRadius.circular(20),
-                          child: LaunchCard(
-                            image: CachedNetworkImage(
-                              imageUrl: data.launchData[index].image,
-                              fit: BoxFit.cover,
-                              errorWidget: (context, url, error) {
-                                //TODO: this still needs testing.
-                                return CircularProgressIndicator();
-                              },
-                            ),
-                            text: data.launchData[index].name,
-                            date: data.launchData[index].net,
-                            statusColor: data.launchData[index].status.abbrev,
-                          ),
+                flexibleSpace: Consumer(
+                  builder: (context, watch, child) {
+                    var provider = watch(
+                      blurhashProvider(
+                        data
+                            .launchData[
+                                data.launchData[0].image == kPlaceholderImage
+                                    ? 1
+                                    : 0]
+                            .image,
+                      ),
+                    );
+                    return provider.when(
+                      data: (data) => FadeInAppBar(value: data),
+                      loading: () => Container(),
+                      error: (e, s) {
+                        print(e);
+                        print(s);
+                        return Container(
+                          color: Colors.grey[100],
                         );
                       },
+                    );
+                  },
+                ),
+              ),
+              body: Container(
+                height: (MediaQuery.of(context).size.height),
+                width: (MediaQuery.of(context).size.width),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: ListView.builder(
+                        padding: EdgeInsets.only(top: 10),
+                        physics: BouncingScrollPhysics(),
+                        cacheExtent: data.length.toDouble(),
+                        itemCount: data.length,
+                        itemBuilder: (context, index) {
+                          return InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                routeTo(
+                                  LaunchViewer(index: index),
+                                ),
+                              );
+                            },
+                            borderRadius: BorderRadius.circular(20),
+                            child: LaunchCard(
+                              image: CachedNetworkImage(
+                                imageUrl: data.launchData[index].image,
+                                fit: BoxFit.cover,
+                                errorWidget: (context, url, error) {
+                                  //TODO: this still needs testing.
+                                  return Container(
+                                    height: 300,
+                                    width: 300,
+                                    child: CircularProgressIndicator(),
+                                  );
+                                },
+                              ),
+                              text: data.launchData[index].name,
+                              date: data.launchData[index].net,
+                              statusColor: data.launchData[index].status.abbrev,
+                            ),
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
         loading: () => Scaffold(body: flareLoadingAnimation()),
         error: (e, s) => Text('Error'));
   }
