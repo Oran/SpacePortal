@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.0.3] - 2021-09-10
+
+### Changed
+
+- Bumped plugin versions
+
 ## [0.0.2] - 2021-09-05
 
 ### Added
@@ -25,6 +31,7 @@
 
 - Base Version
 
+[0.0.3]: https://github.com/Oran/SpacePortal/compare/0.0.2...0.0.3
 [0.0.2]: https://github.com/Oran/SpacePortal/compare/0.0.1...0.0.2
 [0.0.1]: https://github.com/Oran/SpacePortal/compare/v0.0.0...v0.0.1
 [0.0.0]: https://github.com/Oran/SpacePortal/releases/tag/v0.0.0
