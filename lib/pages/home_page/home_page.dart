@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spaceportal/pages/home_page/components/card_view.dart';
+import 'package:spaceportal/services/ad_helper.dart';
+import 'package:spaceportal/widgets/ad_widget.dart';
 import 'package:theme_provider/theme_provider.dart';
 
 class HomePage extends StatelessWidget {
@@ -47,6 +49,14 @@ class HomePage extends StatelessWidget {
                 child: Container(
                   height: (MediaQuery.of(context).size.height),
                   child: CardView(),
+                ),
+              ),
+              Container(
+                color: Colors.transparent,
+                child: Center(
+                  child: MyAdWidget(
+                    adUnitId: AdHelper.bannerAdUnitId,
+                  ),
                 ),
               ),
             ],

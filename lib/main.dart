@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:spaceportal/network/apod_network.dart';
 import 'package:spaceportal/network/articles_network.dart';
 import 'package:spaceportal/network/launch_network.dart';
@@ -17,6 +18,8 @@ import 'package:theme_provider/theme_provider.dart';
 Future<void> main() async {
   await Hive.initFlutter();
   WidgetsFlutterBinding.ensureInitialized();
+  PlatformViewsService.synchronizeToNativeViewHierarchy(false);
+  MobileAds.instance.initialize();
   runApp(
     ProviderScope(child: MyApp()),
   );
