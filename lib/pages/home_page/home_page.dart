@@ -55,7 +55,7 @@ class HomePage extends StatelessWidget {
                 color: Colors.transparent,
                 child: Center(
                   child: MyAdWidget(
-                    adUnitId: AdHelper.bannerAdUnitId,
+                    adUnitId: AdUnitId.homePageBanner,
                   ),
                 ),
               ),

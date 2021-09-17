@@ -10,18 +10,23 @@ class MyAdWidget extends StatefulWidget {
 }
 
 class _MyAdWidgetState extends State<MyAdWidget> {
-  late BannerAd _bottomBannerAd;
-  bool _isBottomBannerAdLoaded = false;
+  late BannerAd _bannerAd;
+  bool _isAdLoaded = false;
 
   void _createBottomBannerAd() {
-    _bottomBannerAd = BannerAd(
+    _bannerAd = BannerAd(
       adUnitId: widget.adUnitId,
       size: AdSize.banner,
       request: AdRequest(),
       listener: BannerAdListener(
+        onAdClosed: (_) {
+          setState(() {
+            _isAdLoaded = false;
+          });
+        },
         onAdLoaded: (_) {
           setState(() {
-            _isBottomBannerAdLoaded = true;
+            _isAdLoaded = true;
           });
         },
         onAdFailedToLoad: (ad, error) {
@@ -30,7 +35,7 @@ class _MyAdWidgetState extends State<MyAdWidget> {
         },
       ),
     );
-    _bottomBannerAd.load();
+    _bannerAd.load();
   }
 
   @override
@@ -42,15 +47,18 @@ class _MyAdWidgetState extends State<MyAdWidget> {
   @override
   void dispose() {
     super.dispose();
-    _bottomBannerAd.dispose();
+    _bannerAd.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: _bottomBannerAd.size.height.toDouble(),
-      width: _bottomBannerAd.size.width.toDouble(),
-      child: _isBottomBannerAdLoaded ? AdWidget(ad: _bottomBannerAd) : null,
-    );
+    return _isAdLoaded
+        ? Container(
+            height: _bannerAd.size.height.toDouble(),
+            width: _bannerAd.size.width.toDouble(),
+            color: Colors.transparent,
+            child: AdWidget(ad: _bannerAd),
+          )
+        : Container();
   }
 }

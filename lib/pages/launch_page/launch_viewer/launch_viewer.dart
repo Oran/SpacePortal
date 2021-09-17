@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spaceportal/constants.dart';
 import 'package:spaceportal/providers/providers.dart';
+import 'package:spaceportal/services/ad_helper.dart';
 import 'package:spaceportal/utils/functions.dart';
+import 'package:spaceportal/widgets/ad_widget.dart';
 import 'package:spaceportal/widgets/expandable_widget.dart';
 import 'package:spaceportal/widgets/fadein_appbar.dart';
 import 'package:spaceportal/pages/launch_page/launch_viewer/components/countdown_timer_text.dart';
@@ -94,11 +96,16 @@ class LaunchViewer extends ConsumerWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Center(
-                            child: Text(
-                              data.launchData[index].name,
-                              textAlign: TextAlign.center,
-                              style: theme.data.textTheme.headline6,
+                          // Center(
+                          //   child: Text(
+                          //     data.launchData[index].name,
+                          //     textAlign: TextAlign.center,
+                          //     style: theme.data.textTheme.headline6,
+                          //   ),
+                          // ),
+                          Container(
+                            child: MyAdWidget(
+                              adUnitId: AdUnitId.singleLaunchPageBanner,
                             ),
                           ),
                           SizedBox(height: 20),
@@ -175,15 +182,16 @@ class LaunchViewer extends ConsumerWidget {
                                     (MediaQuery.of(context).size.height) * 0.10,
                                 width:
                                     (MediaQuery.of(context).size.width) * 0.875,
-                                onTap: () => Navigator.push(
-                                  context,
-                                  routeTo(
-                                    ServiceProviderViewer(
-                                      url: data.launchData[index].launchSP.url,
-                                      id: data.launchData[index].launchSP.id,
-                                    ),
-                                  ),
-                                ),
+                                // TODO: Page in WIP mode.
+                                // onTap: () => Navigator.push(
+                                //   context,
+                                //   routeTo(
+                                //     ServiceProviderViewer(
+                                //       url: data.launchData[index].launchSP.url,
+                                //       id: data.launchData[index].launchSP.id,
+                                //     ),
+                                //   ),
+                                // ),
                               ),
                               SizedBox(height: 15),
                             ],

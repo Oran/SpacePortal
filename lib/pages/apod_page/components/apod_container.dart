@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:spaceportal/providers/providers.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -122,7 +123,9 @@ class APODContents extends ConsumerWidget {
           padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
           child: Text(
             apodProviderData.date!,
-            style: theme.data.textTheme.subtitle1,
+            style: theme.data.textTheme.headline5?.copyWith(
+              fontSize: 18,
+            ),
           ),
         ),
         Container(

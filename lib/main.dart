@@ -4,6 +4,7 @@ import 'package:spaceportal/network/apod_network.dart';
 import 'package:spaceportal/network/articles_network.dart';
 import 'package:spaceportal/network/launch_network.dart';
 import 'package:spaceportal/routes.dart';
+import 'package:spaceportal/services/ad_helper.dart';
 import 'package:spaceportal/utils/functions.dart';
 import 'package:spaceportal/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   PlatformViewsService.synchronizeToNativeViewHierarchy(false);
   MobileAds.instance.initialize();
+  AdUnitId().getPackageInfo();
   runApp(
     ProviderScope(child: MyApp()),
   );
