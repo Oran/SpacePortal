@@ -52,16 +52,12 @@ class APODPage extends ConsumerWidget {
                 iconTheme: IconThemeData(
                   color: changeColorAppBar(wb),
                 ),
-                title: Container(
-                  child: FlexibleSpaceBar(
-                    collapseMode: CollapseMode.parallax,
-                    centerTitle: true,
-                    title: Text(
-                      'Picture of the day',
-                      style: TextStyle(
-                        color: changeColorAppBar(wb),
-                      ),
-                    ),
+                centerTitle: false,
+                title: Text(
+                  'Picture of the day',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: changeColorAppBar(wb),
                   ),
                 ),
                 flexibleSpace: Consumer(

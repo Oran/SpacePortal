@@ -18,10 +18,11 @@ class ArticlesPage extends ConsumerWidget {
     return whiteBalance.when(
         data: (wb) => Scaffold(
               appBar: AppBar(
-                centerTitle: true,
+                centerTitle: false,
                 title: Text(
                   'Articles',
                   style: TextStyle(
+                    fontWeight: FontWeight.bold,
                     color: changeColorAppBar(wb),
                   ),
                 ),

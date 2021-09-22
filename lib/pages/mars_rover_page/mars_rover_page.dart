@@ -119,9 +119,11 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
             data: (wb) {
               return Scaffold(
                 appBar: AppBar(
+                  centerTitle: false,
                   title: Text(
                     'Mars Rover Images',
                     style: TextStyle(
+                      fontWeight: FontWeight.bold,
                       color: changeColorAppBar(wb),
                     ),
                   ),

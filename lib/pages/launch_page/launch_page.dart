@@ -21,9 +21,11 @@ class LaunchPage extends ConsumerWidget {
     return whiteBalance.when(
         data: (wb) => Scaffold(
               appBar: AppBar(
+                centerTitle: false,
                 title: Text(
                   'Launches',
                   style: TextStyle(
+                    fontWeight: FontWeight.bold,
                     color: changeColorAppBar(wb),
                   ),
                 ),
