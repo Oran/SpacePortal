@@ -13,7 +13,7 @@ Future<String> computeBlurhash(targetUnit8List) async {
   // Decodes Image from Unit8List
   img.Image? image = img.decodeImage(targetUnit8List);
   //Encodes the given image into hash
-  BlurHash? blurhash = BlurHash.encode(image!, numCompX: 4, numCompY: 3);
+  BlurHash? blurhash = BlurHash.encode(image!, numCompX: 5, numCompY: 5);
   // print('hash => ' + blurhash.hash);
   return blurhash.hash;
 }
@@ -67,6 +67,7 @@ Future<dynamic> setDataToCache(url) async {
 
 Future<dynamic> getDataFromCompute(var url) async {
   var box = Hive.box('blurhash');
+  box.clear();
   await setDataToCache(url);
   var unit8ListFromDB = box.get(url);
   var hashFromCompute = await compute(computeBlurhash, unit8ListFromDB);
