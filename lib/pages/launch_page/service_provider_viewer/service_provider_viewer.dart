@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:spaceportal/constants.dart';
 import 'package:spaceportal/network/launch_network.dart';
 import 'package:spaceportal/utils/functions.dart';
 
@@ -21,11 +20,9 @@ class _ServiceProviderViewerState extends State<ServiceProviderViewer> {
         if (snapshot.connectionState == ConnectionState.done) {
           return Scaffold(
             appBar: AppBar(
+              centerTitle: false,
               title: Text(
                 'Launch Provider',
-                style: kDetailsTS.copyWith(
-                  fontSize: 20,
-                ),
               ),
             ),
             body: Container(

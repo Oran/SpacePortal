@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:spaceportal/constants.dart';
 import 'package:spaceportal/providers/providers.dart';
 import 'package:spaceportal/services/ad_helper.dart';
 import 'package:spaceportal/utils/functions.dart';
@@ -15,6 +14,7 @@ class ArticlesPage extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     var articles = watch(articleProvider);
     var whiteBalance = watch(whiteBalanceProvider(articles.data[0].imageUrl));
+    var theme = Theme.of(context);
     return whiteBalance.when(
         data: (wb) => Scaffold(
               appBar: AppBar(
@@ -82,9 +82,6 @@ class ArticlesPage extends ConsumerWidget {
                               },
                             ),
                             text: articles.data[index].title,
-                            textStyle: kCardTS.copyWith(
-                              fontSize: 20,
-                            ),
                             publishedDate:
                                 articles.data[index].publishedAt.split('T')[0],
                             source: articles.data[index].newsSite,

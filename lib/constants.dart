@@ -24,18 +24,20 @@ const Color kIconColor = kPrimaryWhite;
 const Color kAppBarColor = kPrimaryWhite;
 const Color kDropDownButtonColor = kPrimaryBlack;
 
-//TextStyle
-TextStyle kTitleDateTS = GoogleFonts.notoSans(
-  fontSize: 18.0,
-  color: kPrimaryBlack,
-  letterSpacing: 0.8,
-);
+//TODO: FIX THIS => still need to update text themes with new values.
 
-TextStyle kDetailsTS = GoogleFonts.notoSans(
-  fontSize: 15.0,
-  color: kPrimaryBlack,
-  letterSpacing: 0.8,
-);
+//TextStyle
+// TextStyle kTitleDateTS = GoogleFonts.notoSans(
+//   fontSize: 18.0,
+//   color: kPrimaryBlack,
+//   letterSpacing: 0.8,
+// );
+
+// TextStyle kDetailsTS = GoogleFonts.notoSans(
+//   fontSize: 15.0,
+//   color: kPrimaryBlack,
+//   letterSpacing: 0.8,
+// );
 
 // TextStyle kMarsStatsStyle = GoogleFonts.roboto(
 //   fontSize: 15.0,
@@ -69,18 +71,18 @@ TextStyle kDetailsTS = GoogleFonts.notoSans(
 //   letterSpacing: 0.8,
 // );
 
-TextStyle kMarsRoverImageStatsTS = GoogleFonts.notoSans(
-  fontSize: 17.0,
-  color: kPrimaryBlack,
-  letterSpacing: 0.8,
-);
+// TextStyle kMarsRoverImageStatsTS = GoogleFonts.notoSans(
+//   fontSize: 17.0,
+//   color: kPrimaryBlack,
+//   letterSpacing: 0.8,
+// );
 
-TextStyle kCardTS = GoogleFonts.roboto(
-  fontSize: 20.0,
-  color: Colors.white,
-  letterSpacing: 1,
-  fontWeight: FontWeight.w600,
-);
+// TextStyle kCardTS = GoogleFonts.roboto(
+//   fontSize: 20.0,
+//   color: Colors.white,
+//   letterSpacing: 1,
+//   fontWeight: FontWeight.w600,
+// );
 
 // TextStyle kDialogBoxTS = GoogleFonts.roboto(
 //   fontSize: 17,

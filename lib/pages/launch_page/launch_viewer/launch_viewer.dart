@@ -2,7 +2,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:spaceportal/constants.dart';
 import 'package:spaceportal/providers/providers.dart';
 import 'package:spaceportal/services/ad_helper.dart';
 import 'package:spaceportal/utils/functions.dart';
@@ -32,15 +31,14 @@ class LaunchViewer extends ConsumerWidget {
               title: AutoSizeText(
                 data.launchData[index].name,
                 overflow: TextOverflow.ellipsis,
-                style: kTitleDateTS.copyWith(
-                  fontWeight: FontWeight.bold,
+                style: TextStyle(
                   color: changeColorAppBar(snapshot.data),
                 ),
               ),
               iconTheme: IconThemeData(
                 color: changeColorAppBar(snapshot.data),
               ),
-              centerTitle: true,
+              centerTitle: false,
               flexibleSpace: Consumer(
                 builder: (context, watch, child) {
                   var provider = watch(
