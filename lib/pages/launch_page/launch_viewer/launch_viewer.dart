@@ -96,16 +96,11 @@ class LaunchViewer extends ConsumerWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          // Center(
-                          //   child: Text(
-                          //     data.launchData[index].name,
-                          //     textAlign: TextAlign.center,
-                          //     style: theme.data.textTheme.headline6,
-                          //   ),
-                          // ),
-                          Container(
-                            child: MyAdWidget(
-                              adUnitId: AdUnitId.singleLaunchPageBanner,
+                          Center(
+                            child: Text(
+                              data.launchData[index].name,
+                              textAlign: TextAlign.center,
+                              style: theme.data.textTheme.headline6,
                             ),
                           ),
                           SizedBox(height: 20),
@@ -201,6 +196,11 @@ class LaunchViewer extends ConsumerWidget {
                     ),
                   ],
                 ),
+              ),
+            ),
+            bottomNavigationBar: Container(
+              child: MyAdWidget(
+                adUnitId: AdUnitId.singleLaunchPageBanner,
               ),
             ),
           );
