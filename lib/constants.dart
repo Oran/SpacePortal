@@ -11,6 +11,7 @@ const String kLoading_Page = 'loading_page';
 const String kMarsWeather_Page = 'mars_weather_page';
 const String kArticles_Page = 'articles_page';
 const String kLaunch_Page = 'launch_page';
+const String kSettings_Page = 'settings_page';
 
 // New Colors
 const Color kPrimaryWhite = Colors.white;
