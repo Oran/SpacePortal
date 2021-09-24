@@ -34,10 +34,7 @@ class ImageViewer extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               duration: Duration(seconds: 2),
-              content: Text(
-                'Download Complete',
-                style: kDetailsTS.copyWith(color: Colors.white),
-              ),
+              content: Text('Download Complete'),
             ),
           );
         }

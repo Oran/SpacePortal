@@ -2,9 +2,10 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:spaceportal/constants.dart';
 import 'package:spaceportal/providers/providers.dart';
+import 'package:spaceportal/services/ad_helper.dart';
 import 'package:spaceportal/utils/functions.dart';
+import 'package:spaceportal/widgets/ad_widget.dart';
 import 'package:spaceportal/widgets/expandable_widget.dart';
 import 'package:spaceportal/widgets/fadein_appbar.dart';
 import 'package:spaceportal/pages/launch_page/launch_viewer/components/countdown_timer_text.dart';
@@ -30,15 +31,14 @@ class LaunchViewer extends ConsumerWidget {
               title: AutoSizeText(
                 data.launchData[index].name,
                 overflow: TextOverflow.ellipsis,
-                style: kTitleDateTS.copyWith(
-                  fontWeight: FontWeight.bold,
+                style: TextStyle(
                   color: changeColorAppBar(snapshot.data),
                 ),
               ),
               iconTheme: IconThemeData(
                 color: changeColorAppBar(snapshot.data),
               ),
-              centerTitle: true,
+              centerTitle: false,
               flexibleSpace: Consumer(
                 builder: (context, watch, child) {
                   var provider = watch(
@@ -175,15 +175,16 @@ class LaunchViewer extends ConsumerWidget {
                                     (MediaQuery.of(context).size.height) * 0.10,
                                 width:
                                     (MediaQuery.of(context).size.width) * 0.875,
-                                onTap: () => Navigator.push(
-                                  context,
-                                  routeTo(
-                                    ServiceProviderViewer(
-                                      url: data.launchData[index].launchSP.url,
-                                      id: data.launchData[index].launchSP.id,
-                                    ),
-                                  ),
-                                ),
+                                // TODO: Page in WIP mode.
+                                // onTap: () => Navigator.push(
+                                //   context,
+                                //   routeTo(
+                                //     ServiceProviderViewer(
+                                //       url: data.launchData[index].launchSP.url,
+                                //       id: data.launchData[index].launchSP.id,
+                                //     ),
+                                //   ),
+                                // ),
                               ),
                               SizedBox(height: 15),
                             ],
@@ -193,6 +194,11 @@ class LaunchViewer extends ConsumerWidget {
                     ),
                   ],
                 ),
+              ),
+            ),
+            bottomNavigationBar: Container(
+              child: MyAdWidget(
+                adUnitId: AdUnitId.singleLaunchPageBanner,
               ),
             ),
           );

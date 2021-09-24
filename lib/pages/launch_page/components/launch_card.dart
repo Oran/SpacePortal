@@ -1,7 +1,8 @@
 import 'dart:ui';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:spaceportal/constants.dart';
+import 'package:flutter/rendering.dart';
 import 'package:spaceportal/pages/launch_page/components/countdown_timer.dart';
 import 'package:spaceportal/utils/functions.dart';
 import 'package:theme_provider/theme_provider.dart';
@@ -120,9 +121,9 @@ class _LaunchCardState extends State<LaunchCard> {
                             AutoSizeText(
                               widget.text!,
                               textAlign: TextAlign.right,
-                              style: kCardTS.copyWith(
-                                fontSize: 18,
-                                shadows: null,
+                              style: theme.data.textTheme.bodyText1?.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w900,
                               ),
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -130,14 +131,22 @@ class _LaunchCardState extends State<LaunchCard> {
                             AutoSizeText(
                               widget.date!.toString().split('T')[0],
                               textAlign: TextAlign.right,
-                              style: kCardTS.copyWith(
-                                fontSize: 15,
-                                shadows: null,
+                              style: theme.data.textTheme.caption?.copyWith(
+                                fontSize: 13,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
                               ),
                               maxLines: 3,
                             ),
                             SizedBox(height: 5),
-                            CountdownTimer(time: widget.date!),
+                            CountdownTimer(
+                              time: widget.date!,
+                              style: theme.data.textTheme.caption?.copyWith(
+                                fontSize: 13,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ],
                         ),
                       ),

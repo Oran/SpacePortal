@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -6,6 +7,7 @@ import 'package:spaceportal/constants.dart';
 import 'package:spaceportal/providers/providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spaceportal/network/mars_rover_network.dart';
+import 'package:spaceportal/theme/colors.dart';
 import 'package:spaceportal/utils/functions.dart';
 import 'package:spaceportal/widgets/fadein_appbar.dart';
 import 'package:spaceportal/widgets/slidingup_panel.dart';
@@ -119,9 +121,11 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
             data: (wb) {
               return Scaffold(
                 appBar: AppBar(
+                  centerTitle: false,
                   title: Text(
                     'Mars Rover Images',
                     style: TextStyle(
+                      fontWeight: FontWeight.bold,
                       color: changeColorAppBar(wb),
                     ),
                   ),
@@ -391,7 +395,10 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
                       ? Center(
                           child: Text(
                             'No Images Provided',
-                            style: kTitleDateTS,
+                            style: theme.textTheme.subtitle1?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.error,
+                            ),
                           ),
                         )
                       : isLatestPhotos

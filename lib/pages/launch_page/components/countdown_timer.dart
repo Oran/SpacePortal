@@ -1,7 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:spaceportal/constants.dart';
 import 'package:spaceportal/utils/countdown.dart';
 import 'package:spaceportal/utils/functions.dart';
 
@@ -41,6 +40,7 @@ class _CountdownTimerState extends State<CountdownTimer> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
     return Countdown(
       duration: timeDifference(widget.time),
       onFinish: () => print('finished'),
@@ -48,12 +48,7 @@ class _CountdownTimerState extends State<CountdownTimer> {
         return AutoSizeText(
           '-${_formatDuration(remaining)}',
           textAlign: TextAlign.right,
-          style: widget.style == null
-              ? kCardTS.copyWith(
-                  fontSize: 15,
-                  shadows: null,
-                )
-              : widget.style,
+          style: widget.style == null ? theme.textTheme.caption : widget.style,
         );
       },
     );

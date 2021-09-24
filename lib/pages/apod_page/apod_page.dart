@@ -1,5 +1,7 @@
 import 'package:spaceportal/providers/providers.dart';
+import 'package:spaceportal/services/ad_helper.dart';
 import 'package:spaceportal/utils/functions.dart';
+import 'package:spaceportal/widgets/ad_widget.dart';
 import 'package:spaceportal/widgets/fadein_appbar.dart';
 import 'package:spaceportal/pages/apod_page/components/apod_container.dart';
 import 'package:spaceportal/pages/apod_page/components/apod_viewer.dart';
@@ -50,16 +52,12 @@ class APODPage extends ConsumerWidget {
                 iconTheme: IconThemeData(
                   color: changeColorAppBar(wb),
                 ),
-                title: Container(
-                  child: FlexibleSpaceBar(
-                    collapseMode: CollapseMode.parallax,
-                    centerTitle: true,
-                    title: Text(
-                      'Picture of the day',
-                      style: TextStyle(
-                        color: changeColorAppBar(wb),
-                      ),
-                    ),
+                centerTitle: false,
+                title: Text(
+                  'Picture of the day',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: changeColorAppBar(wb),
                   ),
                 ),
                 flexibleSpace: Consumer(
@@ -105,7 +103,19 @@ class APODPage extends ConsumerWidget {
                   ),
                 ],
               ),
-              body: APODContents(),
+              body: Column(
+                children: [
+                  Flexible(
+                    child: APODContents(),
+                  ),
+                  Container(
+                    color: Colors.transparent,
+                    child: MyAdWidget(
+                      adUnitId: AdUnitId.apodPageBanner,
+                    ),
+                  ),
+                ],
+              ),
             ),
         loading: () => Scaffold(body: flareLoadingAnimation()),
         error: (e, s) => Text('Error'));

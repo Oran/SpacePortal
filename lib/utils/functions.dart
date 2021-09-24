@@ -130,9 +130,9 @@ List<BoxShadow> showBoxShadow(String themeId, {bool isRoverImages = false}) {
       return [
         BoxShadow(
           color: Colors.grey.withOpacity(0.5),
-          spreadRadius: 10,
+          spreadRadius: 7,
           blurRadius: 10,
-          offset: Offset(0, 3), // changes position of shadow
+          offset: Offset(0, 0), // changes position of shadow
         )
       ];
     }

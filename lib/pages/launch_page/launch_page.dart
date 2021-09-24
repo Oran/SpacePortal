@@ -4,7 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spaceportal/pages/launch_page/components/launch_card.dart';
 import 'package:spaceportal/providers/providers.dart';
 import 'package:spaceportal/pages/launch_page/launch_viewer/launch_viewer.dart';
+import 'package:spaceportal/services/ad_helper.dart';
 import 'package:spaceportal/utils/functions.dart';
+import 'package:spaceportal/widgets/ad_widget.dart';
 import 'package:spaceportal/widgets/fadein_appbar.dart';
 import 'package:spaceportal/constants.dart';
 
@@ -19,9 +21,11 @@ class LaunchPage extends ConsumerWidget {
     return whiteBalance.when(
         data: (wb) => Scaffold(
               appBar: AppBar(
+                centerTitle: false,
                 title: Text(
                   'Launches',
                   style: TextStyle(
+                    fontWeight: FontWeight.bold,
                     color: changeColorAppBar(wb),
                   ),
                 ),
@@ -95,6 +99,11 @@ class LaunchPage extends ConsumerWidget {
                             ),
                           );
                         },
+                      ),
+                    ),
+                    Container(
+                      child: MyAdWidget(
+                        adUnitId: AdUnitId.launchPageBanner,
                       ),
                     ),
                   ],
