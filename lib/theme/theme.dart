@@ -14,7 +14,7 @@ final appThemeLight = AppTheme(
     accentColor: AppColors.accentLight,
     errorColor: AppColors.error,
     primaryColorBrightness: Brightness.light,
-    cardColor: AppColors.primaryLight,
+    cardColor: AppColors.cardLight,
 
     //Appbar
     appBarTheme: AppBarTheme(

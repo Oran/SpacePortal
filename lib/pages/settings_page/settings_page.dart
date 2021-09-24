@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:spaceportal/pages/settings_page/components/settings_button.dart';
+import 'package:spaceportal/services/ad_helper.dart';
 
 class SettingsPage extends StatelessWidget {
   @override
@@ -17,15 +19,21 @@ class SettingsPage extends StatelessWidget {
         width: (MediaQuery.of(context).size.width),
         child: Column(
           children: [
-            //TODO: Add buttons here.
+            SettingsButton(
+              onTap: () {},
+              text: 'Licences',
+            ),
+            SettingsButton(
+              onTap: () {},
+              text: 'Changelog',
+            ),
           ],
         ),
       ),
       bottomNavigationBar: Container(
         height: 80,
         child: Center(
-          //TODO: Display current version number here.
-          child: null,
+          child: Text('Current Version v${AdUnitId.version}'),
         ),
       ),
     );
