@@ -1,13 +1,17 @@
 import 'package:package_info_plus/package_info_plus.dart';
 
+//TODO: This needs improvement.
+
 class AdUnitId {
   static late String packageName;
+  static late String version;
   static final String testAdUnitId = 'ca-app-pub-3940256099942544/6300978111';
 
   /// Gets package name
   void getPackageInfo() async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     packageName = packageInfo.packageName;
+    version = packageInfo.version;
   }
 
   /// Home Page Banner AD ID
