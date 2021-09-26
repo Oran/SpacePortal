@@ -177,13 +177,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
-  google_mobile_ads:
-    dependency: "direct main"
-    description:
-      name: google_mobile_ads
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.13.4"
   hive:
     dependency: "direct main"
     description:
@@ -268,6 +261,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.7.0"
+  native_admob_flutter:
+    dependency: "direct main"
+    description:
+      name: native_admob_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.5.0"
   octo_image:
     dependency: transitive
     description:
