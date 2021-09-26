@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:native_admob_flutter/native_admob_flutter.dart';
 import 'package:spaceportal/network/apod_network.dart';
 import 'package:spaceportal/network/articles_network.dart';
 import 'package:spaceportal/network/launch_network.dart';
@@ -20,8 +20,7 @@ import 'utils/enum.dart';
 Future<void> main() async {
   await Hive.initFlutter();
   WidgetsFlutterBinding.ensureInitialized();
-  PlatformViewsService.synchronizeToNativeViewHierarchy(false);
-  MobileAds.instance.initialize();
+  await MobileAds.initialize();
   AdUnitId().getPackageInfo();
   runApp(
     ProviderScope(child: MyApp()),

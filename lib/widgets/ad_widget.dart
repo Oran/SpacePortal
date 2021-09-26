@@ -1,64 +1,48 @@
 import 'package:flutter/material.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:native_admob_flutter/native_admob_flutter.dart';
 
 class MyAdWidget extends StatefulWidget {
   MyAdWidget({required this.adUnitId});
   final String adUnitId;
-
   @override
   _MyAdWidgetState createState() => _MyAdWidgetState();
 }
 
 class _MyAdWidgetState extends State<MyAdWidget> {
   late BannerAd _bannerAd;
-  bool _isAdLoaded = false;
+  BannerAdController _controller = BannerAdController();
 
-  void _createBottomBannerAd() {
+  void _createBannerAd() {
     _bannerAd = BannerAd(
-      adUnitId: widget.adUnitId,
-      size: AdSize.banner,
-      request: AdRequest(),
-      listener: BannerAdListener(
-        onAdClosed: (_) {
-          setState(() {
-            _isAdLoaded = false;
-          });
-        },
-        onAdLoaded: (_) {
-          setState(() {
-            _isAdLoaded = true;
-          });
-        },
-        onAdFailedToLoad: (ad, error) {
-          ad.dispose();
-          print("AD ERROR => " + error.toString());
-        },
-      ),
+      unitId: widget.adUnitId,
+      controller: _controller,
+      builder: (context, child) {
+        return Container(
+          color: Colors.transparent,
+          child: child,
+        );
+      },
+      loading: Text('Ad Loading...'),
+      error: Text('Ad Error!'),
+      size: BannerSize.BANNER,
     );
-    _bannerAd.load();
+    _controller.load();
   }
 
   @override
   void initState() {
     super.initState();
-    _createBottomBannerAd();
+    _createBannerAd();
   }
 
   @override
   void dispose() {
     super.dispose();
-    _bannerAd.dispose();
+    _controller.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return _isAdLoaded
-        ? Container(
-            height: _bannerAd.size.height.toDouble(),
-            width: _bannerAd.size.width.toDouble(),
-            color: Colors.transparent,
-            child: AdWidget(ad: _bannerAd),
-          )
-        : Container();
+    return _bannerAd;
   }
 }
