@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:spaceportal/pages/settings_page/components/settings_button.dart';
+import 'package:spaceportal/routes.dart';
 import 'package:spaceportal/services/ad_helper.dart';
+import 'package:spaceportal/utils/functions.dart';
 
 class SettingsPage extends StatelessWidget {
   @override
@@ -8,7 +10,12 @@ class SettingsPage extends StatelessWidget {
     var theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Settings'),
+        title: Text(
+          'Settings',
+          style: TextStyle(
+            color: theme.accentColor,
+          ),
+        ),
         centerTitle: false,
         iconTheme: IconThemeData(
           color: theme.accentColor,
@@ -20,11 +27,22 @@ class SettingsPage extends StatelessWidget {
         child: Column(
           children: [
             SettingsButton(
-              onTap: () {},
+              onTap: () {
+                showLicensePage(
+                  context: context,
+                  applicationIcon: FlutterLogo(
+                    size: 100,
+                  ),
+                  applicationName: 'Space Portal',
+                  applicationVersion: 'v${AdUnitId.version}',
+                );
+              },
               text: 'Licences',
             ),
             SettingsButton(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context, routeTo(rVersionHistory));
+              },
               text: 'Changelog',
             ),
           ],
