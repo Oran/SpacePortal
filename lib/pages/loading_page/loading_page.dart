@@ -38,7 +38,11 @@ class LoadingPage extends StatelessWidget {
             body: flareLoadingAnimation(),
           ),
           //TODO: Add better error widget.
-          error: (e, s) => Text('error'),
+          error: (e, s) => Scaffold(
+            body: Center(
+              child: Text('Please Restart the app.'),
+            ),
+          ),
         );
       },
     );
