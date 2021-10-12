@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:spaceportal/pages/settings_page/components/version_history/version_history.dart';
 
 class VersionHistory extends StatelessWidget {
@@ -26,6 +27,9 @@ class VersionHistory extends StatelessWidget {
         child: Scrollbar(
           interactive: true,
           child: Markdown(
+            styleSheet: MarkdownStyleSheet(
+              p: TextStyle(fontSize: 17),
+            ),
             physics: BouncingScrollPhysics(),
             data: markdownData,
           ),
