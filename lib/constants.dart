@@ -11,6 +11,8 @@ const String kLoading_Page = 'loading_page';
 const String kMarsWeather_Page = 'mars_weather_page';
 const String kArticles_Page = 'articles_page';
 const String kLaunch_Page = 'launch_page';
+const String kSettings_Page = 'settings_page';
+const String kVersionHistory_Page = 'version_history';
 
 // New Colors
 const Color kPrimaryWhite = Colors.white;
@@ -91,7 +93,10 @@ const Color kDropDownButtonColor = kPrimaryBlack;
 // );
 
 //Image links
-const kPlaceholderImage = 'https://i.imgur.com/AizUHEf.png';
+
+//TODO: Need to host own images
+const kPlaceholderImage =
+    'https://www.ecpgr.cgiar.org/fileadmin/templates/ecpgr.org/Assets/images/No_Image_Available.jpg';
 
 const kPlaceholderImageBlack =
     'https://images.pexels.com/videos/3045163/free-video-3045163.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500';

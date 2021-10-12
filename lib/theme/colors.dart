@@ -9,4 +9,5 @@ class AppColors {
 
   static const error = Color(0xffff424a);
   static const cardDark = Color(0xff2A2A2A);
+  static const cardLight = Color(0xffE5E5E5);
 }

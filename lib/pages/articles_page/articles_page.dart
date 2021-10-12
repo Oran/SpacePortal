@@ -16,102 +16,105 @@ class ArticlesPage extends ConsumerWidget {
     var whiteBalance = watch(whiteBalanceProvider(articles.data[0].imageUrl));
     var theme = Theme.of(context);
     return whiteBalance.when(
-        data: (wb) => Scaffold(
-              appBar: AppBar(
-                centerTitle: false,
-                title: Text(
-                  'Articles',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: changeColorAppBar(wb),
-                  ),
-                ),
-                iconTheme: IconThemeData(
-                  color: changeColorAppBar(wb),
-                ),
-                flexibleSpace: Consumer(
-                  builder: (context, watch, child) {
-                    var provider =
-                        watch(blurhashProvider(articles.data[0].imageUrl));
-                    return provider.when(
-                      data: (data) => FadeInAppBar(value: data),
-                      loading: () => Container(),
-                      error: (e, s) {
-                        print(e);
-                        print(s);
-                        return Container(
-                          color: Colors.grey[100],
-                        );
-                      },
-                    );
-                  },
-                ),
-              ),
-              body: Column(
-                children: [
-                  Flexible(
-                    child: ListView.builder(
-                      padding: EdgeInsets.only(top: 20),
-                      physics: BouncingScrollPhysics(),
-                      itemCount: articles.data.length,
-                      itemBuilder: (context, index) {
-                        return Container(
-                          child: ArticleCard(
-                            image: CachedNetworkImage(
-                              imageUrl: articles.data[index].imageUrl,
-                              fit: BoxFit.cover,
-                              memCacheHeight: 700,
-                              memCacheWidth: 1000,
-                              progressIndicatorBuilder:
-                                  (context, url, progress) {
-                                return Center(
-                                  child: Container(
-                                    height: 50,
-                                    width: 50,
-                                    child: CircularProgressIndicator(
-                                      backgroundColor: Colors.white,
-                                      valueColor: AlwaysStoppedAnimation(
-                                        Colors.black,
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              },
-                              errorWidget: (context, url, error) {
-                                return Container();
-                              },
+      data: (wb) => Scaffold(
+        appBar: AppBar(
+          centerTitle: false,
+          title: Text(
+            'Articles',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: changeColorAppBar(wb),
+            ),
+          ),
+          iconTheme: IconThemeData(
+            color: changeColorAppBar(wb),
+          ),
+          flexibleSpace: Consumer(
+            builder: (context, watch, child) {
+              var provider = watch(blurhashProvider(articles.data[0].imageUrl));
+              return provider.when(
+                data: (data) => FadeInAppBar(value: data),
+                loading: () => Container(),
+                error: (e, s) {
+                  print(e);
+                  print(s);
+                  return Container(
+                    color: Colors.grey[100],
+                  );
+                },
+              );
+            },
+          ),
+        ),
+        body: Column(
+          children: [
+            Flexible(
+              child: ListView.builder(
+                padding: EdgeInsets.only(top: 20),
+                physics: BouncingScrollPhysics(),
+                itemCount: articles.data.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    child: ArticleCard(
+                      image: CachedNetworkImage(
+                        imageUrl: articles.data[index].imageUrl,
+                        fit: BoxFit.cover,
+                        memCacheHeight: 700,
+                        memCacheWidth: 1000,
+                        progressIndicatorBuilder: (context, url, progress) {
+                          return Center(
+                            child: Container(
+                              height: 50,
+                              width: 50,
+                              child: CircularProgressIndicator(
+                                backgroundColor: Colors.white,
+                                valueColor: AlwaysStoppedAnimation(
+                                  Colors.black,
+                                ),
+                              ),
                             ),
-                            text: articles.data[index].title,
-                            publishedDate:
-                                articles.data[index].publishedAt.split('T')[0],
-                            source: articles.data[index].newsSite,
-                            height: 250.0,
-                            onPressed: () {
-                              try {
-                                launch(
-                                  articles.data[index].url,
-                                  forceWebView: true,
-                                  enableJavaScript: true,
-                                  enableDomStorage: true,
-                                );
-                              } catch (e) {
-                                print(e);
-                              }
-                            },
-                          ),
-                        );
+                          );
+                        },
+                        errorWidget: (context, url, error) {
+                          return Container();
+                        },
+                      ),
+                      text: articles.data[index].title,
+                      publishedDate:
+                          articles.data[index].publishedAt.split('T')[0],
+                      source: articles.data[index].newsSite,
+                      height: 250.0,
+                      onPressed: () {
+                        try {
+                          launch(
+                            articles.data[index].url,
+                            forceWebView: true,
+                            enableJavaScript: true,
+                            enableDomStorage: true,
+                          );
+                        } catch (e) {
+                          print(e);
+                        }
                       },
                     ),
-                  ),
-                  Container(
-                    child: MyAdWidget(
-                      adUnitId: AdUnitId.articlePageBanner,
-                    ),
-                  ),
-                ],
+                  );
+                },
               ),
             ),
-        loading: () => Scaffold(body: flareLoadingAnimation()),
-        error: (e, s) => Text('Error'));
+            Container(
+              child: MyAdWidget(
+                adUnitId: AdUnitId.articlePageBanner,
+              ),
+            ),
+          ],
+        ),
+      ),
+      loading: () => Scaffold(body: flareLoadingAnimation()),
+      error: (e, s) => Scaffold(
+        body: Center(
+          child: Text('Error!, Please restart the app'),
+        ),
+      ),
+    );
   }
 }

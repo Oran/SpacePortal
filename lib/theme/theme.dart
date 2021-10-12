@@ -14,13 +14,13 @@ final appThemeLight = AppTheme(
     accentColor: AppColors.accentLight,
     errorColor: AppColors.error,
     primaryColorBrightness: Brightness.light,
-    cardColor: AppColors.primaryLight,
+    cardColor: AppColors.cardLight,
 
     //Appbar
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.primaryLight,
       elevation: 0,
-      centerTitle: true,
+      centerTitle: false,
       actionsIconTheme: IconThemeData(
         color: AppColors.accentLight,
       ),
@@ -96,7 +96,7 @@ final appThemeDark = AppTheme(
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.primaryDark,
       elevation: 0,
-      centerTitle: true,
+      centerTitle: false,
       actionsIconTheme: IconThemeData(
         color: AppColors.accentDark,
       ),

@@ -111,6 +111,11 @@ class LaunchPage extends ConsumerWidget {
               ),
             ),
         loading: () => Scaffold(body: flareLoadingAnimation()),
-        error: (e, s) => Text('Error'));
+        error: (e, s) => Scaffold(
+        body: Center(
+          child: Text('Error!, Please restart the app'),
+        ),
+      ),
+    );
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spaceportal/constants.dart';
+import 'package:spaceportal/pages/settings_page/components/version_history/markdown_render.dart';
+import 'package:spaceportal/pages/settings_page/settings_page.dart';
 import 'pages/launch_page/service_provider_viewer/service_provider_viewer.dart';
 import 'pages/test_page.dart';
 import 'pages/launch_page/launch_page.dart';
@@ -18,6 +20,8 @@ Map<String, WidgetBuilder> pageRoutes = {
   kNoConnection_Page: (context) => NoConnectionPage(),
   kArticles_Page: (context) => ArticlesPage(),
   kLaunch_Page: (context) => LaunchPage(),
+  kSettings_Page: (context) => SettingsPage(),
+  kVersionHistory_Page: (context) => VersionHistory(),
 
   //! DEVELOPMENT ROUTES
   'test': (context) => ServiceProviderViewer(
@@ -35,3 +39,5 @@ final rLoadingPage = LoadingPage();
 final rNoConnectionPage = NoConnectionPage();
 final rArticlesPage = ArticlesPage();
 final rLaunchPage = LaunchPage();
+final rSettingsPage = SettingsPage();
+final rVersionHistory = VersionHistory();
