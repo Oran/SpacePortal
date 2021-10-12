@@ -37,13 +37,13 @@ class SettingsPage extends StatelessWidget {
                   applicationVersion: 'v${AdUnitId.version}',
                 );
               },
-              text: 'Licences',
+              text: 'Open Source Licences',
             ),
             SettingsButton(
               onTap: () {
                 Navigator.push(context, routeTo(rVersionHistory));
               },
-              text: 'Changelog',
+              text: 'Whats New',
             ),
           ],
         ),
