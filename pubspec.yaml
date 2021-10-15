@@ -37,6 +37,17 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+flutter_native_splash:
+  color: "#000C17"
+  image: "assets/icon/splash.png"
+  android_gravity: center
+
+flutter_icons:
+  android: "ic_launcher"
+  image_path: "assets/icon/whole.png"
+  adaptive_icon_background: "#000C17"
+  adaptive_icon_foreground: "assets/icon/fore.png"
+
 cider:
   link_template:
     tag: 'https://github.com/Oran/SpacePortal/releases/tag/%tag%'
