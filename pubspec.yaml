@@ -2,7 +2,7 @@ name: spaceportal
 description: A gateway into space.
 
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
-version: 0.0.7
+version: 0.0.8
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -30,10 +30,23 @@ dependencies:
   package_info_plus: ^1.0.6
   native_admob_flutter: ^1.5.0
   flutter_markdown: ^0.6.6
+  flutter_launcher_icons: ^0.9.2
+  flutter_native_splash: ^1.2.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+flutter_native_splash:
+  color: "#000C17"
+  image: "assets/icon/splash.png"
+  android_gravity: center
+
+flutter_icons:
+  android: "ic_launcher"
+  image_path: "assets/icon/whole.png"
+  adaptive_icon_background: "#000C17"
+  adaptive_icon_foreground: "assets/icon/fore.png"
 
 cider:
   link_template:
