@@ -6,6 +6,7 @@ class AdUnitId {
   static late String packageName;
   static late String version;
   static final String testAdUnitId = 'ca-app-pub-3940256099942544/6300978111';
+  static final String _packageNameToCheck = 'com.oran.spaceportal';
 
   /// Gets package name
   void getPackageInfo() async {
@@ -16,7 +17,7 @@ class AdUnitId {
 
   /// Home Page Banner AD ID
   static String get homePageBanner {
-    if (packageName == 'com.oran.spaceportal') {
+    if (packageName == _packageNameToCheck) {
       // REAL ID
       return 'ca-app-pub-4037518144985807/2040144982';
     } else {
@@ -27,7 +28,7 @@ class AdUnitId {
 
   /// APOD Page Banner AD ID
   static String get apodPageBanner {
-    if (packageName == 'com.oran.spaceportal') {
+    if (packageName == _packageNameToCheck) {
       // REAL ID
       return 'ca-app-pub-4037518144985807/5020621415';
     } else {
@@ -38,7 +39,7 @@ class AdUnitId {
 
   /// Launch Page Banner AD ID
   static String get launchPageBanner {
-    if (packageName == 'com.oran.spaceportal') {
+    if (packageName == _packageNameToCheck) {
       // REAL ID
       return 'ca-app-pub-4037518144985807/6781592935';
     } else {
@@ -49,7 +50,7 @@ class AdUnitId {
 
   /// Single Launch Page Banner AD ID
   static String get singleLaunchPageBanner {
-    if (packageName == 'com.oran.spaceportal') {
+    if (packageName == _packageNameToCheck) {
       // REAL ID
       return 'ca-app-pub-4037518144985807/3012085927';
     } else {
@@ -60,7 +61,7 @@ class AdUnitId {
 
   /// Article Page Banner AD ID
   static String get articlePageBanner {
-    if (packageName == 'com.oran.spaceportal') {
+    if (packageName == _packageNameToCheck) {
       // REAL ID
       return 'ca-app-pub-4037518144985807/7056925101';
     } else {
