@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:spaceportal/providers/providers.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +8,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 class APODContents extends ConsumerWidget {
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    var apodProviderData = watch(apodProvider);
+  Widget build(BuildContext context, ref) {
+    var apodProviderData = ref.watch(apodProvider);
     var theme = ThemeProvider.themeOf(context);
     return ListView(
       physics: BouncingScrollPhysics(),

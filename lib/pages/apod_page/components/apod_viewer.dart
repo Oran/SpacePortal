@@ -40,8 +40,8 @@ class _APODViewerState extends State<APODViewer> {
                 color: changeColorAppBar(snapshot.data[1]),
               ),
               flexibleSpace: Consumer(
-                builder: (context, watch, child) {
-                  var provider = watch(blurhashProvider(
+                builder: (context, ref, child) {
+                  var provider = ref.watch(blurhashProvider(
                     snapshot.data[0].mediaType == 'video'
                         ? snapshot.data[0].videoThumb
                         : snapshot.data[0].mediaType == 'other'

@@ -19,8 +19,8 @@ class LaunchViewer extends ConsumerWidget {
   LaunchViewer({required this.index});
 
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    var data = watch(launchProvider);
+  Widget build(BuildContext context, ref) {
+    var data = ref.watch(launchProvider);
     var theme = ThemeProvider.themeOf(context);
     return FutureBuilder(
       future: checkImgColor(data.launchData[index].image),
@@ -40,8 +40,8 @@ class LaunchViewer extends ConsumerWidget {
               ),
               centerTitle: false,
               flexibleSpace: Consumer(
-                builder: (context, watch, child) {
-                  var provider = watch(
+                builder: (context, ref, child) {
+                  var provider = ref.watch(
                     blurhashProvider(data.launchData[index].image),
                   );
                   return provider.when(

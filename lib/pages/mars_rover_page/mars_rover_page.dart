@@ -115,8 +115,8 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return Consumer(
-      builder: (context, watch, child) {
-        var whiteBalance = watch(whiteBalanceProvider(appBarUrl(list)));
+      builder: (context, ref, child) {
+        var whiteBalance = ref.watch(whiteBalanceProvider(appBarUrl(list)));
         return whiteBalance.when(
           data: (wb) {
             return Scaffold(
@@ -133,8 +133,8 @@ class _MarsRoverPageState extends State<MarsRoverPage> {
                   color: changeColorAppBar(wb),
                 ),
                 flexibleSpace: Consumer(
-                  builder: (context, watch, child) {
-                    var provider = watch(blurhashProvider(appBarUrl(list)));
+                  builder: (context, ref, child) {
+                    var provider = ref.watch(blurhashProvider(appBarUrl(list)));
                     return provider.when(
                       data: (data) => FadeInAppBar(value: data),
                       loading: () => Container(),

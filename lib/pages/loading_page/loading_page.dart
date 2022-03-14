@@ -30,8 +30,8 @@ class LoadingPage extends StatelessWidget {
       statusBarColor: Colors.transparent,
     ));
     return Consumer(
-      builder: (context, watch, child) {
-        var futures = watch(loadingPageProvider);
+      builder: (context, ref, child) {
+        var futures = ref.watch(loadingPageProvider);
         return futures.when(
           data: (futures) => HomePage(),
           loading: () => Scaffold(

@@ -36,8 +36,8 @@ class _CardViewState extends State<CardView> {
       children: [
         SizedBox(height: 10),
         Consumer(
-          builder: (context, watch, child) {
-            var apodProviderData = watch(apodProvider);
+          builder: (context, ref, child) {
+            var apodProviderData = ref.watch(apodProvider);
             return DCard(
               image: CachedNetworkImage(
                 imageUrl: apodProviderData.mediaType == 'video'
@@ -81,8 +81,8 @@ class _CardViewState extends State<CardView> {
           ),
         ),
         Consumer(
-          builder: (context, watch, child) {
-            var data = watch(launchProvider);
+          builder: (context, ref, child) {
+            var data = ref.watch(launchProvider);
             return DCard(
               image: CachedNetworkImage(
                 imageUrl: data
@@ -107,8 +107,8 @@ class _CardViewState extends State<CardView> {
           },
         ),
         Consumer(
-          builder: (context, watch, child) {
-            var article = watch(articleProvider);
+          builder: (context, ref, child) {
+            var article = ref.watch(articleProvider);
             return DCard(
               image: CachedNetworkImage(
                 imageUrl: article.data[0].imageUrl,

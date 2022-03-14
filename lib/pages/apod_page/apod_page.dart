@@ -39,9 +39,9 @@ class APODPage extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    var apodProviderData = watch(apodProvider);
-    var whiteBalance = watch(whiteBalanceProvider(
+  Widget build(BuildContext context, ref) {
+    var apodProviderData = ref.watch(apodProvider);
+    var whiteBalance = ref.watch(whiteBalanceProvider(
       apodProviderData.mediaType == 'video'
           ? apodProviderData.videoThumb!
           : apodProviderData.image!,
@@ -61,8 +61,8 @@ class APODPage extends ConsumerWidget {
                   ),
                 ),
                 flexibleSpace: Consumer(
-                  builder: (context, watch, child) {
-                    var provider = watch(blurhashProvider(
+                  builder: (context, ref, child) {
+                    var provider = ref.watch(blurhashProvider(
                       apodProviderData.mediaType == 'video'
                           ? apodProviderData.videoThumb!
                           : apodProviderData.image!,

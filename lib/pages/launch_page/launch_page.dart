@@ -12,9 +12,9 @@ import 'package:spaceportal/constants.dart';
 
 class LaunchPage extends ConsumerWidget {
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    var data = watch(launchProvider);
-    var whiteBalance = watch(whiteBalanceProvider(
+  Widget build(BuildContext context, ref) {
+    var data = ref.watch(launchProvider);
+    var whiteBalance = ref.watch(whiteBalanceProvider(
       data.launchData[data.launchData[0].image == kPlaceholderImage ? 1 : 0]
           .image,
     ));
@@ -33,8 +33,8 @@ class LaunchPage extends ConsumerWidget {
                   color: changeColorAppBar(wb),
                 ),
                 flexibleSpace: Consumer(
-                  builder: (context, watch, child) {
-                    var provider = watch(
+                  builder: (context, ref, child) {
+                    var provider = ref.watch(
                       blurhashProvider(
                         data
                             .launchData[

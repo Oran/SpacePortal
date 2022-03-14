@@ -11,9 +11,9 @@ import 'package:url_launcher/url_launcher.dart';
 
 class ArticlesPage extends ConsumerWidget {
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    var articles = watch(articleProvider);
-    var whiteBalance = watch(whiteBalanceProvider(articles.data[0].imageUrl));
+  Widget build(BuildContext context, ref) {
+    var articles = ref.watch(articleProvider);
+    var whiteBalance = ref.watch(whiteBalanceProvider(articles.data[0].imageUrl));
     var theme = Theme.of(context);
     return whiteBalance.when(
       data: (wb) => Scaffold(
@@ -30,8 +30,8 @@ class ArticlesPage extends ConsumerWidget {
             color: changeColorAppBar(wb),
           ),
           flexibleSpace: Consumer(
-            builder: (context, watch, child) {
-              var provider = watch(blurhashProvider(articles.data[0].imageUrl));
+            builder: (context, ref, child) {
+              var provider = ref.watch(blurhashProvider(articles.data[0].imageUrl));
               return provider.when(
                 data: (data) => FadeInAppBar(value: data),
                 loading: () => Container(),
